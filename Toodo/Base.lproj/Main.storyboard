@@ -1,25 +1,163 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OED-7G-u6J">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Toodo-->
+        <scene sceneID="cc2-NK-c7b">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Tkz-QC-Deg" customClass="HomeViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="xLT-qu-nrB"/>
+                        <viewControllerLayoutGuide type="bottom" id="d6P-nP-Q1z"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="BUC-SJ-1jl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MDr-AE-52X">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="609"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="69" id="gXA-Jv-329" customClass="TaskTableViewCell" customModule="Toodo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gXA-Jv-329" id="mLG-Vr-jPp">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-Rn-nfw">
+                                                    <rect key="frame" x="8" y="4" width="59" height="60.5"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do stuff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgx-z4-A96">
+                                                    <rect key="frame" x="75" y="4" width="206" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuc-et-fYZ">
+                                                    <rect key="frame" x="317" y="17" width="50" height="35"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BO-5L-98z">
+                                                    <rect key="frame" x="75" y="39" width="168" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="badgeImage" destination="MLJ-Rn-nfw" id="xAr-sQ-6jh"/>
+                                            <outlet property="chevronRight" destination="fuc-et-fYZ" id="6Ge-3h-nYe"/>
+                                            <outlet property="dateLabel" destination="1BO-5L-98z" id="tA6-RG-AJv"/>
+                                            <outlet property="taskLabel" destination="qgx-z4-A96" id="Cwm-p9-9AL"/>
+                                            <segue destination="shg-3L-Bnq" kind="show" identifier="editItem" id="00L-YY-zxc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKZ-oy-6fy">
+                                <rect key="frame" x="0.0" y="609" width="375" height="58"/>
+                                <state key="normal" image="Add" backgroundImage="Add Background">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="fvL-CD-BgV" kind="show" identifier="addItem" id="Qgz-vJ-vWN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Toodo" id="bsC-6c-dVU">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="z4E-Rp-0Gv"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="7c6-VG-LOx"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="homeTableView" destination="MDr-AE-52X" id="Wi9-MJ-CIx"/>
+                        <segue destination="shg-3L-Bnq" kind="show" identifier="dataTransfer" id="5ee-5M-zrC"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pid-l6-g5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1227.5" y="346.5"/>
+        </scene>
+        <!--New Task View Controller-->
+        <scene sceneID="tpP-w2-kVd">
+            <objects>
+                <viewController id="fvL-CD-BgV" customClass="NewTaskViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qnp-nQ-JqW"/>
+                        <viewControllerLayoutGuide type="bottom" id="TaF-zV-2RQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rad-mO-Oyf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IbA-b5-H7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1720.5" y="346.5"/>
+        </scene>
+        <!--Edit Task-->
+        <scene sceneID="jJZ-hw-1Tv">
+            <objects>
+                <viewController id="shg-3L-Bnq" customClass="EditTaskViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eAZ-61-PX1"/>
+                        <viewControllerLayoutGuide type="bottom" id="FgB-U3-Fkd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z0c-Hr-qjQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Task" id="qAa-tb-xN5">
+                        <barButtonItem key="leftBarButtonItem" title="Exit" id="NkE-No-qlo">
+                            <connections>
+                                <segue destination="mKd-GH-PUP" kind="unwind" identifier="Exit" unwindAction="unwindtoSegue:" id="ugd-RV-OlH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Vn3-Re-yoP">
+                            <connections>
+                                <segue destination="mKd-GH-PUP" kind="unwind" identifier="Save" unwindAction="unwindtoSegue:" id="MAL-Yh-xRv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGp-Vn-nq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="mKd-GH-PUP" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1713.5" y="1168.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sWa-Mx-b9u">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OED-7G-u6J" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hMN-Ud-d1s">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tkz-QC-Deg" kind="relationship" relationship="rootViewController" id="azQ-OQ-jJq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rw0-9c-Pie" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="730" y="347"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Add" width="24" height="25"/>
+        <image name="Add Background" width="320" height="58"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5ee-5M-zrC"/>
+    </inferredMetricsTieBreakers>
 </document>

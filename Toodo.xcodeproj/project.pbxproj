@@ -8,11 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3561B505ACD00A35889 /* AppDelegate.swift */; };
-		4536C3591B505ACD00A35889 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3581B505ACD00A35889 /* ViewController.swift */; };
 		4536C35C1B505ACD00A35889 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4536C35A1B505ACD00A35889 /* Main.storyboard */; };
 		4536C35E1B505ACD00A35889 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4536C35D1B505ACD00A35889 /* Images.xcassets */; };
 		4536C3611B505ACD00A35889 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4536C35F1B505ACD00A35889 /* LaunchScreen.xib */; };
 		4536C36D1B505ACD00A35889 /* ToodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C36C1B505ACD00A35889 /* ToodoTests.swift */; };
+		4536C37A1B505CA600A35889 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3791B505CA600A35889 /* HomeViewController.swift */; };
+		4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */; };
+		4536C3851B506C6F00A35889 /* task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3841B506C6F00A35889 /* task.swift */; };
+		4536C3861B50719A00A35889 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; };
+		4536C3871B50719A00A35889 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; };
+		4536C3891B50719A00A35889 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4536C38C1B50761600A35889 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* NewTaskViewController.swift */; };
+		4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38D1B5078E200A35889 /* EditTaskViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,17 +33,38 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4536C38A1B50719A00A35889 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4536C3891B50719A00A35889 /* RealmSwift.framework in Embed Frameworks */,
+				4536C3871B50719A00A35889 /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4536C3511B505ACD00A35889 /* Toodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4536C3551B505ACD00A35889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4536C3561B505ACD00A35889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4536C3581B505ACD00A35889 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4536C35B1B505ACD00A35889 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4536C35D1B505ACD00A35889 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4536C3601B505ACD00A35889 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4536C3661B505ACD00A35889 /* ToodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4536C36B1B505ACD00A35889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4536C36C1B505ACD00A35889 /* ToodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToodoTests.swift; sourceTree = "<group>"; };
+		4536C3791B505CA600A35889 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		4536C37F1B506B1B00A35889 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../realm-swift-0.93.2/ios/Realm.framework"; sourceTree = "<group>"; };
+		4536C3801B506B1B00A35889 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../realm-swift-0.93.2/ios/RealmSwift.framework"; sourceTree = "<group>"; };
+		4536C3841B506C6F00A35889 /* task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = task.swift; sourceTree = "<group>"; };
+		4536C38B1B50761600A35889 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4536C3861B50719A00A35889 /* Realm.framework in Frameworks */,
+				4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +93,7 @@
 				4536C3531B505ACD00A35889 /* Toodo */,
 				4536C3691B505ACD00A35889 /* ToodoTests */,
 				4536C3521B505ACD00A35889 /* Products */,
+				4536C37E1B506A8300A35889 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,8 +109,9 @@
 		4536C3531B505ACD00A35889 /* Toodo */ = {
 			isa = PBXGroup;
 			children = (
+				4536C3831B506C5D00A35889 /* Entities */,
+				4536C3761B505C7200A35889 /* View Controllers */,
 				4536C3561B505ACD00A35889 /* AppDelegate.swift */,
-				4536C3581B505ACD00A35889 /* ViewController.swift */,
 				4536C35A1B505ACD00A35889 /* Main.storyboard */,
 				4536C35D1B505ACD00A35889 /* Images.xcassets */,
 				4536C35F1B505ACD00A35889 /* LaunchScreen.xib */,
@@ -112,6 +145,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4536C3761B505C7200A35889 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4536C3791B505CA600A35889 /* HomeViewController.swift */,
+				4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */,
+				4536C38B1B50761600A35889 /* NewTaskViewController.swift */,
+				4536C38D1B5078E200A35889 /* EditTaskViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4536C37E1B506A8300A35889 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4536C37F1B506B1B00A35889 /* Realm.framework */,
+				4536C3801B506B1B00A35889 /* RealmSwift.framework */,
+			);
+			name = Frameworks;
+			path = Toodo/Frameworks;
+			sourceTree = "<group>";
+		};
+		4536C3831B506C5D00A35889 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				4536C3841B506C6F00A35889 /* task.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,6 +184,7 @@
 				4536C34D1B505ACD00A35889 /* Sources */,
 				4536C34E1B505ACD00A35889 /* Frameworks */,
 				4536C34F1B505ACD00A35889 /* Resources */,
+				4536C38A1B50719A00A35889 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,8 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4536C3591B505ACD00A35889 /* ViewController.swift in Sources */,
+				4536C3851B506C6F00A35889 /* task.swift in Sources */,
+				4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */,
+				4536C38C1B50761600A35889 /* NewTaskViewController.swift in Sources */,
 				4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */,
+				4536C37A1B505CA600A35889 /* HomeViewController.swift in Sources */,
+				4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +409,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/RegiSuh/Desktop/realm-swift-0.93.2/ios",
+				);
 				INFOPLIST_FILE = Toodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -352,6 +423,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/RegiSuh/Desktop/realm-swift-0.93.2/ios",
+				);
 				INFOPLIST_FILE = Toodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
