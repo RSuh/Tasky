@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTaskViewController: UIViewController {
+class ChooseCategoryViewController: UIViewController {
 
     var newTask: Task?
     
@@ -34,7 +34,7 @@ class NewTaskViewController: UIViewController {
         
         // Create a Task object
         newTask = Task()
-        newTask!.taskTitle = "Do the garbage"
+        newTask!.taskTitle = "New Task"
     }
     
 

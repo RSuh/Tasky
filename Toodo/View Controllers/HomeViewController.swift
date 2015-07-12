@@ -10,34 +10,58 @@ import UIKit
 import RealmSwift
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet weak var homeTableView: UITableView!
-    // The original unwindtoSegue
-    @IBAction func unwindtoSegue(segue: UIStoryboardSegue) {
+    
+    // When a cell is pressed, then the user can save, or exit without saving.
+    @IBAction func backToHomeFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             let realm = Realm()
             switch identifier {
-            // If the Save button is pressed
-            case "Save":
-                println("Save button pressed")
-//                let source = segue.sourceViewController as! NewTaskViewController
+                // If the Save button is pressed from Edit
+            case "saveFromEdit":
+                println("Save from Edit")
+//                let editSource = segue.sourceViewController as! EditTaskViewController
 //                
 //                realm.write() {
-//                    realm.add(source.newTask!)
+//                    realm.add(editSource.editTask!)
+//                }
                 
-            // If the Exit button is pressed
-            case "Exit":
-                println("Exit button pressed")
-            // Else
+                // If the Exit button is pressed
+            case "exitFromEdit":
+                println("Exit from Edit")
+                // Else
             default:
-                println("No one loves \(identifier)")
+                println("Nothing from edit \(identifier)")
             }
-            
-            // Sorting the tasks by date
-            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+            //tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }
     
+    @IBAction func backToHomeFromNew(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            let realm = Realm()
+            switch identifier {
+                // If the Save button is pressed from New
+            case "saveFromNew":
+                println("Save from New!")
+                let newSource = segue.sourceViewController as! ChooseCategoryViewController
+                realm.write() {
+                    realm.add(newSource.newTask!)
+                }
+                
+                
+                
+            case "exitFromNew":
+                println("Exit from New!")
+                
+            default:
+                println("Nothing from new \(identifier)")
+            }
+            
+            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        }
+    }
     // Updates tableView whenever tasks update
     var tasks: Results<Task>! {
         didSet {
@@ -49,26 +73,23 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         homeTableView.dataSource = self
-        
-        // Creates a new Task object
-        let newTask = Task()
-        // Temporarily sets task title
-        newTask.taskTitle = "Hi"
-        
+        homeTableView.delegate = self
         let realm = Realm()
-        realm.write() {
-            // Adds a new task everytime the app is loaded
-            realm.add(newTask)
-            
-            // Delete all tasks
-            //realm.deleteAll()
-        }
+        tasks = realm.objects(Task).sorted("modificationDate", ascending: true)
         
-        tasks = realm.objects(Task)
+        //        let myTask = Task()
+        //        myTask.taskTitle = "Test task"
+        //
+        //        //Deletes all tasks *For testing*
+        //        realm.write() {
+        //            realm.add(myTask)
+        //            realm.deleteAll()
+        //        }
+        
         //  homeTableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -93,6 +114,31 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Int(tasks?.count ?? 0)
     }
+}
+
+extension HomeViewController: UITableViewDelegate {
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        selectedTask = tasks[indexPath.row]
+//        self.performSegueWithIdentifier("segueidentifier", sender: self)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let task = tasks[indexPath.row] as Object
+            
+            let realm = Realm()
+            
+            realm.write() {
+                realm.delete(task)
+            }
+            
+            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        }
+    }
 }
 

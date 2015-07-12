@@ -38,7 +38,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fuc-et-fYZ">
                                                     <rect key="frame" x="317" y="17" width="50" height="35"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BO-5L-98z">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BO-5L-98z">
                                                     <rect key="frame" x="75" y="39" width="168" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,8 +69,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Toodo" id="bsC-6c-dVU">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="z4E-Rp-0Gv"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="7c6-VG-LOx"/>
+                        <barButtonItem key="leftBarButtonItem" title="Categories" id="z4E-Rp-0Gv"/>
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="7c6-VG-LOx"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1227.5" y="346.5"/>
         </scene>
-        <!--New Task View Controller-->
+        <!--Choose-->
         <scene sceneID="tpP-w2-kVd">
             <objects>
-                <viewController id="fvL-CD-BgV" customClass="NewTaskViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fvL-CD-BgV" customClass="ChooseCategoryViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qnp-nQ-JqW"/>
                         <viewControllerLayoutGuide type="bottom" id="TaF-zV-2RQ"/>
@@ -95,9 +95,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Choose" id="DzO-uF-QLj">
+                        <barButtonItem key="leftBarButtonItem" title="Exit" id="sih-qp-r7Y">
+                            <connections>
+                                <segue destination="acw-eh-aM0" kind="unwind" identifier="exitFromNew" unwindAction="backToHomeFromNew:" id="QvW-LF-you"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="qYM-XG-fRi">
+                            <connections>
+                                <segue destination="acw-eh-aM0" kind="unwind" identifier="saveFromNew" unwindAction="backToHomeFromNew:" id="vDk-hG-5h7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbA-b5-H7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="acw-eh-aM0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1720.5" y="346.5"/>
         </scene>
@@ -117,12 +132,12 @@
                     <navigationItem key="navigationItem" title="Edit Task" id="qAa-tb-xN5">
                         <barButtonItem key="leftBarButtonItem" title="Exit" id="NkE-No-qlo">
                             <connections>
-                                <segue destination="mKd-GH-PUP" kind="unwind" identifier="Exit" unwindAction="unwindtoSegue:" id="ugd-RV-OlH"/>
+                                <segue destination="mKd-GH-PUP" kind="unwind" identifier="exitFromEdit" unwindAction="backToHomeFromEdit:" id="ugd-RV-OlH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Vn3-Re-yoP">
                             <connections>
-                                <segue destination="mKd-GH-PUP" kind="unwind" identifier="Save" unwindAction="unwindtoSegue:" id="MAL-Yh-xRv"/>
+                                <segue destination="mKd-GH-PUP" kind="unwind" identifier="saveFromEdit" unwindAction="backToHomeFromEdit:" id="MAL-Yh-xRv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
