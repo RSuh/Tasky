@@ -13,6 +13,13 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var homeTableView: UITableView!
     
+    // Updates tableView whenever tasks update
+    var tasks: Results<Task>! {
+        didSet {
+            homeTableView?.reloadData()
+        }
+    }
+    
     // When a cell is pressed, then the user can save, or exit without saving.
     @IBAction func backToHomeFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
@@ -34,7 +41,7 @@ class HomeViewController: UIViewController {
             default:
                 println("Nothing from edit \(identifier)")
             }
-            //tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+//            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }
     
@@ -50,25 +57,30 @@ class HomeViewController: UIViewController {
                     realm.add(newSource.newTask!)
                 }
                 
-                
-                
+                // If the exit button is pressed from New
             case "exitFromNew":
                 println("Exit from New!")
                 
+                // Else
             default:
                 println("Nothing from new \(identifier)")
             }
             
+            // Adds new tasks in real-time
             tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }
-    // Updates tableView whenever tasks update
-    var tasks: Results<Task>! {
-        didSet {
-            homeTableView?.reloadData()
-        }
+
+    // Customizes the title Bar
+    override func viewDidAppear(animated: Bool) {
+        
+        // Selects the nav bar
+        var navigation = self.navigationController?.navigationBar
+        
+        // Customizes the color of the navbar
+        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,16 +89,16 @@ class HomeViewController: UIViewController {
         let realm = Realm()
         tasks = realm.objects(Task).sorted("modificationDate", ascending: true)
         
-        //        let myTask = Task()
-        //        myTask.taskTitle = "Test task"
-        //
-        //        //Deletes all tasks *For testing*
-        //        realm.write() {
-        //            realm.add(myTask)
-        //            realm.deleteAll()
-        //        }
+//                let myTask = Task()
+//                myTask.taskTitle = "Test task"
+//        
+//                //Deletes all tasks *For testing*
+//                realm.write() {
+//                    realm.add(myTask)
+//                    realm.deleteAll()
+//                }
         
-        //  homeTableView.dataSource = self
+//          homeTableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -107,6 +119,14 @@ extension HomeViewController: UITableViewDataSource {
         let task = tasks[row] as Task
         cell.task = task
         
+        // Custom separator lines between cells
+        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
+        
+        // This makes the separator be centered between the cells.
+        //tableView.separatorInset.right = tableView.separatorInset.left
+        
         return cell
     }
     
@@ -121,6 +141,9 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        selectedTask = tasks[indexPath.row]
 //        self.performSegueWithIdentifier("segueidentifier", sender: self)
+        
+        // To deselect a cell after it's tapped
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

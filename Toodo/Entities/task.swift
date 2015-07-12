@@ -14,5 +14,4 @@ class Task: Object {
     
     dynamic var taskTitle: String = ""
     dynamic var modificationDate = NSDate()
-    
 }
