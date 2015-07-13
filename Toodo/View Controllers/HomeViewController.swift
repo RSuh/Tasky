@@ -31,10 +31,7 @@ class HomeViewController: UIViewController {
                 // If the Save button is pressed from Edit
             case "saveFromEdit":
                 println("Save from Edit")
-                let editSource = segue.sourceViewController as! EditTaskViewController
-                realm.write() {
-                    realm.add(editSource.editedTask!)
-                }
+                //let editSource = segue.sourceViewController as! EditTaskViewController
                 
                 // If the Exit button is pressed
             case "exitFromEdit":
@@ -85,10 +82,15 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let realm = Realm()
+        tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let realm = Realm()
-        
         // On load, loads all the tasks from before
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         

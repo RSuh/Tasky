@@ -6,13 +6,14 @@
 //  Copyright (c) 2015 ReginaldSuh. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import RealmSwift
 
-class EditTaskViewController: UIViewController {
+class EditTaskViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var badgeImage: UIImageView!
-    @IBOutlet weak var taskTextField: UITextField!
+    @IBOutlet weak var taskTextField: UITextField! = nil
     
     var editedTask: Task? {
         didSet {
@@ -27,11 +28,42 @@ class EditTaskViewController: UIViewController {
         }
     }
     
+    func saveTask() {
+        if let editedTask = editedTask {
+            let realm = Realm()
+            realm.write() {
+                if (editedTask.taskTitle != self.taskTextField.text) {
+                    editedTask.taskTitle = self.taskTextField.text
+                    editedTask.modificationDate = NSDate()
+                }
+            }
+        }
+    }
+    // Hides keyboard when you press done
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        taskTextField.resignFirstResponder()
+        return true
+    }
+    
+    // Hides keyboard whenever you tap outside the keyboard
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        saveTask()
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         // Calls displayTask when the VC is about to appear
-        displayTask(editedTask)
+        displayTask(self.editedTask)
+        
+        taskTextField.returnKeyType = UIReturnKeyType.Done
+        //taskTextField.delegate = self
     }
     
     override func viewDidLoad() {
@@ -39,6 +71,7 @@ class EditTaskViewController: UIViewController {
         //displayTask(editedTask)
         //taskTextField.placeholder = "What's your task?"
         // Do any additional setup after loading the view.
+        taskTextField.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
