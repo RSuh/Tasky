@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OED-7G-u6J">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Toodo-->
@@ -36,31 +35,29 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="fuc-et-fYZ">
+                                                    <rect key="frame" x="353" y="27.5" width="9" height="15"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BO-5L-98z">
                                                     <rect key="frame" x="75" y="39" width="168" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="fuc-et-fYZ">
-                                                    <rect key="frame" x="353" y="27.5" width="9" height="15"/>
-                                                </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="fuc-et-fYZ" secondAttribute="centerY" constant="-0.75" id="YC6-7T-3Sq"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="fuc-et-fYZ" secondAttribute="trailing" constant="5" id="eAM-vp-zyX"/>
-                                                <constraint firstAttribute="centerX" secondItem="fuc-et-fYZ" secondAttribute="centerX" constant="-170" id="eHG-hK-hXF"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="badgeImage" destination="MLJ-Rn-nfw" id="xAr-sQ-6jh"/>
                                             <outlet property="chevronRight" destination="fuc-et-fYZ" id="6Ge-3h-nYe"/>
                                             <outlet property="dateLabel" destination="1BO-5L-98z" id="tA6-RG-AJv"/>
                                             <outlet property="taskLabel" destination="qgx-z4-A96" id="Cwm-p9-9AL"/>
-                                            <segue destination="shg-3L-Bnq" kind="show" identifier="editItem" id="00L-YY-zxc"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Tkz-QC-Deg" id="Kua-Lj-BuZ"/>
+                                    <outlet property="delegate" destination="Tkz-QC-Deg" id="rf5-Dn-uYH"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cM-rt-GXP">
                                 <rect key="frame" x="0.0" y="609" width="375" height="58"/>
@@ -68,7 +65,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fvL-CD-BgV" kind="show" id="YNw-hM-UAn"/>
+                                    <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="YNw-hM-UAn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -85,7 +82,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="homeTableView" destination="MDr-AE-52X" id="Wi9-MJ-CIx"/>
-                        <segue destination="shg-3L-Bnq" kind="show" identifier="dataTransfer" id="5ee-5M-zrC"/>
+                        <segue destination="shg-3L-Bnq" kind="show" identifier="editTask" id="aDi-Sv-uhb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pid-l6-g5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,6 +136,16 @@
                     <view key="view" contentMode="scaleToFill" id="Z0c-Hr-qjQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oMP-uO-zyB">
+                                <rect key="frame" x="116" y="116" width="143" height="164"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXW-RT-KNY">
+                                <rect key="frame" x="42" y="327" width="281" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Task" id="qAa-tb-xN5">
@@ -154,11 +161,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="badgeImage" destination="oMP-uO-zyB" id="y0x-Y7-jWA"/>
+                        <outlet property="taskTextField" destination="fXW-RT-KNY" id="VNl-s1-gCa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGp-Vn-nq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mKd-GH-PUP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1713.5" y="1168.5"/>
+            <point key="canvasLocation" x="1726.5" y="1146.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sWa-Mx-b9u">
@@ -189,7 +200,4 @@
         <image name="chevronRight" width="10" height="15"/>
         <image name="settings" width="24" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="5ee-5M-zrC"/>
-    </inferredMetricsTieBreakers>
 </document>

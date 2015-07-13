@@ -20,6 +20,9 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // The task which is currently selected
+    var selectedTask: Task?
+    
     // When a cell is pressed, then the user can save, or exit without saving.
     @IBAction func backToHomeFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
@@ -28,11 +31,10 @@ class HomeViewController: UIViewController {
                 // If the Save button is pressed from Edit
             case "saveFromEdit":
                 println("Save from Edit")
-//                let editSource = segue.sourceViewController as! EditTaskViewController
-//                
-//                realm.write() {
-//                    realm.add(editSource.editTask!)
-//                }
+                let editSource = segue.sourceViewController as! EditTaskViewController
+                realm.write() {
+                    realm.add(editSource.editedTask!)
+                }
                 
                 // If the Exit button is pressed
             case "exitFromEdit":
@@ -41,7 +43,9 @@ class HomeViewController: UIViewController {
             default:
                 println("Nothing from edit \(identifier)")
             }
-//            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+            
+            // Used to creating a new task when edit is selected right away
+            //tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }
     
@@ -70,10 +74,9 @@ class HomeViewController: UIViewController {
             tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }
-
+    
     // Customizes the title Bar
     override func viewDidAppear(animated: Bool) {
-        
         // Selects the nav bar
         var navigation = self.navigationController?.navigationBar
         
@@ -84,27 +87,32 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeTableView.dataSource = self
-        homeTableView.delegate = self
         let realm = Realm()
-        tasks = realm.objects(Task).sorted("modificationDate", ascending: true)
         
-//                let myTask = Task()
-//                myTask.taskTitle = "Test task"
+        // On load, loads all the tasks from before
+        tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        
+        //Deletes all tasks *For testing*
+//        let myTask = Task()
 //        
-//                //Deletes all tasks *For testing*
-//                realm.write() {
-//                    realm.add(myTask)
-//                    realm.deleteAll()
-//                }
+//        realm.write() {
+//            realm.add(myTask)
+//            realm.deleteAll()
+//        }
         
-//          homeTableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "editTask") {
+            let targetVC = segue.destinationViewController as! EditTaskViewController
+            targetVC.editedTask = selectedTask
+        }
     }
 }
 
@@ -139,8 +147,11 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        selectedTask = tasks[indexPath.row]
-//        self.performSegueWithIdentifier("segueidentifier", sender: self)
+        // Assigns the task object at the cell to selectedTask
+        selectedTask = tasks[indexPath.row]
+        
+        // Performs the segue to editTaskVC
+        self.performSegueWithIdentifier("editTask", sender: self)
         
         // To deselect a cell after it's tapped
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -159,7 +170,7 @@ extension HomeViewController: UITableViewDelegate {
             realm.write() {
                 realm.delete(task)
             }
-            
+        
             tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }

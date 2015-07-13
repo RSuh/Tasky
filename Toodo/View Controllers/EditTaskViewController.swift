@@ -7,14 +7,37 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EditTaskViewController: UIViewController {
 
-    var editTask: Task?
+    @IBOutlet weak var badgeImage: UIImageView!
+    @IBOutlet weak var taskTextField: UITextField!
+    
+    var editedTask: Task? {
+        didSet {
+            displayTask(editedTask)
+        }
+    }
+    
+    func displayTask(task: Task?) {
+        if let task = task, taskTextField = taskTextField {
+            taskTextField.text = editedTask!.taskTitle
+            println(task)
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Calls displayTask when the VC is about to appear
+        displayTask(editedTask)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //displayTask(editedTask)
+        //taskTextField.placeholder = "What's your task?"
         // Do any additional setup after loading the view.
     }
 
@@ -23,17 +46,10 @@ class EditTaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        // Create a new edited task
-        editTask = Task()
-        editTask!.taskTitle = "Edited task"
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
 }
+

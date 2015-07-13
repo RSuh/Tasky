@@ -1,5 +1,5 @@
 //
-//  task.swift
+//  Task.swift
 //  Toodo
 //
 //  Created by Reginald Suh on 2015-07-10.

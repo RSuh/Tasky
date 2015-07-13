@@ -14,7 +14,7 @@
 		4536C36D1B505ACD00A35889 /* ToodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C36C1B505ACD00A35889 /* ToodoTests.swift */; };
 		4536C37A1B505CA600A35889 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3791B505CA600A35889 /* HomeViewController.swift */; };
 		4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */; };
-		4536C3851B506C6F00A35889 /* task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3841B506C6F00A35889 /* task.swift */; };
+		4536C3851B506C6F00A35889 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3841B506C6F00A35889 /* Task.swift */; };
 		4536C3861B50719A00A35889 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; };
 		4536C3871B50719A00A35889 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; };
@@ -62,7 +62,7 @@
 		4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		4536C37F1B506B1B00A35889 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../realm-swift-0.93.2/ios/Realm.framework"; sourceTree = "<group>"; };
 		4536C3801B506B1B00A35889 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../realm-swift-0.93.2/ios/RealmSwift.framework"; sourceTree = "<group>"; };
-		4536C3841B506C6F00A35889 /* task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = task.swift; sourceTree = "<group>"; };
+		4536C3841B506C6F00A35889 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4536C38B1B50761600A35889 /* ChooseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,7 +169,7 @@
 		4536C3831B506C5D00A35889 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				4536C3841B506C6F00A35889 /* task.swift */,
+				4536C3841B506C6F00A35889 /* Task.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -275,7 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4536C3851B506C6F00A35889 /* task.swift in Sources */,
+				4536C3851B506C6F00A35889 /* Task.swift in Sources */,
 				4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */,
 				4536C38C1B50761600A35889 /* ChooseCategoryViewController.swift in Sources */,
 				4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */,
@@ -486,6 +486,7 @@
 				4536C3721B505ACD00A35889 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4536C3731B505ACD00A35889 /* Build configuration list for PBXNativeTarget "ToodoTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +495,7 @@
 				4536C3751B505ACD00A35889 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

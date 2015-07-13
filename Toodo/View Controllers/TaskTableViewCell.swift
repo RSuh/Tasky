@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TaskTableViewCell: UITableViewCell {
 
@@ -17,7 +18,8 @@ class TaskTableViewCell: UITableViewCell {
     
     static var presentDate: NSDateFormatter {
        var formatter = NSDateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
+        // Can set custom dates, refer to http://www.codingexplorer.com/swiftly-getting-human-readable-date-nsdateformatter/
+        formatter.dateFormat = "EEEE, MMMM dd"
         return formatter
     }
     
@@ -25,8 +27,6 @@ class TaskTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
