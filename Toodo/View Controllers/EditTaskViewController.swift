@@ -13,7 +13,8 @@ import RealmSwift
 class EditTaskViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var badgeImage: UIImageView!
-    @IBOutlet weak var taskTextField: UITextField! = nil
+    @IBOutlet weak var taskTextField: UITextView! = nil
+   
     
     var editedTask: Task? {
         didSet {
@@ -53,6 +54,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // Calls save task which saves the task from the edit section
         saveTask()
     }
     
@@ -62,16 +64,15 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         // Calls displayTask when the VC is about to appear
         displayTask(self.editedTask)
         
-        taskTextField.returnKeyType = UIReturnKeyType.Done
-        //taskTextField.delegate = self
+        taskTextField.returnKeyType = UIReturnKeyType.Default
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //displayTask(editedTask)
-        //taskTextField.placeholder = "What's your task?"
+        //taskTextField.attributedText = "What's your task?" as NSAttributedString!
         // Do any additional setup after loading the view.
-        taskTextField.delegate = self
+
     }
 
     override func didReceiveMemoryWarning() {
