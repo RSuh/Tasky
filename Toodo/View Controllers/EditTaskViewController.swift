@@ -14,6 +14,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextView! = nil
+//    @IBOutlet weak var reminderCell: UITableViewCell!
    
     
     var editedTask: Task? {
