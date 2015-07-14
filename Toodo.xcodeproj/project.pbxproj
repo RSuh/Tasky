@@ -12,7 +12,7 @@
 		4536C35E1B505ACD00A35889 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4536C35D1B505ACD00A35889 /* Images.xcassets */; };
 		4536C3611B505ACD00A35889 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4536C35F1B505ACD00A35889 /* LaunchScreen.xib */; };
 		4536C36D1B505ACD00A35889 /* ToodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C36C1B505ACD00A35889 /* ToodoTests.swift */; };
-		4536C37A1B505CA600A35889 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3791B505CA600A35889 /* HomeViewController.swift */; };
+		4536C37A1B505CA600A35889 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3791B505CA600A35889 /* TaskViewController.swift */; };
 		4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */; };
 		4536C3851B506C6F00A35889 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3841B506C6F00A35889 /* Task.swift */; };
 		4536C3861B50719A00A35889 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; };
@@ -21,6 +21,9 @@
 		4536C3891B50719A00A35889 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4536C38C1B50761600A35889 /* ChooseCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* ChooseCategoryViewController.swift */; };
 		4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38D1B5078E200A35889 /* EditTaskViewController.swift */; };
+		457D28901B558460000952CC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D288F1B558460000952CC /* HomeViewController.swift */; };
+		457D28921B5585F5000952CC /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28911B5585F5000952CC /* ListTableViewCell.swift */; };
+		457D28941B558908000952CC /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28931B558908000952CC /* List.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,13 +61,16 @@
 		4536C3661B505ACD00A35889 /* ToodoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToodoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4536C36B1B505ACD00A35889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4536C36C1B505ACD00A35889 /* ToodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToodoTests.swift; sourceTree = "<group>"; };
-		4536C3791B505CA600A35889 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4536C3791B505CA600A35889 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		4536C37F1B506B1B00A35889 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../realm-swift-0.93.2/ios/Realm.framework"; sourceTree = "<group>"; };
 		4536C3801B506B1B00A35889 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../realm-swift-0.93.2/ios/RealmSwift.framework"; sourceTree = "<group>"; };
 		4536C3841B506C6F00A35889 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4536C38B1B50761600A35889 /* ChooseCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewController.swift; sourceTree = "<group>"; };
 		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		457D288F1B558460000952CC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		457D28911B5585F5000952CC /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		457D28931B558908000952CC /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,10 +154,12 @@
 		4536C3761B505C7200A35889 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4536C3791B505CA600A35889 /* HomeViewController.swift */,
+				4536C3791B505CA600A35889 /* TaskViewController.swift */,
+				457D28911B5585F5000952CC /* ListTableViewCell.swift */,
 				4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */,
 				4536C38B1B50761600A35889 /* ChooseCategoryViewController.swift */,
 				4536C38D1B5078E200A35889 /* EditTaskViewController.swift */,
+				457D288F1B558460000952CC /* HomeViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -170,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				4536C3841B506C6F00A35889 /* Task.swift */,
+				457D28931B558908000952CC /* List.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -276,11 +285,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4536C3851B506C6F00A35889 /* Task.swift in Sources */,
+				457D28921B5585F5000952CC /* ListTableViewCell.swift in Sources */,
 				4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */,
 				4536C38C1B50761600A35889 /* ChooseCategoryViewController.swift in Sources */,
 				4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */,
-				4536C37A1B505CA600A35889 /* HomeViewController.swift in Sources */,
+				4536C37A1B505CA600A35889 /* TaskViewController.swift in Sources */,
+				457D28901B558460000952CC /* HomeViewController.swift in Sources */,
 				4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */,
+				457D28941B558908000952CC /* List.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
