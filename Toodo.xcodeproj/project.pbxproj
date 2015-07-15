@@ -155,11 +155,11 @@
 			isa = PBXGroup;
 			children = (
 				4536C3791B505CA600A35889 /* TaskViewController.swift */,
+				457D288F1B558460000952CC /* HomeViewController.swift */,
 				457D28911B5585F5000952CC /* ListTableViewCell.swift */,
 				4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */,
 				4536C38B1B50761600A35889 /* ChooseCategoryViewController.swift */,
 				4536C38D1B5078E200A35889 /* EditTaskViewController.swift */,
-				457D288F1B558460000952CC /* HomeViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

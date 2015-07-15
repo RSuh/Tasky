@@ -12,6 +12,7 @@ import RealmSwift
 class ChooseCategoryViewController: UIViewController {
 
     var newTask: Task?
+    var newList: List?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,12 @@ class ChooseCategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Create a Task object
-        newTask = Task()
-        newTask!.taskTitle = "New Task"
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        // Create a Task object
+//        newTask = Task()
+//        newTask!.taskTitle = "New Task"
+//        
+//        newList = List()
+//        newList!.listTitle = "New List"
+//    }
 }

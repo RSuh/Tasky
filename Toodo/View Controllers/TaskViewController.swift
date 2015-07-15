@@ -53,10 +53,10 @@ class TaskViewController: UIViewController {
                 // If the Save button is pressed from New
             case "saveFromNew":
                 println("Save from New!")
-                let newSource = segue.sourceViewController as! ChooseCategoryViewController
-                realm.write() {
-                    realm.add(newSource.newTask!)
-                }
+//                let newSource = segue.sourceViewController as! ChooseCategoryViewController
+//                realm.write() {
+//                    realm.add(newSource.newTask!)
+//                }
                 
                 // If the exit button is pressed from New
             case "exitFromNew":

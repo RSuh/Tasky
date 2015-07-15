@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var listTitle: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,11 +30,8 @@ class ListTableViewCell: UITableViewCell {
     var list: List? {
         didSet {
             if let listTitle = listTitle, taskCount = taskCount {
-                listTitle.text = "Test, Work"
-                taskCount.text = "0"
+                listTitle.text = list?.listTitle
             }
         }
     }
-    
-
 }
