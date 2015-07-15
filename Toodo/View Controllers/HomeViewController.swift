@@ -32,13 +32,17 @@ class HomeViewController: UIViewController {
                 
             case "saveToList":
                 println("save from Choose to Home")
-                
+                let newSource = segue.sourceViewController as! ChooseCategoryViewController
+                realm.write() {
+                    realm.add(newSource.newList!)
+                    //realm.add(newSource.newList?.taskCount++)
+                }
+                      
             default:
                 println("failed")
                 
-                // NOTE: sort by number of tasks
-                
-                //        lists = realm.objects(List).sorted("listModificationDate", ascending: false)
+                // Sort by number of tasks, able to sort by count.
+                lists = realm.objects(List).sorted("taskCount", ascending: false)
             }
         }
     }
@@ -46,18 +50,26 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        let realm = Realm()
-        //
-        //        // Sets up the lists cells by the modificationDate
-        //        lists = realm.objects(List).sorted("listModificationDate", ascending: false)
+        
+        let realm = Realm()
+        listTableView.delegate = self
+        listTableView.dataSource = self
+        
+        // To delete all tasks for testing uses
+//        realm.write() {
+//            realm.deleteAll()
+//        }
+        
+        // Sets up the lists cells by the modificationDate
+        lists = realm.objects(List).sorted("taskCount", ascending: false)
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //        let realm = Realm()
-        //        lists = realm.objects(List).sorted("listModificationDate", ascending: false)
+        let realm = Realm()
+        lists = realm.objects(List).sorted("taskCount", ascending: false)
         
     }
     
@@ -73,12 +85,12 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        if segue.identifier == "listToTask" {
-    //            let targetVC = segue.destinationViewController as! EditTaskViewController
-    //           targetVC.editedTask = selectedTask
+    //        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //            if (segue.identifier == "listToTask") {
+    //                let targetVC = segue.destinationViewController as! EditTaskViewController
+    //               targetVC.editedTask = selectedTask
+    //            }
     //        }
-    //    }
     
     /*
     // MARK: - Navigation
@@ -99,17 +111,19 @@ extension HomeViewController: UITableViewDataSource {
         let cell = listTableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as! ListTableViewCell
         
         // Set up cell
-        //        let row = indexPath.row
-        //        let list = lists[row] as List
-        //        cell.list = list
-        
-        cell.listTitle.text = "Testing"
+        let row = indexPath.row
+        let list = lists[row] as List
+        cell.list = list
         
         return cell
     }
     
     // How many rows are in the tableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return Int(lists?.count ?? 0)
     }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    
 }

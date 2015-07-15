@@ -14,7 +14,6 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var listTitle: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +28,9 @@ class ListTableViewCell: UITableViewCell {
     
     var list: List? {
         didSet {
-            if let listTitle = listTitle, taskCount = taskCount {
-                listTitle.text = list?.listTitle
+            if let list = list, listTitle = listTitle, taskCount = taskCount {
+                listTitle.text = list.listTitle
+                //taskCount.text = list.taskArray.count
             }
         }
     }
