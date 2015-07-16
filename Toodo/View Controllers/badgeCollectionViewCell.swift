@@ -7,8 +7,11 @@
 //
 
 import UIKit
-import RealmSwift
+import RealmSwift   
 
 class badgeCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var badgeImage: UIImageView!
+
     
 }

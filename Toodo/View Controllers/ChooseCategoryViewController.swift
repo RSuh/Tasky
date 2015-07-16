@@ -9,10 +9,25 @@
 import UIKit
 import RealmSwift
 
-class ChooseCategoryViewController: UIViewController {
+class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var newTask: Task?
     var newList: List?
+    var cellImages: [String] = ["The file names of the images."]
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 8
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! badgeCollectionViewCell
+        cell.badgeImage.image = UIImage(named: cellImages[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        println("You have pressed cell \(indexPath.row)")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
