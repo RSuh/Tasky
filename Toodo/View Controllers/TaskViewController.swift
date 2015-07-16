@@ -10,8 +10,10 @@ import UIKit
 import RealmSwift
 
 class TaskViewController: UIViewController {
-
+    
     @IBOutlet weak var homeTableView: UITableView!
+    
+    var taskArray: [Task] = []
     
     // Updates tableView whenever tasks update
     var tasks: Results<Task>! {
@@ -31,11 +33,15 @@ class TaskViewController: UIViewController {
                 // If the Save button is pressed from Edit
             case "saveFromEdit":
                 println("Save from Edit")
-                //let editSource = segue.sourceViewController as! EditTaskViewController
+                let editSource = segue.sourceViewController as! EditTaskViewController
+                
+                // Calls save task which saves the task from the edit section
+                editSource.saveTask()
                 
                 // If the Exit button is pressed
             case "exitFromEdit":
                 println("Exit from Edit")
+                
                 // Else
             default:
                 println("Nothing from edit \(identifier)")
@@ -53,10 +59,12 @@ class TaskViewController: UIViewController {
                 // If the Save button is pressed from New
             case "saveFromNew":
                 println("Save from New!")
-//                let newSource = segue.sourceViewController as! ChooseCategoryViewController
-//                realm.write() {
-//                    realm.add(newSource.newTask!)
-//                }
+                let newSource = segue.sourceViewController as! ChooseCategoryViewController
+                
+                realm.write() {
+                    realm.add(newSource.newTask!)
+                    
+                }
                 
                 // If the exit button is pressed from New
             case "exitFromNew":
@@ -96,12 +104,12 @@ class TaskViewController: UIViewController {
         
         
         //Deletes all tasks *For testing*
-//        let myTask = Task()
-//        
-//        realm.write() {
-//            realm.add(myTask)
-//            realm.deleteAll()
-//        }
+        //        let myTask = Task()
+        //
+        //        realm.write() {
+        //            realm.add(myTask)
+        //            realm.deleteAll()
+        //        }
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -176,7 +184,7 @@ extension TaskViewController: UITableViewDelegate {
             realm.write() {
                 realm.delete(task)
             }
-        
+            
             tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }

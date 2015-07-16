@@ -27,14 +27,14 @@ class ChooseCategoryViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //        // Create a Task object
-        //        newTask = Task()
-        //        newTask!.taskTitle = "New Task"
-        //
+        newTask = Task()
+        newTask!.taskTitle = "New Task"
+        
         
         // Create a new List object
         newList = List()
         newList?.listTitle = "New List"
         newList?.taskCount = 1
-        //newList?.taskArray = ["hi"]
+        //newList?.taskArray.insert("hi", atIndex: 0)
     }
 }

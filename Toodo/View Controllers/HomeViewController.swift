@@ -13,6 +13,11 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var listTableView: UITableView!
     
+    var taskArray: [Task] = []
+    
+    
+    var listArray: [Results<Task>] = []
+    
     // Reloads the lists everytime the page loads.
     var lists: Results<List>! {
         didSet {
@@ -35,14 +40,29 @@ class HomeViewController: UIViewController {
                 let newSource = segue.sourceViewController as! ChooseCategoryViewController
                 realm.write() {
                     realm.add(newSource.newList!)
+                    println(newSource.newList!)
+                    // self.taskArray.append(newTask)
                     //realm.add(newSource.newList?.taskCount++)
                 }
-                      
+                
             default:
                 println("failed")
                 
                 // Sort by number of tasks, able to sort by count.
                 lists = realm.objects(List).sorted("taskCount", ascending: false)
+            }
+        }
+    }
+    
+    @IBAction func backtoListFromInsideCategory(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            let realm = Realm()
+            switch identifier {
+                case "backToCategory":
+                println("back to home")
+                
+            default:
+                println("noting")
             }
         }
     }
@@ -85,12 +105,11 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //            if (segue.identifier == "listToTask") {
-    //                let targetVC = segue.destinationViewController as! EditTaskViewController
-    //               targetVC.editedTask = selectedTask
-    //            }
-    //        }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if (segue.identifier == "listToTask") {
+//            let targetVC = segue.destinationViewController as! EditTaskViewController
+//        }
+//    }
     
     /*
     // MARK: - Navigation
@@ -115,6 +134,11 @@ extension HomeViewController: UITableViewDataSource {
         let list = lists[row] as List
         cell.list = list
         
+        // Custom separator lines between cells
+        tableView.separatorInset = UIEdgeInsetsZero
+        tableView.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsetsZero
+        
         return cell
     }
     
@@ -125,5 +149,18 @@ extension HomeViewController: UITableViewDataSource {
 }
 
 extension HomeViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedList = lists[indexPath.row]
+      
+        self.performSegueWithIdentifier("listToTask", sender: self)
+        
+        listTableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
     
 }

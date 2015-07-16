@@ -11,11 +11,12 @@ import UIKit
 import RealmSwift
 
 class EditTaskViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextView! = nil
-//    @IBOutlet weak var reminderCell: UITableViewCell!
-   
+    @IBOutlet weak var taskNoteField: UITextView!
+    //    @IBOutlet weak var reminderCell: UITableViewCell!
+    
     
     var editedTask: Task? {
         didSet {
@@ -26,22 +27,28 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     func displayTask(task: Task?) {
         if let task = task, taskTextField = taskTextField {
             taskTextField.text = editedTask!.taskTitle
+            taskNoteField.text = editedTask!.taskNote
             println(task)
         }
     }
     
+    // Saves the task when you
     func saveTask() {
         if let editedTask = editedTask {
             let realm = Realm()
             realm.write() {
+                println(editedTask.taskTitle)
                 if (editedTask.taskTitle != self.taskTextField.text) {
                     editedTask.taskTitle = self.taskTextField.text
+                    editedTask.modificationDate = NSDate()
+                } else if (editedTask.taskNote != self.taskNoteField.text) {
+                    editedTask.taskNote = self.taskNoteField.text
                     editedTask.modificationDate = NSDate()
                 }
             }
         }
     }
-    // Hides keyboard when you press done
+    // Hides keyboard when you press done the view controller ends
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         taskTextField.resignFirstResponder()
         return true
@@ -54,9 +61,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        // Calls save task which saves the task from the edit section
-        saveTask()
+        println("Are you sure you want to exit?")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,7 +70,6 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         // Calls displayTask when the VC is about to appear
         displayTask(self.editedTask)
         
-        taskTextField.returnKeyType = UIReturnKeyType.Default
     }
     
     override func viewDidLoad() {
@@ -73,18 +77,18 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         //displayTask(editedTask)
         //taskTextField.attributedText = "What's your task?" as NSAttributedString!
         // Do any additional setup after loading the view.
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
 }
 
