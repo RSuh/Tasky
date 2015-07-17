@@ -49,13 +49,20 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kZv-2m-AHJ">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNh-bt-sPy">
                                                     <rect key="frame" x="319" y="14" width="48" height="48"/>
-                                                </imageView>
+                                                    <state key="normal" image="listEdit">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="UF0-xq-MZ9" kind="show" identifier="editList" id="OcC-G9-Ze1"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="badgeImage" destination="OWZ-F7-Naj" id="pFn-SA-j9v"/>
+                                            <outlet property="listEditButton" destination="cNh-bt-sPy" id="CYx-NR-yTZ"/>
                                             <outlet property="listTitle" destination="tFW-jS-0pH" id="exk-m8-5zE"/>
                                             <outlet property="taskCount" destination="7el-nh-9Nq" id="iKc-Wi-Ghs"/>
                                         </connections>
@@ -436,5 +443,9 @@
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>
         <image name="editTitleLine" width="261" height="1"/>
+        <image name="listEdit" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="OcC-G9-Ze1"/>
+    </inferredMetricsTieBreakers>
 </document>

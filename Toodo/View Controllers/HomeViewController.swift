@@ -13,9 +13,8 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var listTableView: UITableView!
     
-    var taskArray: [Task] = []
-    
-    var listArray: [Results<Task>] = []
+//    var taskArray: [Task] = []
+//    var listArray: [Results<Task>] = []
     
     // Reloads the lists everytime the page loads.
     var lists: Results<List>! {
@@ -105,12 +104,6 @@ class HomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if (segue.identifier == "listToTask") {
-//            let targetVC = segue.destinationViewController as! EditTaskViewController
-//        }
-//    }
     
     /*
     // MARK: - Navigation

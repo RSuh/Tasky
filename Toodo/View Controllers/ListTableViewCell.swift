@@ -14,7 +14,8 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var listTitle: UILabel!
-    
+    @IBOutlet weak var listEditButton: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,7 +32,6 @@ class ListTableViewCell: UITableViewCell {
             if let list = list, listTitle = listTitle, taskCount = taskCount {
                 listTitle.text = list.listTitle
                 badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[list.badge])
-                //badgeImage.image = UIImage(named: "badgeWork")
             }
         }
     }

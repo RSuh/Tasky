@@ -14,8 +14,8 @@ class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource
     @IBOutlet weak var listTitle: UITextField!
     
     var newTask: Task?
-    var badge = 0
     var newList: List?
+    var badge = 0
 
     // Passing image to Home View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -23,25 +23,23 @@ class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource
             let targetViewCell = segue.destinationViewController as! HomeViewController
             HomeViewController.load()
             targetViewCell.loadView()
-            //targetViewCell = imageSelected
-            // Changes the background color when pressing saveToList.
-            //targetViewCell.listTableView.backgroundColor = UIColor.blackColor()
-//            targetViewCell.listTableView.
+        
+            // Create a new List object
+            newList = List()
+            newList?.listTitle = "New List"
+            //newList?.taskCount = 1
+            newList?.badge = self.badge
+        } else if (segue.identifier == "editList") {
+            let targetViewCell = segue.destinationViewController as! HomeViewController
+            HomeViewController.load()
+            targetViewCell.loadView()
+            
+            // Create a new edited List Object
+            newList?.badge = self.badge
             
         }
-        
-//        //        // Create a Task object
-//        newTask = Task()
-//        newTask!.taskTitle = "New Task"
-//        
-//        
-        // Create a new List object
-        newList = List()
-        newList?.listTitle = "New List"
-        newList?.taskCount = 1
-        newList?.badge = self.badge
-//        //newList?.taskArray.insert("hi", atIndex: 0)
     }
+    
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrayConstants.cellImagesUnselected.count
@@ -58,9 +56,7 @@ class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource
         badge = indexPath.row
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! badgeCollectionViewCell
         cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
-        var imageSelected = arrayConstants.cellImagesUnselected[indexPath.row]
-        
-        println(imageSelected)
+
 
     }
     
@@ -71,11 +67,10 @@ class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource
 
         (collectionView.cellForItemAtIndexPath(indexPath) as! badgeCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
     }
-    
 
-    // Create a for loop which sets each image in the deselected state by looping through the array of images.
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
