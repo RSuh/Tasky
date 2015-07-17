@@ -30,6 +30,7 @@ class ListTableViewCell: UITableViewCell {
         didSet {
             if let list = list, listTitle = listTitle, taskCount = taskCount {
                 listTitle.text = list.listTitle
+                badgeImage.image = UIImage(named: "")
                 //taskCount.text = list.taskArray.count
             }
         }

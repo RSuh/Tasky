@@ -1,11 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
-      "filename" : "filter.pdf"
-    },
-    {
-      "idiom" : "ipad"
+      "idiom" : "universal",
+      "filename" : "money badge.pdf"
     }
   ],
   "info" : {
