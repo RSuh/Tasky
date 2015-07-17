@@ -25,6 +25,7 @@
 		457D28921B5585F5000952CC /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28911B5585F5000952CC /* ListTableViewCell.swift */; };
 		457D28941B558908000952CC /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28931B558908000952CC /* List.swift */; };
 		457D28961B582E18000952CC /* badgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28951B582E18000952CC /* badgeCollectionViewCell.swift */; };
+		457D28981B599C24000952CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28971B599C24000952CC /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		457D28911B5585F5000952CC /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		457D28931B558908000952CC /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		457D28951B582E18000952CC /* badgeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = badgeCollectionViewCell.swift; sourceTree = "<group>"; };
+		457D28971B599C24000952CC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			children = (
 				4536C3841B506C6F00A35889 /* Task.swift */,
 				457D28931B558908000952CC /* List.swift */,
+				457D28971B599C24000952CC /* Constants.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4536C3851B506C6F00A35889 /* Task.swift in Sources */,
+				457D28981B599C24000952CC /* Constants.swift in Sources */,
 				457D28921B5585F5000952CC /* ListTableViewCell.swift in Sources */,
 				457D28961B582E18000952CC /* badgeCollectionViewCell.swift in Sources */,
 				4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */,

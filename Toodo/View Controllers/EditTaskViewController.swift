@@ -28,7 +28,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         if let task = task, taskTextField = taskTextField {
             taskTextField.text = editedTask!.taskTitle
             taskNoteField.text = editedTask!.taskNote
-            println(task)
+
         }
     }
     
@@ -37,7 +37,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         if let editedTask = editedTask {
             let realm = Realm()
             realm.write() {
-                println(editedTask.taskTitle)
+
                 if (editedTask.taskTitle != self.taskTextField.text) {
                     editedTask.taskTitle = self.taskTextField.text
                     editedTask.modificationDate = NSDate()

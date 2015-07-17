@@ -10,19 +10,22 @@ import UIKit
 import RealmSwift
 
 class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+
+    @IBOutlet weak var listTitle: UITextField!
     
     var newTask: Task?
+    var badge = 0
     var newList: List?
-    let cellImagesDeselected: [String] = ["badgeWork", "badgeDefault", "badgeFinance", "badgeWork", "badgeDefault", "badgeFinance", "badgeWork", "badgeDefault", "badgeFinance", "badgeWork", "badgeDefault", "badgeFinance", "badgeWork"]
-    
+
     // Passing image to Home View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "saveToList") {
             let targetViewCell = segue.destinationViewController as! HomeViewController
             HomeViewController.load()
             targetViewCell.loadView()
+            //targetViewCell = imageSelected
             // Changes the background color when pressing saveToList.
-            targetViewCell.listTableView.backgroundColor = UIColor.blackColor()
+            //targetViewCell.listTableView.backgroundColor = UIColor.blackColor()
 //            targetViewCell.listTableView.
             
         }
@@ -32,30 +35,33 @@ class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource
 //        newTask!.taskTitle = "New Task"
 //        
 //        
-//        // Create a new List object
-//        newList = List()
-//        newList?.listTitle = "New List"
-//        newList?.taskCount = 1
+        // Create a new List object
+        newList = List()
+        newList?.listTitle = "New List"
+        newList?.taskCount = 1
+        newList?.badge = self.badge
 //        //newList?.taskArray.insert("hi", atIndex: 0)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cellImagesDeselected.count
+        return arrayConstants.cellImagesUnselected.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! badgeCollectionViewCell
-        cell.badgeImage.image = UIImage(named: cellImagesDeselected[indexPath.row])
-        println(cell.badgeImage.image)
+        cell.chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("You have pressed cell \(indexPath.row)")
+        println("You have selected cell \(indexPath.row)")
+        badge = indexPath.row
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! badgeCollectionViewCell
-        cell.badgeImage.image = UIImage(named: "badgeFinance")
-        cell.backgroundColor = UIColor.grayColor()
-        println(cellImagesDeselected.description)
+        cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
+        var imageSelected = arrayConstants.cellImagesUnselected[indexPath.row]
+        
+        println(imageSelected)
+
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
@@ -63,7 +69,7 @@ class ChooseCategoryViewController: UIViewController, UICollectionViewDataSource
         
         cell.backgroundColor = UIColor.clearColor()
 
-        (collectionView.cellForItemAtIndexPath(indexPath) as! badgeCollectionViewCell).badgeImage.image = UIImage(named: cellImagesDeselected[indexPath.row])
+        (collectionView.cellForItemAtIndexPath(indexPath) as! badgeCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
     }
     
 

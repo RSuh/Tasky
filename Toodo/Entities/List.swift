@@ -8,10 +8,11 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 // A new list object
 class List: Object {
     dynamic var listTitle = ""
-    //dynamic var taskArray: [String] = [""]
     dynamic var taskCount = 1
+    dynamic var badge = 0
 }

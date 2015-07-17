@@ -11,7 +11,6 @@ import RealmSwift
 
 class badgeCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var badgeImage: UIImageView!
-
+    @IBOutlet weak var chooseBadgeImage: UIImageView!
     
 }

@@ -12,9 +12,7 @@ import RealmSwift
 class TaskViewController: UIViewController {
     
     @IBOutlet weak var homeTableView: UITableView!
-    
-    var taskArray: [Task] = []
-    
+
     // Updates tableView whenever tasks update
     var tasks: Results<Task>! {
         didSet {
@@ -46,9 +44,6 @@ class TaskViewController: UIViewController {
             default:
                 println("Nothing from edit \(identifier)")
             }
-            
-            // Used to creating a new task when edit is selected right away
-            //tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }
     

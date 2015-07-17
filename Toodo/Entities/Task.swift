@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 // Initialize a Task Object.
 class Task: Object {

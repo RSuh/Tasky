@@ -15,7 +15,6 @@ class HomeViewController: UIViewController {
     
     var taskArray: [Task] = []
     
-    
     var listArray: [Results<Task>] = []
     
     // Reloads the lists everytime the page loads.
@@ -40,7 +39,7 @@ class HomeViewController: UIViewController {
                 let newSource = segue.sourceViewController as! ChooseCategoryViewController
                 realm.write() {
                     realm.add(newSource.newList!)
-                    println(newSource.newList!)
+
                     // self.taskArray.append(newTask)
                     //realm.add(newSource.newList?.taskCount++)
                 }
@@ -154,7 +153,6 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedList = lists[indexPath.row]
-      
         self.performSegueWithIdentifier("listToTask", sender: self)
         
         listTableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -164,5 +162,18 @@ extension HomeViewController: UITableViewDelegate {
         return true
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let realm = Realm()
+        if editingStyle == .Delete {
+            let list = lists[indexPath.row] as Object
+            
+            realm.write() {
+                realm.delete(list)
+            }
+            
+            lists = realm.objects(List).sorted("taskCount", ascending: false)
+        }
+        
+    }
     
 }
