@@ -116,7 +116,7 @@ class ListViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "editList" {
+        if (segue.identifier == "editList") {
             let targetVC = segue.destinationViewController as! EditListViewController
             //let VC = segue.destinationViewController as! ListTableViewCell
             
@@ -126,8 +126,14 @@ class ListViewController: UIViewController {
             println(targetVC.editedList)
             
             // TO FIX: Get the cell to be auto selected, or selected when the user presses the edit button because right now, you have to click the cell before you can do any editing.
+        } else if (segue.identifier == "listToTask") {
+            
+    // MARK: - TODO
+            // Change the navbar title of the next view controller
+            
         }
     }
+    
     /*
     // MARK: - Navigation
     

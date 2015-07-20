@@ -75,7 +75,6 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //displayTask(editedTask)
         //taskTextField.attributedText = "What's your task?" as NSAttributedString!
         // Do any additional setup after loading the view.
         

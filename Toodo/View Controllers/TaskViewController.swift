@@ -99,6 +99,7 @@ class TaskViewController: UIViewController {
         // On load, loads all the tasks from before according to modification Date
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         
+        self.title = "List title"
         // Do any additional setup after loading the view, typically from a nib.
     }
     
