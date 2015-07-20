@@ -123,13 +123,14 @@ class ListViewController: UIViewController {
             // Set the editedTask as the selectedList
             targetVC.editedList = selectedList
             
-            println(targetVC.editedList)
+//            println(targetVC.editedList)
             
             // TO FIX: Get the cell to be auto selected, or selected when the user presses the edit button because right now, you have to click the cell before you can do any editing.
         } else if (segue.identifier == "listToTask") {
+            let titleVC = segue.destinationViewController as! TaskViewController
             
-    // MARK: - TODO
-            // Change the navbar title of the next view controller
+            // Sets the list title in the next VC to be the selected list's title
+            titleVC.listTitleForNavBar = selectedList!.listTitle
             
         }
     }
@@ -156,8 +157,6 @@ extension ListViewController: UITableViewDataSource {
         let row = indexPath.row
         let list = lists[row] as List
         cell.list = list
-        
-        cell.listEditButton.tag = indexPath.row
 
         // Custom separator lines between cells
         tableView.separatorInset = UIEdgeInsetsZero
@@ -178,7 +177,6 @@ extension ListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedList = lists[indexPath.row]
         self.performSegueWithIdentifier("listToTask", sender: self)
-        println("selected List is \(selectedList!)")
         
         listTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

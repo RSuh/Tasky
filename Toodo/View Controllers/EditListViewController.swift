@@ -15,10 +15,13 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
     // Initialize realm
     let realm = Realm()
     
-    @IBOutlet weak var listTitle: UITextField!
+    @IBOutlet var listTitle: UITextField!
     
     // Counter for the image
     var badge = 0
+    
+    // The nav title for each list
+    var listTitleForNavBar: String = ""
     
     var editedList: List? {
         didSet {
@@ -99,7 +102,6 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
     

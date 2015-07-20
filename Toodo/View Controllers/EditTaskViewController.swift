@@ -77,6 +77,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         //taskTextField.attributedText = "What's your task?" as NSAttributedString!
         // Do any additional setup after loading the view.
+        //self.title = listTitleForNavBar
         
     }
     

@@ -25,6 +25,9 @@ class TaskViewController: UIViewController {
     // The task which is currently selected
     var selectedTask: Task?
     
+    // The title of the nav bar
+    var listTitleForNavBar: String = ""
+    
     // When a cell is pressed, then the user can save, or exit without saving.
     @IBAction func backToTaskFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
@@ -99,7 +102,7 @@ class TaskViewController: UIViewController {
         // On load, loads all the tasks from before according to modification Date
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         
-        self.title = "List title"
+        self.title = listTitleForNavBar
         // Do any additional setup after loading the view, typically from a nib.
     }
     

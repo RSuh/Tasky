@@ -11,15 +11,12 @@ import RealmSwift
 
 class ListTableViewCell: UITableViewCell {
 
+    // Initialize realm
+    let realm = Realm()
+    
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var listTitle: UILabel!
-    @IBOutlet weak var listEditButton: UIButton!
-    
-    @IBAction func editButtonPressed(sender: AnyObject) {
-        let buttonRow = sender.tag
-        println("Ive been pressed at \(buttonRow)")
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
