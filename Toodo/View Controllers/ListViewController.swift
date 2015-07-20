@@ -15,6 +15,7 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var listTableView: UITableView!
     
+    
     // Reloads the lists everytime the page loads.
     var lists: Results<List>! {
         didSet {
@@ -152,6 +153,7 @@ extension ListViewController: UITableViewDataSource {
 
         // Initialize cell
         let cell = listTableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as! ListTableViewCell
+        
         
         // Set up cell
         let row = indexPath.row

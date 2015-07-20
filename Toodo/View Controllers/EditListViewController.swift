@@ -103,6 +103,9 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        //listTitle.borderStyle = UITextBorderStyle.None
+        
     }
     
     override func didReceiveMemoryWarning() {

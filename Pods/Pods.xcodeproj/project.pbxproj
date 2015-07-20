@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		038121CB9E32C1F2ABABDAF30D8C8A17 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A56487DE2AA3DBD7687873CD50FE4415 /* MGSwipeButton.h */; };
+		196E1571B94DA9307BC9982175CAD315 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */; };
+		24FE8393A6C4C063B92CBE28027F7BC5 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F0F155F8CB5653C6514814B2C575AD /* MGSwipeTableCell-dummy.m */; };
+		55BDEFA7215C43023AC7E725B5C1878D /* Pods-Toodo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7A4272FA66D8CE77CCFDD15B335EA9 /* Pods-Toodo-dummy.m */; };
+		658EAD3B6580CF252A7B21CCC5F2C6A1 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2122EEF8F66D73F2377A638131D1C69F /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		88C352D7BB218324DD30B7B5048068D4 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72094C7C2D769856521CE88DD98236F2 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DA5237191EA8635D7CCC21A7640E9E90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */; };
+		E1F9EBAE7588B1AC79529C77B12D7842 /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 527BEE0F247E858878EDAB37CFADE87F /* MGSwipeTableCell.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2A3F4ECC2531218D67D97D75FB9BFF65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3348CA7597EFA50524F360D90C6CCBE7;
+			remoteInfo = MGSwipeTableCell;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07724C140E601F1C71123C41AA882D2A /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
+		2122EEF8F66D73F2377A638131D1C69F /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
+		3697D6EAAABAE1A4AED6BFECE711FD4A /* libMGSwipeTableCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMGSwipeTableCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MGSwipeTableCell-Private.xcconfig"; sourceTree = "<group>"; };
+		527BEE0F247E858878EDAB37CFADE87F /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
+		60EEC3803C6ED208237AF44E8A3D3FC5 /* Pods-Toodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Toodo.debug.xcconfig"; sourceTree = "<group>"; };
+		684B3DF4433B06109CEEB93FC5343E62 /* Pods-Toodo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Toodo-resources.sh"; sourceTree = "<group>"; };
+		6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		72094C7C2D769856521CE88DD98236F2 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
+		7F6B4E5B0632962FD38AA55F35E86493 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
+		A56487DE2AA3DBD7687873CD50FE4415 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
+		A8A9224F49C65BA215AB10CB2E8122D0 /* Pods-Toodo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Toodo-acknowledgements.plist"; sourceTree = "<group>"; };
+		AF56BA231EB4FC8195266F0F12F04F3C /* Pods-Toodo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Toodo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C88113A79685B4EFEE7BAD12896829F7 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		DC7A4272FA66D8CE77CCFDD15B335EA9 /* Pods-Toodo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Toodo-dummy.m"; sourceTree = "<group>"; };
+		EE40C26812490DB50C6EC0E96627BA56 /* libPods-Toodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Toodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F0F155F8CB5653C6514814B2C575AD /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
+		F9EC9A5EDB4E47AF89D2F244AF4C005F /* Pods-Toodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Toodo.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F50CB6B153A8247B6C2206546658569 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				196E1571B94DA9307BC9982175CAD315 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5FA280DA7285BAA76AE3134FCB403F12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA5237191EA8635D7CCC21A7640E9E90 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		33A2DFA941E11F4B5B7E005D2FE0A3E5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		5E1F3384B1B39575144FEBFCF3210CCC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				33A2DFA941E11F4B5B7E005D2FE0A3E5 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				C88113A79685B4EFEE7BAD12896829F7 /* Podfile */,
+				5E1F3384B1B39575144FEBFCF3210CCC /* Frameworks */,
+				FCC6F965540745142F6675EF7C9E0E2D /* Pods */,
+				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
+				848A6CE8DA3504A266A17F635DC3683A /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		848A6CE8DA3504A266A17F635DC3683A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E17CC8FF625E4B64BE019450EFF32C58 /* Pods-Toodo */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		B59C9E203DE7236E05B30AA2A1995CF8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F6B4E5B0632962FD38AA55F35E86493 /* MGSwipeTableCell.xcconfig */,
+				43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */,
+				F4F0F155F8CB5653C6514814B2C575AD /* MGSwipeTableCell-dummy.m */,
+				07724C140E601F1C71123C41AA882D2A /* MGSwipeTableCell-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MGSwipeTableCell";
+			sourceTree = "<group>";
+		};
+		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3697D6EAAABAE1A4AED6BFECE711FD4A /* libMGSwipeTableCell.a */,
+				EE40C26812490DB50C6EC0E96627BA56 /* libPods-Toodo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6E87B5C1D9D3AB286BEAC952A31221E /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				A56487DE2AA3DBD7687873CD50FE4415 /* MGSwipeButton.h */,
+				2122EEF8F66D73F2377A638131D1C69F /* MGSwipeButton.m */,
+				527BEE0F247E858878EDAB37CFADE87F /* MGSwipeTableCell.h */,
+				72094C7C2D769856521CE88DD98236F2 /* MGSwipeTableCell.m */,
+				B59C9E203DE7236E05B30AA2A1995CF8 /* Support Files */,
+			);
+			path = MGSwipeTableCell;
+			sourceTree = "<group>";
+		};
+		E17CC8FF625E4B64BE019450EFF32C58 /* Pods-Toodo */ = {
+			isa = PBXGroup;
+			children = (
+				AF56BA231EB4FC8195266F0F12F04F3C /* Pods-Toodo-acknowledgements.markdown */,
+				A8A9224F49C65BA215AB10CB2E8122D0 /* Pods-Toodo-acknowledgements.plist */,
+				DC7A4272FA66D8CE77CCFDD15B335EA9 /* Pods-Toodo-dummy.m */,
+				684B3DF4433B06109CEEB93FC5343E62 /* Pods-Toodo-resources.sh */,
+				60EEC3803C6ED208237AF44E8A3D3FC5 /* Pods-Toodo.debug.xcconfig */,
+				F9EC9A5EDB4E47AF89D2F244AF4C005F /* Pods-Toodo.release.xcconfig */,
+			);
+			name = "Pods-Toodo";
+			path = "Target Support Files/Pods-Toodo";
+			sourceTree = "<group>";
+		};
+		FCC6F965540745142F6675EF7C9E0E2D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6E87B5C1D9D3AB286BEAC952A31221E /* MGSwipeTableCell */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EA7E4B95F48283FB280E7877CD8A7989 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038121CB9E32C1F2ABABDAF30D8C8A17 /* MGSwipeButton.h in Headers */,
+				E1F9EBAE7588B1AC79529C77B12D7842 /* MGSwipeTableCell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3348CA7597EFA50524F360D90C6CCBE7 /* MGSwipeTableCell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 059295BD14C0F293A8D402CEB3977EF0 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
+			buildPhases = (
+				3AC026951C4B4900040FF3C4075F9DB6 /* Sources */,
+				3F50CB6B153A8247B6C2206546658569 /* Frameworks */,
+				EA7E4B95F48283FB280E7877CD8A7989 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MGSwipeTableCell;
+			productName = MGSwipeTableCell;
+			productReference = 3697D6EAAABAE1A4AED6BFECE711FD4A /* libMGSwipeTableCell.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		6F87129571177AB8F0A101F18B1E7CEF /* Pods-Toodo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09ECBEF2017D80462436DC90C86A3B4F /* Build configuration list for PBXNativeTarget "Pods-Toodo" */;
+			buildPhases = (
+				B5E752376443137AD9C47EABBEA6C6A8 /* Sources */,
+				5FA280DA7285BAA76AE3134FCB403F12 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E7FC6546D696ADFEC6F5185CE2B5581 /* PBXTargetDependency */,
+			);
+			name = "Pods-Toodo";
+			productName = "Pods-Toodo";
+			productReference = EE40C26812490DB50C6EC0E96627BA56 /* libPods-Toodo.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = CCA510CFBEA2D207524CDA0D73C3B561 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3348CA7597EFA50524F360D90C6CCBE7 /* MGSwipeTableCell */,
+				6F87129571177AB8F0A101F18B1E7CEF /* Pods-Toodo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3AC026951C4B4900040FF3C4075F9DB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				658EAD3B6580CF252A7B21CCC5F2C6A1 /* MGSwipeButton.m in Sources */,
+				24FE8393A6C4C063B92CBE28027F7BC5 /* MGSwipeTableCell-dummy.m in Sources */,
+				88C352D7BB218324DD30B7B5048068D4 /* MGSwipeTableCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5E752376443137AD9C47EABBEA6C6A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55BDEFA7215C43023AC7E725B5C1878D /* Pods-Toodo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E7FC6546D696ADFEC6F5185CE2B5581 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MGSwipeTableCell;
+			target = 3348CA7597EFA50524F360D90C6CCBE7 /* MGSwipeTableCell */;
+			targetProxy = 2A3F4ECC2531218D67D97D75FB9BFF65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		07F781CB88CE07A443F83052376113C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9EC9A5EDB4E47AF89D2F244AF4C005F /* Pods-Toodo.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		2E2FE3061BBF0178B73470F3A8AA31DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DABDA6F1ADB977371452F301458467B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8BD0950CC7213622BB48FEAFE5931E57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		95777F22F276704C9FD6E0E5FAC64D29 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A0B359D320076F84D22C31B692B6574F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 60EEC3803C6ED208237AF44E8A3D3FC5 /* Pods-Toodo.debug.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		059295BD14C0F293A8D402CEB3977EF0 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DABDA6F1ADB977371452F301458467B /* Debug */,
+				95777F22F276704C9FD6E0E5FAC64D29 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09ECBEF2017D80462436DC90C86A3B4F /* Build configuration list for PBXNativeTarget "Pods-Toodo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0B359D320076F84D22C31B692B6574F /* Debug */,
+				07F781CB88CE07A443F83052376113C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BD0950CC7213622BB48FEAFE5931E57 /* Debug */,
+				2E2FE3061BBF0178B73470F3A8AA31DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

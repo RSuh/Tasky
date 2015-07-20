@@ -28,6 +28,7 @@
 		457D28981B599C24000952CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28971B599C24000952CC /* Constants.swift */; };
 		457D289A1B59B44F000952CC /* EditListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28991B59B44F000952CC /* EditListViewController.swift */; };
 		457D289D1B5A1B1F000952CC /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */; };
+		84EE8529C01C5AE528E47A21 /* libPods-Toodo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C19B5C551B19AB0787683 /* libPods-Toodo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		225E788F04A22E1F683777CD /* Pods-Toodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toodo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Toodo/Pods-Toodo.release.xcconfig"; sourceTree = "<group>"; };
+		435C19B5C551B19AB0787683 /* libPods-Toodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Toodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4536C3511B505ACD00A35889 /* Toodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4536C3551B505ACD00A35889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4536C3561B505ACD00A35889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 		457D28971B599C24000952CC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		457D28991B59B44F000952CC /* EditListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListViewController.swift; sourceTree = "<group>"; };
 		457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
+		457E339B1B5DADDB00D900E6 /* Toodo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Toodo-Bridging-Header.h"; sourceTree = "<group>"; };
+		B7E2495E1BFE66D79DF66177 /* Pods-Toodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toodo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Toodo/Pods-Toodo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +93,7 @@
 			files = (
 				4536C3861B50719A00A35889 /* Realm.framework in Frameworks */,
 				4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */,
+				84EE8529C01C5AE528E47A21 /* libPods-Toodo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +114,7 @@
 				4536C3691B505ACD00A35889 /* ToodoTests */,
 				4536C3521B505ACD00A35889 /* Products */,
 				4536C37E1B506A8300A35889 /* Frameworks */,
+				650B7DDB4BF99FB7F5F801D5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				4536C3551B505ACD00A35889 /* Info.plist */,
+				457E339B1B5DADDB00D900E6 /* Toodo-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 			children = (
 				4536C37F1B506B1B00A35889 /* Realm.framework */,
 				4536C3801B506B1B00A35889 /* RealmSwift.framework */,
+				435C19B5C551B19AB0787683 /* libPods-Toodo.a */,
 			);
 			name = Frameworks;
 			path = Toodo/Frameworks;
@@ -195,6 +204,15 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		650B7DDB4BF99FB7F5F801D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7E2495E1BFE66D79DF66177 /* Pods-Toodo.debug.xcconfig */,
+				225E788F04A22E1F683777CD /* Pods-Toodo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -202,10 +220,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4536C3701B505ACD00A35889 /* Build configuration list for PBXNativeTarget "Toodo" */;
 			buildPhases = (
+				99EE23290F7EDDDAE07EB4D0 /* Check Pods Manifest.lock */,
 				4536C34D1B505ACD00A35889 /* Sources */,
 				4536C34E1B505ACD00A35889 /* Frameworks */,
 				4536C34F1B505ACD00A35889 /* Resources */,
 				4536C38A1B50719A00A35889 /* Embed Frameworks */,
+				C0A567B2C7A4DBCBF6994FCB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -290,6 +310,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99EE23290F7EDDDAE07EB4D0 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C0A567B2C7A4DBCBF6994FCB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Toodo/Pods-Toodo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4536C34D1B505ACD00A35889 /* Sources */ = {
@@ -435,8 +488,10 @@
 		};
 		4536C3711B505ACD00A35889 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7E2495E1BFE66D79DF66177 /* Pods-Toodo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/RegiSuh/Desktop/realm-swift-0.93.2/ios",
@@ -444,13 +499,17 @@
 				INFOPLIST_FILE = Toodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Toodo/Toodo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		4536C3721B505ACD00A35889 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 225E788F04A22E1F683777CD /* Pods-Toodo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/RegiSuh/Desktop/realm-swift-0.93.2/ios",
@@ -458,6 +517,7 @@
 				INFOPLIST_FILE = Toodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Toodo/Toodo-Bridging-Header.h";
 			};
 			name = Release;
 		};
