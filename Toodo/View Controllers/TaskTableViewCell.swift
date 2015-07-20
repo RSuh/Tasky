@@ -38,7 +38,7 @@ class TaskTableViewCell: UITableViewCell {
     var task: Task? {
         didSet {
             if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
-                taskLabel.text = task.taskTitle
+                taskLabel.text = "task"
                 dateLabel.text = TaskTableViewCell.presentDate.stringFromDate(task.modificationDate)
             }
         }

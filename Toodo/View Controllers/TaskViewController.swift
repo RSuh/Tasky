@@ -11,12 +11,12 @@ import RealmSwift
 
 class TaskViewController: UIViewController {
     
-    @IBOutlet weak var homeTableView: UITableView!
+    @IBOutlet weak var taskHomeTableView: UITableView!
 
     // Updates tableView whenever tasks update
     var tasks: Results<Task>! {
         didSet {
-            homeTableView?.reloadData()
+            taskHomeTableView?.reloadData()
         }
     }
     
@@ -31,6 +31,7 @@ class TaskViewController: UIViewController {
                 // If the Save button is pressed from Edit
             case "saveFromEdit":
                 println("Save from Edit")
+                
                 let editSource = segue.sourceViewController as! EditTaskViewController
                 
                 // Calls save task which saves the task from the edit section
@@ -47,23 +48,25 @@ class TaskViewController: UIViewController {
         }
     }
     
-    @IBAction func backToTaskFromNew(segue: UIStoryboardSegue) {
+    @IBAction func backToTaskFromAdd(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             let realm = Realm()
             switch identifier {
                 // If the Save button is pressed from New
-            case "saveFromNew":
-                println("Save from New!")
-                let newSource = segue.sourceViewController as! ChooseCategoryViewController
+            case "saveFromAdd":
+                println("Save from add!")
+                
+                let newSource = segue.sourceViewController as! EditTaskViewController
                 
                 realm.write() {
-                    realm.add(newSource.newTask!)
+                    // Creates a newTask
+                    realm.add(newSource.editedTask!)
                     
                 }
                 
                 // If the exit button is pressed from New
-            case "exitFromNew":
-                println("Exit from New!")
+            case "exitFromAdd":
+                println("Exit from add!")
                 
                 // Else
             default:
@@ -78,7 +81,7 @@ class TaskViewController: UIViewController {
     // Customizes the title Bar
     override func viewDidAppear(animated: Bool) {
         // Selects the nav bar
-        var navigation = self.navigationController?.navigationBar
+        let navigation = self.navigationController?.navigationBar
         
         // Customizes the color of the navbar
         navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
@@ -88,23 +91,15 @@ class TaskViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         let realm = Realm()
         super.viewWillAppear(animated)
+        // Sorts tasks based on their modification Date
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
     }
     
     override func viewDidLoad() {
         let realm = Realm()
         super.viewDidLoad()
-        // On load, loads all the tasks from before
+        // On load, loads all the tasks from before according to modification Date
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
-        
-        
-        //Deletes all tasks *For testing*
-        //        let myTask = Task()
-        //
-        //        realm.write() {
-        //            realm.add(myTask)
-        //            realm.deleteAll()
-        //        }
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -117,6 +112,7 @@ class TaskViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "editTask") {
             let targetVC = segue.destinationViewController as! EditTaskViewController
+            // Set the editedTask as selectedTask
             targetVC.editedTask = selectedTask
         }
     }
@@ -170,6 +166,7 @@ extension TaskViewController: UITableViewDelegate {
         return true
     }
     
+    // The delete swipe function
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let task = tasks[indexPath.row] as Object

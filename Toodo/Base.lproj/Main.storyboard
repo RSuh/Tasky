@@ -7,7 +7,7 @@
         <!--Toodo-->
         <scene sceneID="fYb-eJ-XFN">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Ncj-My-Rse" customClass="HomeViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Ncj-My-Rse" customClass="ListViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ssE-92-hBh"/>
                         <viewControllerLayoutGuide type="bottom" id="9Hn-Ha-5aZ"/>
@@ -55,14 +55,15 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <segue destination="UF0-xq-MZ9" kind="show" identifier="editList" id="OcC-G9-Ze1"/>
+                                                        <action selector="editButtonPressed:" destination="kQZ-tW-3CL" eventType="touchUpInside" id="6gc-Zl-xji"/>
+                                                        <segue destination="ha9-re-vnT" kind="show" identifier="editList" id="9pw-uf-g73"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="badgeImage" destination="OWZ-F7-Naj" id="pFn-SA-j9v"/>
-                                            <outlet property="listEditButton" destination="cNh-bt-sPy" id="CYx-NR-yTZ"/>
+                                            <outlet property="listEditButton" destination="cNh-bt-sPy" id="Ki0-Cx-GoP"/>
                                             <outlet property="listTitle" destination="tFW-jS-0pH" id="exk-m8-5zE"/>
                                             <outlet property="taskCount" destination="7el-nh-9Nq" id="iKc-Wi-Ghs"/>
                                         </connections>
@@ -168,7 +169,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Lists" id="z4E-Rp-0Gv">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="1Jo-dx-3ZJ" kind="unwind" identifier="backToCategory" unwindAction="backtoListFromInsideCategory:" id="MSq-m1-ZTW"/>
+                                <segue destination="1Jo-dx-3ZJ" kind="unwind" identifier="backtoListFromTask" unwindAction="backToListFromTasks:" id="MSq-m1-ZTW"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="7c6-VG-LOx">
@@ -177,7 +178,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="homeTableView" destination="MDr-AE-52X" id="Wi9-MJ-CIx"/>
+                        <outlet property="taskHomeTableView" destination="MDr-AE-52X" id="aB6-RJ-4Ag"/>
                         <segue destination="shg-3L-Bnq" kind="show" identifier="editTask" id="aDi-Sv-uhb"/>
                     </connections>
                 </viewController>
@@ -186,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="2844.5" y="330.5"/>
         </scene>
-        <!--Choose-->
+        <!--Add New Task-->
         <scene sceneID="tpP-w2-kVd">
             <objects>
-                <viewController id="fvL-CD-BgV" customClass="ChooseCategoryViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fvL-CD-BgV" customClass="EditTaskViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qnp-nQ-JqW"/>
                         <viewControllerLayoutGuide type="bottom" id="TaF-zV-2RQ"/>
@@ -198,39 +199,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TlZ-3Y-Gal">
-                                <rect key="frame" x="0.0" y="145" width="375" height="522"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mid-ZF-7cV">
-                                    <size key="itemSize" width="100" height="101"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeImage" id="kRQ-a8-0lT" customClass="badgeCollectionViewCell" customModule="Toodo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="101"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DTa-WW-F2e">
-                                                    <rect key="frame" x="10" y="5" width="80" height="92"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="chooseBadgeImage" destination="DTa-WW-F2e" id="Zzi-4C-OQL"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="UF0-xq-MZ9" id="CGp-Ne-X2V"/>
-                                    <outlet property="delegate" destination="UF0-xq-MZ9" id="4xM-xe-6bW"/>
-                                </connections>
-                            </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a badge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrh-BP-1KQ">
                                 <rect key="frame" x="129" y="108" width="116" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -242,21 +210,54 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TQT-jD-AxK">
+                                <rect key="frame" x="0.0" y="137" width="375" height="530"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cYC-Aa-db3">
+                                    <size key="itemSize" width="100" height="101"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeImage" id="0Vw-8o-VDp" customClass="ListCollectionViewCell" customModule="Toodo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="101"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1S-MY-C7X">
+                                                    <rect key="frame" x="10" y="5" width="80" height="92"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="chooseBadgeImage" destination="Z1S-MY-C7X" id="fVd-70-4rv"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="UF0-xq-MZ9" id="Dfa-OD-Frq"/>
+                                    <outlet property="delegate" destination="UF0-xq-MZ9" id="6ye-7r-vWb"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Choose" id="DzO-uF-QLj">
+                    <navigationItem key="navigationItem" title="Add New Task" id="DzO-uF-QLj">
                         <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="sih-qp-r7Y">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="acw-eh-aM0" kind="unwind" identifier="exitFromNew" unwindAction="backToTaskFromNew:" id="rRT-W1-X97"/>
+                                <segue destination="acw-eh-aM0" kind="unwind" identifier="exitFromAdd" unwindAction="backToTaskFromAdd:" id="rRT-W1-X97"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="checkmark" id="qYM-XG-fRi">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="acw-eh-aM0" kind="unwind" identifier="saveFromNew" unwindAction="backToTaskFromNew:" id="lhz-LJ-ND1"/>
+                                <segue destination="acw-eh-aM0" kind="unwind" identifier="saveFromAdd" unwindAction="backToTaskFromAdd:" id="lhz-LJ-ND1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -328,7 +329,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGp-Vn-nq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mKd-GH-PUP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3354.5" y="1128.5"/>
+            <point key="canvasLocation" x="3400.5" y="-451.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s9z-Hs-9k9">
@@ -349,10 +350,93 @@
             </objects>
             <point key="canvasLocation" x="1666.5" y="330.5"/>
         </scene>
-        <!--Choose-->
+        <!--Edit List-->
+        <scene sceneID="r9B-MJ-6Yk">
+            <objects>
+                <viewController id="ha9-re-vnT" customClass="EditListViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dQW-25-jJz"/>
+                        <viewControllerLayoutGuide type="bottom" id="m0C-Qx-W5E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aVa-SS-dSS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of your list..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Oz-dZ-LN1">
+                                <rect key="frame" x="0.0" y="72" width="375" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a badge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oes-hF-BMk">
+                                <rect key="frame" x="129" y="110" width="116" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lJN-Gm-seN">
+                                <rect key="frame" x="0.0" y="145" width="375" height="522"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="HgJ-H3-sVK">
+                                    <size key="itemSize" width="100" height="101"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeImage" id="UwJ-wK-cvV" customClass="ListCollectionViewCell" customModule="Toodo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="101"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xPW-xs-qMs">
+                                                    <rect key="frame" x="10" y="5" width="80" height="92"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="chooseBadgeImage" destination="xPW-xs-qMs" id="uhZ-Ye-sCj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="ha9-re-vnT" id="G2k-Xl-3Ah"/>
+                                    <outlet property="delegate" destination="ha9-re-vnT" id="0sj-FX-ECY"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit List" id="NAc-9y-u8S">
+                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="cPI-qG-FFE">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="DVV-b5-WEP" kind="unwind" identifier="exitToListFromEdit" unwindAction="backToListFromEdit:" id="qIN-cY-Nyy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="checkmark" id="Wkr-ho-SHx">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="DVV-b5-WEP" kind="unwind" identifier="saveToListFromEdit" unwindAction="backToListFromEdit:" id="cJz-lZ-vZR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="listTitle" destination="4Oz-dZ-LN1" id="Sn4-eq-Ald"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tM7-E2-nyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DVV-b5-WEP" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1815.5" y="-451.5"/>
+        </scene>
+        <!--Add New List-->
         <scene sceneID="EKS-yB-vrL">
             <objects>
-                <viewController id="UF0-xq-MZ9" customClass="ChooseCategoryViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UF0-xq-MZ9" customClass="AddNewListViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3Se-CU-lXu"/>
                         <viewControllerLayoutGuide type="bottom" id="phP-Ay-ICE"/>
@@ -361,39 +445,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SUb-DT-FxC">
-                                <rect key="frame" x="0.0" y="145" width="375" height="522"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="K6e-9q-J7Y">
-                                    <size key="itemSize" width="100" height="101"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeImage" id="aHV-6c-ed9" customClass="badgeCollectionViewCell" customModule="Toodo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="101"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qfF-f5-shX">
-                                                    <rect key="frame" x="10" y="5" width="80" height="92"/>
-                                                </imageView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                        <connections>
-                                            <outlet property="chooseBadgeImage" destination="qfF-f5-shX" id="OUq-1U-fSZ"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="UF0-xq-MZ9" id="2lh-t4-ixU"/>
-                                    <outlet property="delegate" destination="UF0-xq-MZ9" id="CA5-U0-dSu"/>
-                                </connections>
-                            </collectionView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of your list..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eKE-CO-Xmd">
                                 <rect key="frame" x="0.0" y="78" width="375" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -405,21 +456,54 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GdR-UA-B4j">
+                                <rect key="frame" x="0.0" y="145" width="375" height="522"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vUf-Ch-dmG">
+                                    <size key="itemSize" width="100" height="101"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeImage" id="wgf-yM-aea" customClass="ListCollectionViewCell" customModule="Toodo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="101"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uhG-Bo-Kyc">
+                                                    <rect key="frame" x="10" y="5" width="80" height="92"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="chooseBadgeImage" destination="uhG-Bo-Kyc" id="MeT-M6-aYj"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="UF0-xq-MZ9" id="H4T-An-YnT"/>
+                                    <outlet property="delegate" destination="UF0-xq-MZ9" id="SPE-IK-OQD"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Choose" id="LD0-Rj-HcG">
+                    <navigationItem key="navigationItem" title="Add New List" id="LD0-Rj-HcG">
                         <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="xtG-UT-A6s">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="thr-q5-SdA" kind="unwind" identifier="exitToList" unwindAction="backtoList:" id="CgE-ae-y7t"/>
+                                <segue destination="thr-q5-SdA" kind="unwind" identifier="exitToListFromAdd" unwindAction="backToListFromAddingList:" id="CgE-ae-y7t"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="checkmark" id="4eE-xH-ndP">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="thr-q5-SdA" kind="unwind" identifier="saveToList" unwindAction="backtoList:" id="6ys-zH-Ubt"/>
+                                <segue destination="thr-q5-SdA" kind="unwind" identifier="saveToListFromAdd" unwindAction="backToListFromAddingList:" id="6ys-zH-Ubt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -432,7 +516,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAr-bg-7bA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="thr-q5-SdA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2344.5" y="-433.5"/>
+            <point key="canvasLocation" x="2309.5" y="-451.5"/>
         </scene>
     </scenes>
     <resources>
@@ -445,7 +529,4 @@
         <image name="editTitleLine" width="261" height="1"/>
         <image name="listEdit" width="48" height="48"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="OcC-G9-Ze1"/>
-    </inferredMetricsTieBreakers>
 </document>

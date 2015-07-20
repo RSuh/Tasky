@@ -15,7 +15,13 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var listTitle: UILabel!
     @IBOutlet weak var listEditButton: UIButton!
-
+    
+    @IBAction func editButtonPressed(sender: AnyObject) {
+        let buttonRow = sender.tag
+        println("Ive been pressed at \(buttonRow)")
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,7 +35,7 @@ class ListTableViewCell: UITableViewCell {
     
     var list: List? {
         didSet {
-            if let list = list, listTitle = listTitle, taskCount = taskCount {
+            if let list = list, listTitle = listTitle, badgeImage = badgeImage {
                 listTitle.text = list.listTitle
                 badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[list.badge])
             }

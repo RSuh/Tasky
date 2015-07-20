@@ -2,7 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "work badge.pdf"
+      "scale" : "1x",
+      "filename" : "Briefcase Copy.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "Briefcase Copy@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "Briefcase Copy@3x.png"
     }
   ],
   "info" : {

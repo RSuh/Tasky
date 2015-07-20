@@ -24,15 +24,15 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Displays the task
     func displayTask(task: Task?) {
         if let task = task, taskTextField = taskTextField {
             taskTextField.text = editedTask!.taskTitle
             taskNoteField.text = editedTask!.taskNote
-
         }
     }
     
-    // Saves the task when you
+    // Saves the task
     func saveTask() {
         if let editedTask = editedTask {
             let realm = Realm()
@@ -48,6 +48,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
     // Hides keyboard when you press done the view controller ends
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         taskTextField.resignFirstResponder()

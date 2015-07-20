@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  ListViewController.swift
 //  Toodo
 //
 //  Created by Reginald Suh on 2015-07-14.
@@ -9,12 +9,11 @@
 import UIKit
 import RealmSwift
 
-class HomeViewController: UIViewController {
+class ListViewController: UIViewController {
     
     @IBOutlet weak var listTableView: UITableView!
     
-//    var taskArray: [Task] = []
-//    var listArray: [Results<Task>] = []
+    var i = 0
     
     // Reloads the lists everytime the page loads.
     var lists: Results<List>! {
@@ -26,21 +25,21 @@ class HomeViewController: UIViewController {
     // A var of type List which indicates the selectedList
     var selectedList: List?
     
-    @IBAction func backtoList(segue: UIStoryboardSegue) {
+    @IBAction func backToListFromAddingList(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             let realm = Realm()
             switch identifier {
-            case "exitToList":
-                println("exit from Choose to Home")
+            case "exitToListFromAdd":
+                println("exit to list from add")
                 
-            case "saveToList":
-                println("save from Choose to Home")
-                let newSource = segue.sourceViewController as! ChooseCategoryViewController
+            case "saveToListFromAdd":
+                println("save to list from add")
+                
+                let saveSourceFromAdd = segue.sourceViewController as! AddNewListViewController
+                
                 realm.write() {
-                    realm.add(newSource.newList!)
-
-                    // self.taskArray.append(newTask)
-                    //realm.add(newSource.newList?.taskCount++)
+                    // Adds a newList
+                    realm.add(saveSourceFromAdd.newList!)
                 }
                 
             default:
@@ -52,21 +51,43 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    
-    @IBAction func backtoListFromInsideCategory(segue: UIStoryboardSegue) {
+    @IBAction func backToListFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             let realm = Realm()
             switch identifier {
-                case "backToCategory":
-                println("back to home")
+                case "exitToListFromEdit":
+                println("exit to list from edit")
+                
+                case "saveToListFromEdit":
+                //println("save to list from edit")
+                
+                let saveSourceFromEdit = segue.sourceViewController as! EditListViewController
+                //println(saveSourceFromEdit.badge)
+                
+                saveSourceFromEdit.saveList()
+//                println(
                 
             default:
-                println("noting")
+                println("failed")
+                
+                // Sorts by number of tasks, able to sort by count.
+                lists = realm.objects(List).sorted("taskCount", ascending: false)
             }
         }
     }
     
+    @IBAction func backToListFromTasks(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            let realm = Realm()
+            switch identifier {
+                case "backtoListFromTask":
+                println("Back to list from tasks")
+                
+            default:
+                println("nothing")
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,13 +96,12 @@ class HomeViewController: UIViewController {
         listTableView.delegate = self
         listTableView.dataSource = self
         
-        // To delete all tasks for testing uses
-//        realm.write() {
-//            realm.deleteAll()
-//        }
-        
         // Sets up the lists cells by the modificationDate
         lists = realm.objects(List).sorted("taskCount", ascending: false)
+        
+//        for(i = 0; i < (lists!.count); i++) {
+//            lists[i].selected = true
+//        }
         // Do any additional setup after loading the view.
     }
     
@@ -90,6 +110,7 @@ class HomeViewController: UIViewController {
         
         let realm = Realm()
         lists = realm.objects(List).sorted("taskCount", ascending: false)
+        
         
     }
     
@@ -105,6 +126,17 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "editList" {
+            let targetVC = segue.destinationViewController as! EditListViewController
+            //let VC = segue.destinationViewController as! ListTableViewCell
+            
+            // Set the editedTask as selectedList
+            targetVC.addNewList = selectedList
+            
+            println(selectedList)
+        }
+    }
     /*
     // MARK: - Navigation
     
@@ -116,10 +148,10 @@ class HomeViewController: UIViewController {
     */
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension ListViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         // Initialize cell
         let cell = listTableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as! ListTableViewCell
         
@@ -128,6 +160,8 @@ extension HomeViewController: UITableViewDataSource {
         let list = lists[row] as List
         cell.list = list
         
+        cell.listEditButton.tag = indexPath.row
+
         // Custom separator lines between cells
         tableView.separatorInset = UIEdgeInsetsZero
         tableView.layoutMargins = UIEdgeInsetsZero
@@ -142,11 +176,12 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
-extension HomeViewController: UITableViewDelegate {
+extension ListViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedList = lists[indexPath.row]
         self.performSegueWithIdentifier("listToTask", sender: self)
+        println(selectedList)
         
         listTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
