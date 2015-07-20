@@ -21,7 +21,6 @@ class ListTableViewCell: UITableViewCell {
         println("Ive been pressed at \(buttonRow)")
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

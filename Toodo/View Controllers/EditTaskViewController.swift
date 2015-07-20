@@ -17,6 +17,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var taskNoteField: UITextView!
     //    @IBOutlet weak var reminderCell: UITableViewCell!
     
+    // Initialize realm
+    let realm = Realm()
     
     var editedTask: Task? {
         didSet {
@@ -35,9 +37,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     // Saves the task
     func saveTask() {
         if let editedTask = editedTask {
-            let realm = Realm()
             realm.write() {
-
                 if (editedTask.taskTitle != self.taskTextField.text) {
                     editedTask.taskTitle = self.taskTextField.text
                     editedTask.modificationDate = NSDate()

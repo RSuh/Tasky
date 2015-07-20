@@ -13,6 +13,6 @@ import UIKit
 // A new list object
 class List: Object {
     dynamic var listTitle = ""
-    dynamic var taskCount = 1
+    dynamic var taskCount = 0
     dynamic var badge = 0
 }

@@ -11,9 +11,9 @@ import RealmSwift
 
 class ListViewController: UIViewController {
     
-    @IBOutlet weak var listTableView: UITableView!
+    let realm = Realm()
     
-    var i = 0
+    @IBOutlet weak var listTableView: UITableView!
     
     // Reloads the lists everytime the page loads.
     var lists: Results<List>! {
@@ -27,7 +27,6 @@ class ListViewController: UIViewController {
     
     @IBAction func backToListFromAddingList(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
-            let realm = Realm()
             switch identifier {
             case "exitToListFromAdd":
                 println("exit to list from add")
@@ -39,7 +38,7 @@ class ListViewController: UIViewController {
                 
                 realm.write() {
                     // Adds a newList
-                    realm.add(saveSourceFromAdd.newList!)
+                    self.realm.add(saveSourceFromAdd.addNewList!)
                 }
                 
             default:
@@ -53,7 +52,6 @@ class ListViewController: UIViewController {
     
     @IBAction func backToListFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
-            let realm = Realm()
             switch identifier {
                 case "exitToListFromEdit":
                 println("exit to list from edit")
@@ -62,10 +60,9 @@ class ListViewController: UIViewController {
                 //println("save to list from edit")
                 
                 let saveSourceFromEdit = segue.sourceViewController as! EditListViewController
-                //println(saveSourceFromEdit.badge)
                 
-                saveSourceFromEdit.saveList()
-//                println(
+                // From EditListViewController, saveList as you go back to listViewcontroller
+                //saveSourceFromEdit.saveList()
                 
             default:
                 println("failed")
@@ -78,7 +75,6 @@ class ListViewController: UIViewController {
     
     @IBAction func backToListFromTasks(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
-            let realm = Realm()
             switch identifier {
                 case "backtoListFromTask":
                 println("Back to list from tasks")
@@ -91,27 +87,20 @@ class ListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let realm = Realm()
+
         listTableView.delegate = self
         listTableView.dataSource = self
         
         // Sets up the lists cells by the modificationDate
         lists = realm.objects(List).sorted("taskCount", ascending: false)
-        
-//        for(i = 0; i < (lists!.count); i++) {
-//            lists[i].selected = true
-//        }
+    
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let realm = Realm()
         lists = realm.objects(List).sorted("taskCount", ascending: false)
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -131,10 +120,12 @@ class ListViewController: UIViewController {
             let targetVC = segue.destinationViewController as! EditListViewController
             //let VC = segue.destinationViewController as! ListTableViewCell
             
-            // Set the editedTask as selectedList
-            targetVC.addNewList = selectedList
+            // Set the editedTask as the selectedList
+            targetVC.editedList = selectedList
             
-            println(selectedList)
+            println(targetVC.editedList)
+            
+            // TO FIX: Get the cell to be auto selected, or selected when the user presses the edit button because right now, you have to click the cell before you can do any editing.
         }
     }
     /*
@@ -181,7 +172,7 @@ extension ListViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedList = lists[indexPath.row]
         self.performSegueWithIdentifier("listToTask", sender: self)
-        println(selectedList)
+        println("selected List is \(selectedList!)")
         
         listTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
@@ -191,12 +182,11 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        let realm = Realm()
         if editingStyle == .Delete {
             let list = lists[indexPath.row] as Object
             
             realm.write() {
-                realm.delete(list)
+                self.realm.delete(list)
             }
             
             lists = realm.objects(List).sorted("taskCount", ascending: false)

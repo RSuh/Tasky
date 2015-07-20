@@ -11,21 +11,26 @@ import RealmSwift
 
 class AddNewListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var listTitle: UITextField! = nil
+    @IBOutlet weak var listTitle: UITextField!
     
-    var newTask: Task?
-    var newList: List?
     var badge = 0
     
     var addNewList: List? {
         didSet {
-            displayList(addNewList)
+            displayNewList(addNewList)
+            displayNewBadge(addNewList)
         }
     }
     
-    func displayList(list: List?) {
+    func displayNewList(list: List?) {
         if let list = list, listTitle = listTitle {
-            listTitle.text = addNewList!.listTitle
+            addNewList!.listTitle = list.listTitle
+        }
+    }
+    
+    func displayNewBadge(list: List?) {
+        if let list = list {
+            addNewList?.badge = badge
         }
     }
     
@@ -34,7 +39,7 @@ class AddNewListViewController: UIViewController, UICollectionViewDataSource, UI
         if let addNewList = addNewList {
             let realm = Realm()
             realm.write() {
-                if (addNewList.listTitle != self.listTitle.text) && (addNewList.badge != self.badge){
+                if (addNewList.listTitle != self.listTitle.text) || (addNewList.badge != self.badge){
                     addNewList.listTitle = self.listTitle.text
                     addNewList.badge = self.badge
                 } else {
@@ -46,11 +51,11 @@ class AddNewListViewController: UIViewController, UICollectionViewDataSource, UI
     
     
     // Passing image to Home View Controller
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let realm = Realm()
-//        newList = List()
-//        newList?.listTitle = addNewList!.listTitle
-//        newList?.badge = self.badge
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let realm = Realm()
+        addNewList = List()
+        saveList()
+    }
     
         // Save this stuff for another day
         //        if (segue.identifier == "saveToList") {

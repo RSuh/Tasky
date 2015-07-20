@@ -12,7 +12,6 @@ import UIKit
 
 // Initialize a Task Object.
 class Task: Object {
-    dynamic var list: List?
     dynamic var taskTitle: String = ""
     dynamic var modificationDate = NSDate()
     dynamic var taskNote: String = ""

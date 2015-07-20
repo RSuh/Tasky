@@ -34,11 +34,11 @@ class TaskTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    // didSet updates everytime it is refreshed
+    // didSet updates everytime task is changed
     var task: Task? {
         didSet {
             if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
-                taskLabel.text = "task"
+                taskLabel.text = task.taskTitle
                 dateLabel.text = TaskTableViewCell.presentDate.stringFromDate(task.modificationDate)
             }
         }

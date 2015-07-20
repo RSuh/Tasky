@@ -11,46 +11,52 @@ import RealmSwift
 import Foundation
 
 class EditListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
+
+    // Initialize realm
+    let realm = Realm()
     
-    //@IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var listTitle: UITextField!
+    
+    // Counter for the image
     var badge = 0
     
-    var addNewList: List? {
+    var editedList: List? {
         didSet {
-            displayList(addNewList)
-            displayBadge(addNewList)
+            // didSet is called whenever editedList changes/ whenever editedList is stored
+            // It calls displayList and displayBadge on the newly editedList
+            displayList(editedList)
+            displayBadge(editedList)
         }
     }
     
+    // A function to update the text of the editedList by using realm.write()
     func displayList(list: List?) {
-        if let list = list, listTitle = listTitle {
-            let realm = Realm()
+        if let editedList = editedList, list = list, listTitle = listTitle {
             realm.write() {
-                listTitle.text = self.addNewList!.listTitle
+                listTitle.text = self.editedList!.listTitle
             }
         }
     }
     
+    // A function to update the badge of the editedList by using realm.write()
     func displayBadge(list: List?) {
-        if let list = list {
-            let realm = Realm()
+        if let list = list, editedList = editedList {
             realm.write() {
-                list.badge = self.addNewList!.badge
+                list.badge = self.editedList!.badge
             }
         }
     }
     
     // Saves the task
     func saveList() {
-        if let addNewList = addNewList {
-            let realm = Realm()
+        if let editedList = editedList {
+            println(editedList)
             realm.write() {
-                if (addNewList.listTitle != self.listTitle.text) && (addNewList.badge != self.badge){
-                    addNewList.listTitle = self.listTitle.text
-                    addNewList.badge = self.badge
+                if ((editedList.listTitle != self.listTitle.text) || (editedList.badge != self.badge)) {
+                    editedList.listTitle = self.listTitle.text
+                    editedList.badge = self.badge
                 } else {
-                    println("nothing to save")
+                    println("Nothing was changed")
                 }
             }
         }
@@ -75,9 +81,9 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("You have selected cell \(indexPath.row)")
+        //println("You have selected cell \(indexPath.row)")
         badge = indexPath.row
-        println(badge)
+        //println(badge)
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell
         cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
     }
@@ -103,13 +109,16 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     override func viewWillAppear(animated: Bool) {
-        displayList(addNewList)
+        // Calls displayList on editedList
+        displayList(editedList)
+        displayBadge(editedList)
         listTitle.delegate = self
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        // Saves before the view disappears
         saveList()
     }
     

@@ -13,6 +13,8 @@ class TaskViewController: UIViewController {
     
     @IBOutlet weak var taskHomeTableView: UITableView!
 
+    let realm = Realm()
+    
     // Updates tableView whenever tasks update
     var tasks: Results<Task>! {
         didSet {
@@ -26,7 +28,6 @@ class TaskViewController: UIViewController {
     // When a cell is pressed, then the user can save, or exit without saving.
     @IBAction func backToTaskFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
-            let realm = Realm()
             switch identifier {
                 // If the Save button is pressed from Edit
             case "saveFromEdit":
@@ -50,7 +51,6 @@ class TaskViewController: UIViewController {
     
     @IBAction func backToTaskFromAdd(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
-            let realm = Realm()
             switch identifier {
                 // If the Save button is pressed from New
             case "saveFromAdd":
@@ -60,7 +60,7 @@ class TaskViewController: UIViewController {
                 
                 realm.write() {
                     // Creates a newTask
-                    realm.add(newSource.editedTask!)
+                    self.realm.add(newSource.editedTask!)
                     
                 }
                 
@@ -89,14 +89,12 @@ class TaskViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        let realm = Realm()
         super.viewWillAppear(animated)
         // Sorts tasks based on their modification Date
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
     }
     
     override func viewDidLoad() {
-        let realm = Realm()
         super.viewDidLoad()
         // On load, loads all the tasks from before according to modification Date
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
@@ -171,10 +169,8 @@ extension TaskViewController: UITableViewDelegate {
         if editingStyle == .Delete {
             let task = tasks[indexPath.row] as Object
             
-            let realm = Realm()
-            
             realm.write() {
-                realm.delete(task)
+                self.realm.delete(task)
             }
             
             tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
