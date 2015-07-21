@@ -15,7 +15,6 @@ class ListViewController: UIViewController {
     
     @IBOutlet weak var listTableView: UITableView!
     
-    
     // Reloads the lists everytime the page loads.
     var lists: Results<List>! {
         didSet {
@@ -188,7 +187,7 @@ extension ListViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
             let list = lists[indexPath.row] as Object
             
             realm.write() {
@@ -200,4 +199,25 @@ extension ListViewController: UITableViewDelegate {
         
     }
     
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        
+        let deleteButton = UITableViewRowAction(style: .Normal, title: "Delete") { action, index in
+            println("delete button tapped")
+        }
+        deleteButton.backgroundColor = UIColor.orangeColor()
+        
+        let editButton = UITableViewRowAction(style: .Normal, title: "Edit") { action, index in
+            println("edit button tapped")
+        }
+        editButton.backgroundColor = UIColor.lightGrayColor()
+        //editButton.backgroundColor = UIColor(patternImage: UIImage(named: ""))
+            
+        
+//        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
+//            println("share button tapped")
+//        }
+//        share.backgroundColor = UIColor.blueColor()
+        
+        return [deleteButton, editButton]
+    }
 }
