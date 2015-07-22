@@ -42,9 +42,9 @@ class ListViewController: UIViewController {
     // A var of type List which indicates the selectedList
     var selectedList: List?
     
-//    func performSegueToEdit(identifier: String) {
-//        self.performSegueWithIdentifier(identifier, sender: self)
-//    }
+    func performSegueToEdit(identifier: String) {
+        self.performSegueWithIdentifier(identifier, sender: self)
+    }
     
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
@@ -131,9 +131,10 @@ class ListViewController: UIViewController {
             //self.prepareForSegue(segue, sender: self)
             self.selectedList = self.lists[indexPath!.row]
             println(self.selectedList)
+            self.performSegueToEdit("listToEdit")
             
             
-            tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
+            tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
         }
         
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
