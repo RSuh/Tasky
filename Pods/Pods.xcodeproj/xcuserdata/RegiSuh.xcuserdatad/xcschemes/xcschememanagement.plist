@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FontAwesomeKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3348CA7597EFA50524F360D90C6CCBE7</key>
+		<key>CBDB12E00A16F6CD9E65E0721652CCFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6F87129571177AB8F0A101F18B1E7CEF</key>
+		<key>E9D8EB03807C528B8BCA8F3811FFDDC3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F05D166BC68C1085C2FBEC73AB4314AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -104,6 +104,8 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // Shows the navigation bar
+        self.navigationController?.navigationBarHidden = false
         //listTitle.borderStyle = UITextBorderStyle.None
         
     }

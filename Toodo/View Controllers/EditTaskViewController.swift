@@ -20,11 +20,23 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     // Initialize realm
     let realm = Realm()
     
+    var badge = 0
+    
     var editedTask: Task? {
         didSet {
             displayTask(editedTask)
+            //displayBadge(editedTask)
         }
     }
+    
+//    func displayBadge(task: Task?) {
+//        if let task = task, badgeImage = badgeImage {
+//            realm.write() {
+//                badgeImage.image = self.editedTask!.badge
+//            }
+//        }
+//        
+//    }
     
     // Displays the task
     func displayTask(task: Task?) {

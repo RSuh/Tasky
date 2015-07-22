@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="P7N-vr-83j">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="P7N-vr-83j" customClass="SBGestureTableView" customModule="Toodo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="447"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -40,15 +40,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cNh-bt-sPy">
-                                                    <rect key="frame" x="256" y="14" width="48" height="48"/>
-                                                    <state key="normal" image="listEdit">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="ha9-re-vnT" kind="show" identifier="editList" id="9pw-uf-g73"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -87,6 +78,7 @@
                     <connections>
                         <outlet property="listTableView" destination="P7N-vr-83j" id="J1j-e0-Q8M"/>
                         <segue destination="Tkz-QC-Deg" kind="show" identifier="listToTask" id="Mgm-1X-av1"/>
+                        <segue destination="ha9-re-vnT" kind="show" identifier="listToEdit" id="MWI-sv-82W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cy9-Vf-DQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -106,7 +98,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MDr-AE-52X">
-                                <rect key="frame" x="0.0" y="64" width="320" height="446"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="69" id="gXA-Jv-329" customClass="TaskTableViewCell" customModule="Toodo" customModuleProvider="target">
@@ -351,7 +343,7 @@
         <!--Edit List-->
         <scene sceneID="r9B-MJ-6Yk">
             <objects>
-                <viewController id="ha9-re-vnT" customClass="EditListViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="ha9-re-vnT" customClass="EditListViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dQW-25-jJz"/>
                         <viewControllerLayoutGuide type="bottom" id="m0C-Qx-W5E"/>
@@ -429,7 +421,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tM7-E2-nyV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DVV-b5-WEP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1815" y="-452"/>
+            <point key="canvasLocation" x="1818" y="-320"/>
         </scene>
         <!--Add New List-->
         <scene sceneID="EKS-yB-vrL">
@@ -525,6 +517,5 @@
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>
         <image name="editTitleLine" width="261" height="1"/>
-        <image name="listEdit" width="48" height="48"/>
     </resources>
 </document>

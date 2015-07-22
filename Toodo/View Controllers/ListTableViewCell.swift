@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ListTableViewCell: UITableViewCell {
+class ListTableViewCell: SBGestureTableViewCell {
 
     // Initialize realm
     let realm = Realm()

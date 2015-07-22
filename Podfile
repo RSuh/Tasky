@@ -3,6 +3,10 @@
 
 target 'Toodo' do
 	pod 'MGSwipeTableCell'
+	pod 'FontAwesomeKit/FontAwesome'
+	pod 'FontAwesomeKit/FoundationIcons'
+	pod 'FontAwesomeKit/Zocial'
+	pod 'FontAwesomeKit/IonIcons'
 end
 
 target 'ToodoTests' do

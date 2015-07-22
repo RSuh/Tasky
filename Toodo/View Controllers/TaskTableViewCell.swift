@@ -40,6 +40,7 @@ class TaskTableViewCell: UITableViewCell {
             if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
                 taskLabel.text = task.taskTitle
                 dateLabel.text = TaskTableViewCell.presentDate.stringFromDate(task.modificationDate)
+                badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
             }
         }
     }

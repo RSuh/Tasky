@@ -16,7 +16,8 @@ class TaskViewController: UIViewController {
     let realm = Realm()
     
     // Updates tableView whenever tasks update
-    var tasks: Results<Task>! {
+    var tasks: Results<Task>!
+        {
         didSet {
             taskHomeTableView?.reloadData()
         }

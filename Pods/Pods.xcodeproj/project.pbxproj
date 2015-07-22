@@ -7,79 +7,206 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		038121CB9E32C1F2ABABDAF30D8C8A17 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A56487DE2AA3DBD7687873CD50FE4415 /* MGSwipeButton.h */; };
-		196E1571B94DA9307BC9982175CAD315 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */; };
-		24FE8393A6C4C063B92CBE28027F7BC5 /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F0F155F8CB5653C6514814B2C575AD /* MGSwipeTableCell-dummy.m */; };
-		55BDEFA7215C43023AC7E725B5C1878D /* Pods-Toodo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7A4272FA66D8CE77CCFDD15B335EA9 /* Pods-Toodo-dummy.m */; };
-		658EAD3B6580CF252A7B21CCC5F2C6A1 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2122EEF8F66D73F2377A638131D1C69F /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		88C352D7BB218324DD30B7B5048068D4 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72094C7C2D769856521CE88DD98236F2 /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		DA5237191EA8635D7CCC21A7640E9E90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */; };
-		E1F9EBAE7588B1AC79529C77B12D7842 /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 527BEE0F247E858878EDAB37CFADE87F /* MGSwipeTableCell.h */; };
+		072994FEB4F65A3638515C0C3C769677 /* MGSwipeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F213F372591083250DD7F0DF915E5 /* MGSwipeButton.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		0FEB834317F843F6953BE703BDCC25CE /* FAKIonIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B420C2C04746B77A9A4B065A0F083CA /* FAKIonIcons.m */; };
+		102E7301C95F708DAABDC03F7352CA34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7D695187706162711D0AFF589DB084 /* Foundation.framework */; };
+		1987BE6D25FE2272890FDCBC68A17E14 /* FAKFoundationIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAACE35E415F9791B5E895A5E8B7079 /* FAKFoundationIcons.m */; };
+		2230416A17C0C84A2135CC298E3C1B59 /* FAKIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 51737122398AC3DF7896449AEFBCBF5A /* FAKIcon.m */; };
+		258CFCAC91E47960B87397ADCB74EA88 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B92AE6762C63F9BB7AEB66FFB3F9B4C /* UIKit.framework */; };
+		3542F53295178A938F62353B2D76F2FA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A646257F93269935F4AA2FF42AB59C79 /* CoreText.framework */; };
+		36EB1EA501E6F8BDBC32C211694ADAE0 /* Pods-Toodo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0587887B688046D087375E7EAECA44A /* Pods-Toodo-dummy.m */; };
+		370E9DC0CF953963AE47389D1DC07658 /* MGSwipeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF4C8D3930C41B021B0FA0E4DE094BCE /* MGSwipeTableCell.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		4802F665A99A0AE98B199DC03E09C917 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7D695187706162711D0AFF589DB084 /* Foundation.framework */; };
+		74F8DB0BCF3E807FA3156366FCDC61B5 /* FAKFontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 24ED90672761491E2C58B524838E8E17 /* FAKFontAwesome.m */; };
+		802A67FBA3B8FA0CDE5EC9BA2F1A0978 /* FAKZocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 344B5E9F7AFA804AC3C6C450EB466473 /* FAKZocial.m */; };
+		9974CD221B4DC5A428E83D7EBA71DC51 /* MGSwipeButton.h in Headers */ = {isa = PBXBuildFile; fileRef = F0089A31A9885397D0F9823FAFBDF980 /* MGSwipeButton.h */; };
+		AD9AA452B145F91CE9B09DABD34C615D /* MGSwipeTableCell-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FAB884F41DBE176787623CF3C3E7944E /* MGSwipeTableCell-dummy.m */; };
+		ADBCD53675302B9F77B417105C377DFA /* MGSwipeTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = A895C939E7D50F05A913F2331E91C087 /* MGSwipeTableCell.h */; };
+		CA5ACEE58CDEDEED9B35B857440B3325 /* FAKIonIcons.h in Headers */ = {isa = PBXBuildFile; fileRef = C59E28081196579526FFF0E8C8F235D2 /* FAKIonIcons.h */; };
+		D708DF0E5C4B323A239F9A0C86DB9C00 /* FAKIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = 079B9B6C7ACE5DC95693E53C62FAFBDD /* FAKIcon.h */; };
+		D9441068C4B01C10A72458E465FBE1FB /* FAKFoundationIcons.h in Headers */ = {isa = PBXBuildFile; fileRef = A969AAC08CF5108103F586A0A875F880 /* FAKFoundationIcons.h */; };
+		F2FF37041FC9BD2A596992127BB07B5D /* FAKFontAwesome.h in Headers */ = {isa = PBXBuildFile; fileRef = 877731ECCF390C3DD63EC711E7745F9A /* FAKFontAwesome.h */; };
+		F8DE7FCFEDE00C08E344211AAEB9B0DA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7D695187706162711D0AFF589DB084 /* Foundation.framework */; };
+		FBE4F66B6E56EFC709EC5F01CE229CA4 /* FontAwesomeKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4BC47EF18D9211D24579745B423399 /* FontAwesomeKit-dummy.m */; };
+		FE62CC646398153986BC6199088C43EB /* FAKZocial.h in Headers */ = {isa = PBXBuildFile; fileRef = C53611D08AAF646EFA9AD29C19FAA4F9 /* FAKZocial.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2A3F4ECC2531218D67D97D75FB9BFF65 /* PBXContainerItemProxy */ = {
+		2FE3613BB4BEB99A19E27E3680AB22A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3348CA7597EFA50524F360D90C6CCBE7;
+			remoteGlobalIDString = E9D8EB03807C528B8BCA8F3811FFDDC3;
+			remoteInfo = FontAwesomeKit;
+		};
+		A6E15FBF5463D3EBB87AB324FA2267C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CBDB12E00A16F6CD9E65E0721652CCFB;
 			remoteInfo = MGSwipeTableCell;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07724C140E601F1C71123C41AA882D2A /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
-		2122EEF8F66D73F2377A638131D1C69F /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
-		3697D6EAAABAE1A4AED6BFECE711FD4A /* libMGSwipeTableCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMGSwipeTableCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MGSwipeTableCell-Private.xcconfig"; sourceTree = "<group>"; };
-		527BEE0F247E858878EDAB37CFADE87F /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
-		60EEC3803C6ED208237AF44E8A3D3FC5 /* Pods-Toodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Toodo.debug.xcconfig"; sourceTree = "<group>"; };
+		079B9B6C7ACE5DC95693E53C62FAFBDD /* FAKIcon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAKIcon.h; path = FontAwesomeKit/FAKIcon.h; sourceTree = "<group>"; };
+		0B92AE6762C63F9BB7AEB66FFB3F9B4C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		16C0A245024D6E267E6064413AD0DE90 /* libPods-Toodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Toodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24ED90672761491E2C58B524838E8E17 /* FAKFontAwesome.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAKFontAwesome.m; path = FontAwesomeKit/FAKFontAwesome.m; sourceTree = "<group>"; };
+		2B420C2C04746B77A9A4B065A0F083CA /* FAKIonIcons.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAKIonIcons.m; path = FontAwesomeKit/FAKIonIcons.m; sourceTree = "<group>"; };
+		2C64A621E7BA9301536A57A564DCAA2F /* FontAwesome.otf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = FontAwesome.otf; path = FontAwesomeKit/FontAwesome.otf; sourceTree = "<group>"; };
+		344B5E9F7AFA804AC3C6C450EB466473 /* FAKZocial.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAKZocial.m; path = FontAwesomeKit/FAKZocial.m; sourceTree = "<group>"; };
+		39FC5FB2DD8B2FC41CADDB5D9A30D953 /* FontAwesomeKit-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "FontAwesomeKit-Private.xcconfig"; sourceTree = "<group>"; };
+		3D2F213F372591083250DD7F0DF915E5 /* MGSwipeButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeButton.m; path = MGSwipeTableCell/MGSwipeButton.m; sourceTree = "<group>"; };
+		48F0310EE4EDF1FB9AC57037958F712C /* FontAwesomeKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FontAwesomeKit-prefix.pch"; sourceTree = "<group>"; };
+		4D7D695187706162711D0AFF589DB084 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		4F28DA84BFF46C27A01DBEE350EB3166 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
+		51737122398AC3DF7896449AEFBCBF5A /* FAKIcon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAKIcon.m; path = FontAwesomeKit/FAKIcon.m; sourceTree = "<group>"; };
+		5CBFA19468F9B7C07975FD86EA419202 /* ionicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = ionicons.ttf; path = FontAwesomeKit/ionicons.ttf; sourceTree = "<group>"; };
 		684B3DF4433B06109CEEB93FC5343E62 /* Pods-Toodo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Toodo-resources.sh"; sourceTree = "<group>"; };
-		6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		72094C7C2D769856521CE88DD98236F2 /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
-		7F6B4E5B0632962FD38AA55F35E86493 /* MGSwipeTableCell.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGSwipeTableCell.xcconfig; sourceTree = "<group>"; };
-		A56487DE2AA3DBD7687873CD50FE4415 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
+		7DC698AEF41DA9B18316AE28FB6D1615 /* libMGSwipeTableCell.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMGSwipeTableCell.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		877731ECCF390C3DD63EC711E7745F9A /* FAKFontAwesome.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAKFontAwesome.h; path = FontAwesomeKit/FAKFontAwesome.h; sourceTree = "<group>"; };
+		920AC17C6C0362D4680F528085A7AC91 /* FontAwesomeKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FontAwesomeKit.xcconfig; sourceTree = "<group>"; };
+		9215C293BE4886862A960EE525F4BEA7 /* libFontAwesomeKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFontAwesomeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0F9CE8B66759F5E5FC59739EE9F4AAB /* MGSwipeTableCell-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSwipeTableCell-prefix.pch"; sourceTree = "<group>"; };
+		A42F72F6393B77B3AF33B21E2B511910 /* zocial-regular-webfont.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "zocial-regular-webfont.ttf"; path = "FontAwesomeKit/zocial-regular-webfont.ttf"; sourceTree = "<group>"; };
+		A646257F93269935F4AA2FF42AB59C79 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		A895C939E7D50F05A913F2331E91C087 /* MGSwipeTableCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeTableCell.h; path = MGSwipeTableCell/MGSwipeTableCell.h; sourceTree = "<group>"; };
 		A8A9224F49C65BA215AB10CB2E8122D0 /* Pods-Toodo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Toodo-acknowledgements.plist"; sourceTree = "<group>"; };
+		A969AAC08CF5108103F586A0A875F880 /* FAKFoundationIcons.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAKFoundationIcons.h; path = FontAwesomeKit/FAKFoundationIcons.h; sourceTree = "<group>"; };
 		AF56BA231EB4FC8195266F0F12F04F3C /* Pods-Toodo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Toodo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B4635C967BD80D6EF83992FC07425BA1 /* Pods-Toodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Toodo.release.xcconfig"; sourceTree = "<group>"; };
+		BF4C8D3930C41B021B0FA0E4DE094BCE /* MGSwipeTableCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGSwipeTableCell.m; path = MGSwipeTableCell/MGSwipeTableCell.m; sourceTree = "<group>"; };
+		BFAACE35E415F9791B5E895A5E8B7079 /* FAKFoundationIcons.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FAKFoundationIcons.m; path = FontAwesomeKit/FAKFoundationIcons.m; sourceTree = "<group>"; };
+		C53611D08AAF646EFA9AD29C19FAA4F9 /* FAKZocial.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAKZocial.h; path = FontAwesomeKit/FAKZocial.h; sourceTree = "<group>"; };
+		C59E28081196579526FFF0E8C8F235D2 /* FAKIonIcons.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FAKIonIcons.h; path = FontAwesomeKit/FAKIonIcons.h; sourceTree = "<group>"; };
 		C88113A79685B4EFEE7BAD12896829F7 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		DC7A4272FA66D8CE77CCFDD15B335EA9 /* Pods-Toodo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Toodo-dummy.m"; sourceTree = "<group>"; };
-		EE40C26812490DB50C6EC0E96627BA56 /* libPods-Toodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Toodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4F0F155F8CB5653C6514814B2C575AD /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
-		F9EC9A5EDB4E47AF89D2F244AF4C005F /* Pods-Toodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Toodo.release.xcconfig"; sourceTree = "<group>"; };
+		C9FF91C5B573D2FFB9C56DD49C70BC2C /* Pods-Toodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Toodo.debug.xcconfig"; sourceTree = "<group>"; };
+		DC77F4298EAD68427557E25486E47657 /* foundation-icons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "foundation-icons.ttf"; path = "FontAwesomeKit/foundation-icons.ttf"; sourceTree = "<group>"; };
+		E0587887B688046D087375E7EAECA44A /* Pods-Toodo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Toodo-dummy.m"; sourceTree = "<group>"; };
+		E09C2D8941BADFEBCCEFFADEBD5D00D6 /* MGSwipeTableCell-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "MGSwipeTableCell-Private.xcconfig"; sourceTree = "<group>"; };
+		EE4BC47EF18D9211D24579745B423399 /* FontAwesomeKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FontAwesomeKit-dummy.m"; sourceTree = "<group>"; };
+		F0089A31A9885397D0F9823FAFBDF980 /* MGSwipeButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGSwipeButton.h; path = MGSwipeTableCell/MGSwipeButton.h; sourceTree = "<group>"; };
+		FAB884F41DBE176787623CF3C3E7944E /* MGSwipeTableCell-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGSwipeTableCell-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3F50CB6B153A8247B6C2206546658569 /* Frameworks */ = {
+		990DDF8BCBC0A40DE31A4510891993A0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				196E1571B94DA9307BC9982175CAD315 /* Foundation.framework in Frameworks */,
+				102E7301C95F708DAABDC03F7352CA34 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5FA280DA7285BAA76AE3134FCB403F12 /* Frameworks */ = {
+		B0A020713B8699A33225D22CFCD21241 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA5237191EA8635D7CCC21A7640E9E90 /* Foundation.framework in Frameworks */,
+				4802F665A99A0AE98B199DC03E09C917 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B119BBC1823CC12584F368E39D546C03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3542F53295178A938F62353B2D76F2FA /* CoreText.framework in Frameworks */,
+				F8DE7FCFEDE00C08E344211AAEB9B0DA /* Foundation.framework in Frameworks */,
+				258CFCAC91E47960B87397ADCB74EA88 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33A2DFA941E11F4B5B7E005D2FE0A3E5 /* iOS */ = {
+		2F414954F87ED957BE121A1660094A49 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6AA16791832FF82675BD46F6B7BC49E9 /* Foundation.framework */,
+				43A5E77D7E457658D85F11309FDDEDE1 /* FontAwesomeKit */,
+				F5F74F4069A2E6CC9392EEE98729851F /* MGSwipeTableCell */,
 			);
-			name = iOS;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		3DF1CD604787B32CC9F5E7020D7F8913 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F28DA84BFF46C27A01DBEE350EB3166 /* MGSwipeTableCell.xcconfig */,
+				E09C2D8941BADFEBCCEFFADEBD5D00D6 /* MGSwipeTableCell-Private.xcconfig */,
+				FAB884F41DBE176787623CF3C3E7944E /* MGSwipeTableCell-dummy.m */,
+				A0F9CE8B66759F5E5FC59739EE9F4AAB /* MGSwipeTableCell-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/MGSwipeTableCell";
+			sourceTree = "<group>";
+		};
+		4197B1AD1DA381F7DA372465F6C230B5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				920AC17C6C0362D4680F528085A7AC91 /* FontAwesomeKit.xcconfig */,
+				39FC5FB2DD8B2FC41CADDB5D9A30D953 /* FontAwesomeKit-Private.xcconfig */,
+				EE4BC47EF18D9211D24579745B423399 /* FontAwesomeKit-dummy.m */,
+				48F0310EE4EDF1FB9AC57037958F712C /* FontAwesomeKit-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FontAwesomeKit";
+			sourceTree = "<group>";
+		};
+		42985E77B6259EE4A77C39A6A2DE1EFF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				079B9B6C7ACE5DC95693E53C62FAFBDD /* FAKIcon.h */,
+				51737122398AC3DF7896449AEFBCBF5A /* FAKIcon.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		43A5E77D7E457658D85F11309FDDEDE1 /* FontAwesomeKit */ = {
+			isa = PBXGroup;
+			children = (
+				42985E77B6259EE4A77C39A6A2DE1EFF /* Core */,
+				DE78742C3D32E504C386E5C5A4422126 /* FontAwesome */,
+				5BFBB9C31A31E5179B4520360FA2C546 /* FoundationIcons */,
+				46348EECBB5ECD4A08676A8095BCB6FC /* IonIcons */,
+				4197B1AD1DA381F7DA372465F6C230B5 /* Support Files */,
+				93F746BA433920510FB516C7CE3F0315 /* Zocial */,
+			);
+			path = FontAwesomeKit;
+			sourceTree = "<group>";
+		};
+		46348EECBB5ECD4A08676A8095BCB6FC /* IonIcons */ = {
+			isa = PBXGroup;
+			children = (
+				C59E28081196579526FFF0E8C8F235D2 /* FAKIonIcons.h */,
+				2B420C2C04746B77A9A4B065A0F083CA /* FAKIonIcons.m */,
+				EFD8CAA396044361472BEBD9F6B90E00 /* Resources */,
+			);
+			name = IonIcons;
+			sourceTree = "<group>";
+		};
+		464F67AA73DFD397D7AB09F19E1C3294 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DC77F4298EAD68427557E25486E47657 /* foundation-icons.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5BFBB9C31A31E5179B4520360FA2C546 /* FoundationIcons */ = {
+			isa = PBXGroup;
+			children = (
+				A969AAC08CF5108103F586A0A875F880 /* FAKFoundationIcons.h */,
+				BFAACE35E415F9791B5E895A5E8B7079 /* FAKFoundationIcons.m */,
+				464F67AA73DFD397D7AB09F19E1C3294 /* Resources */,
+			);
+			name = FoundationIcons;
 			sourceTree = "<group>";
 		};
 		5E1F3384B1B39575144FEBFCF3210CCC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				33A2DFA941E11F4B5B7E005D2FE0A3E5 /* iOS */,
+				AE3C420F843D28CC19CB40DCE9D7D8D1 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -89,7 +216,7 @@
 			children = (
 				C88113A79685B4EFEE7BAD12896829F7 /* Podfile */,
 				5E1F3384B1B39575144FEBFCF3210CCC /* Frameworks */,
-				FCC6F965540745142F6675EF7C9E0E2D /* Pods */,
+				2F414954F87ED957BE121A1660094A49 /* Pods */,
 				CCA510CFBEA2D207524CDA0D73C3B561 /* Products */,
 				848A6CE8DA3504A266A17F635DC3683A /* Targets Support Files */,
 			);
@@ -103,37 +230,60 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		B59C9E203DE7236E05B30AA2A1995CF8 /* Support Files */ = {
+		93F746BA433920510FB516C7CE3F0315 /* Zocial */ = {
 			isa = PBXGroup;
 			children = (
-				7F6B4E5B0632962FD38AA55F35E86493 /* MGSwipeTableCell.xcconfig */,
-				43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */,
-				F4F0F155F8CB5653C6514814B2C575AD /* MGSwipeTableCell-dummy.m */,
-				07724C140E601F1C71123C41AA882D2A /* MGSwipeTableCell-prefix.pch */,
+				C53611D08AAF646EFA9AD29C19FAA4F9 /* FAKZocial.h */,
+				344B5E9F7AFA804AC3C6C450EB466473 /* FAKZocial.m */,
+				CBEE8F95CF3689B035ECADB64BDA360A /* Resources */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/MGSwipeTableCell";
+			name = Zocial;
+			sourceTree = "<group>";
+		};
+		AE3C420F843D28CC19CB40DCE9D7D8D1 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A646257F93269935F4AA2FF42AB59C79 /* CoreText.framework */,
+				4D7D695187706162711D0AFF589DB084 /* Foundation.framework */,
+				0B92AE6762C63F9BB7AEB66FFB3F9B4C /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CBEE8F95CF3689B035ECADB64BDA360A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A42F72F6393B77B3AF33B21E2B511910 /* zocial-regular-webfont.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3697D6EAAABAE1A4AED6BFECE711FD4A /* libMGSwipeTableCell.a */,
-				EE40C26812490DB50C6EC0E96627BA56 /* libPods-Toodo.a */,
+				9215C293BE4886862A960EE525F4BEA7 /* libFontAwesomeKit.a */,
+				7DC698AEF41DA9B18316AE28FB6D1615 /* libMGSwipeTableCell.a */,
+				16C0A245024D6E267E6064413AD0DE90 /* libPods-Toodo.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D6E87B5C1D9D3AB286BEAC952A31221E /* MGSwipeTableCell */ = {
+		DE78742C3D32E504C386E5C5A4422126 /* FontAwesome */ = {
 			isa = PBXGroup;
 			children = (
-				A56487DE2AA3DBD7687873CD50FE4415 /* MGSwipeButton.h */,
-				2122EEF8F66D73F2377A638131D1C69F /* MGSwipeButton.m */,
-				527BEE0F247E858878EDAB37CFADE87F /* MGSwipeTableCell.h */,
-				72094C7C2D769856521CE88DD98236F2 /* MGSwipeTableCell.m */,
-				B59C9E203DE7236E05B30AA2A1995CF8 /* Support Files */,
+				877731ECCF390C3DD63EC711E7745F9A /* FAKFontAwesome.h */,
+				24ED90672761491E2C58B524838E8E17 /* FAKFontAwesome.m */,
+				DF6B2C8EEFCFCFE448F4A42C01AE0742 /* Resources */,
 			);
-			path = MGSwipeTableCell;
+			name = FontAwesome;
+			sourceTree = "<group>";
+		};
+		DF6B2C8EEFCFCFE448F4A42C01AE0742 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C64A621E7BA9301536A57A564DCAA2F /* FontAwesome.otf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E17CC8FF625E4B64BE019450EFF32C58 /* Pods-Toodo */ = {
@@ -141,45 +291,69 @@
 			children = (
 				AF56BA231EB4FC8195266F0F12F04F3C /* Pods-Toodo-acknowledgements.markdown */,
 				A8A9224F49C65BA215AB10CB2E8122D0 /* Pods-Toodo-acknowledgements.plist */,
-				DC7A4272FA66D8CE77CCFDD15B335EA9 /* Pods-Toodo-dummy.m */,
+				E0587887B688046D087375E7EAECA44A /* Pods-Toodo-dummy.m */,
 				684B3DF4433B06109CEEB93FC5343E62 /* Pods-Toodo-resources.sh */,
-				60EEC3803C6ED208237AF44E8A3D3FC5 /* Pods-Toodo.debug.xcconfig */,
-				F9EC9A5EDB4E47AF89D2F244AF4C005F /* Pods-Toodo.release.xcconfig */,
+				C9FF91C5B573D2FFB9C56DD49C70BC2C /* Pods-Toodo.debug.xcconfig */,
+				B4635C967BD80D6EF83992FC07425BA1 /* Pods-Toodo.release.xcconfig */,
 			);
 			name = "Pods-Toodo";
 			path = "Target Support Files/Pods-Toodo";
 			sourceTree = "<group>";
 		};
-		FCC6F965540745142F6675EF7C9E0E2D /* Pods */ = {
+		EFD8CAA396044361472BEBD9F6B90E00 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D6E87B5C1D9D3AB286BEAC952A31221E /* MGSwipeTableCell */,
+				5CBFA19468F9B7C07975FD86EA419202 /* ionicons.ttf */,
 			);
-			name = Pods;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F5F74F4069A2E6CC9392EEE98729851F /* MGSwipeTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				F0089A31A9885397D0F9823FAFBDF980 /* MGSwipeButton.h */,
+				3D2F213F372591083250DD7F0DF915E5 /* MGSwipeButton.m */,
+				A895C939E7D50F05A913F2331E91C087 /* MGSwipeTableCell.h */,
+				BF4C8D3930C41B021B0FA0E4DE094BCE /* MGSwipeTableCell.m */,
+				3DF1CD604787B32CC9F5E7020D7F8913 /* Support Files */,
+			);
+			path = MGSwipeTableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		EA7E4B95F48283FB280E7877CD8A7989 /* Headers */ = {
+		266C62B5AC551321294AE50259B88D02 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				038121CB9E32C1F2ABABDAF30D8C8A17 /* MGSwipeButton.h in Headers */,
-				E1F9EBAE7588B1AC79529C77B12D7842 /* MGSwipeTableCell.h in Headers */,
+				9974CD221B4DC5A428E83D7EBA71DC51 /* MGSwipeButton.h in Headers */,
+				ADBCD53675302B9F77B417105C377DFA /* MGSwipeTableCell.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C7E4C33D51A8357A3FB58A27ECA54D5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2FF37041FC9BD2A596992127BB07B5D /* FAKFontAwesome.h in Headers */,
+				D9441068C4B01C10A72458E465FBE1FB /* FAKFoundationIcons.h in Headers */,
+				D708DF0E5C4B323A239F9A0C86DB9C00 /* FAKIcon.h in Headers */,
+				CA5ACEE58CDEDEED9B35B857440B3325 /* FAKIonIcons.h in Headers */,
+				FE62CC646398153986BC6199088C43EB /* FAKZocial.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3348CA7597EFA50524F360D90C6CCBE7 /* MGSwipeTableCell */ = {
+		CBDB12E00A16F6CD9E65E0721652CCFB /* MGSwipeTableCell */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 059295BD14C0F293A8D402CEB3977EF0 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
+			buildConfigurationList = BFAF09B1AAB582FD4D006F3A70E31CB9 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */;
 			buildPhases = (
-				3AC026951C4B4900040FF3C4075F9DB6 /* Sources */,
-				3F50CB6B153A8247B6C2206546658569 /* Frameworks */,
-				EA7E4B95F48283FB280E7877CD8A7989 /* Headers */,
+				0E96837322200D0819BD7A29AD23E0D3 /* Sources */,
+				990DDF8BCBC0A40DE31A4510891993A0 /* Frameworks */,
+				266C62B5AC551321294AE50259B88D02 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -187,24 +361,42 @@
 			);
 			name = MGSwipeTableCell;
 			productName = MGSwipeTableCell;
-			productReference = 3697D6EAAABAE1A4AED6BFECE711FD4A /* libMGSwipeTableCell.a */;
+			productReference = 7DC698AEF41DA9B18316AE28FB6D1615 /* libMGSwipeTableCell.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		6F87129571177AB8F0A101F18B1E7CEF /* Pods-Toodo */ = {
+		E9D8EB03807C528B8BCA8F3811FFDDC3 /* FontAwesomeKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 09ECBEF2017D80462436DC90C86A3B4F /* Build configuration list for PBXNativeTarget "Pods-Toodo" */;
+			buildConfigurationList = E99DBBC0DFE67301EABED3AE028E878E /* Build configuration list for PBXNativeTarget "FontAwesomeKit" */;
 			buildPhases = (
-				B5E752376443137AD9C47EABBEA6C6A8 /* Sources */,
-				5FA280DA7285BAA76AE3134FCB403F12 /* Frameworks */,
+				3173AAADCA937BEF0B6712D85753EC15 /* Sources */,
+				B119BBC1823CC12584F368E39D546C03 /* Frameworks */,
+				5C7E4C33D51A8357A3FB58A27ECA54D5 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2E7FC6546D696ADFEC6F5185CE2B5581 /* PBXTargetDependency */,
+			);
+			name = FontAwesomeKit;
+			productName = FontAwesomeKit;
+			productReference = 9215C293BE4886862A960EE525F4BEA7 /* libFontAwesomeKit.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F05D166BC68C1085C2FBEC73AB4314AB /* Pods-Toodo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EAB2E5A8F357ED59DF11B1EEFC0E037 /* Build configuration list for PBXNativeTarget "Pods-Toodo" */;
+			buildPhases = (
+				18F4EE1974BB2C40A67F97CE59C572EE /* Sources */,
+				B0A020713B8699A33225D22CFCD21241 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				355659BAE95D3A512CA274E914F599BF /* PBXTargetDependency */,
+				826BEE944AFF616B56F1A77676A6EDC0 /* PBXTargetDependency */,
 			);
 			name = "Pods-Toodo";
 			productName = "Pods-Toodo";
-			productReference = EE40C26812490DB50C6EC0E96627BA56 /* libPods-Toodo.a */;
+			productReference = 16C0A245024D6E267E6064413AD0DE90 /* libPods-Toodo.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -228,58 +420,94 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3348CA7597EFA50524F360D90C6CCBE7 /* MGSwipeTableCell */,
-				6F87129571177AB8F0A101F18B1E7CEF /* Pods-Toodo */,
+				E9D8EB03807C528B8BCA8F3811FFDDC3 /* FontAwesomeKit */,
+				CBDB12E00A16F6CD9E65E0721652CCFB /* MGSwipeTableCell */,
+				F05D166BC68C1085C2FBEC73AB4314AB /* Pods-Toodo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3AC026951C4B4900040FF3C4075F9DB6 /* Sources */ = {
+		0E96837322200D0819BD7A29AD23E0D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				658EAD3B6580CF252A7B21CCC5F2C6A1 /* MGSwipeButton.m in Sources */,
-				24FE8393A6C4C063B92CBE28027F7BC5 /* MGSwipeTableCell-dummy.m in Sources */,
-				88C352D7BB218324DD30B7B5048068D4 /* MGSwipeTableCell.m in Sources */,
+				072994FEB4F65A3638515C0C3C769677 /* MGSwipeButton.m in Sources */,
+				AD9AA452B145F91CE9B09DABD34C615D /* MGSwipeTableCell-dummy.m in Sources */,
+				370E9DC0CF953963AE47389D1DC07658 /* MGSwipeTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5E752376443137AD9C47EABBEA6C6A8 /* Sources */ = {
+		18F4EE1974BB2C40A67F97CE59C572EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55BDEFA7215C43023AC7E725B5C1878D /* Pods-Toodo-dummy.m in Sources */,
+				36EB1EA501E6F8BDBC32C211694ADAE0 /* Pods-Toodo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3173AAADCA937BEF0B6712D85753EC15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74F8DB0BCF3E807FA3156366FCDC61B5 /* FAKFontAwesome.m in Sources */,
+				1987BE6D25FE2272890FDCBC68A17E14 /* FAKFoundationIcons.m in Sources */,
+				2230416A17C0C84A2135CC298E3C1B59 /* FAKIcon.m in Sources */,
+				0FEB834317F843F6953BE703BDCC25CE /* FAKIonIcons.m in Sources */,
+				802A67FBA3B8FA0CDE5EC9BA2F1A0978 /* FAKZocial.m in Sources */,
+				FBE4F66B6E56EFC709EC5F01CE229CA4 /* FontAwesomeKit-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2E7FC6546D696ADFEC6F5185CE2B5581 /* PBXTargetDependency */ = {
+		355659BAE95D3A512CA274E914F599BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FontAwesomeKit;
+			target = E9D8EB03807C528B8BCA8F3811FFDDC3 /* FontAwesomeKit */;
+			targetProxy = 2FE3613BB4BEB99A19E27E3680AB22A3 /* PBXContainerItemProxy */;
+		};
+		826BEE944AFF616B56F1A77676A6EDC0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = MGSwipeTableCell;
-			target = 3348CA7597EFA50524F360D90C6CCBE7 /* MGSwipeTableCell */;
-			targetProxy = 2A3F4ECC2531218D67D97D75FB9BFF65 /* PBXContainerItemProxy */;
+			target = CBDB12E00A16F6CD9E65E0721652CCFB /* MGSwipeTableCell */;
+			targetProxy = A6E15FBF5463D3EBB87AB324FA2267C5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		07F781CB88CE07A443F83052376113C2 /* Release */ = {
+		168508FE371D7F7C1E4E3174FCCAF7B1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9EC9A5EDB4E47AF89D2F244AF4C005F /* Pods-Toodo.release.xcconfig */;
+			baseConfigurationReference = E09C2D8941BADFEBCCEFFADEBD5D00D6 /* MGSwipeTableCell-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Release;
+			name = Debug;
+		};
+		1CA8A4ACEAD15B7142DE0ED5F01D86E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39FC5FB2DD8B2FC41CADDB5D9A30D953 /* FontAwesomeKit-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FontAwesomeKit/FontAwesomeKit-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
 		};
 		2E2FE3061BBF0178B73470F3A8AA31DF /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -315,21 +543,37 @@
 			};
 			name = Release;
 		};
-		5DABDA6F1ADB977371452F301458467B /* Debug */ = {
+		782E81471C128B612A8CA55354CB05E8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */;
+			baseConfigurationReference = 39FC5FB2DD8B2FC41CADDB5D9A30D953 /* FontAwesomeKit-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/FontAwesomeKit/FontAwesomeKit-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
-			name = Debug;
+			name = Release;
+		};
+		890B42A89DCD93A07BDB31CA40CCF593 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E09C2D8941BADFEBCCEFFADEBD5D00D6 /* MGSwipeTableCell-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
 		};
 		8BD0950CC7213622BB48FEAFE5931E57 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -370,25 +614,9 @@
 			};
 			name = Debug;
 		};
-		95777F22F276704C9FD6E0E5FAC64D29 /* Release */ = {
+		AD2B99946EC66FBEBFBAEB3596CB087D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43D20D48E3E545827E1B5CE3EAB83A75 /* MGSwipeTableCell-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/MGSwipeTableCell/MGSwipeTableCell-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		A0B359D320076F84D22C31B692B6574F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60EEC3803C6ED208237AF44E8A3D3FC5 /* Pods-Toodo.debug.xcconfig */;
+			baseConfigurationReference = C9FF91C5B573D2FFB9C56DD49C70BC2C /* Pods-Toodo.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
@@ -402,32 +630,57 @@
 			};
 			name = Debug;
 		};
+		B5209FB5969AFD94F994EB0788BC024F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4635C967BD80D6EF83992FC07425BA1 /* Pods-Toodo.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		059295BD14C0F293A8D402CEB3977EF0 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5DABDA6F1ADB977371452F301458467B /* Debug */,
-				95777F22F276704C9FD6E0E5FAC64D29 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		09ECBEF2017D80462436DC90C86A3B4F /* Build configuration list for PBXNativeTarget "Pods-Toodo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A0B359D320076F84D22C31B692B6574F /* Debug */,
-				07F781CB88CE07A443F83052376113C2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8BD0950CC7213622BB48FEAFE5931E57 /* Debug */,
 				2E2FE3061BBF0178B73470F3A8AA31DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EAB2E5A8F357ED59DF11B1EEFC0E037 /* Build configuration list for PBXNativeTarget "Pods-Toodo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AD2B99946EC66FBEBFBAEB3596CB087D /* Debug */,
+				B5209FB5969AFD94F994EB0788BC024F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFAF09B1AAB582FD4D006F3A70E31CB9 /* Build configuration list for PBXNativeTarget "MGSwipeTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				168508FE371D7F7C1E4E3174FCCAF7B1 /* Debug */,
+				890B42A89DCD93A07BDB31CA40CCF593 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E99DBBC0DFE67301EABED3AE028E878E /* Build configuration list for PBXNativeTarget "FontAwesomeKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CA8A4ACEAD15B7142DE0ED5F01D86E9 /* Debug */,
+				782E81471C128B612A8CA55354CB05E8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

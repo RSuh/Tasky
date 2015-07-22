@@ -1,10 +1,24 @@
 PODS:
+  - FontAwesomeKit/Core (2.2.0)
+  - FontAwesomeKit/FontAwesome (2.2.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/FoundationIcons (2.2.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/IonIcons (2.2.0):
+    - FontAwesomeKit/Core
+  - FontAwesomeKit/Zocial (2.2.0):
+    - FontAwesomeKit/Core
   - MGSwipeTableCell (1.4.3)
 
 DEPENDENCIES:
+  - FontAwesomeKit/FontAwesome
+  - FontAwesomeKit/FoundationIcons
+  - FontAwesomeKit/IonIcons
+  - FontAwesomeKit/Zocial
   - MGSwipeTableCell
 
 SPEC CHECKSUMS:
+  FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
   MGSwipeTableCell: cb9805df3cc5cad75ad43a5c1eb424be0316f0bf
 
 COCOAPODS: 0.38.0

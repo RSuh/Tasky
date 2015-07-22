@@ -15,4 +15,5 @@ class Task: Object {
     dynamic var taskTitle: String = ""
     dynamic var modificationDate = NSDate()
     dynamic var taskNote: String = ""
+    dynamic var badge = 0
 }
