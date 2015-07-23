@@ -11,16 +11,19 @@ import RealmSwift
 
 class TaskViewController: UIViewController {
     
+    // REMEMBER TO CONNECT THE FUCKING OUTLET IN STORYBOARD
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
     
     let realm = Realm()
     
     // Updates tableView whenever tasks update
+    
     var tasks: Results<Task>! {
         didSet {
             taskHomeTableView?.reloadData()
         }
     }
+    
     
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
@@ -32,10 +35,6 @@ class TaskViewController: UIViewController {
     let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
     let yellowColor = UIColor(red: 241.0/255, green: 196.0/255, blue: 15.0/255, alpha: 100)
     
-    // Variable to removeCellBlock
-    var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
-    var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
-    
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
         // Custom white color
@@ -43,6 +42,10 @@ class TaskViewController: UIViewController {
         editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
         completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
     }
+    
+    // Variable to removeCellBlock
+    var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
+    var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
     // The task which is currently selected
     var selectedTask: Task?
@@ -71,6 +74,9 @@ class TaskViewController: UIViewController {
             default:
                 println("Nothing from edit \(identifier)")
             }
+            
+            // Adds new tasks in real-time
+            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         }
     }
     
@@ -122,11 +128,6 @@ class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // On load, loads all the tasks from before according to modification Date
-        tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
-        
-        taskHomeTableView.delegate = self
-        taskHomeTableView.dataSource = self
         
         self.title = listTitleForNavBar
         
@@ -137,6 +138,7 @@ class TaskViewController: UIViewController {
             let indexPath = tableView.indexPathForCell(cell)
             //self.prepareForSegue(segue, sender: self)
             self.selectedTask = self.tasks[indexPath!.row]
+            println(self.selectedTask)
             
             tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
         }
@@ -154,7 +156,12 @@ class TaskViewController: UIViewController {
             tableView.removeCell(cell, duration: 0.3, completion: nil)
         }
 
+        
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // On load, loads all the tasks from before according to modification Date
+                tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -174,7 +181,6 @@ class TaskViewController: UIViewController {
     }
 }
 
-
 extension TaskViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -183,10 +189,9 @@ extension TaskViewController: UITableViewDataSource {
         
         let size = CGSizeMake(30, 30)
         cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
-        //cell.secondRightAction  = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
+
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-        
-        //cell.secondRightAction = SBGestureTableViewCellAction(icon: closeIcon.imageWithSize(size), color: yellowColor, fraction: 0.6, didTriggerblock: removeCellBlock)
+
         
         // Set up cell
         // Configure cell
@@ -210,6 +215,7 @@ extension TaskViewController: UITableViewDataSource {
     
     // How many rows are in the table view
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return Int(tasks?.count ?? 0)
     }
 }

@@ -38,7 +38,6 @@ class TaskTableViewCell: SBGestureTableViewCell {
         didSet {
             if let task = task, taskLabel = taskLabel {
                 taskLabel.text = task.taskTitle
-                //dateLabel.text = TaskTableViewCell.presentDate.stringFromDate(task.modificationDate)
                 badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
             }
         }

@@ -171,14 +171,6 @@ class ListViewController: UIViewController {
 //    self.storyboard.instantiateViewControllerWithString (pass identifier)
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//                if (segue.identifier == "editList") {
-//                    let targetVC = segue.destinationViewController as! EditListViewController
-//                    //let VC = segue.destinationViewController as! ListTableViewCell
-//        
-//                    // Set the editedTask as the selectedList
-//                    targetVC.editedList = selectedList
-//        
-//                } else
         if (segue.identifier == "listToTask") {
             let titleVC = segue.destinationViewController as! TaskViewController
             // Sets the list title in the next VC to be the selected list's title
@@ -209,7 +201,7 @@ extension ListViewController: UITableViewDataSource {
         //cell.secondRightAction  = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         
-        //cell.secondRightAction = SBGestureTableViewCellAction(icon: closeIcon.imageWithSize(size), color: yellowColor, fraction: 0.6, didTriggerblock: removeCellBlock)
+        cell.secondRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: yellowColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
         
         //cell.secondRightAction = SBGestureTableViewCellAction(icon: clockIcon.imageWithSize(size), color: brownColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
         // Set up cell

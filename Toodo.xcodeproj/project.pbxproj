@@ -28,10 +28,10 @@
 		457D28981B599C24000952CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28971B599C24000952CC /* Constants.swift */; };
 		457D289A1B59B44F000952CC /* EditListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28991B59B44F000952CC /* EditListViewController.swift */; };
 		457D289D1B5A1B1F000952CC /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */; };
-		457E33A31B5EB11F00D900E6 /* SBGestureTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E339F1B5EB11F00D900E6 /* SBGestureTableView.swift */; };
-		457E33A41B5EB11F00D900E6 /* SBGestureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33A01B5EB11F00D900E6 /* SBGestureTableViewCell.swift */; };
-		457E33A51B5EB11F00D900E6 /* SBGestureTableViewCellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33A11B5EB11F00D900E6 /* SBGestureTableViewCellAction.swift */; };
-		457E33A61B5EB11F00D900E6 /* SBGestureTableViewCellSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33A21B5EB11F00D900E6 /* SBGestureTableViewCellSideView.swift */; };
+		457E33B71B6193E800D900E6 /* SBGestureTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B31B6193E800D900E6 /* SBGestureTableView.swift */; };
+		457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */; };
+		457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */; };
+		457E33BA1B6193E800D900E6 /* SBGestureTableViewCellSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */; };
 		84EE8529C01C5AE528E47A21 /* libPods-Toodo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C19B5C551B19AB0787683 /* libPods-Toodo.a */; };
 /* End PBXBuildFile section */
 
@@ -87,10 +87,10 @@
 		457D28991B59B44F000952CC /* EditListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListViewController.swift; sourceTree = "<group>"; };
 		457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
 		457E339B1B5DADDB00D900E6 /* Toodo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Toodo-Bridging-Header.h"; sourceTree = "<group>"; };
-		457E339F1B5EB11F00D900E6 /* SBGestureTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableView.swift; sourceTree = "<group>"; };
-		457E33A01B5EB11F00D900E6 /* SBGestureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCell.swift; sourceTree = "<group>"; };
-		457E33A11B5EB11F00D900E6 /* SBGestureTableViewCellAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellAction.swift; sourceTree = "<group>"; };
-		457E33A21B5EB11F00D900E6 /* SBGestureTableViewCellSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellSideView.swift; sourceTree = "<group>"; };
+		457E33B31B6193E800D900E6 /* SBGestureTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableView.swift; sourceTree = "<group>"; };
+		457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCell.swift; sourceTree = "<group>"; };
+		457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellAction.swift; sourceTree = "<group>"; };
+		457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellSideView.swift; sourceTree = "<group>"; };
 		B7E2495E1BFE66D79DF66177 /* Pods-Toodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toodo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Toodo/Pods-Toodo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,7 +154,7 @@
 			children = (
 				4536C3551B505ACD00A35889 /* Info.plist */,
 				457E339B1B5DADDB00D900E6 /* Toodo-Bridging-Header.h */,
-				457E339E1B5EB11F00D900E6 /* SBGestureTableView */,
+				457E33B21B6193E800D900E6 /* SBGestureTableView */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,13 +213,13 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		457E339E1B5EB11F00D900E6 /* SBGestureTableView */ = {
+		457E33B21B6193E800D900E6 /* SBGestureTableView */ = {
 			isa = PBXGroup;
 			children = (
-				457E339F1B5EB11F00D900E6 /* SBGestureTableView.swift */,
-				457E33A01B5EB11F00D900E6 /* SBGestureTableViewCell.swift */,
-				457E33A11B5EB11F00D900E6 /* SBGestureTableViewCellAction.swift */,
-				457E33A21B5EB11F00D900E6 /* SBGestureTableViewCellSideView.swift */,
+				457E33B31B6193E800D900E6 /* SBGestureTableView.swift */,
+				457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */,
+				457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */,
+				457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */,
 			);
 			path = SBGestureTableView;
 			sourceTree = "<group>";
@@ -374,13 +374,13 @@
 				457D28921B5585F5000952CC /* ListTableViewCell.swift in Sources */,
 				457D28961B582E18000952CC /* ListCollectionViewCell.swift in Sources */,
 				457D289A1B59B44F000952CC /* EditListViewController.swift in Sources */,
-				457E33A41B5EB11F00D900E6 /* SBGestureTableViewCell.swift in Sources */,
+				457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */,
 				4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */,
 				4536C38C1B50761600A35889 /* AddNewListViewController.swift in Sources */,
-				457E33A61B5EB11F00D900E6 /* SBGestureTableViewCellSideView.swift in Sources */,
+				457E33BA1B6193E800D900E6 /* SBGestureTableViewCellSideView.swift in Sources */,
 				4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */,
-				457E33A31B5EB11F00D900E6 /* SBGestureTableView.swift in Sources */,
-				457E33A51B5EB11F00D900E6 /* SBGestureTableViewCellAction.swift in Sources */,
+				457E33B71B6193E800D900E6 /* SBGestureTableView.swift in Sources */,
+				457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */,
 				4536C37A1B505CA600A35889 /* TaskViewController.swift in Sources */,
 				457D28901B558460000952CC /* ListViewController.swift in Sources */,
 				4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */,
