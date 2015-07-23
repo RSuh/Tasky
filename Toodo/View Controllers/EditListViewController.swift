@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Foundation
 
-class EditListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
+class EditListViewController: UIViewController, UITextFieldDelegate {
 
     // Initialize realm
     let realm = Realm()
@@ -50,10 +50,10 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
         }
     }
     
-    // Saves the task
+    // Saves the list
     func saveList() {
         if let editedList = editedList {
-            println(editedList)
+            //println(editedList)
             realm.write() {
                 if ((editedList.listTitle != self.listTitle.text) || (editedList.badge != self.badge)) {
                     editedList.listTitle = self.listTitle.text
@@ -64,41 +64,6 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
     }
-    
-    // Passing image to ListViewController
-    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    //        let realm = Realm()
-    //        editedList = List()
-    //        editedList?.badge = self.badge
-    //        //println("\(listTitle.text)")
-    //    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayConstants.cellImagesUnselected.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! ListCollectionViewCell
-        cell.chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
-        return cell
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        //println("You have selected cell \(indexPath.row)")
-        badge = indexPath.row
-        //println(badge)
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell
-        cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
-    }
-    
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell
-        
-        cell.backgroundColor = UIColor.clearColor()
-        
-        (collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,7 +84,7 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Calls displayList on editedList
         displayList(editedList)
         displayBadge(editedList)
-        listTitle.delegate = self
+        //listTitle.delegate = self
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -128,7 +93,6 @@ class EditListViewController: UIViewController, UICollectionViewDataSource, UICo
         // Saves before the view disappears
         saveList()
     }
-    
     
     /*
     // MARK: - Navigation

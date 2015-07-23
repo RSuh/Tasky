@@ -13,8 +13,7 @@ class ListTableViewCell: SBGestureTableViewCell {
 
     // Initialize realm
     let realm = Realm()
-    
-    @IBOutlet weak var badgeImage: UIImageView!
+
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var listTitle: UILabel!
     
@@ -31,9 +30,9 @@ class ListTableViewCell: SBGestureTableViewCell {
     
     var list: List? {
         didSet {
-            if let list = list, listTitle = listTitle, badgeImage = badgeImage {
+            if let list = list, listTitle = listTitle {
                 listTitle.text = list.listTitle
-                badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[list.badge])
+                //badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[list.badge])
             }
         }
     }

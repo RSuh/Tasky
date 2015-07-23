@@ -14,7 +14,6 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var chevronRight: UIImageView!
-    @IBOutlet weak var dateLabel: UILabel!
     
     static var presentDate: NSDateFormatter {
        var formatter = NSDateFormatter()
@@ -37,9 +36,9 @@ class TaskTableViewCell: UITableViewCell {
     // didSet updates everytime task is changed
     var task: Task? {
         didSet {
-            if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
+            if let task = task, taskLabel = taskLabel {
                 taskLabel.text = task.taskTitle
-                dateLabel.text = TaskTableViewCell.presentDate.stringFromDate(task.modificationDate)
+                //dateLabel.text = TaskTableViewCell.presentDate.stringFromDate(task.modificationDate)
                 badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
             }
         }

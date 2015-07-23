@@ -60,11 +60,12 @@ class TaskViewController: UIViewController {
             case "saveFromAdd":
                 println("Save from add!")
                 
-                let newSource = segue.sourceViewController as! EditTaskViewController
-                
+                let newSource = segue.sourceViewController as! AddNewTaskViewController
+                //println(newSource.newTask)
                 realm.write() {
                     // Creates a newTask
-                    self.realm.add(newSource.editedTask!)
+                    self.realm.add(newSource.newTask!)
+                    //println(newSource.newTask!)
                     
                 }
                 
@@ -103,6 +104,9 @@ class TaskViewController: UIViewController {
         // On load, loads all the tasks from before according to modification Date
         tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         
+        taskHomeTableView.delegate = self
+        taskHomeTableView.dataSource = self
+
         self.title = listTitleForNavBar
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -117,9 +121,11 @@ class TaskViewController: UIViewController {
             let targetVC = segue.destinationViewController as! EditTaskViewController
             // Set the editedTask as selectedTask
             targetVC.editedTask = selectedTask
+            println(targetVC.editedTask?.badge)
+            }
         }
     }
-}
+
 
 extension TaskViewController: UITableViewDataSource {
     

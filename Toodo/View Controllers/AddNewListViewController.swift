@@ -9,16 +9,13 @@
 import UIKit
 import RealmSwift
 
-class AddNewListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class AddNewListViewController: UIViewController {
     
     @IBOutlet weak var listTitle: UITextField!
-    
-    var badge = 0
     
     var addNewList: List? {
         didSet {
             displayNewList(addNewList)
-            displayNewBadge(addNewList)
         }
     }
     
@@ -28,20 +25,14 @@ class AddNewListViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
-    func displayNewBadge(list: List?) {
-        if let list = list {
-            addNewList?.badge = badge
-        }
-    }
-    
     // Saves the task
     func saveList() {
         if let addNewList = addNewList {
             let realm = Realm()
             realm.write() {
-                if (addNewList.listTitle != self.listTitle.text) || (addNewList.badge != self.badge){
+                if (addNewList.listTitle != self.listTitle.text) {
                     addNewList.listTitle = self.listTitle.text
-                    addNewList.badge = self.badge
+                    println("changes are saved")
                 } else {
                     println("nothing to save")
                 }
@@ -49,54 +40,19 @@ class AddNewListViewController: UIViewController, UICollectionViewDataSource, UI
         }
     }
     
-    
-    // Passing image to Home View Controller
+    // Passing list object to Home View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let realm = Realm()
         addNewList = List()
+        println("list is created")
         saveList()
-    }
-    
-        // Save this stuff for another day
-        //        if (segue.identifier == "saveToList") {
-        //            let targetViewCell = segue.destinationViewController as! ListViewController
-        //
-        //        } else if (segue.identifier == "editList") {
-        //            let targetViewCell = segue.destinationViewController as! ListViewController
-        //
-        //
-        //        }
-    
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayConstants.cellImagesUnselected.count
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! ListCollectionViewCell
-        cell.chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
-        return cell
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("You have selected cell \(indexPath.row)")
-        badge = indexPath.row
-        //println(badge)
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell
-        cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
-    }
-    
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell
-        
-        cell.backgroundColor = UIColor.clearColor()
-        
-        (collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        // Placeholder text for textfield in Add
+        listTitle.placeholder = "Title of your Category..."
     }
     
     override func didReceiveMemoryWarning() {

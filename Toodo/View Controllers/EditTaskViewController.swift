@@ -13,7 +13,7 @@ import RealmSwift
 class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var badgeImage: UIImageView!
-    @IBOutlet weak var taskTextField: UITextView! = nil
+    @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var taskNoteField: UITextView!
     //    @IBOutlet weak var reminderCell: UITableViewCell!
     
@@ -25,46 +25,66 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     var editedTask: Task? {
         didSet {
             displayTask(editedTask)
-            //displayBadge(editedTask)
+            displayBadge(editedTask)
         }
     }
     
-//    func displayBadge(task: Task?) {
-//        if let task = task, badgeImage = badgeImage {
-//            realm.write() {
-//                badgeImage.image = self.editedTask!.badge
-//            }
-//        }
-//        
-//    }
+    // Displays the badge
+    func displayBadge(task: Task?) {
+        if let task = task, badgeImage = badgeImage, editedTask = editedTask {
+            realm.write() {
+                task.badge = self.editedTask!.badge
+                println(task.badge)
+            }
+        }
+    }
     
     // Displays the task
     func displayTask(task: Task?) {
         if let task = task, taskTextField = taskTextField {
-            taskTextField.text = editedTask!.taskTitle
-            taskNoteField.text = editedTask!.taskNote
+            realm.write() {
+                self.taskTextField.text = self.editedTask!.taskTitle
+                self.taskNoteField.text = self.editedTask!.taskNote
+            }
         }
     }
     
     // Saves the task
     func saveTask() {
-        if let editedTask = editedTask {
+        if let editedTask = editedTask, taskTextField = taskTextField {
             realm.write() {
-                if (editedTask.taskTitle != self.taskTextField.text) {
-                    editedTask.taskTitle = self.taskTextField.text
-                    editedTask.modificationDate = NSDate()
-                } else if (editedTask.taskNote != self.taskNoteField.text) {
-                    editedTask.taskNote = self.taskNoteField.text
-                    editedTask.modificationDate = NSDate()
+                if ((editedTask.taskTitle != self.taskTextField.text) ||
+                    (editedTask.badge != self.badge) ||
+                    (editedTask.taskNote != self.taskNoteField.text)) {
+                        
+                        editedTask.taskTitle = self.taskTextField.text
+                        editedTask.badge = self.badge
+                        editedTask.taskNote = self.taskNoteField.text
+                } else {
+                    println("nothing has changed")
                 }
             }
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        saveTask()
     }
     
     // Hides keyboard when you press done the view controller ends
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         taskTextField.resignFirstResponder()
         return true
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //taskTextField.placeholder = "Hi"
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
     // Hides keyboard whenever you tap outside the keyboard
@@ -74,28 +94,13 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        println("Are you sure you want to exit?")
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Calls displayTask when the VC is about to appear
-        displayTask(self.editedTask)
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //taskTextField.attributedText = "What's your task?" as NSAttributedString!
-        // Do any additional setup after loading the view.
-        //self.title = listTitleForNavBar
-        
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        displayTask(editedTask)
+        displayBadge(editedTask)
     }
     
     // MARK: - Navigation

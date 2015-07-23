@@ -13,6 +13,9 @@ class ListViewController: UIViewController {
     
     let realm = Realm()
     
+    @IBAction func goToEditMode(sender: UIBarButtonItem) {
+    }
+    
     @IBOutlet weak var listTableView: SBGestureTableView!
     
     // Reloads the lists everytime the page loads.
@@ -32,8 +35,6 @@ class ListViewController: UIViewController {
     let greenColor = UIColor(red: 48.0/255, green: 220.0/255, blue: 107.0/255, alpha: 80)
     let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
     let yellowColor = UIColor(red: 241.0/255, green: 196.0/255, blue: 15.0/255, alpha: 100)
-    
-    
     
     // Variable to removeCellBlock
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
@@ -149,6 +150,8 @@ class ListViewController: UIViewController {
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
         }
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -162,7 +165,7 @@ class ListViewController: UIViewController {
         
         // Changes Nav bar color to green theme
         var navigation = self.navigationController?.navigationBar
-        navigation?.barTintColor = UIColor(red: 255/255, green: 179/255, blue: 71/255, alpha: 80)
+        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
     }
     
     override func didReceiveMemoryWarning() {
@@ -207,8 +210,8 @@ extension ListViewController: UITableViewDataSource {
         let cell = listTableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as! ListTableViewCell
         
         let size = CGSizeMake(30, 30)
-        cell.firstRightAction = SBGestureTableViewCellAction(icon: editIcon.imageWithSize(size), color: yellowColor, fraction: 0.3, didTriggerBlock: replaceCell)
-        cell.secondRightAction  = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
+        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
+        //cell.secondRightAction  = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         
         //cell.secondRightAction = SBGestureTableViewCellAction(icon: closeIcon.imageWithSize(size), color: yellowColor, fraction: 0.6, didTriggerblock: removeCellBlock)
