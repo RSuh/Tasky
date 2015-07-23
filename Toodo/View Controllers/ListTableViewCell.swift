@@ -12,7 +12,7 @@ import RealmSwift
 class ListTableViewCell: SBGestureTableViewCell {
 
     // Initialize realm
-    let realm = Realm()
+    //let realm = Realm()
 
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var listTitle: UILabel!
@@ -32,7 +32,6 @@ class ListTableViewCell: SBGestureTableViewCell {
         didSet {
             if let list = list, listTitle = listTitle {
                 listTitle.text = list.listTitle
-                //badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[list.badge])
             }
         }
     }

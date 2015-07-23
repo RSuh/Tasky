@@ -26,15 +26,16 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         didSet {
             displayTask(editedTask)
             displayBadge(editedTask)
+            
         }
     }
     
     // Displays the badge
     func displayBadge(task: Task?) {
-        if let task = task, badgeImage = badgeImage, editedTask = editedTask {
+        if let task = task, editedTask = editedTask {
             realm.write() {
                 task.badge = self.editedTask!.badge
-                println(task.badge)
+                println(editedTask.badge)
             }
         }
     }
@@ -101,6 +102,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         displayTask(editedTask)
         displayBadge(editedTask)
+        
+        // Displays the badge image of the selectedTask
+        badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[editedTask!.badge])
     }
     
     // MARK: - Navigation

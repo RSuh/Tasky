@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TaskTableViewCell: UITableViewCell {
+class TaskTableViewCell: SBGestureTableViewCell {
 
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var badgeImage: UIImageView!

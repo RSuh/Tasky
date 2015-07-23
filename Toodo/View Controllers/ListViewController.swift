@@ -13,14 +13,10 @@ class ListViewController: UIViewController {
     
     let realm = Realm()
     
-    @IBAction func goToEditMode(sender: UIBarButtonItem) {
-    }
-    
     @IBOutlet weak var listTableView: SBGestureTableView!
     
     // Reloads the lists everytime the page loads.
-    var lists: Results<List>!
-        {
+    var lists: Results<List>! {
         didSet {
             listTableView?.reloadData()
         }
@@ -133,7 +129,6 @@ class ListViewController: UIViewController {
             self.selectedList = self.lists[indexPath!.row]
             println(self.selectedList)
             self.performSegueToEdit("listToEdit")
-            
             
             tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
         }

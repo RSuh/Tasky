@@ -109,7 +109,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
             let velocity = panGestureRecognizer.velocityInView(self)
             let horizontalLocation = panGestureRecognizer.locationInView(self).x
             if fabs(velocity.x) > fabs(velocity.y)
-                && horizontalLocation > CGFloat(gestureTableView.edgeSlidingMargin)
+                || horizontalLocation > CGFloat(gestureTableView.edgeSlidingMargin)
                 && horizontalLocation < frame.size.width - CGFloat(gestureTableView.edgeSlidingMargin)
                 && gestureTableView.isEnabled {
                     return true;

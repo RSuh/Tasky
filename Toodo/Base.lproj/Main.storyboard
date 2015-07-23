@@ -71,9 +71,6 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="zsL-9K-5bO">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="goToEditMode:" destination="Ncj-My-Rse" id="K7n-hF-htf"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

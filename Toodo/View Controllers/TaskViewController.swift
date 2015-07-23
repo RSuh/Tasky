@@ -11,16 +11,37 @@ import RealmSwift
 
 class TaskViewController: UIViewController {
     
-    @IBOutlet weak var taskHomeTableView: UITableView!
-
+    @IBOutlet weak var taskHomeTableView: SBGestureTableView!
+    
     let realm = Realm()
     
     // Updates tableView whenever tasks update
-    var tasks: Results<Task>!
-        {
+    var tasks: Results<Task>! {
         didSet {
             taskHomeTableView?.reloadData()
         }
+    }
+    
+    // Icons
+    var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
+    let editIcon = FAKIonIcons.androidCreateIconWithSize(30)
+    let completeIcon = FAKIonIcons.androidDoneIconWithSize(30)
+    
+    // Colors
+    let greenColor = UIColor(red: 48.0/255, green: 220.0/255, blue: 107.0/255, alpha: 80)
+    let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
+    let yellowColor = UIColor(red: 241.0/255, green: 196.0/255, blue: 15.0/255, alpha: 100)
+    
+    // Variable to removeCellBlock
+    var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
+    var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
+    
+    // Sets up the icons on initialization, add all customization here
+    func setupIcons() {
+        // Custom white color
+        deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
     }
     
     // The task which is currently selected
@@ -96,7 +117,7 @@ class TaskViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         // Sorts tasks based on their modification Date
-        tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        //tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
     }
     
     override func viewDidLoad() {
@@ -106,8 +127,33 @@ class TaskViewController: UIViewController {
         
         taskHomeTableView.delegate = self
         taskHomeTableView.dataSource = self
-
+        
         self.title = listTitleForNavBar
+        
+        // Calls setupIcons method
+        setupIcons()
+        
+        replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            let indexPath = tableView.indexPathForCell(cell)
+            //self.prepareForSegue(segue, sender: self)
+            self.selectedTask = self.tasks[indexPath!.row]
+            
+            tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
+        }
+        
+        removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            // indexPath = int, sets up indexPath
+            let indexPath = tableView.indexPathForCell(cell)
+            // let list = the list object at indexPath.row AS AN OBJECT
+            let list = self.tasks[indexPath!.row] as Object
+            // Pass the object we just created to delete
+            self.realm.write() {
+                self.realm.delete(list)
+            }
+            // The animation to delete (manditory/ needed)
+            tableView.removeCell(cell, duration: 0.3, completion: nil)
+        }
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -120,11 +166,13 @@ class TaskViewController: UIViewController {
         if (segue.identifier == "editTask") {
             let targetVC = segue.destinationViewController as! EditTaskViewController
             // Set the editedTask as selectedTask
-            targetVC.editedTask = selectedTask
-            println(targetVC.editedTask?.badge)
+            targetVC.editedTask = self.selectedTask
+            realm.write() {
+                targetVC.editedTask!.badge = self.selectedTask!.badge
             }
         }
     }
+}
 
 
 extension TaskViewController: UITableViewDataSource {
@@ -133,6 +181,14 @@ extension TaskViewController: UITableViewDataSource {
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
+        let size = CGSizeMake(30, 30)
+        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
+        //cell.secondRightAction  = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
+        cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+        
+        //cell.secondRightAction = SBGestureTableViewCellAction(icon: closeIcon.imageWithSize(size), color: yellowColor, fraction: 0.6, didTriggerblock: removeCellBlock)
+        
+        // Set up cell
         // Configure cell
         let row = indexPath.row
         let task = tasks[row] as Task
@@ -173,19 +229,6 @@ extension TaskViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
-    }
-    
-    // The delete swipe function
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            let task = tasks[indexPath.row] as Object
-            
-            realm.write() {
-                self.realm.delete(task)
-            }
-            
-            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
-        }
     }
 }
 
