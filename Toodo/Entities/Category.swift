@@ -15,5 +15,5 @@ class Category: Object {
     dynamic var categoryTitle = ""
     dynamic var taskCount = 0
     dynamic var badge = 0
-    let tasksWithinCategory = List<Task>()
+    dynamic var tasksWithinCategory = List<Task>()
 }

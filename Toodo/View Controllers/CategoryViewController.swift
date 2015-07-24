@@ -100,7 +100,7 @@ class CategoryViewController: UIViewController {
     @IBAction func backToCategoryFromTasks(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "backtoCategoryFromTask":
+            case "backToCategoryFromTask":
                 println("Back to Category from tasks")
                 
             default:
@@ -174,11 +174,18 @@ class CategoryViewController: UIViewController {
     //    self.storyboard.instantiateViewControllerWithString (pass identifier)
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "listToTask") {
+        if (segue.identifier == "categoryToTask") {
             let titleVC = segue.destinationViewController as! TaskViewController
             // Sets the category title in the next VC to be the selected category's title
             titleVC.categoryTitleForNavBar = selectedCategory!.categoryTitle
+            
+            // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
+            titleVC.category = selectedCategory
+            
+            
         } else if (segue.identifier == "addCategory") {
+            // Pass the category object to the other view controller
+            println("adding category")
             // Create a new category and store tasks within that.
         }
     }
@@ -228,7 +235,7 @@ extension CategoryViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedCategory = categories[indexPath.row]
-        self.performSegueWithIdentifier("listToTask", sender: self)
+        self.performSegueWithIdentifier("categoryToTask", sender: self)
         
         categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

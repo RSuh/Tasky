@@ -11,19 +11,20 @@ import RealmSwift
 
 class TaskViewController: UIViewController {
     
-    // REMEMBER TO CONNECT THE FUCKING OUTLET IN STORYBOARD
+    // REMEMBER TO CONNECT THE OUTLET IN STORYBOARD
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
     
     let realm = Realm()
     
     // Updates tableView whenever tasks update
     
+    var category : Category?
+    
     var tasks: Results<Task>! {
         didSet {
             taskHomeTableView?.reloadData()
         }
     }
-    
     
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
@@ -77,6 +78,9 @@ class TaskViewController: UIViewController {
             
             // Adds new tasks in real-time
             tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+            //tasks = category!.tasksWithinCategory.sorted("modificationDate", ascending: false)
+//            var taskOne = taskList[0]
+            
         }
     }
     
@@ -88,12 +92,12 @@ class TaskViewController: UIViewController {
                 println("Save from add!")
                 
                 let newSource = segue.sourceViewController as! AddNewTaskViewController
+//                let updateCountSource = segue.sourceViewController as! CategoryTableViewCell
                 //println(newSource.newTask)
                 realm.write() {
                     // Creates a newTask
                     self.realm.add(newSource.newTask!)
-                    //println(newSource.newTask!)
-                    
+                    println(self.category!.tasksWithinCategory.append(newSource.newTask!))
                 }
                 
                 // If the exit button is pressed from New
@@ -106,7 +110,9 @@ class TaskViewController: UIViewController {
             }
             
             // Adds new tasks in real-time
-            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+            tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+        
+        
         }
     }
     
@@ -170,7 +176,9 @@ class TaskViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // On load, loads all the tasks from before according to modification Date
-        tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+        
+        println(category!)
         
     }
     
@@ -199,7 +207,7 @@ extension TaskViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
         let size = CGSizeMake(30, 30)
-        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: replaceCell)
+        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         

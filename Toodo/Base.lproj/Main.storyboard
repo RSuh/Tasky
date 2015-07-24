@@ -25,7 +25,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kQZ-tW-3CL" id="3Pb-yS-VhR">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12 Items" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-nh-9Nq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-nh-9Nq">
                                                     <rect key="frame" x="15" y="38" width="126" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -76,7 +76,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="categoryTableView" destination="P7N-vr-83j" id="6U8-d9-f8r"/>
-                        <segue destination="Tkz-QC-Deg" kind="show" identifier="listToTask" id="Mgm-1X-av1"/>
+                        <segue destination="Tkz-QC-Deg" kind="show" identifier="categoryToTask" id="Mgm-1X-av1"/>
                         <segue destination="ha9-re-vnT" kind="show" identifier="listToEdit" id="MWI-sv-82W"/>
                     </connections>
                 </viewController>
@@ -149,7 +149,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Lists" id="z4E-Rp-0Gv">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="1Jo-dx-3ZJ" kind="unwind" identifier="backtoCategoryFromTask" unwindAction="backToCategoryFromAddingList:" id="MSq-m1-ZTW"/>
+                                <segue destination="1Jo-dx-3ZJ" kind="unwind" identifier="backToCategoryFromTask" unwindAction="backToCategoryFromTasks:" id="MSq-m1-ZTW"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="7c6-VG-LOx">

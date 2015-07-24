@@ -22,6 +22,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     // Var to control the image
     var badge = 0
     
+    var category: Category?
+    
     var newTask: Task? {
         didSet {
             displayNewTask(newTask)
@@ -54,12 +56,14 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         if let newTask = newTask {
             realm.write() {
                 if ((newTask.taskTitle != self.taskTitle.text) ||
-                (newTask.taskNote != self.taskNote.text) ||
-                (newTask.badge != self.badge)) {
-                    newTask.taskTitle = self.taskTitle.text
-                    newTask.taskNote = self.taskNote.text
-                    newTask.badge = self.badge
-                    println("Changes saved!")
+                    (newTask.taskNote != self.taskNote.text) ||
+                    (newTask.badge != self.badge)) {
+                        newTask.taskTitle = self.taskTitle.text
+                        newTask.taskNote = self.taskNote.text
+                        newTask.badge = self.badge
+                        //self.category!.tasksWithinCategory.append(newTask)
+                        //newTask.category =
+                        println("Changes saved!")
                 } else {
                     println("nothing has changed")
                 }
@@ -97,6 +101,10 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         let realm = Realm()
         newTask = Task()
         saveNewTask()
+        if (segue.identifier == "saveFromAdd") {
+            //let targetCategory = segue.sourceViewController as!
+            //newTask?.category =
+        }
     }
     
     override func viewDidLoad() {

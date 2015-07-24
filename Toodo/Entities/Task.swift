@@ -16,4 +16,5 @@ class Task: Object {
     dynamic var modificationDate = NSDate()
     dynamic var taskNote: String = ""
     dynamic var badge = 0
+    dynamic var category: Category?
 }

@@ -44,8 +44,11 @@ class AddNewCategoryViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let realm = Realm()
         addNewCategory = Category()
-        println("category is created")
+        //println(addNewCategory!.tasksWithinCategory)
+        //addNewCategory?.tasksWithinCategory =
+        println("category object is created")
         saveCategory()
+        println(addNewCategory?.categoryTitle)
     }
     
     override func viewDidLoad() {

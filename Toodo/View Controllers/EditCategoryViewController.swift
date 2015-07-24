@@ -20,7 +20,7 @@ class EditCategoryViewController: UIViewController, UITextFieldDelegate {
     // Counter for the image
     var badge = 0
     
-    // The nav title for each category
+    // The nav title for each category TODO: Try to filter using this!!!!
     var categoryTitleForNavBar: String = ""
     
     var editedCategory: Category? {
