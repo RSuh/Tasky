@@ -1,5 +1,5 @@
 //
-//  ListTableViewCell.swift
+//  CategoryTableViewCell.swift
 //  Toodo
 //
 //  Created by Reginald Suh on 2015-07-14.
@@ -9,13 +9,13 @@
 import UIKit
 import RealmSwift
 
-class ListTableViewCell: SBGestureTableViewCell {
+class CategoryTableViewCell: SBGestureTableViewCell {
 
     // Initialize realm
     //let realm = Realm()
 
     @IBOutlet weak var taskCount: UILabel!
-    @IBOutlet weak var listTitle: UILabel!
+    @IBOutlet weak var categoryTitle: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,10 +28,10 @@ class ListTableViewCell: SBGestureTableViewCell {
         // Configure the view for the selected state
     }
     
-    var list: List? {
+    var category: Category? {
         didSet {
-            if let list = list, listTitle = listTitle {
-                listTitle.text = list.listTitle
+            if let category = category, categoryTitle = categoryTitle {
+                categoryTitle.text = category.categoryTitle
             }
         }
     }

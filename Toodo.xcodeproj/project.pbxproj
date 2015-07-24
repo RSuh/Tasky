@@ -19,14 +19,14 @@
 		4536C3871B50719A00A35889 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; };
 		4536C3891B50719A00A35889 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4536C38C1B50761600A35889 /* AddNewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* AddNewListViewController.swift */; };
+		4536C38C1B50761600A35889 /* AddNewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */; };
 		4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38D1B5078E200A35889 /* EditTaskViewController.swift */; };
-		457D28901B558460000952CC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D288F1B558460000952CC /* ListViewController.swift */; };
-		457D28921B5585F5000952CC /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28911B5585F5000952CC /* ListTableViewCell.swift */; };
-		457D28941B558908000952CC /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28931B558908000952CC /* List.swift */; };
+		457D28901B558460000952CC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D288F1B558460000952CC /* CategoryViewController.swift */; };
+		457D28921B5585F5000952CC /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28911B5585F5000952CC /* CategoryTableViewCell.swift */; };
+		457D28941B558908000952CC /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28931B558908000952CC /* Category.swift */; };
 		457D28961B582E18000952CC /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28951B582E18000952CC /* ListCollectionViewCell.swift */; };
 		457D28981B599C24000952CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28971B599C24000952CC /* Constants.swift */; };
-		457D289A1B59B44F000952CC /* EditListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28991B59B44F000952CC /* EditListViewController.swift */; };
+		457D289A1B59B44F000952CC /* EditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28991B59B44F000952CC /* EditCategoryViewController.swift */; };
 		457D289D1B5A1B1F000952CC /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */; };
 		457E33B71B6193E800D900E6 /* SBGestureTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B31B6193E800D900E6 /* SBGestureTableView.swift */; };
 		457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */; };
@@ -77,14 +77,14 @@
 		4536C37F1B506B1B00A35889 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../realm-swift-0.93.2/ios/Realm.framework"; sourceTree = "<group>"; };
 		4536C3801B506B1B00A35889 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../realm-swift-0.93.2/ios/RealmSwift.framework"; sourceTree = "<group>"; };
 		4536C3841B506C6F00A35889 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		4536C38B1B50761600A35889 /* AddNewListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewListViewController.swift; sourceTree = "<group>"; };
+		4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCategoryViewController.swift; sourceTree = "<group>"; };
 		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
-		457D288F1B558460000952CC /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		457D28911B5585F5000952CC /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
-		457D28931B558908000952CC /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		457D288F1B558460000952CC /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		457D28911B5585F5000952CC /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		457D28931B558908000952CC /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		457D28951B582E18000952CC /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		457D28971B599C24000952CC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		457D28991B59B44F000952CC /* EditListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListViewController.swift; sourceTree = "<group>"; };
+		457D28991B59B44F000952CC /* EditCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCategoryViewController.swift; sourceTree = "<group>"; };
 		457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
 		457E339B1B5DADDB00D900E6 /* Toodo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Toodo-Bridging-Header.h"; sourceTree = "<group>"; };
 		457E33B31B6193E800D900E6 /* SBGestureTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableView.swift; sourceTree = "<group>"; };
@@ -180,11 +180,11 @@
 			isa = PBXGroup;
 			children = (
 				4536C3791B505CA600A35889 /* TaskViewController.swift */,
-				457D288F1B558460000952CC /* ListViewController.swift */,
-				457D28911B5585F5000952CC /* ListTableViewCell.swift */,
-				457D28991B59B44F000952CC /* EditListViewController.swift */,
+				457D288F1B558460000952CC /* CategoryViewController.swift */,
+				457D28911B5585F5000952CC /* CategoryTableViewCell.swift */,
+				457D28991B59B44F000952CC /* EditCategoryViewController.swift */,
 				4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */,
-				4536C38B1B50761600A35889 /* AddNewListViewController.swift */,
+				4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */,
 				457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */,
 				4536C38D1B5078E200A35889 /* EditTaskViewController.swift */,
 				457D28951B582E18000952CC /* ListCollectionViewCell.swift */,
@@ -207,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				4536C3841B506C6F00A35889 /* Task.swift */,
-				457D28931B558908000952CC /* List.swift */,
+				457D28931B558908000952CC /* Category.swift */,
 				457D28971B599C24000952CC /* Constants.swift */,
 			);
 			path = Entities;
@@ -371,20 +371,20 @@
 			files = (
 				4536C3851B506C6F00A35889 /* Task.swift in Sources */,
 				457D28981B599C24000952CC /* Constants.swift in Sources */,
-				457D28921B5585F5000952CC /* ListTableViewCell.swift in Sources */,
+				457D28921B5585F5000952CC /* CategoryTableViewCell.swift in Sources */,
 				457D28961B582E18000952CC /* ListCollectionViewCell.swift in Sources */,
-				457D289A1B59B44F000952CC /* EditListViewController.swift in Sources */,
+				457D289A1B59B44F000952CC /* EditCategoryViewController.swift in Sources */,
 				457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */,
 				4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */,
-				4536C38C1B50761600A35889 /* AddNewListViewController.swift in Sources */,
+				4536C38C1B50761600A35889 /* AddNewCategoryViewController.swift in Sources */,
 				457E33BA1B6193E800D900E6 /* SBGestureTableViewCellSideView.swift in Sources */,
 				4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */,
 				457E33B71B6193E800D900E6 /* SBGestureTableView.swift in Sources */,
 				457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */,
 				4536C37A1B505CA600A35889 /* TaskViewController.swift in Sources */,
-				457D28901B558460000952CC /* ListViewController.swift in Sources */,
+				457D28901B558460000952CC /* CategoryViewController.swift in Sources */,
 				4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */,
-				457D28941B558908000952CC /* List.swift in Sources */,
+				457D28941B558908000952CC /* Category.swift in Sources */,
 				457D289D1B5A1B1F000952CC /* AddNewTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

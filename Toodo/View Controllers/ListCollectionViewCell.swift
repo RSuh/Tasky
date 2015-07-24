@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift   
 
-class ListCollectionViewCell: UICollectionViewCell {
+class CategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var chooseBadgeImage: UIImageView!
     

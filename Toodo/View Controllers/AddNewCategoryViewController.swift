@@ -1,5 +1,5 @@
 //
-//  NewTaskViewController.swift
+//  AddNewCategoryViewController.swift
 //  Toodo
 //
 //  Created by Reginald Suh on 2015-07-10.
@@ -9,29 +9,29 @@
 import UIKit
 import RealmSwift
 
-class AddNewListViewController: UIViewController {
+class AddNewCategoryViewController: UIViewController {
     
-    @IBOutlet weak var listTitle: UITextField!
+    @IBOutlet weak var categoryTitle: UITextField!
     
-    var addNewList: List? {
+    var addNewCategory: Category? {
         didSet {
-            displayNewList(addNewList)
+            displayNewCategory(addNewCategory)
         }
     }
     
-    func displayNewList(list: List?) {
-        if let list = list, listTitle = listTitle {
-            addNewList!.listTitle = list.listTitle
+    func displayNewCategory(category: Category?) {
+        if let category = category, categoryTitle = categoryTitle {
+            addNewCategory!.categoryTitle = category.categoryTitle
         }
     }
     
     // Saves the task
-    func saveList() {
-        if let addNewList = addNewList {
+    func saveCategory() {
+        if let addNewCategory = addNewCategory {
             let realm = Realm()
             realm.write() {
-                if (addNewList.listTitle != self.listTitle.text) {
-                    addNewList.listTitle = self.listTitle.text
+                if (addNewCategory.categoryTitle != self.categoryTitle.text) {
+                    addNewCategory.categoryTitle = self.categoryTitle.text
                     println("changes are saved")
                 } else {
                     println("nothing to save")
@@ -40,19 +40,19 @@ class AddNewListViewController: UIViewController {
         }
     }
     
-    // Passing list object to Home View Controller
+    // Passing category object to Home View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let realm = Realm()
-        addNewList = List()
-        println("list is created")
-        saveList()
+        addNewCategory = Category()
+        println("category is created")
+        saveCategory()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Placeholder text for textfield in Add
-        listTitle.placeholder = "Title of your Category..."
+        categoryTitle.placeholder = "Title of your Category..."
     }
     
     override func didReceiveMemoryWarning() {

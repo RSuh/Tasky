@@ -1,5 +1,5 @@
 //
-//  ListViewController.swift
+//  CategoryViewController.swift
 //  Toodo
 //
 //  Created by Reginald Suh on 2015-07-14.
@@ -9,16 +9,17 @@
 import UIKit
 import RealmSwift
 
-class ListViewController: UIViewController {
+class CategoryViewController: UIViewController {
     
+    // Initialize Realm
     let realm = Realm()
     
-    @IBOutlet weak var listTableView: SBGestureTableView!
+    @IBOutlet weak var categoryTableView: SBGestureTableView!
     
-    // Reloads the lists everytime the page loads.
-    var lists: Results<List>! {
+    // Reloads the categories everytime the page loads.
+    var categories: Results<Category>! {
         didSet {
-            listTableView?.reloadData()
+            categoryTableView?.reloadData()
         }
     }
     
@@ -36,8 +37,8 @@ class ListViewController: UIViewController {
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
-    // A var of type List which indicates the selectedList
-    var selectedList: List?
+    // A var of type category which indicates the selectedList
+    var selectedCategory: Category?
     
     func performSegueToEdit(identifier: String) {
         self.performSegueWithIdentifier(identifier, sender: self)
@@ -51,59 +52,56 @@ class ListViewController: UIViewController {
         completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
     }
     
-    @IBAction func backToListFromAddingList(segue: UIStoryboardSegue) {
+    @IBAction func backToCategoryFromAddingList(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "exitToListFromAdd":
-                println("exit to list from add")
+            case "exitToCategoryFromAdd":
+                println("exit to category from add")
                 
-            case "saveToListFromAdd":
-                println("save to list from add")
+            case "saveToCategoryFromAdd":
+                println("save to category from add")
                 
-                let saveSourceFromAdd = segue.sourceViewController as! AddNewListViewController
+                let saveSourceFromAdd = segue.sourceViewController as! AddNewCategoryViewController
                 
                 realm.write() {
                     // Adds a newList
-                    self.realm.add(saveSourceFromAdd.addNewList!)
+                    self.realm.add(saveSourceFromAdd.addNewCategory!)
                 }
                 
             default:
                 println("failed")
                 
                 // Sort by number of tasks, able to sort by count.
-                lists = realm.objects(List).sorted("taskCount", ascending: false)
+                categories = realm.objects(Category).sorted("taskCount", ascending: false)
             }
         }
     }
     
-    @IBAction func backToListFromEdit(segue: UIStoryboardSegue) {
+    @IBAction func backToCategoryFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "exitToListFromEdit":
-                println("exit to list from edit")
+            case "exitToCategoryFromEdit":
+                println("exit to category from edit")
                 
-            case "saveToListFromEdit":
-                //println("save to list from edit")
+            case "saveToCategoryFromEdit":
+                println("save to Category from edit")
                 
-                let saveSourceFromEdit = segue.sourceViewController as! EditListViewController
-                
-                // From EditListViewController, saveList as you go back to listViewcontroller
-                //saveSourceFromEdit.saveList()
+                let saveSourceFromEdit = segue.sourceViewController as! EditCategoryViewController
                 
             default:
                 println("failed")
                 
                 // Sorts by number of tasks, able to sort by count.
-                lists = realm.objects(List).sorted("taskCount", ascending: false)
+                categories = realm.objects(Category).sorted("taskCount", ascending: false)
             }
         }
     }
     
-    @IBAction func backToListFromTasks(segue: UIStoryboardSegue) {
+    @IBAction func backToCategoryFromTasks(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "backtoListFromTask":
-                println("Back to list from tasks")
+            case "backtoCategoryFromTask":
+                println("Back to Category from tasks")
                 
             default:
                 println("nothing")
@@ -114,33 +112,38 @@ class ListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        listTableView.delegate = self
-        listTableView.dataSource = self
+        // Sets custom separators between cells on viewDidLoad
+        categoryTableView.separatorInset = UIEdgeInsetsZero
+        categoryTableView.layoutMargins = UIEdgeInsetsZero
+        
+        categoryTableView.delegate = self
+        categoryTableView.dataSource = self
         
         // Sets up the lists cells by the modificationDate
-        lists = realm.objects(List).sorted("taskCount", ascending: false)
+        categories = realm.objects(Category).sorted("taskCount", ascending: false)
         
         // Calls setupIcons method
         setupIcons()
         
+        // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             let indexPath = tableView.indexPathForCell(cell)
             //self.prepareForSegue(segue, sender: self)
-            self.selectedList = self.lists[indexPath!.row]
-            println(self.selectedList)
+            self.selectedCategory = self.categories[indexPath!.row]
             self.performSegueToEdit("listToEdit")
             
             tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
         }
         
+        // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
-            // let list = the list object at indexPath.row AS AN OBJECT
-            let list = self.lists[indexPath!.row] as Object
+            // let category = the category object at indexPath.row AS AN OBJECT
+            let category = self.categories[indexPath!.row] as Object
             // Pass the object we just created to delete
             self.realm.write() {
-                self.realm.delete(list)
+                self.realm.delete(category)
             }
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
@@ -152,7 +155,7 @@ class ListViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        lists = realm.objects(List).sorted("taskCount", ascending: false)
+        categories = realm.objects(Category).sorted("taskCount", ascending: false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -168,13 +171,15 @@ class ListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    self.storyboard.instantiateViewControllerWithString (pass identifier)
+    //    self.storyboard.instantiateViewControllerWithString (pass identifier)
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "listToTask") {
             let titleVC = segue.destinationViewController as! TaskViewController
-            // Sets the list title in the next VC to be the selected list's title
-            titleVC.listTitleForNavBar = selectedList!.listTitle
+            // Sets the category title in the next VC to be the selected category's title
+            titleVC.categoryTitleForNavBar = selectedCategory!.categoryTitle
+        } else if (segue.identifier == "addCategory") {
+            // Create a new category and store tasks within that.
         }
     }
     
@@ -189,49 +194,43 @@ class ListViewController: UIViewController {
     */
 }
 
-extension ListViewController: UITableViewDataSource {
+extension CategoryViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         // Initialize cell
-        let cell = listTableView.dequeueReusableCellWithIdentifier("listCell", forIndexPath: indexPath) as! ListTableViewCell
+        let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
         let size = CGSizeMake(30, 30)
         cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
         //cell.secondRightAction  = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         
-        cell.secondRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: yellowColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
-        
-        //cell.secondRightAction = SBGestureTableViewCellAction(icon: clockIcon.imageWithSize(size), color: brownColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
         // Set up cell
         let row = indexPath.row
-        let list = lists[row] as List
-        cell.list = list
+        let category = categories[row] as Category
+        cell.category = category
         
-        
-        // NOTE: This does not show up on initial load with no lists.
         // Custom separator lines between cells
-        tableView.separatorInset = UIEdgeInsetsZero
-        tableView.layoutMargins = UIEdgeInsetsZero
-        cell.layoutMargins = UIEdgeInsetsZero
+        
+        //cell.layoutMargins = UIEdgeInsetsZero
         
         return cell
     }
     
     // How many rows are in the tableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Int(lists?.count ?? 0)
+        return Int(categories?.count ?? 0)
     }
 }
 
-extension ListViewController: UITableViewDelegate {
+extension CategoryViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedList = lists[indexPath.row]
+        selectedCategory = categories[indexPath.row]
         self.performSegueWithIdentifier("listToTask", sender: self)
         
-        listTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

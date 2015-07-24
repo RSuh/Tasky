@@ -1,5 +1,5 @@
 //
-//  List.swift
+//  Category.swift
 //  Toodo
 //
 //  Created by Reginald Suh on 2015-07-14.
@@ -10,9 +10,10 @@ import Foundation
 import RealmSwift
 import UIKit
 
-// A new list object
-class List: Object {
-    dynamic var listTitle = ""
+// A new Category object
+class Category: Object {
+    dynamic var categoryTitle = ""
     dynamic var taskCount = 0
     dynamic var badge = 0
+    let tasksWithinCategory = List<Task>()
 }

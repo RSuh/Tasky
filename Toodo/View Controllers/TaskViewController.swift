@@ -51,7 +51,7 @@ class TaskViewController: UIViewController {
     var selectedTask: Task?
     
     // The title of the nav bar
-    var listTitleForNavBar: String = ""
+    var categoryTitleForNavBar: String = ""
     
     // When a cell is pressed, then the user can save, or exit without saving.
     @IBAction func backToTaskFromEdit(segue: UIStoryboardSegue) {
@@ -129,38 +129,48 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = listTitleForNavBar
+        // Sets title to the categoryTitleForNavBar
+        self.title = categoryTitleForNavBar
+        
+        // Sets custom separators between cells on viewDidLoad
+        taskHomeTableView.separatorInset = UIEdgeInsetsZero
+        taskHomeTableView.layoutMargins = UIEdgeInsetsZero
         
         // Calls setupIcons method
         setupIcons()
         
+        // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             let indexPath = tableView.indexPathForCell(cell)
             //self.prepareForSegue(segue, sender: self)
             self.selectedTask = self.tasks[indexPath!.row]
             println(self.selectedTask)
             
-            tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
+            // For the grey background.
+            cell.backgroundColor = UIColor(red: 220/255, green: 216/255, blue: 216/255, alpha: 100)
+
+            
+            tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
         }
         
+        // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
-            // let list = the list object at indexPath.row AS AN OBJECT
-            let list = self.tasks[indexPath!.row] as Object
+            // let category = the category object at indexPath.row AS AN OBJECT
+            let category = self.tasks[indexPath!.row] as Object
             // Pass the object we just created to delete
             self.realm.write() {
-                self.realm.delete(list)
+                self.realm.delete(category)
             }
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
         }
-
         
         // Do any additional setup after loading the view, typically from a nib.
         
         // On load, loads all the tasks from before according to modification Date
-                tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
         
     }
     
@@ -175,7 +185,8 @@ class TaskViewController: UIViewController {
             // Set the editedTask as selectedTask
             targetVC.editedTask = self.selectedTask
             realm.write() {
-                targetVC.editedTask!.badge = self.selectedTask!.badge
+                //targetVC.editedTask!.badge = self.selectedTask!.badge
+                //println(tasksWithinCategory)
             }
         }
     }
@@ -188,24 +199,16 @@ extension TaskViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
         let size = CGSizeMake(30, 30)
-        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
-
+        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: replaceCell)
+        
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-
+        
         
         // Set up cell
         // Configure cell
         let row = indexPath.row
         let task = tasks[row] as Task
         cell.task = task
-        
-        // For the grey background.
-        //cell.backgroundColor = UIColor(red: 220/255, green: 216/255, blue: 216/255, alpha: 100)
-        
-        // Custom separator lines between cells
-        tableView.separatorInset = UIEdgeInsetsZero
-        tableView.layoutMargins = UIEdgeInsetsZero
-        cell.layoutMargins = UIEdgeInsetsZero
         
         // This makes the separator be centered between the cells.
         //tableView.separatorInset.right = tableView.separatorInset.left

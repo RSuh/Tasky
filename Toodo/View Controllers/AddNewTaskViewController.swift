@@ -72,7 +72,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! ListCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! CategoryCollectionViewCell
         cell.chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
         return cell
     }
@@ -81,16 +81,16 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         println("You have selected cell \(indexPath.row)")
         badge = indexPath.row
         //println(badge)
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
         cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
         
         cell.backgroundColor = UIColor.clearColor()
         
-        (collectionView.cellForItemAtIndexPath(indexPath) as! ListCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
+        (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
