@@ -14,12 +14,13 @@ class TaskViewController: UIViewController {
     // REMEMBER TO CONNECT THE OUTLET IN STORYBOARD
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
     
+    // Initialize Realm
     let realm = Realm()
     
-    // Updates tableView whenever tasks update
-    
+    // Variable category of type Category for separating the tasks
     var category : Category?
     
+    // Updates tableView whenever tasks update
     var tasks: Results<Task>! {
         didSet {
             taskHomeTableView?.reloadData()
@@ -36,16 +37,9 @@ class TaskViewController: UIViewController {
     let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
     let yellowColor = UIColor(red: 241.0/255, green: 196.0/255, blue: 15.0/255, alpha: 100)
     
-    // Sets up the icons on initialization, add all customization here
-    func setupIcons() {
-        // Custom white color
-        deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-        editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-        completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-    }
-    
     // Variable to removeCellBlock
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
+    // Variable to replaceCell
     var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
     // The task which is currently selected
@@ -53,6 +47,14 @@ class TaskViewController: UIViewController {
     
     // The title of the nav bar
     var categoryTitleForNavBar: String = ""
+    
+    // Sets up the icons on initialization, add all customization here
+    func setupIcons() {
+        // Custom white color
+        deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+    }
     
     // When a cell is pressed, then the user can save, or exit without saving.
     @IBAction func backToTaskFromEdit(segue: UIStoryboardSegue) {
@@ -62,14 +64,17 @@ class TaskViewController: UIViewController {
             case "saveFromEdit":
                 println("Save from Edit")
                 
-                let editSource = segue.sourceViewController as! EditTaskViewController
+                let saveFromEditTask = segue.sourceViewController as! EditTaskViewController
                 
                 // Calls save task which saves the task from the edit section
-                editSource.saveTask()
-                
+                saveFromEditTask.saveTask()
                 // If the Exit button is pressed
             case "exitFromEdit":
                 println("Exit from Edit")
+                
+                let exitFromEditTask = segue.sourceViewController as! EditTaskViewController
+                
+                exitFromEditTask.saveTask()
                 
                 // Else
             default:
@@ -77,9 +82,8 @@ class TaskViewController: UIViewController {
             }
             
             // Adds new tasks in real-time
-            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
-            //tasks = category!.tasksWithinCategory.sorted("modificationDate", ascending: false)
-//            var taskOne = taskList[0]
+            tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+            //var taskOne = taskList[0]
             
         }
     }
@@ -92,12 +96,11 @@ class TaskViewController: UIViewController {
                 println("Save from add!")
                 
                 let newSource = segue.sourceViewController as! AddNewTaskViewController
-//                let updateCountSource = segue.sourceViewController as! CategoryTableViewCell
-                //println(newSource.newTask)
+                
                 realm.write() {
                     // Creates a newTask
                     self.realm.add(newSource.newTask!)
-                    println(self.category!.tasksWithinCategory.append(newSource.newTask!))
+                    //println(self.category!.tasksWithinCategory.append(newSource.newTask!))
                 }
                 
                 // If the exit button is pressed from New
@@ -109,27 +112,31 @@ class TaskViewController: UIViewController {
                 println("Nothing from new \(identifier)")
             }
             
-            // Adds new tasks in real-time
+            // Sort tasks which are within each category by modificationDate
             tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
-        
-        
+            
         }
     }
     
-    // Customizes the title Bar
-    override func viewDidAppear(animated: Bool) {
-        // Selects the nav bar
-        let navigation = self.navigationController?.navigationBar
-        
-        // Customizes the color of the navbar
-        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        // Sorts tasks based on their modification Date
-        //tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "editTask") {
+            let targetVC = segue.destinationViewController as! EditTaskViewController
+            
+            // Set the editedTask as selectedTask
+            targetVC.editedTask = self.selectedTask
+            println(targetVC.editedTask)
+            realm.write() {
+                targetVC.editedTask!.badge = self.selectedTask!.badge
+                println(targetVC.editedTask!.badge)
+            }
+            
+        } else if (segue.identifier == "addTask") {
+            let targetVC = segue.destinationViewController as! AddNewTaskViewController
+            
+            // Sets the category for AddNewTaskVC to be the category that has been transferred from CategoryVC
+            targetVC.category = self.category
+            targetVC.newTask?.category = self.category
+        }
     }
     
     override func viewDidLoad() {
@@ -148,14 +155,14 @@ class TaskViewController: UIViewController {
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             let indexPath = tableView.indexPathForCell(cell)
+            
             //self.prepareForSegue(segue, sender: self)
             self.selectedTask = self.tasks[indexPath!.row]
-            println(self.selectedTask)
             
             // For the grey background.
             cell.backgroundColor = UIColor(red: 220/255, green: 216/255, blue: 216/255, alpha: 100)
-
             
+            // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
         }
         
@@ -173,30 +180,30 @@ class TaskViewController: UIViewController {
             tableView.removeCell(cell, duration: 0.3, completion: nil)
         }
         
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        // On load, loads all the tasks from before according to modification Date
+        // Sort tasks which are within each category by modificationDate
         tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
         
-        println(category!)
+    }
+    
+    // Customizes the title Bar
+    override func viewDidAppear(animated: Bool) {
+        // Selects the nav bar
+        let navigation = self.navigationController?.navigationBar
         
+        // Customizes the color of the navbar
+        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Sorts tasks based on their modification Date
+        tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "editTask") {
-            let targetVC = segue.destinationViewController as! EditTaskViewController
-            // Set the editedTask as selectedTask
-            targetVC.editedTask = self.selectedTask
-            realm.write() {
-                //targetVC.editedTask!.badge = self.selectedTask!.badge
-                //println(tasksWithinCategory)
-            }
-        }
     }
 }
 
@@ -207,10 +214,10 @@ extension TaskViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
         let size = CGSizeMake(30, 30)
+        
+        // The Actions for the cells
         cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-        
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-        
         
         // Set up cell
         // Configure cell
@@ -226,7 +233,6 @@ extension TaskViewController: UITableViewDataSource {
     
     // How many rows are in the table view
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return Int(tasks?.count ?? 0)
     }
 }

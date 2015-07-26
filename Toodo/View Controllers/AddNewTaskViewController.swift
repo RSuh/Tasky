@@ -61,8 +61,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         newTask.taskTitle = self.taskTitle.text
                         newTask.taskNote = self.taskNote.text
                         newTask.badge = self.badge
-                        //self.category!.tasksWithinCategory.append(newTask)
-                        //newTask.category =
+                        self.category!.tasksWithinCategory.append(newTask)
                         println("Changes saved!")
                 } else {
                     println("nothing has changed")
@@ -84,7 +83,6 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("You have selected cell \(indexPath.row)")
         badge = indexPath.row
-        //println(badge)
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
         cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
     }
@@ -101,10 +99,6 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         let realm = Realm()
         newTask = Task()
         saveNewTask()
-        if (segue.identifier == "saveFromAdd") {
-            //let targetCategory = segue.sourceViewController as!
-            //newTask?.category =
-        }
     }
     
     override func viewDidLoad() {
@@ -120,18 +114,4 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     override func viewWillDisappear(animated: Bool) {
     }
-    
-    // MARK: - TODO
-    // Get this view controller organized
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }

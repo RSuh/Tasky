@@ -11,10 +11,12 @@ import RealmSwift
 
 class CategoryViewController: UIViewController {
     
+    //@IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var categoryTableView: SBGestureTableView!
+    @IBOutlet var buttonImage: UIImageView!
+    
     // Initialize Realm
     let realm = Realm()
-    
-    @IBOutlet weak var categoryTableView: SBGestureTableView!
     
     // Reloads the categories everytime the page loads.
     var categories: Results<Category>! {
@@ -39,10 +41,6 @@ class CategoryViewController: UIViewController {
     
     // A var of type category which indicates the selectedList
     var selectedCategory: Category?
-    
-    func performSegueToEdit(identifier: String) {
-        self.performSegueWithIdentifier(identifier, sender: self)
-    }
     
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
@@ -109,8 +107,62 @@ class CategoryViewController: UIViewController {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "categoryToTask") {
+            let titleVC = segue.destinationViewController as! TaskViewController
+            
+            // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
+            titleVC.category = selectedCategory
+            
+            // Sets the category title in the next VC to be the selected category's title
+            if (selectedCategory != nil) {
+                titleVC.categoryTitleForNavBar = selectedCategory!.categoryTitle
+            } else if (selectedCategory == nil) {
+                titleVC.categoryTitleForNavBar = ""
+            }
+            
+            println(titleVC.category)
+        }
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        // Sets edit mode for the tableview
+        self.categoryTableView.setEditing(editing, animated: true)
+        if (editing == true) {
+            let toImage = UIImage(named: "Garbage")
+            UIView.transitionWithView(self.buttonImage,
+                duration: 0.35,
+                options: UIViewAnimationOptions.TransitionFlipFromBottom,
+                animations: { self.buttonImage.image = toImage },
+                completion: nil)
+        } else if (editing == false) {
+            let backImage = UIImage(named: "addButton")
+            UIView.transitionWithView(self.buttonImage,
+                duration: 0.35,
+                options: UIViewAnimationOptions.TransitionFlipFromTop,
+                animations: { self.buttonImage.image = backImage },
+                completion: nil)
+        }
+        
+        // Reloads the data for the tableView for cellforrowatindexpath function so enabling the edit can be turned off and on
+        self.categoryTableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Disables the interaction with the image so that the image is basically transparent
+        buttonImage.userInteractionEnabled = false
+        
+        // Intializes the add button
+        buttonImage.image = UIImage(named: "addButton")
+        
+        // Sets the multiple editing feature
+        self.categoryTableView.allowsMultipleSelectionDuringEditing = true
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blackColor()
         
         // Sets custom separators between cells on viewDidLoad
         categoryTableView.separatorInset = UIEdgeInsetsZero
@@ -127,34 +179,37 @@ class CategoryViewController: UIViewController {
         
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
-            let indexPath = tableView.indexPathForCell(cell)
-            //self.prepareForSegue(segue, sender: self)
-            self.selectedCategory = self.categories[indexPath!.row]
-            self.performSegueToEdit("listToEdit")
             
-            tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
+            let indexPath = tableView.indexPathForCell(cell)
+            self.selectedCategory = self.categories[indexPath!.row]
+            cell.backgroundColor = UIColor.lightGrayColor()
+            
+            tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
         }
         
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
+            
             // let category = the category object at indexPath.row AS AN OBJECT
             let category = self.categories[indexPath!.row] as Object
+            
             // Pass the object we just created to delete
             self.realm.write() {
                 self.realm.delete(category)
             }
+            
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
         }
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Sorts the realm objects by taskCount
         categories = realm.objects(Category).sorted("taskCount", ascending: false)
     }
     
@@ -171,34 +226,6 @@ class CategoryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //    self.storyboard.instantiateViewControllerWithString (pass identifier)
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "categoryToTask") {
-            let titleVC = segue.destinationViewController as! TaskViewController
-            // Sets the category title in the next VC to be the selected category's title
-            titleVC.categoryTitleForNavBar = selectedCategory!.categoryTitle
-            
-            // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
-            titleVC.category = selectedCategory
-            
-            
-        } else if (segue.identifier == "addCategory") {
-            // Pass the category object to the other view controller
-            println("adding category")
-            // Create a new category and store tasks within that.
-        }
-    }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
 }
 
 extension CategoryViewController: UITableViewDataSource {
@@ -209,17 +236,27 @@ extension CategoryViewController: UITableViewDataSource {
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
         let size = CGSizeMake(30, 30)
-        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
-        //cell.secondRightAction  = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.6, didTriggerBlock: removeCellBlock)
-        cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+        
+        // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
+        if (editing == false) {
+            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            
+            // A bool to see if the editing is enabled
+            categoryTableView.isEnabled = true
+        } else if (editing == true) {
+            
+            // A bool to see if the editing is enabled
+            categoryTableView.isEnabled = false
+        }
         
         // Set up cell
         let row = indexPath.row
         let category = categories[row] as Category
         cell.category = category
         
+        //cell.accessoryView?.tintColor = UIColor.blackColor()
         // Custom separator lines between cells
-        
         //cell.layoutMargins = UIEdgeInsetsZero
         
         return cell
@@ -234,13 +271,22 @@ extension CategoryViewController: UITableViewDataSource {
 extension CategoryViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectedCategory = categories[indexPath.row]
-        self.performSegueWithIdentifier("categoryToTask", sender: self)
         
-        categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        // Sets the selectedCategory to be the category at indexPath.row
+        selectedCategory = categories[indexPath.row]
+        
+        if (editing == true) {
+            println("You selected a Cell!")
+        } else {
+            // Performs a segue "categoryToTask"
+            self.performSegueWithIdentifier("categoryToTask", sender: self)
+            
+            // Deselects the row when they were tapped
+            categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
-    
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
+}
+
+func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
 }

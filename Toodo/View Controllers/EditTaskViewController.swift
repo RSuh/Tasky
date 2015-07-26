@@ -35,7 +35,6 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         if let task = task, editedTask = editedTask {
             realm.write() {
                 task.badge = self.editedTask!.badge
-                println(editedTask.badge)
             }
         }
     }
@@ -53,13 +52,15 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     // Saves the task
     func saveTask() {
         if let editedTask = editedTask, taskTextField = taskTextField {
+            println(editedTask.badge)
             realm.write() {
                 if ((editedTask.taskTitle != self.taskTextField.text) ||
                     (editedTask.badge != self.badge) ||
                     (editedTask.taskNote != self.taskNoteField.text)) {
-                        
+                    
                         editedTask.taskTitle = self.taskTextField.text
-                        editedTask.badge = self.badge
+                        // Saves the badge as the editedTask.badge passed from TaskVC
+                        editedTask.badge = self.editedTask!.badge
                         editedTask.taskNote = self.taskNoteField.text
                 } else {
                     println("nothing has changed")

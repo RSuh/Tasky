@@ -12,7 +12,7 @@ import RealmSwift
 class CategoryTableViewCell: SBGestureTableViewCell {
 
     // Initialize realm
-    //let realm = Realm()
+    let realm = Realm()
 
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var categoryTitle: UILabel!
@@ -31,6 +31,8 @@ class CategoryTableViewCell: SBGestureTableViewCell {
     var category: Category? {
         didSet {
             if let category = category, categoryTitle = categoryTitle {
+                
+                // Set the text of the categoryTitle to the category title of the category
                 categoryTitle.text = category.categoryTitle
             }
         }
