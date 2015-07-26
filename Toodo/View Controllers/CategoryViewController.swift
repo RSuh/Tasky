@@ -25,6 +25,12 @@ class CategoryViewController: UIViewController {
         }
     }
     
+    // A array for deleting
+    var selectedRow: NSMutableArray = []
+    
+    // For adding, flag is true, for deleting, flag is false
+    var flagForAddOrDelete: Bool = true
+    
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
     let editIcon = FAKIonIcons.androidCreateIconWithSize(30)
@@ -100,10 +106,33 @@ class CategoryViewController: UIViewController {
             switch identifier {
             case "backToCategoryFromTask":
                 println("Back to Category from tasks")
+                let displayTaskVC = segue.sourceViewController as! TaskViewController
                 
             default:
                 println("nothing")
             }
+        }
+    }
+    
+    @IBAction func addOrDeleteButton(sender: AnyObject) {
+        if (flagForAddOrDelete == false) {
+            
+            realm.write() {
+                // Goes through each row and deletes all the selected ones
+                for (var index = 0; index <= self.selectedRow.count - 1; index++) {
+                    // TODO: Get rows to animate and delete 1 by 1.
+                    //self.categoryTableView.deleteRowsAtIndexPaths(<#indexPaths: [AnyObject]#>, withRowAnimation: <#UITableViewRowAnimation#>)
+                    self.realm.delete(self.selectedRow[index] as! Object)
+                }
+            }
+            
+            // Updates categories in real time when we delete, so that they disappear immediately.
+            categories = realm.objects(Category).sorted("taskCount", ascending: false)
+        } else {
+            
+            // Segues to addVC
+            performSegueWithIdentifier("addCategory", sender: sender)
+            println("segue has been performed")
         }
     }
     
@@ -120,8 +149,6 @@ class CategoryViewController: UIViewController {
             } else if (selectedCategory == nil) {
                 titleVC.categoryTitleForNavBar = ""
             }
-            
-            println(titleVC.category)
         }
     }
     
@@ -137,6 +164,8 @@ class CategoryViewController: UIViewController {
                 options: UIViewAnimationOptions.TransitionFlipFromBottom,
                 animations: { self.buttonImage.image = toImage },
                 completion: nil)
+            flagForAddOrDelete = false
+            println(flagForAddOrDelete)
         } else if (editing == false) {
             let backImage = UIImage(named: "addButton")
             UIView.transitionWithView(self.buttonImage,
@@ -144,6 +173,8 @@ class CategoryViewController: UIViewController {
                 options: UIViewAnimationOptions.TransitionFlipFromTop,
                 animations: { self.buttonImage.image = backImage },
                 completion: nil)
+            flagForAddOrDelete = true
+            println(flagForAddOrDelete)
         }
         
         // Reloads the data for the tableView for cellforrowatindexpath function so enabling the edit can be turned off and on
@@ -225,7 +256,6 @@ class CategoryViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
 
 extension CategoryViewController: UITableViewDataSource {
@@ -276,7 +306,8 @@ extension CategoryViewController: UITableViewDelegate {
         selectedCategory = categories[indexPath.row]
         
         if (editing == true) {
-            println("You selected a Cell!")
+            selectedRow.addObject(selectedCategory!)
+            
         } else {
             // Performs a segue "categoryToTask"
             self.performSegueWithIdentifier("categoryToTask", sender: self)
@@ -285,8 +316,9 @@ extension CategoryViewController: UITableViewDelegate {
             categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
+    
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
 }
 
-func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-}

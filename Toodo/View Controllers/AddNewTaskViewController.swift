@@ -62,7 +62,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         newTask.taskNote = self.taskNote.text
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
-                        println("Changes saved!")
+                        self.category!.taskCount = self.category!.tasksWithinCategory.count
+//                        println("Changes saved!")
                 } else {
                     println("nothing has changed")
                 }
@@ -99,6 +100,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         let realm = Realm()
         newTask = Task()
         saveNewTask()
+        println(self.category!.taskCount)
     }
     
     override func viewDidLoad() {

@@ -10,10 +10,10 @@ import UIKit
 import RealmSwift
 
 class CategoryTableViewCell: SBGestureTableViewCell {
-
+    
     // Initialize realm
     let realm = Realm()
-
+    
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var categoryTitle: UILabel!
     
@@ -21,20 +21,19 @@ class CategoryTableViewCell: SBGestureTableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     var category: Category? {
         didSet {
             if let category = category, categoryTitle = categoryTitle {
-                
+                // Sets the text of how many tasks are in a category
+                taskCount.text = "\(category.taskCount) Items"
                 // Set the text of the categoryTitle to the category title of the category
                 categoryTitle.text = category.categoryTitle
             }
         }
     }
-}   
+}
