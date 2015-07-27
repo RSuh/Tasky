@@ -78,9 +78,14 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
                 
             case "saveFromChangeBadge":
                 println("save from change badge")
+                
+                let badgeSaveVC = segue.sourceViewController as! ChangeBadgeViewController
+                
+                // Sets the new badge as the badge selected from ChangeBadgeVC
                 realm.write() {
-                    self.editedTask!.badge = self.editedTask!.badge
+                    self.editedTask!.badge = badgeSaveVC.badge
                 }
+                
             default:
                 println("failed")
             }

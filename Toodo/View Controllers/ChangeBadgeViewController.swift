@@ -27,7 +27,6 @@ class ChangeBadgeViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("You have selected cell \(indexPath.row)")
         badge = indexPath.row
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
         cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
