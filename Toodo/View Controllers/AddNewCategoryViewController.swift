@@ -48,7 +48,6 @@ class AddNewCategoryViewController: UIViewController {
         //addNewCategory?.tasksWithinCategory =
         println("category object is created")
         saveCategory()
-        println(addNewCategory?.categoryTitle)
     }
     
     override func viewDidLoad() {

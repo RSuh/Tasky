@@ -343,7 +343,7 @@
             </objects>
             <point key="canvasLocation" x="3400" y="-452"/>
         </scene>
-        <!--View Controller-->
+        <!--Change Badge-->
         <scene sceneID="MQT-rz-rLB">
             <objects>
                 <viewController id="wye-bd-jgG" sceneMemberID="viewController">
@@ -356,6 +356,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Change Badge" id="yEx-F9-2IJ">
+                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="iJs-gH-Fyq">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="checkmark" id="07p-aj-Fi1">
+                            <color key="tintColor" red="0.023529414087533951" green="0.050980396568775177" blue="0.050980396568775177" alpha="1" colorSpace="deviceRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6X-H4-KBX" userLabel="First Responder" sceneMemberID="firstResponder"/>

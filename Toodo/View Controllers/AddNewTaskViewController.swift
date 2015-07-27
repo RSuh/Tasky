@@ -100,7 +100,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         let realm = Realm()
         newTask = Task()
         saveNewTask()
-        println(self.category!.taskCount)
+        println("Ive created a task")
     }
     
     override func viewDidLoad() {

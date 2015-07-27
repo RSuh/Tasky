@@ -126,6 +126,8 @@ class CategoryViewController: UIViewController {
                 }
             }
             
+            println("item successfully deleted")
+            
             // Updates categories in real time when we delete, so that they disappear immediately.
             categories = realm.objects(Category).sorted("taskCount", ascending: false)
         } else {
@@ -306,8 +308,15 @@ extension CategoryViewController: UITableViewDelegate {
         selectedCategory = categories[indexPath.row]
         
         if (editing == true) {
+            // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
+            if (selectedRow.containsObject(selectedCategory!)) {
+                println("It's in the array already!")
+                selectedRow.removeObject(selectedCategory!)
+            } else {
+            // Use a "set"
             selectedRow.addObject(selectedCategory!)
-            
+            println("Its not in the array")
+            }
         } else {
             // Performs a segue "categoryToTask"
             self.performSegueWithIdentifier("categoryToTask", sender: self)
