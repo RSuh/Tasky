@@ -1,11 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
+      "idiom" : "universal",
       "filename" : "filter.pdf"
-    },
-    {
-      "idiom" : "ipad"
     }
   ],
   "info" : {

@@ -151,7 +151,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Work" id="bsC-6c-dVU">
-                        <barButtonItem key="leftBarButtonItem" title="Lists" id="z4E-Rp-0Gv">
+                        <barButtonItem key="leftBarButtonItem" image="categories" id="z4E-Rp-0Gv">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="1Jo-dx-3ZJ" kind="unwind" identifier="backToCategoryFromTask" unwindAction="backToCategoryFromTasks:" id="MSq-m1-ZTW"/>
@@ -306,9 +306,15 @@
                                 <rect key="frame" x="86" y="87" width="30" height="30"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="jfkdlsjfkdsljfdkslfjdklfjdsklfjdsl" translatesAutoresizingMaskIntoConstraints="NO" id="KNS-CH-AR9">
-                                <rect key="frame" x="16" y="202" width="343" height="135"/>
+                                <rect key="frame" x="16" y="200" width="288" height="135"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRz-3k-iew">
+                                <rect key="frame" x="124" y="78.5" width="180" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-mC-WLe">
@@ -317,12 +323,21 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-9G-D3D">
                                 <rect key="frame" x="0.0" y="187" width="320" height="1"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRz-3k-iew">
-                                <rect key="frame" x="124" y="78.5" width="180" height="96"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="QQD-MJ-8Zw">
+                                <rect key="frame" x="16" y="347" width="288" height="154"/>
+                                <date key="date" timeIntervalSinceReferenceDate="459728377.59114802">
+                                    <!--2015-07-27 22:19:37 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="selectDateAction:" destination="shg-3L-Bnq" eventType="valueChanged" id="IAt-jh-hso"/>
+                                </connections>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-Nl-wQS">
+                                <rect key="frame" x="16" y="514" width="288" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -343,6 +358,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="badgeImage" destination="oMP-uO-zyB" id="y0x-Y7-jWA"/>
+                        <outlet property="dateLabelInEdit" destination="b3g-Nl-wQS" id="o5A-C0-Bfr"/>
+                        <outlet property="datePicker" destination="QQD-MJ-8Zw" id="0YL-dY-QSW"/>
                         <outlet property="taskNoteField" destination="KNS-CH-AR9" id="ibh-7Y-UyA"/>
                         <outlet property="taskTextField" destination="sRz-3k-iew" id="tzF-6G-hPF"/>
                     </connections>
@@ -538,6 +555,7 @@
         <image name="addBackground" width="320" height="58"/>
         <image name="addButton" width="24" height="25"/>
         <image name="badgeEdit" width="30" height="30"/>
+        <image name="categories" width="25" height="22"/>
         <image name="checkmark" width="28" height="21"/>
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>

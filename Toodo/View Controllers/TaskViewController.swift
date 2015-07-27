@@ -143,6 +143,7 @@ class TaskViewController: UIViewController {
         super.viewDidLoad()
         
         // Sets title to the categoryTitleForNavBar
+        //self.title = "\(categoryTitleForNavBar) Category"
         self.title = categoryTitleForNavBar
         
         // Sets custom separators between cells on viewDidLoad

@@ -12,6 +12,8 @@ import RealmSwift
 
 class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var dateLabelInEdit: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var taskNoteField: UITextView!
@@ -69,6 +71,16 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func selectDateAction(sender: AnyObject) {
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+        dateFormatter.dateFormat = "EEEE, MMMM d"
+        
+        var labelStr = dateFormatter.stringFromDate(datePicker.date)
+        self.dateLabelInEdit.text = labelStr
+        
+    }
     
     @IBAction func backToEditFromChangeBadge(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
@@ -104,7 +116,15 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //taskTextField.placeholder = "Hi"
+        
+        // Sets the date to today
+        var date = NSDate()
+        let selectedDate = NSDateFormatter()
+        selectedDate.dateFormat = "EEEE, MMMM d"
+        
+        // Sets the datepicker to today
+        datePicker.setDate(date, animated: true)
+        self.dateLabelInEdit.text = selectedDate.stringFromDate(date)
     }
     
     override func didReceiveMemoryWarning() {
