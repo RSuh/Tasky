@@ -1,13 +1,12 @@
 //
-//  badgeCollectionViewCell.swift
+//  CategoryCollectionViewCell.swift
 //  Toodo
 //
-//  Created by Reginald Suh on 2015-07-16.
+//  Created by Reginald Suh on 2015-07-27.
 //  Copyright (c) 2015 ReginaldSuh. All rights reserved.
 //
 
 import UIKit
-import RealmSwift   
 
 class CategoryCollectionViewCell: UICollectionViewCell {
     

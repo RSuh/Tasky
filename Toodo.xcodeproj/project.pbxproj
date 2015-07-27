@@ -21,10 +21,11 @@
 		4536C3891B50719A00A35889 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4536C38C1B50761600A35889 /* AddNewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */; };
 		4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38D1B5078E200A35889 /* EditTaskViewController.swift */; };
+		456C99F21B66B1B8002E1074 /* ChangeBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */; };
+		456C99F41B66D19F002E1074 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */; };
 		457D28901B558460000952CC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D288F1B558460000952CC /* CategoryViewController.swift */; };
 		457D28921B5585F5000952CC /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28911B5585F5000952CC /* CategoryTableViewCell.swift */; };
 		457D28941B558908000952CC /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28931B558908000952CC /* Category.swift */; };
-		457D28961B582E18000952CC /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28951B582E18000952CC /* ListCollectionViewCell.swift */; };
 		457D28981B599C24000952CC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28971B599C24000952CC /* Constants.swift */; };
 		457D289A1B59B44F000952CC /* EditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28991B59B44F000952CC /* EditCategoryViewController.swift */; };
 		457D289D1B5A1B1F000952CC /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */; };
@@ -79,10 +80,11 @@
 		4536C3841B506C6F00A35889 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCategoryViewController.swift; sourceTree = "<group>"; };
 		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeBadgeViewController.swift; sourceTree = "<group>"; };
+		456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		457D288F1B558460000952CC /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		457D28911B5585F5000952CC /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		457D28931B558908000952CC /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		457D28951B582E18000952CC /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		457D28971B599C24000952CC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		457D28991B59B44F000952CC /* EditCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCategoryViewController.swift; sourceTree = "<group>"; };
 		457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
@@ -187,7 +189,8 @@
 				4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */,
 				457D289C1B5A1B1F000952CC /* AddNewTaskViewController.swift */,
 				4536C38D1B5078E200A35889 /* EditTaskViewController.swift */,
-				457D28951B582E18000952CC /* ListCollectionViewCell.swift */,
+				456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */,
+				456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -372,7 +375,8 @@
 				4536C3851B506C6F00A35889 /* Task.swift in Sources */,
 				457D28981B599C24000952CC /* Constants.swift in Sources */,
 				457D28921B5585F5000952CC /* CategoryTableViewCell.swift in Sources */,
-				457D28961B582E18000952CC /* ListCollectionViewCell.swift in Sources */,
+				456C99F21B66B1B8002E1074 /* ChangeBadgeViewController.swift in Sources */,
+				456C99F41B66D19F002E1074 /* CategoryCollectionViewCell.swift in Sources */,
 				457D289A1B59B44F000952CC /* EditCategoryViewController.swift in Sources */,
 				457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */,
 				4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */,

@@ -57,7 +57,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
                 if ((editedTask.taskTitle != self.taskTextField.text) ||
                     (editedTask.badge != self.badge) ||
                     (editedTask.taskNote != self.taskNoteField.text)) {
-                    
+                        
                         editedTask.taskTitle = self.taskTextField.text
                         // Saves the badge as the editedTask.badge passed from TaskVC
                         editedTask.badge = self.editedTask!.badge
@@ -69,7 +69,23 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-//    IBAction func 
+    
+    @IBAction func backToEditFromChangeBadge(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "exitFromChangeBadge":
+                println("exit from change badge")
+                
+            case "saveFromChangeBadge":
+                println("save from change badge")
+                realm.write() {
+                    self.editedTask!.badge = self.editedTask!.badge
+                }
+            default:
+                println("failed")
+            }
+        }
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         saveTask()
@@ -80,7 +96,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         taskTextField.resignFirstResponder()
         return true
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //taskTextField.placeholder = "Hi"
@@ -98,7 +114,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
     }
     
     override func viewWillAppear(animated: Bool) {
