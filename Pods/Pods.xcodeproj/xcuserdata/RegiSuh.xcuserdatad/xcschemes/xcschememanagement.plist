@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>MDCalendar.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MGSwipeTableCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>27D1EC7A11FAFDECEB420E7DC8F95D5F</key>
+		<key>049293165E2C77321A7A5E1929ED4A86</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>45FC3DEF68073930EF8EE5EDE0F148B6</key>
+		<key>697900207D7DCDE34E11F1833FC9FA1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6A329277590DDE285D4F6DE7BE8268C7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FAF619466E057AB1EA0EBBF0BDF79901</key>
+		<key>F05D166BC68C1085C2FBEC73AB4314AB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

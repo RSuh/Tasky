@@ -10,4 +10,3 @@
 #import <FontAwesomeKit/FAKFoundationIcons.h>
 #import <FontAwesomeKit/FAKZocial.h>
 #import <FontAwesomeKit/FAKIonIcons.h>
-#import <MDCalendar/MDCalendar.h>

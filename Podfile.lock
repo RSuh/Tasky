@@ -8,7 +8,6 @@ PODS:
     - FontAwesomeKit/Core
   - FontAwesomeKit/Zocial (2.2.0):
     - FontAwesomeKit/Core
-  - MDCalendar (1.0.0)
   - MGSwipeTableCell (1.4.3)
 
 DEPENDENCIES:
@@ -16,12 +15,10 @@ DEPENDENCIES:
   - FontAwesomeKit/FoundationIcons
   - FontAwesomeKit/IonIcons
   - FontAwesomeKit/Zocial
-  - MDCalendar
   - MGSwipeTableCell
 
 SPEC CHECKSUMS:
   FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
-  MDCalendar: f45ed892f5a6f1f72667aa046898db5f0747e4a6
   MGSwipeTableCell: cb9805df3cc5cad75ad43a5c1eb424be0316f0bf
 
 COCOAPODS: 0.38.0
