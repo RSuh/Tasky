@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4FCFA7BE92EBA659934A210F"
-               BuildableName = "libMGSwipeTableCell.a"
-               BlueprintName = "MGSwipeTableCell"
+               BlueprintIdentifier = "65F3259471DD8ECC74FEF261"
+               BuildableName = "libMDCalendar.a"
+               BlueprintName = "MDCalendar"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

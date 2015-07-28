@@ -7,6 +7,7 @@ target 'Toodo' do
 	pod 'FontAwesomeKit/FoundationIcons'
 	pod 'FontAwesomeKit/Zocial'
 	pod 'FontAwesomeKit/IonIcons'
+	pod 'MDCalendar'
 end
 
 target 'ToodoTests' do
