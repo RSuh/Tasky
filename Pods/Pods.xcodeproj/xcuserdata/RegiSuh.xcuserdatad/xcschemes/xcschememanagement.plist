@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FSCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FontAwesomeKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>33282AE4DDAA90871F91544140B0030E</key>
+		<key>07544A7934C2FEF0D0BBC7E4EB611DEB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6EA07B603A8227DC3CE766F9194B733E</key>
+		<key>0B71187B28901F337CF6CA58B920C059</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F05D166BC68C1085C2FBEC73AB4314AB</key>
+		<key>27D1EC7A11FAFDECEB420E7DC8F95D5F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ADC0514679B1E99FC2CD2AD0EDD79814</key>
 		<dict>
 			<key>primary</key>
 			<true/>

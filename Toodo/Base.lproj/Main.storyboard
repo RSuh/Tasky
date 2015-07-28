@@ -312,7 +312,7 @@
                                 <rect key="frame" x="86" y="87" width="30" height="30"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="jfkdlsjfkdsljfdkslfjdklfjdsklfjdsl" translatesAutoresizingMaskIntoConstraints="NO" id="KNS-CH-AR9">
-                                <rect key="frame" x="16" y="200" width="288" height="135"/>
+                                <rect key="frame" x="16" y="200" width="288" height="108"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -329,21 +329,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-9G-D3D">
                                 <rect key="frame" x="0.0" y="187" width="320" height="1"/>
                             </imageView>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="QQD-MJ-8Zw">
-                                <rect key="frame" x="16" y="347" width="288" height="154"/>
-                                <date key="date" timeIntervalSinceReferenceDate="459728377.59114802">
-                                    <!--2015-07-27 22:19:37 +0000-->
-                                </date>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="eyQ-g7-WwI">
+                                <rect key="frame" x="0.0" y="316" width="320" height="1"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xm2-IV-qMw" customClass="FSCalendar">
+                                <rect key="frame" x="16" y="325" width="288" height="194"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="selectDateAction:" destination="shg-3L-Bnq" eventType="valueChanged" id="IAt-jh-hso"/>
+                                    <outlet property="dataSource" destination="shg-3L-Bnq" id="f22-z0-dY8"/>
+                                    <outlet property="delegate" destination="shg-3L-Bnq" id="nx3-PY-gnF"/>
                                 </connections>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3g-Nl-wQS">
-                                <rect key="frame" x="16" y="514" width="288" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -364,8 +360,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="badgeImage" destination="oMP-uO-zyB" id="y0x-Y7-jWA"/>
-                        <outlet property="dateLabelInEdit" destination="b3g-Nl-wQS" id="o5A-C0-Bfr"/>
-                        <outlet property="datePicker" destination="QQD-MJ-8Zw" id="0YL-dY-QSW"/>
                         <outlet property="taskNoteField" destination="KNS-CH-AR9" id="ibh-7Y-UyA"/>
                         <outlet property="taskTextField" destination="sRz-3k-iew" id="tzF-6G-hPF"/>
                     </connections>

@@ -121,14 +121,14 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Sets the date to today
-        var date = NSDate()
-        let selectedDate = NSDateFormatter()
-        selectedDate.dateFormat = "EEEE, MMMM d"
-        
-        // Sets the datepicker to today
-        datePicker.setDate(date, animated: true)
-        self.dateLabelInEdit.text = selectedDate.stringFromDate(date)
+//        // Sets the date to today
+//        var date = NSDate()
+//        let selectedDate = NSDateFormatter()
+//        selectedDate.dateFormat = "EEEE, MMMM d"
+//        
+//        // Sets the datepicker to today
+//        datePicker.setDate(date, animated: true)
+//        self.dateLabelInEdit.text = selectedDate.stringFromDate(date)
     }
     
     override func didReceiveMemoryWarning() {
@@ -154,11 +154,13 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         // Displays the badge image of the selectedTask
         badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[editedTask!.badge])
     }
+}
+
+extension EditTaskViewController: FSCalendarDataSource {
     
-    // MARK: - Navigation
+}
+
+extension EditTaskViewController: FSCalendarDelegate {
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
 }
 

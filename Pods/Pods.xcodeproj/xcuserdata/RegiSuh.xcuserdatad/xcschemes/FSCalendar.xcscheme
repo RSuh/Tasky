@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C465C307A853D8A53D77740F"
-               BuildableName = "libFontAwesomeKit.a"
-               BlueprintName = "FontAwesomeKit"
+               BlueprintIdentifier = "B406D2407FD95B1FDED2CAA1"
+               BuildableName = "libFSCalendar.a"
+               BlueprintName = "FSCalendar"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
