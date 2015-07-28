@@ -11,4 +11,5 @@ import Foundation
 class arrayConstants {
     static let cellImagesUnselected: [String] = ["badgeWork", "badgeDefault", "badgeFinance"]
     static let cellImagesSelected: [String] = []
+    static let cellColor: [String] = []
 }

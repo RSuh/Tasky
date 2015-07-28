@@ -267,6 +267,9 @@ extension CategoryViewController: UITableViewDataSource {
         // Initialize cell
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
+//        categoryTableView.backgroundColor = UIColor.lightGrayColor()
+//        cell.backgroundColor = UIColor.lightGrayColor()
+        
         let size = CGSizeMake(30, 30)
         
         // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14A163C0E3FAFDB9AE653C55 /* libPods-Toodo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C543D985D0F8B3A3315F3EA /* libPods-Toodo.a */; };
 		4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3561B505ACD00A35889 /* AppDelegate.swift */; };
 		4536C35C1B505ACD00A35889 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4536C35A1B505ACD00A35889 /* Main.storyboard */; };
 		4536C35E1B505ACD00A35889 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4536C35D1B505ACD00A35889 /* Images.xcassets */; };
@@ -33,7 +34,6 @@
 		457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */; };
 		457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */; };
 		457E33BA1B6193E800D900E6 /* SBGestureTableViewCellSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */; };
-		84EE8529C01C5AE528E47A21 /* libPods-Toodo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C19B5C551B19AB0787683 /* libPods-Toodo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +62,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C543D985D0F8B3A3315F3EA /* libPods-Toodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Toodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		225E788F04A22E1F683777CD /* Pods-Toodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toodo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Toodo/Pods-Toodo.release.xcconfig"; sourceTree = "<group>"; };
-		435C19B5C551B19AB0787683 /* libPods-Toodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Toodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4536C3511B505ACD00A35889 /* Toodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Toodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4536C3551B505ACD00A35889 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4536C3561B505ACD00A35889 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			files = (
 				4536C3861B50719A00A35889 /* Realm.framework in Frameworks */,
 				4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */,
-				84EE8529C01C5AE528E47A21 /* libPods-Toodo.a in Frameworks */,
+				14A163C0E3FAFDB9AE653C55 /* libPods-Toodo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +200,7 @@
 			children = (
 				4536C37F1B506B1B00A35889 /* Realm.framework */,
 				4536C3801B506B1B00A35889 /* RealmSwift.framework */,
-				435C19B5C551B19AB0787683 /* libPods-Toodo.a */,
+				1C543D985D0F8B3A3315F3EA /* libPods-Toodo.a */,
 			);
 			name = Frameworks;
 			path = Toodo/Frameworks;

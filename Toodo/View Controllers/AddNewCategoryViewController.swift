@@ -11,6 +11,8 @@ import RealmSwift
 
 class AddNewCategoryViewController: UIViewController {
     
+    @IBOutlet weak var purpleTheme: UIButton!
+    @IBOutlet weak var turquoiseTheme: UIButton!
     @IBOutlet weak var categoryTitle: UITextField!
     
     var addNewCategory: Category? {
@@ -38,6 +40,14 @@ class AddNewCategoryViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func tapPurpleTheme(sender: AnyObject) {
+        println("tapped purple")
+    }
+    
+    @IBAction func tapTurquoiseTheme(sender: AnyObject) {
+        println("tapped turquoise")
     }
     
     // Passing category object to Home View Controller

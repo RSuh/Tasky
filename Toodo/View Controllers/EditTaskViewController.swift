@@ -105,12 +105,16 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        saveTask()
+        if (segue.identifier == "saveFromEdit") {
+            saveTask()
+        } else {
+            println("task was not saved")
+        }
     }
     
     // Hides keyboard when you press done the view controller ends
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        taskTextField.resignFirstResponder()
+        //taskTextField.resignFirstResponder()
         return true
     }
     

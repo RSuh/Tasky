@@ -72,9 +72,9 @@ class TaskViewController: UIViewController {
             case "exitFromEdit":
                 println("Exit from Edit")
                 
-                let exitFromEditTask = segue.sourceViewController as! EditTaskViewController
-                
-                exitFromEditTask.saveTask()
+//                let exitFromEditTask = segue.sourceViewController as! EditTaskViewController
+//                
+//                exitFromEditTask.saveTask()
                 
                 // Else
             default:
@@ -147,8 +147,8 @@ class TaskViewController: UIViewController {
         self.title = categoryTitleForNavBar
         
         // Sets custom separators between cells on viewDidLoad
-        taskHomeTableView.separatorInset = UIEdgeInsetsZero
-        taskHomeTableView.layoutMargins = UIEdgeInsetsZero
+//        taskHomeTableView.separatorInset = UIEdgeInsetsZero
+//        taskHomeTableView.layoutMargins = UIEdgeInsetsZero
         
         // Calls setupIcons method
         setupIcons()
