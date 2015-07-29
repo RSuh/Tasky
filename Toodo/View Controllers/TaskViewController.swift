@@ -14,6 +14,9 @@ class TaskViewController: UIViewController {
     // REMEMBER TO CONNECT THE OUTLET IN STORYBOARD
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
     
+    // The variable for the navbar color of this view controller. We need this variable to transfer the color from the previous VC using a segue
+    var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
+    
     // Initialize Realm
     let realm = Realm()
     
@@ -68,14 +71,11 @@ class TaskViewController: UIViewController {
                 
                 // Calls save task which saves the task from the edit section
                 saveFromEditTask.saveTask()
+                
                 // If the Exit button is pressed
             case "exitFromEdit":
                 println("Exit from Edit")
-                
-//                let exitFromEditTask = segue.sourceViewController as! EditTaskViewController
-//                
-//                exitFromEditTask.saveTask()
-                
+
                 // Else
             default:
                 println("Nothing from edit \(identifier)")
@@ -137,7 +137,14 @@ class TaskViewController: UIViewController {
             targetVC.category = self.category
             targetVC.newTask?.category = self.category
         }
-    }
+//        else if (segue.identifier == "backToCategoryFromTask") {
+//            let targetVC = segue.destinationViewController as! CategoryViewController
+//            
+//            // Updates the task count when going back to the categoryVC after deleting or completing a task
+//            targetVC.categoryTableView.reloadData()
+//            
+        }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,10 +152,6 @@ class TaskViewController: UIViewController {
         // Sets title to the categoryTitleForNavBar
         //self.title = "\(categoryTitleForNavBar) Category"
         self.title = categoryTitleForNavBar
-        
-        // Sets custom separators between cells on viewDidLoad
-//        taskHomeTableView.separatorInset = UIEdgeInsetsZero
-//        taskHomeTableView.layoutMargins = UIEdgeInsetsZero
         
         // Calls setupIcons method
         setupIcons()
@@ -171,11 +174,16 @@ class TaskViewController: UIViewController {
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
+            
             // let category = the category object at indexPath.row AS AN OBJECT
-            let category = self.tasks[indexPath!.row] as Object
+            let tasks = self.tasks[indexPath!.row] as Object
+            
             // Pass the object we just created to delete
             self.realm.write() {
-                self.realm.delete(category)
+                self.realm.delete(tasks)
+                
+                // Subtracts 1 count from the taskCount when removecellBlock is called
+                self.category!.tasksWithinCategory.count - 1
             }
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
@@ -183,7 +191,6 @@ class TaskViewController: UIViewController {
         
         // Sort tasks which are within each category by modificationDate
         tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
-        
     }
     
     // Customizes the title Bar
@@ -201,6 +208,7 @@ class TaskViewController: UIViewController {
         
         // Sorts tasks based on their modification Date
         tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+         
     }
     
     override func didReceiveMemoryWarning() {
@@ -214,17 +222,23 @@ extension TaskViewController: UITableViewDataSource {
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
+        // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
         
         // The Actions for the cells
         cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         
-        // Set up cell
         // Configure cell
         let row = indexPath.row
         let task = tasks[row] as Task
         cell.task = task
+        
+        // Sets custom separators between cells on viewDidLoad
+        taskHomeTableView.separatorInset = UIEdgeInsetsZero
+        taskHomeTableView.layoutMargins = UIEdgeInsetsZero
+        
+        
         
         // This makes the separator be centered between the cells.
         //tableView.separatorInset.right = tableView.separatorInset.left

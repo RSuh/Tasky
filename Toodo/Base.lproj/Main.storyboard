@@ -25,6 +25,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kQZ-tW-3CL" id="3Pb-yS-VhR">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eL5-U2-XuO">
+                                                    <rect key="frame" x="0.0" y="0.5" width="320" height="75.5"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-nh-9Nq">
                                                     <rect key="frame" x="15" y="38" width="126" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -40,12 +43,10 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="olN-gR-mXF">
                                                     <rect key="frame" x="290" y="30" width="9" height="16"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eL5-U2-XuO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="75.5"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="categoryCellColor" destination="eL5-U2-XuO" id="Yk4-68-6qL"/>
                                             <outlet property="categoryTitle" destination="tFW-jS-0pH" id="Pdr-Pm-vBG"/>
                                             <outlet property="taskCount" destination="7el-nh-9Nq" id="7dh-H3-iLy"/>
                                         </connections>

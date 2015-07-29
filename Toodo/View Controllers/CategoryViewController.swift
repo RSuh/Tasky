@@ -145,6 +145,15 @@ class CategoryViewController: UIViewController {
             // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
             titleVC.category = selectedCategory
             
+            // Sets the nav bar color to the color of whatever the cell color was in the previous VC
+            if (selectedCategory?.imageName == "rectanglePurple") {
+                
+                // TODO: Change navbar color
+                
+                //titleVC.navbarColor =
+                //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+            }
+            
             // Sets the category title in the next VC to be the selected category's title
             if (selectedCategory != nil) {
                 titleVC.categoryTitleForNavBar = selectedCategory!.categoryTitle
@@ -196,10 +205,6 @@ class CategoryViewController: UIViewController {
         self.categoryTableView.allowsMultipleSelectionDuringEditing = true
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blackColor()
-        
-        // Sets custom separators between cells on viewDidLoad
-        categoryTableView.separatorInset = UIEdgeInsetsZero
-        categoryTableView.layoutMargins = UIEdgeInsetsZero
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
@@ -289,6 +294,10 @@ extension CategoryViewController: UITableViewDataSource {
         let row = indexPath.row
         let category = categories[row] as Category
         cell.category = category
+        
+        // Sets custom separators between cells on viewDidLoad
+        categoryTableView.separatorInset = UIEdgeInsetsZero
+        categoryTableView.layoutMargins = UIEdgeInsetsZero
         
         //cell.accessoryView?.tintColor = UIColor.blackColor()
         // Custom separator lines between cells

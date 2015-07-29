@@ -63,7 +63,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
-//                        println("Changes saved!")
+                        println(self.category!.taskCount)
                 } else {
                     println("nothing has changed")
                 }

@@ -14,6 +14,7 @@ class CategoryTableViewCell: SBGestureTableViewCell {
     // Initialize realm
     let realm = Realm()
     
+    @IBOutlet weak var categoryCellColor: UIImageView!
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var categoryTitle: UILabel!
     
@@ -28,11 +29,15 @@ class CategoryTableViewCell: SBGestureTableViewCell {
     
     var category: Category? {
         didSet {
-            if let category = category, categoryTitle = categoryTitle {
+            if let category = category, categoryTitle = categoryTitle, taskCount = taskCount, categoryCellColor = categoryCellColor {
                 // Sets the text of how many tasks are in a category
-                taskCount.text = "\(category.taskCount) Items"
+                taskCount.text = "\(category.tasksWithinCategory.count) Items"
+                
                 // Set the text of the categoryTitle to the category title of the category
                 categoryTitle.text = category.categoryTitle
+                
+                // Sets the cell color image to a UIImage named the category.imageName
+                categoryCellColor.image = UIImage(named: "\(category.imageName)")
             }
         }
     }

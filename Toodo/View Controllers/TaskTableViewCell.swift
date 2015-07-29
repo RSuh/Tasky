@@ -13,8 +13,7 @@ class TaskTableViewCell: SBGestureTableViewCell {
 
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var badgeImage: UIImageView!
-    @IBOutlet weak var chevronRight: UIImageView!
-    
+
     static var presentDate: NSDateFormatter {
        var formatter = NSDateFormatter()
         // Can set custom dates, refer to http://www.codingexplorer.com/swiftly-getting-human-readable-date-nsdateformatter/
