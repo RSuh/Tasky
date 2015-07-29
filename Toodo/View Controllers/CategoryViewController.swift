@@ -296,8 +296,8 @@ extension CategoryViewController: UITableViewDataSource {
         cell.category = category
         
         // Sets custom separators between cells on viewDidLoad
-        categoryTableView.separatorInset = UIEdgeInsetsZero
-        categoryTableView.layoutMargins = UIEdgeInsetsZero
+//        categoryTableView.separatorInset = UIEdgeInsetsZero
+//        categoryTableView.layoutMargins = UIEdgeInsetsZero
         
         //cell.accessoryView?.tintColor = UIColor.blackColor()
         // Custom separator lines between cells
@@ -309,6 +309,10 @@ extension CategoryViewController: UITableViewDataSource {
     // How many rows are in the tableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Int(categories?.count ?? 0)
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.separatorInset = UIEdgeInsetsZero
     }
 }
 

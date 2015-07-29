@@ -14,7 +14,6 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var taskTitle: UITextField!
     @IBOutlet weak var badgeImage: UICollectionView!
-    @IBOutlet weak var taskNote: UITextView!
     
     // Initialize Realm
     let realm = Realm()
@@ -33,10 +32,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     // Displays the contents of the new task
     func displayNewTask(task: Task?) {
-        if let task = task, taskTitle = taskTitle, taskNote = taskNote {
+        if let task = task, taskTitle = taskTitle {
             realm.write() {
                 task.taskTitle = self.newTask!.taskTitle
-                task.taskNote = self.newTask!.taskNote
             }
         }
     }
@@ -56,17 +54,16 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         if let newTask = newTask {
             realm.write() {
                 if ((newTask.taskTitle != self.taskTitle.text) ||
-                    (newTask.taskNote != self.taskNote.text) ||
                     (newTask.badge != self.badge)) {
                         newTask.taskTitle = self.taskTitle.text
-                        newTask.taskNote = self.taskNote.text
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
-                        println(self.category!.taskCount)
+                        println("\(newTask.taskTitle)")
                 } else {
                     println("nothing has changed")
                 }
+                
             }
         }
     }
@@ -97,10 +94,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let realm = Realm()
-        newTask = Task()
-        saveNewTask()
-        println("Ive created a task")
+        if segue.identifier == "exitFromAdd" {
+            println("exitFromAdd")
+        } else {
+            newTask = Task()
+            saveNewTask()
+        }
     }
     
     override func viewDidLoad() {
@@ -115,5 +114,16 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     override func viewWillDisappear(animated: Bool) {
+    }
+}
+
+extension AddNewTaskViewController: FSCalendarDataSource {
+    
+}
+
+extension AddNewTaskViewController: FSCalendarDelegate {
+    // What happens when the user selects the date
+    func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
+        println(date)
     }
 }

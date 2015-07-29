@@ -142,7 +142,7 @@ class TaskViewController: UIViewController {
 //            
 //            // Updates the task count when going back to the categoryVC after deleting or completing a task
 //            targetVC.categoryTableView.reloadData()
-//            
+        tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
         }
     
     

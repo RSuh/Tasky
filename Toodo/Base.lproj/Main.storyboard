@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="P7N-vr-83j" customClass="SBGestureTableView" customModule="Toodo" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="76" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="P7N-vr-83j" customClass="SBGestureTableView" customModule="Toodo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="447"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -192,13 +192,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select a badge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrh-BP-1KQ">
-                                <rect key="frame" x="102" y="247" width="116" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="93" y="111" width="134" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title of your list..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vbr-10-7Dh">
+                                <rect key="frame" x="14" y="76" width="292" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="TQT-jD-AxK">
-                                <rect key="frame" x="0.0" y="276" width="320" height="292"/>
+                                <rect key="frame" x="0.0" y="143" width="320" height="286"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cYC-Aa-db3">
                                     <size key="itemSize" width="80" height="92"/>
@@ -230,24 +235,46 @@
                                     <outlet property="delegate" destination="fvL-CD-BgV" id="hBa-Ck-jza"/>
                                 </connections>
                             </collectionView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gm1-24-I7z">
-                                <rect key="frame" x="14" y="110" width="292" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Note of your task">
-                                        <attributes>
-                                            <font key="NSFont" metaFont="smallSystem"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title of your list..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vbr-10-7Dh">
-                                <rect key="frame" x="14" y="76" width="292" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="G7d-EH-Y7k">
+                                <rect key="frame" x="232" y="124" width="88" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="kQz-te-IGt">
+                                <rect key="frame" x="0.0" y="124" width="88" height="1"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFY-Pd-2bz">
+                                <rect key="frame" x="0.0" y="511" width="320" height="57"/>
+                                <state key="normal" backgroundImage="addBackground">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addOrDeleteButton:" destination="Ncj-My-Rse" eventType="touchUpInside" id="T7K-j7-cuT"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="OgI-gs-0UF">
+                                <rect key="frame" x="0.0" y="429" width="320" height="1"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="apq-p6-Keu">
+                                <rect key="frame" x="8" y="442" width="56" height="56"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yo-hd-dR8">
+                                <rect key="frame" x="0.0" y="429" width="320" height="81"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Img-gE-gqF" kind="show" identifier="setDate" id="lk3-Ep-PIf"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="YEU-9k-mDf">
+                                <rect key="frame" x="290" y="462" width="9" height="16"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSV-1E-eIv">
+                                <rect key="frame" x="120" y="458" width="80" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -266,18 +293,57 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="badgeImage" destination="TQT-jD-AxK" id="cWs-14-hxh"/>
-                        <outlet property="taskNote" destination="gm1-24-I7z" id="xiW-Xr-dxg"/>
                         <outlet property="taskTitle" destination="Vbr-10-7Dh" id="r7E-f6-WKZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbA-b5-H7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="acw-eh-aM0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2844" y="-472"/>
+            <point key="canvasLocation" x="2813" y="-263"/>
+        </scene>
+        <!--Set Date-->
+        <scene sceneID="y3i-8c-9l9">
+            <objects>
+                <viewController id="Img-gE-gqF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="doA-mp-VZp"/>
+                        <viewControllerLayoutGuide type="bottom" id="tXS-Ju-qaf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M4y-AD-haa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zMS-sq-blL" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="64" width="320" height="450"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Img-gE-gqF" id="AkY-BO-Ka0"/>
+                                    <outlet property="delegate" destination="Img-gE-gqF" id="Pdq-ov-fWn"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ai-0N-vGf">
+                                <rect key="frame" x="16" y="527" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Set Date" id="LN2-Jf-VFA">
+                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="KOL-gd-o0n">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAZ-1T-KCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3258" y="-416"/>
         </scene>
         <!--Edit Task-->
         <scene sceneID="jJZ-hw-1Tv">
@@ -312,8 +378,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="badgeEdit" translatesAutoresizingMaskIntoConstraints="NO" id="5PI-B5-2bI">
                                 <rect key="frame" x="86" y="87" width="30" height="30"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="jfkdlsjfkdsljfdkslfjdklfjdsklfjdsl" translatesAutoresizingMaskIntoConstraints="NO" id="KNS-CH-AR9">
-                                <rect key="frame" x="16" y="200" width="288" height="108"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KNS-CH-AR9">
+                                <rect key="frame" x="16" y="196" width="288" height="63"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -331,10 +397,10 @@
                                 <rect key="frame" x="0.0" y="187" width="320" height="1"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="eyQ-g7-WwI">
-                                <rect key="frame" x="0.0" y="316" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="266" width="320" height="1"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xm2-IV-qMw" customClass="FSCalendar">
-                                <rect key="frame" x="16" y="325" width="288" height="194"/>
+                                <rect key="frame" x="0.0" y="267" width="320" height="258"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="shg-3L-Bnq" id="f22-z0-dY8"/>
@@ -368,7 +434,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGp-Vn-nq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mKd-GH-PUP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3400" y="-452"/>
+            <point key="canvasLocation" x="3652" y="-438"/>
         </scene>
         <!--Change Badge-->
         <scene sceneID="MQT-rz-rLB">
@@ -440,7 +506,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6X-H4-KBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qIZ-PM-v20" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3805" y="-438"/>
+            <point key="canvasLocation" x="4073" y="-438"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s9z-Hs-9k9">
@@ -517,7 +583,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="fds" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="58v-pa-Ppy">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="58v-pa-Ppy">
                                 <rect key="frame" x="14" y="78" width="292" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -585,6 +651,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CalendarIcon" width="56" height="56"/>
         <image name="addBackground" width="320" height="58"/>
         <image name="addButton" width="24" height="25"/>
         <image name="badgeEdit" width="30" height="30"/>
