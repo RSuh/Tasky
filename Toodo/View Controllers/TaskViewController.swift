@@ -37,7 +37,7 @@ class TaskViewController: UIViewController {
     let completeIcon = FAKIonIcons.androidDoneIconWithSize(30)
     
     // A array for deleting
-    var selectedRow: NSMutableArray = []
+    var selectedRows = [Task]()
     
     // For adding, flag is true, for deleting, flag is false
     var flagForAddOrDelete: Bool = true
@@ -53,7 +53,7 @@ class TaskViewController: UIViewController {
     var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
     // The task which is currently selected
-    var selectedTask: Task?
+    //    var selectedTask: Task?
     
     // The title of the nav bar
     var categoryTitleForNavBar: String = ""
@@ -90,7 +90,6 @@ class TaskViewController: UIViewController {
             
             // Adds new tasks in real-time
             tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
-            //var taskOne = taskList[0]
             
         }
     }
@@ -100,15 +99,14 @@ class TaskViewController: UIViewController {
             
             realm.write() {
                 // Goes through each row and deletes all the selected ones
-                for (var index = 0; index <= self.selectedRow.count - 1; index++) {
+                for (var index = 0; index <= self.selectedRows.count - 1; index++) {
                     // TODO: Get rows to animate and delete 1 by 1.
-                    self.realm.delete(self.selectedRow[index] as! Object)
+                    self.realm.delete(self.selectedRows[index])
                     println("item at index \(index) has been deleted")
                 }
             }
             
-            
-            
+            // Refreshes the tasks in real time according to modificationDate
             tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
             
         } else{
@@ -154,10 +152,12 @@ class TaskViewController: UIViewController {
             let targetVC = segue.destinationViewController as! EditTaskViewController
             
             // Set the editedTask as selectedTask
-            targetVC.editedTask = self.selectedTask
+            let selectedIndexPath = taskHomeTableView.indexPathForSelectedRow()!
+            let selectedTask = tasks[selectedIndexPath.row]
+            targetVC.editedTask = selectedTask
             println(targetVC.editedTask)
             realm.write() {
-                targetVC.editedTask!.badge = self.selectedTask!.badge
+                targetVC.editedTask!.badge = selectedTask.badge
                 println(targetVC.editedTask!.badge)
             }
             
@@ -235,7 +235,7 @@ class TaskViewController: UIViewController {
             let indexPath = tableView.indexPathForCell(cell)
             
             //self.prepareForSegue(segue, sender: self)
-            self.selectedTask = self.tasks[indexPath!.row]
+            //            self.selectedTask = self.tasks[indexPath!.row]
             
             // For the grey background.
             cell.backgroundColor = UIColor(red: 220/255, green: 216/255, blue: 216/255, alpha: 100)
@@ -313,8 +313,9 @@ extension TaskViewController: UITableViewDataSource {
         }
         
         // Sets custom separators between cells on viewDidLoad
-        //                taskHomeTableView.separatorInset = UIEdgeInsetsZero
-        //                taskHomeTableView.layoutMargins = UIEdgeInsetsZero
+        //taskHomeTableView.separatorInset = UIEdgeInsetsZero
+        //taskHomeTableView.layoutMargins = UIEdgeInsetsZero
+        
         // Configure cell
         let row = indexPath.row
         let task = tasks[row] as Task
@@ -337,16 +338,19 @@ extension TaskViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         // Assigns the task object at the cell to selectedTask
-        selectedTask = tasks[indexPath.row]
+        let selectedTask = tasks[indexPath.row]
+        
         
         if (editing == true) {
             // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
-            
-            // Use a "set"
-            selectedRow.addObject(selectedTask!)
-            println(indexPath.row)
-            //println("Its not in the array")
-            //println(selectedRow.count)
+            if let index = find(selectedRows, selectedTask) {
+                // Removing at index "index" the selectedTask form selectedRows
+                selectedRows.removeAtIndex(index)
+            } else {
+                // Appending selectedTask to the array of selectedRows
+                selectedRows.append(selectedTask)
+                println(selectedRows.count)
+            }
         } else {
             // Performs the segue to editTaskVC
             self.performSegueWithIdentifier("editTask", sender: self)
@@ -358,29 +362,20 @@ extension TaskViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
-        selectedTask = tasks[indexPath.row]
-        //println(selectedTask!)
-        selectedRow.removeObjectIdenticalTo(selectedTask!)
-        println(selectedRow.count)
-        //println(indexPath.row)
-//        if (editing == true) {
-//            if let unwrappedSelectedTask = selectedTask {
-//                if selectedRow.containsObject(unwrappedSelectedTask) {
-//                    println("It's in the array already!")
-//                    selectedRow.removeObject(unwrappedSelectedTask)
-//                    println("The array is now \(selectedRow)")
-//                } else {
-//                    println("Couldnt remove item at \(indexPath)")
-//                }
-//            }
-//            
-//        }
-        //println(selectedRow)
+        // taskTodeselect is the task at indexPath.row
+        let taskToDeselect = tasks[indexPath.row]
+        if let index = find(selectedRows, taskToDeselect) {
+            // Removing from selectedRows the selectedRow at index
+            selectedRows.removeAtIndex(index)
+        }
+        println(selectedRows.count)
     }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
 }
 
-func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    return true
-}
 
 

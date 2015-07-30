@@ -18,3 +18,5 @@ class Task: Object {
     dynamic var badge = 0
     dynamic var category: Category?
 }
+
+

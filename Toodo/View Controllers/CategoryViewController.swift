@@ -52,7 +52,7 @@ class CategoryViewController: UIViewController {
     var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
     // A var of type category which indicates the selectedList
-    var selectedCategory: Category?
+//    var selectedCategory: Category?
     
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
@@ -157,6 +157,8 @@ class CategoryViewController: UIViewController {
             let titleVC = segue.destinationViewController as! TaskViewController
             
             // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
+            
+            
             titleVC.category = selectedCategory
             
             // Sets the nav bar color to the color of whatever the cell color was in the previous VC

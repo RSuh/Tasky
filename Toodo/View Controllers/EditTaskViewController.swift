@@ -152,17 +152,45 @@ extension EditTaskViewController: FSCalendarDataSource {
 extension EditTaskViewController: FSCalendarDelegate {
     func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
         
-        let todaysDate = NSDateComponents()
+        var tomorrowFlag: Bool = true
+        
+        // date = the date which is picked and todays date is todays date
+        let todaysDate = NSDate()
+        
+        // Sets the format for the date which is picked
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEEE, MMMM d"
         var dateString = dateFormatter.stringFromDate(date)
         
-        println(todaysDate.isEqualToDate(date))
-        println(date.description)
+        // these var gets the string of the dates.
+        var pickedDateString = date.description
+        var todayDateString = todaysDate.description
         
+        // Gives tomorrows date
+        var tomorrow = todaysDate.dateByAddingTimeInterval(24 * 60 * 60)
+        var tomorrowDateString = tomorrow.description
         
-        if todaysDate.isEqualToDate(date) {
+        var compareTodayDateString = todayDateString.substringToIndex(advance(todayDateString.startIndex, 10))
+        var comparePickedDateString = pickedDateString.substringToIndex(advance(pickedDateString.startIndex, 10))
+        var frontTomorrowDateString = tomorrowDateString.substringToIndex(advance(tomorrowDateString.startIndex, 10))
+//        var backTomorrowDateString = tomorrowDateString.substringFromIndex(advance(tomorrowDateString.startIndex, 8))
+        var tomorrowWithoutdash = frontTomorrowDateString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        var todayWithoutDash = compareTodayDateString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        //println(frontTomorrowDateString.toInt())
+        var tomorrowInt = tomorrowWithoutdash.toInt()!
+        var todayInt = todayWithoutDash.toInt()!
+        
+        if (self.dateLabel.text == "Tomorrow") {
+            tomorrowFlag = false
+            tomorrowInt = 1
+        } else {
+            tomorrowFlag = false
+        }
+        
+        if compareTodayDateString == comparePickedDateString {
             self.dateLabel.text = "Today"
+        } else if tomorrowInt > todayInt && tomorrowFlag == true {
+            self.dateLabel.text = "Tomorrow"
         } else {
         
         
@@ -170,7 +198,7 @@ extension EditTaskViewController: FSCalendarDelegate {
         
         // If date is today, then display, due today, else display the date
         self.dateLabel.text = "Due \(dateString)"
-    }
+        }
     }
 }
 
