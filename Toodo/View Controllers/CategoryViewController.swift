@@ -348,7 +348,7 @@ extension CategoryViewController: UITableViewDelegate {
         
         // Sets the selectedCategory to be the category at indexPath.row
         selectedCategory = categories[indexPath.row]
-        
+        println("hi")
         if (editing == true) {
             // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
             if (selectedRow.containsObject(selectedCategory!)) {
@@ -358,6 +358,7 @@ extension CategoryViewController: UITableViewDelegate {
                 // Use a "set"
                 selectedRow.addObject(selectedCategory!)
                 println("Its not in the array")
+//                println(selectedRow)
             }
         } else {
             // Performs a segue "categoryToTask"

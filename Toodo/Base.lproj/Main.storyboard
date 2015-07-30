@@ -289,14 +289,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="k6X-Rq-pIZ">
-                                <rect key="frame" x="147" y="529" width="27" height="21"/>
+                                <rect key="frame" x="150" y="529" width="21" height="21"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add New Task" id="DzO-uF-QLj">
-                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="sih-qp-r7Y">
+                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="sih-qp-r7Y">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="acw-eh-aM0" kind="unwind" identifier="exitFromAdd" unwindAction="backToTaskFromAdd:" id="rRT-W1-X97"/>
@@ -328,7 +328,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zMS-sq-blL" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="64" width="320" height="383"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="407"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Img-gE-gqF" id="cLF-jt-wc0"/>
@@ -346,10 +346,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="IQq-xw-bRH">
-                                <rect key="frame" x="147" y="529" width="27" height="21"/>
+                                <rect key="frame" x="150" y="529" width="21" height="21"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="pD4-SC-6pF">
+                                <rect key="frame" x="0.0" y="471" width="320" height="1"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ai-0N-vGf">
-                                <rect key="frame" x="16" y="466" width="304" height="21"/>
+                                <rect key="frame" x="16" y="479" width="304" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -358,7 +361,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Set Date" id="LN2-Jf-VFA">
-                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="KOL-gd-o0n">
+                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="KOL-gd-o0n">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="jL3-ak-onY" kind="unwind" unwindAction="backToAddFromCalendar:" id="eh3-f5-BWx"/>
@@ -389,7 +392,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihM-Ws-PMe">
                                 <rect key="frame" x="16" y="78.5" width="85" height="96.5"/>
-                                <state key="normal" title="Button">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -408,12 +411,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="badgeEdit" translatesAutoresizingMaskIntoConstraints="NO" id="5PI-B5-2bI">
                                 <rect key="frame" x="86" y="87" width="30" height="30"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KNS-CH-AR9">
-                                <rect key="frame" x="16" y="196" width="288" height="63"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRz-3k-iew">
                                 <rect key="frame" x="124" y="78.5" width="180" height="96"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -426,45 +423,59 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="1Hm-9G-D3D">
                                 <rect key="frame" x="0.0" y="187" width="320" height="1"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="eyQ-g7-WwI">
-                                <rect key="frame" x="0.0" y="266" width="320" height="1"/>
-                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xm2-IV-qMw" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="267" width="320" height="258"/>
+                                <rect key="frame" x="0.0" y="188" width="320" height="282"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="shg-3L-Bnq" id="f22-z0-dY8"/>
                                     <outlet property="delegate" destination="shg-3L-Bnq" id="nx3-PY-gnF"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZeU-hb-Ncw">
+                                <rect key="frame" x="0.0" y="511" width="320" height="57"/>
+                                <state key="normal" backgroundImage="addBackground">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addOrDeleteButton:" destination="Ncj-My-Rse" eventType="touchUpInside" id="m1I-L2-kcQ"/>
+                                    <segue destination="mKd-GH-PUP" kind="unwind" identifier="saveFromEdit" unwindAction="backToTaskFromEdit:" id="VVE-26-dc1"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="jK4-gT-75Y">
+                                <rect key="frame" x="150" y="529" width="21" height="21"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="QrU-7P-1zr">
+                                <rect key="frame" x="0.0" y="470" width="320" height="1"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1M-DF-c3y">
+                                <rect key="frame" x="16" y="481" width="304" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Task" id="qAa-tb-xN5">
-                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="NkE-No-qlo">
+                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="NkE-No-qlo">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="mKd-GH-PUP" kind="unwind" identifier="exitFromEdit" unwindAction="backToTaskFromEdit:" id="nWR-Zk-6aH"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="checkmark" id="Vn3-Re-yoP">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="mKd-GH-PUP" kind="unwind" identifier="saveFromEdit" unwindAction="backToTaskFromEdit:" id="xZz-fC-Tdu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="badgeImage" destination="oMP-uO-zyB" id="y0x-Y7-jWA"/>
-                        <outlet property="taskNoteField" destination="KNS-CH-AR9" id="ibh-7Y-UyA"/>
+                        <outlet property="dateLabel" destination="H1M-DF-c3y" id="Txd-VC-uGs"/>
                         <outlet property="taskTextField" destination="sRz-3k-iew" id="tzF-6G-hPF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGp-Vn-nq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mKd-GH-PUP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3652" y="-438"/>
+            <point key="canvasLocation" x="3646" y="-416"/>
         </scene>
         <!--Change Badge-->
         <scene sceneID="MQT-rz-rLB">
@@ -478,65 +489,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GD4-do-E89">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2te-3B-z7A">
+                                <rect key="frame" x="0.0" y="511" width="320" height="57"/>
+                                <state key="normal" backgroundImage="addBackground">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addOrDeleteButton:" destination="Ncj-My-Rse" eventType="touchUpInside" id="VgA-wz-Y5r"/>
+                                    <action selector="addTask:" destination="fvL-CD-BgV" eventType="touchUpInside" id="phm-CZ-eN9"/>
+                                    <segue destination="qIZ-PM-v20" kind="unwind" identifier="saveFromChangeBadge" unwindAction="backToEditFromChangeBadge:" id="1fa-w3-coB"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="kfi-m7-rfr">
+                                <rect key="frame" x="150" y="529" width="21" height="21"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-jK-w49">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="511"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="LMB-Fk-mnK">
-                                    <size key="itemSize" width="81" height="92"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="R1u-96-0TT">
+                                    <size key="itemSize" width="80" height="92"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="18" minY="0.0" maxX="18" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="18" minY="14" maxX="18" maxY="18"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeImage" id="ijk-Kp-eyY" customClass="CategoryCollectionViewCell" customModule="Toodo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="badgeImage" id="T3y-Z4-XHl" customClass="CategoryCollectionViewCell" customModule="Toodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="81" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJd-Mj-WIH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="81" height="92"/>
+                                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="reN-fU-ZIl">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="92"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <outlet property="chooseBadgeImage" destination="oJd-Mj-WIH" id="X5t-RB-yQq"/>
+                                            <outlet property="chooseBadgeImage" destination="reN-fU-ZIl" id="VbX-IK-lYJ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="wye-bd-jgG" id="P7a-0h-MHx"/>
-                                    <outlet property="delegate" destination="wye-bd-jgG" id="JQa-Cm-psj"/>
+                                    <outlet property="dataSource" destination="wye-bd-jgG" id="RbJ-CG-HJr"/>
+                                    <outlet property="delegate" destination="wye-bd-jgG" id="0nP-FL-Z5f"/>
                                 </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Change Badge" id="yEx-F9-2IJ">
-                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="iJs-gH-Fyq">
+                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="iJs-gH-Fyq">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="qIZ-PM-v20" kind="unwind" identifier="exitFromChangeBadge" unwindAction="backToEditFromChangeBadge:" id="aJb-UL-RNa"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="checkmark" id="07p-aj-Fi1">
-                            <color key="tintColor" red="0.023529414087533951" green="0.050980396568775177" blue="0.050980396568775177" alpha="1" colorSpace="deviceRGB"/>
-                            <connections>
-                                <segue destination="qIZ-PM-v20" kind="unwind" identifier="saveFromChangeBadge" unwindAction="backToEditFromChangeBadge:" id="bvy-zc-FbP"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="badgeImage" destination="GD4-do-E89" id="dAR-WN-gB2"/>
+                        <outlet property="badgeImage" destination="WKH-jK-w49" id="4YE-ku-QHo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6X-H4-KBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qIZ-PM-v20" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4073" y="-438"/>
+            <point key="canvasLocation" x="4038" y="-416"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s9z-Hs-9k9">
@@ -650,7 +670,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add New List" id="LD0-Rj-HcG">
-                        <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="xtG-UT-A6s">
+                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="xtG-UT-A6s">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="thr-q5-SdA" kind="unwind" identifier="exitToCategoryFromAdd" unwindAction="backToCategoryFromAddingList:" id="CgE-ae-y7t"/>
@@ -680,9 +700,10 @@
     <resources>
         <image name="CalendarIcon" width="56" height="56"/>
         <image name="addBackground" width="320" height="58"/>
+        <image name="backArrow" width="27" height="22"/>
         <image name="badgeEdit" width="30" height="30"/>
         <image name="categories" width="25" height="22"/>
-        <image name="checkmark" width="28" height="21"/>
+        <image name="checkmark" width="25" height="25"/>
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>
         <image name="editTitleLine" width="261" height="1"/>

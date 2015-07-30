@@ -103,13 +103,14 @@ class TaskViewController: UIViewController {
                 for (var index = 0; index <= self.selectedRow.count - 1; index++) {
                     // TODO: Get rows to animate and delete 1 by 1.
                     self.realm.delete(self.selectedRow[index] as! Object)
+                    println("item at index \(index) has been deleted")
                 }
             }
             
-            println("item successfully deleted")
             
             
-            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+            tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+            
         } else{
             
             // Segues to addVC
@@ -201,7 +202,7 @@ class TaskViewController: UIViewController {
         }
         
         // Reloads the data for the tableView for cellforrowatindexpath function so enabling the edit can be turned off and on
-        self.taskHomeTableView.reloadData()
+        //self.taskHomeTableView.reloadData()
     }
     
     
@@ -312,8 +313,8 @@ extension TaskViewController: UITableViewDataSource {
         }
         
         // Sets custom separators between cells on viewDidLoad
-//                taskHomeTableView.separatorInset = UIEdgeInsetsZero
-//                taskHomeTableView.layoutMargins = UIEdgeInsetsZero
+        //                taskHomeTableView.separatorInset = UIEdgeInsetsZero
+        //                taskHomeTableView.layoutMargins = UIEdgeInsetsZero
         // Configure cell
         let row = indexPath.row
         let task = tasks[row] as Task
@@ -340,14 +341,12 @@ extension TaskViewController: UITableViewDelegate {
         
         if (editing == true) {
             // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
-            if (selectedRow.containsObject(selectedTask!)) {
-                println("It's in the array already!")
-                selectedRow.removeObject(selectedTask!)
-            } else {
-                // Use a "set"
-                selectedRow.addObject(selectedTask!)
-                println("Its not in the array")
-            }
+            
+            // Use a "set"
+            selectedRow.addObject(selectedTask!)
+            println(indexPath.row)
+            //println("Its not in the array")
+            //println(selectedRow.count)
         } else {
             // Performs the segue to editTaskVC
             self.performSegueWithIdentifier("editTask", sender: self)
@@ -355,6 +354,28 @@ extension TaskViewController: UITableViewDelegate {
             // To deselect a cell after it's tapped
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        selectedTask = tasks[indexPath.row]
+        //println(selectedTask!)
+        selectedRow.removeObjectIdenticalTo(selectedTask!)
+        println(selectedRow.count)
+        //println(indexPath.row)
+//        if (editing == true) {
+//            if let unwrappedSelectedTask = selectedTask {
+//                if selectedRow.containsObject(unwrappedSelectedTask) {
+//                    println("It's in the array already!")
+//                    selectedRow.removeObject(unwrappedSelectedTask)
+//                    println("The array is now \(selectedRow)")
+//                } else {
+//                    println("Couldnt remove item at \(indexPath)")
+//                }
+//            }
+//            
+//        }
+        //println(selectedRow)
     }
 }
 

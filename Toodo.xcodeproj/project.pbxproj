@@ -26,6 +26,7 @@
 		456C99F41B66D19F002E1074 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */; };
 		456C99F61B698494002E1074 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F51B698494002E1074 /* CalendarViewController.swift */; };
 		456C99F81B699A7B002E1074 /* ThemeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F71B699A7B002E1074 /* ThemeButtonView.swift */; };
+		456C99FA1B6AB5B8002E1074 /* NSDate-Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F91B6AB5B8002E1074 /* NSDate-Equatable.swift */; };
 		457D28901B558460000952CC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D288F1B558460000952CC /* CategoryViewController.swift */; };
 		457D28921B5585F5000952CC /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28911B5585F5000952CC /* CategoryTableViewCell.swift */; };
 		457D28941B558908000952CC /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457D28931B558908000952CC /* Category.swift */; };
@@ -86,6 +87,7 @@
 		456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		456C99F51B698494002E1074 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		456C99F71B699A7B002E1074 /* ThemeButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeButtonView.swift; sourceTree = "<group>"; };
+		456C99F91B6AB5B8002E1074 /* NSDate-Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate-Equatable.swift"; sourceTree = "<group>"; };
 		457D288F1B558460000952CC /* CategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		457D28911B5585F5000952CC /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		457D28931B558908000952CC /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */,
 				456C99F51B698494002E1074 /* CalendarViewController.swift */,
 				456C99F71B699A7B002E1074 /* ThemeButtonView.swift */,
+				456C99F91B6AB5B8002E1074 /* NSDate-Equatable.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				457D28941B558908000952CC /* Category.swift in Sources */,
 				456C99F81B699A7B002E1074 /* ThemeButtonView.swift in Sources */,
 				457D289D1B5A1B1F000952CC /* AddNewTaskViewController.swift in Sources */,
+				456C99FA1B6AB5B8002E1074 /* NSDate-Equatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

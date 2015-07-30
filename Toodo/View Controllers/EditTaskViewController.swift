@@ -12,13 +12,10 @@ import RealmSwift
 
 class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var dateLabelInEdit: UILabel!
-    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextField!
-    @IBOutlet weak var taskNoteField: UITextView!
-    //    @IBOutlet weak var reminderCell: UITableViewCell!
-    
+    @IBOutlet weak var dateLabel: UILabel!
+   
     // Initialize realm
     let realm = Realm()
     
@@ -46,7 +43,6 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         if let task = task, taskTextField = taskTextField {
             realm.write() {
                 self.taskTextField.text = self.editedTask!.taskTitle
-                self.taskNoteField.text = self.editedTask!.taskNote
             }
         }
     }
@@ -57,13 +53,11 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             println(editedTask.badge)
             realm.write() {
                 if ((editedTask.taskTitle != self.taskTextField.text) ||
-                    (editedTask.badge != self.badge) ||
-                    (editedTask.taskNote != self.taskNoteField.text)) {
+                    (editedTask.badge != self.badge)) {
                         
                         editedTask.taskTitle = self.taskTextField.text
                         // Saves the badge as the editedTask.badge passed from TaskVC
                         editedTask.badge = self.editedTask!.badge
-                        editedTask.taskNote = self.taskNoteField.text
                 } else {
                     println("nothing has changed")
                 }
@@ -75,9 +69,6 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEEE, MMMM d"
-        
-        var labelStr = dateFormatter.stringFromDate(datePicker.date)
-        self.dateLabelInEdit.text = labelStr
         
     }
     
@@ -122,12 +113,11 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         
 //        // Sets the date to today
 //        var date = NSDate()
-//        let selectedDate = NSDateFormatter()
-//        selectedDate.dateFormat = "EEEE, MMMM d"
-//        
-//        // Sets the datepicker to today
-//        datePicker.setDate(date, animated: true)
-//        self.dateLabelInEdit.text = selectedDate.stringFromDate(date)
+//        let todaysDate = NSDateFormatter()
+//        todaysDate.dateFormat = "EEEE, MMMM d"
+        
+        // Sets todays date as the text of the label
+        self.dateLabel.text = "Today"
     }
     
     override func didReceiveMemoryWarning() {
@@ -160,6 +150,27 @@ extension EditTaskViewController: FSCalendarDataSource {
 }
 
 extension EditTaskViewController: FSCalendarDelegate {
-    
+    func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
+        
+        let todaysDate = NSDateComponents()
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM d"
+        var dateString = dateFormatter.stringFromDate(date)
+        
+        println(todaysDate.isEqualToDate(date))
+        println(date.description)
+        
+        
+        if todaysDate.isEqualToDate(date) {
+            self.dateLabel.text = "Today"
+        } else {
+        
+        
+        // if date is tomorrow, then display, due tomorrow, else display the date.
+        
+        // If date is today, then display, due today, else display the date
+        self.dateLabel.text = "Due \(dateString)"
+    }
+    }
 }
 
