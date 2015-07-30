@@ -13,6 +13,7 @@ class TaskViewController: UIViewController {
     
     // REMEMBER TO CONNECT THE OUTLET IN STORYBOARD
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
+    @IBOutlet weak var buttonImage: UIImageView!
     
     // The variable for the navbar color of this view controller. We need this variable to transfer the color from the previous VC using a segue
     var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
@@ -148,6 +149,9 @@ class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Intializes the add button
+        buttonImage.image = UIImage(named: "addButton")
         
         // Sets title to the categoryTitleForNavBar
         //self.title = "\(categoryTitleForNavBar) Category"

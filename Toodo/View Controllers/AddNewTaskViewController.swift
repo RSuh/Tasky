@@ -93,12 +93,27 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
     }
     
+    @IBAction func backToAddFromCalendar(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "backToAddFromCalendar":
+                println("Back to add from calendar")
+                
+            default:
+                println("failed")
+            }
+        }
+    }
+    
+    // This is the button to add a task
+    @IBAction func addTask(sender: AnyObject) {
+        newTask = Task()
+        saveNewTask()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "exitFromAdd" {
             println("exitFromAdd")
-        } else {
-            newTask = Task()
-            saveNewTask()
         }
     }
     
@@ -108,22 +123,16 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         // Do any additional setup after loading the view.
     }
     
+    // Hides keyboard whenever you tap outside the keyboard
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     override func viewWillDisappear(animated: Bool) {
-    }
-}
-
-extension AddNewTaskViewController: FSCalendarDataSource {
-    
-}
-
-extension AddNewTaskViewController: FSCalendarDelegate {
-    // What happens when the user selects the date
-    func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
-        println(date)
     }
 }

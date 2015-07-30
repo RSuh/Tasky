@@ -15,7 +15,10 @@ class AddNewCategoryViewController: UIViewController {
     @IBOutlet weak var turquoiseTheme: UIButton!
     @IBOutlet weak var categoryTitle: UITextField!
     
-    var colorString: String = ""
+    var themeColor: UIColor = UIColor.whiteColor()
+    var R: Double = 0
+    var G: Double = 0
+    var B: Double = 0
     
     var addNewCategory: Category? {
         didSet {
@@ -35,7 +38,9 @@ class AddNewCategoryViewController: UIViewController {
     func displayCellColor(category: Category?) {
         if let category = category {
             // Sets the newly added category's imageName to be equal to category.imageName
-            addNewCategory!.imageName = category.imageName
+            addNewCategory?.R = R
+            addNewCategory?.G = G
+            addNewCategory?.B = B
         }
     }
     
@@ -44,13 +49,14 @@ class AddNewCategoryViewController: UIViewController {
         if let addNewCategory = addNewCategory {
             let realm = Realm()
             realm.write() {
-                if ((addNewCategory.categoryTitle != self.categoryTitle.text) ||
-                    (addNewCategory.imageName != self.colorString)) {
-                        addNewCategory.categoryTitle = self.categoryTitle.text
-                        
-                        // Sets the new category's imageName to be the string to colorString
-                        addNewCategory.imageName = self.colorString
-                        println("changes are saved")
+                if (addNewCategory.categoryTitle != self.categoryTitle.text) {
+                    addNewCategory.categoryTitle = self.categoryTitle.text
+                    
+                    // Sets the new category's imageName to be the string to colorString
+                    addNewCategory.R = self.R
+                    addNewCategory.G = self.G
+                    addNewCategory.B = self.B
+                    println("changes are saved")
                 } else {
                     println("nothing to save")
                 }
@@ -60,12 +66,20 @@ class AddNewCategoryViewController: UIViewController {
     
     @IBAction func tapPurpleTheme(sender: AnyObject) {
         println("tapped purple")
-        colorString = "rectanglePurple"
+        themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+        R = 0.81
+        G = 0.59
+        B = 0.93
+        println("\(R)\(G)\(B)")
     }
     
     @IBAction func tapTurquoiseTheme(sender: AnyObject) {
         println("tapped turquoise")
-        colorString = "rectangleTurqoise"
+        themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+        R = 0.15
+        G = 0.85
+        B = 0.70
+        println("\(R)\(G)\(B)")
     }
     
     // Passing category object to Home View Controller
@@ -76,7 +90,6 @@ class AddNewCategoryViewController: UIViewController {
         //addNewCategory?.tasksWithinCategory =
         println("category object is created")
         saveCategory()
-        println(addNewCategory!.imageName)
     }
     
     override func viewDidLoad() {
@@ -84,12 +97,17 @@ class AddNewCategoryViewController: UIViewController {
         
         // Placeholder text for textfield in Add
         categoryTitle.placeholder = "Title of your Category..."
+        
+        purpleTheme.backgroundColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+        purpleTheme.layer.cornerRadius = 11
+        
+        turquoiseTheme.backgroundColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+        turquoiseTheme.layer.cornerRadius = 11
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
+

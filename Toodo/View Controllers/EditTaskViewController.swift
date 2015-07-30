@@ -74,7 +74,6 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     @IBAction func selectDateAction(sender: AnyObject) {
         
         var dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
         dateFormatter.dateFormat = "EEEE, MMMM d"
         
         var labelStr = dateFormatter.stringFromDate(datePicker.date)

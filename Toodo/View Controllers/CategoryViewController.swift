@@ -31,6 +31,8 @@ class CategoryViewController: UIViewController {
     // For adding, flag is true, for deleting, flag is false
     var flagForAddOrDelete: Bool = true
     
+    var rgbValue: UIColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
     let editIcon = FAKIonIcons.androidCreateIconWithSize(30)
@@ -70,6 +72,10 @@ class CategoryViewController: UIViewController {
                 realm.write() {
                     // Adds a newList
                     self.realm.add(saveSourceFromAdd.addNewCategory!)
+                    println(saveSourceFromAdd.R)
+                    println(saveSourceFromAdd.G)
+                    println(saveSourceFromAdd.B)
+                    
                 }
                 
             default:
@@ -146,12 +152,15 @@ class CategoryViewController: UIViewController {
             titleVC.category = selectedCategory
             
             // Sets the nav bar color to the color of whatever the cell color was in the previous VC
-            if (selectedCategory?.imageName == "rectanglePurple") {
-                
-                // TODO: Change navbar color
-                
-                //titleVC.navbarColor =
-                //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+            // Purple Theme
+            if ((selectedCategory?.R == 0.81) &&
+                (selectedCategory?.G == 0.59) &&
+                (selectedCategory?.B == 0.93 )) {
+                    
+                    // TODO: Change navbar color
+                    
+                    //titleVC.navbarColor =
+                    //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
             }
             
             // Sets the category title in the next VC to be the selected category's title
@@ -272,8 +281,13 @@ extension CategoryViewController: UITableViewDataSource {
         // Initialize cell
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
-//        categoryTableView.backgroundColor = UIColor.lightGrayColor()
-//        cell.backgroundColor = UIColor.lightGrayColor()
+        //        categoryTableView.backgroundColor = UIColor.lightGrayColor()
+        //        cell.backgroundColor = UIColor.lightGrayColor()
+        
+//        if (cell.backgroundView == nil) {
+//            cell.backgroundView = UIView()
+//        }
+//        cell.backgroundView?.backgroundColor = UIColor(red: 
         
         let size = CGSizeMake(30, 30)
         
@@ -296,8 +310,8 @@ extension CategoryViewController: UITableViewDataSource {
         cell.category = category
         
         // Sets custom separators between cells on viewDidLoad
-//        categoryTableView.separatorInset = UIEdgeInsetsZero
-//        categoryTableView.layoutMargins = UIEdgeInsetsZero
+        //        categoryTableView.separatorInset = UIEdgeInsetsZero
+        //        categoryTableView.layoutMargins = UIEdgeInsetsZero
         
         //cell.accessoryView?.tintColor = UIColor.blackColor()
         // Custom separator lines between cells
@@ -329,9 +343,9 @@ extension CategoryViewController: UITableViewDelegate {
                 println("It's in the array already!")
                 selectedRow.removeObject(selectedCategory!)
             } else {
-            // Use a "set"
-            selectedRow.addObject(selectedCategory!)
-            println("Its not in the array")
+                // Use a "set"
+                selectedRow.addObject(selectedCategory!)
+                println("Its not in the array")
             }
         } else {
             // Performs a segue "categoryToTask"

@@ -14,7 +14,8 @@ class CategoryTableViewCell: SBGestureTableViewCell {
     // Initialize realm
     let realm = Realm()
     
-    @IBOutlet weak var categoryCellColor: UIImageView!
+
+    @IBOutlet weak var categoryCellColor: UIView!
     @IBOutlet weak var taskCount: UILabel!
     @IBOutlet weak var categoryTitle: UILabel!
     
@@ -37,7 +38,8 @@ class CategoryTableViewCell: SBGestureTableViewCell {
                 categoryTitle.text = category.categoryTitle
                 
                 // Sets the cell color image to a UIImage named the category.imageName
-                categoryCellColor.image = UIImage(named: "\(category.imageName)")
+                categoryCellColor.backgroundColor = UIColor(red: CGFloat(category.R), green: CGFloat(category.G), blue: CGFloat(category.B), alpha: 1.0)
+                
             }
         }
     }

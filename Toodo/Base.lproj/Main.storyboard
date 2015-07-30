@@ -25,9 +25,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kQZ-tW-3CL" id="3Pb-yS-VhR">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eL5-U2-XuO">
-                                                    <rect key="frame" x="0.0" y="0.5" width="320" height="75.5"/>
-                                                </imageView>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUh-bU-YPt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-nh-9Nq">
                                                     <rect key="frame" x="15" y="38" width="126" height="27"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -46,7 +47,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="categoryCellColor" destination="eL5-U2-XuO" id="Yk4-68-6qL"/>
+                                            <outlet property="categoryCellColor" destination="cUh-bU-YPt" id="Cr7-ZI-jhq"/>
                                             <outlet property="categoryTitle" destination="tFW-jS-0pH" id="Pdr-Pm-vBG"/>
                                             <outlet property="taskCount" destination="7el-nh-9Nq" id="7dh-H3-iLy"/>
                                         </connections>
@@ -110,7 +111,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MDr-AE-52X" customClass="SBGestureTableView" customModule="Toodo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="320" height="446"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="447"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="69" id="gXA-Jv-329" customClass="TaskTableViewCell" customModule="Toodo" customModuleProvider="target">
@@ -122,15 +123,15 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-Rn-nfw">
                                                     <rect key="frame" x="8" y="4" width="51" height="61"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do stuff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgx-z4-A96">
-                                                    <rect key="frame" x="75" y="4" width="206" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="tQk-Fi-Gjv">
                                                     <rect key="frame" x="290" y="27" width="9" height="16"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do stuff" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgx-z4-A96">
+                                                    <rect key="frame" x="67" y="8" width="206" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -145,15 +146,20 @@
                                     <outlet property="delegate" destination="Tkz-QC-Deg" id="rf5-Dn-uYH"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cM-rt-GXP">
-                                <rect key="frame" x="0.0" y="510" width="320" height="58"/>
-                                <state key="normal" image="addButton" backgroundImage="addBackground">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiD-Oi-fzP">
+                                <rect key="frame" x="0.0" y="511" width="320" height="57"/>
+                                <state key="normal" backgroundImage="addBackground">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="YNw-hM-UAn"/>
+                                    <action selector="addOrDeleteButton:" destination="Ncj-My-Rse" eventType="touchUpInside" id="a04-f3-4pZ"/>
+                                    <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="Qcl-Is-aec"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whC-cE-PUS">
+                                <rect key="frame" x="148" y="527" width="24" height="25"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -170,6 +176,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="buttonImage" destination="whC-cE-PUS" id="GS4-Rh-eVA"/>
                         <outlet property="taskHomeTableView" destination="MDr-AE-52X" id="aB6-RJ-4Ag"/>
                         <segue destination="shg-3L-Bnq" kind="show" identifier="editTask" id="aDi-Sv-uhb"/>
                     </connections>
@@ -249,6 +256,8 @@
                                 </state>
                                 <connections>
                                     <action selector="addOrDeleteButton:" destination="Ncj-My-Rse" eventType="touchUpInside" id="T7K-j7-cuT"/>
+                                    <action selector="addTask:" destination="fvL-CD-BgV" eventType="touchUpInside" id="04J-ji-F6x"/>
+                                    <segue destination="acw-eh-aM0" kind="unwind" identifier="saveFromAdd" unwindAction="backToTaskFromAdd:" id="0xx-3z-qVq"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="OgI-gs-0UF">
@@ -275,6 +284,9 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="k6X-Rq-pIZ">
+                                <rect key="frame" x="147" y="529" width="27" height="21"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -284,12 +296,6 @@
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="acw-eh-aM0" kind="unwind" identifier="exitFromAdd" unwindAction="backToTaskFromAdd:" id="rRT-W1-X97"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="checkmark" id="qYM-XG-fRi">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="acw-eh-aM0" kind="unwind" identifier="saveFromAdd" unwindAction="backToTaskFromAdd:" id="lhz-LJ-ND1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -303,12 +309,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbA-b5-H7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="acw-eh-aM0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2813" y="-263"/>
+            <point key="canvasLocation" x="2798" y="-391"/>
         </scene>
         <!--Set Date-->
         <scene sceneID="y3i-8c-9l9">
             <objects>
-                <viewController id="Img-gE-gqF" sceneMemberID="viewController">
+                <viewController id="Img-gE-gqF" customClass="CalendarViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="doA-mp-VZp"/>
                         <viewControllerLayoutGuide type="bottom" id="tXS-Ju-qaf"/>
@@ -318,16 +324,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zMS-sq-blL" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="64" width="320" height="450"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="383"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="Img-gE-gqF" id="AkY-BO-Ka0"/>
-                                    <outlet property="delegate" destination="Img-gE-gqF" id="Pdq-ov-fWn"/>
+                                    <outlet property="dataSource" destination="Img-gE-gqF" id="cLF-jt-wc0"/>
+                                    <outlet property="delegate" destination="Img-gE-gqF" id="cHE-8b-LDM"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDT-sD-ofM">
+                                <rect key="frame" x="0.0" y="511" width="320" height="57"/>
+                                <state key="normal" backgroundImage="addBackground">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addOrDeleteButton:" destination="Ncj-My-Rse" eventType="touchUpInside" id="Dn6-6s-PIT"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="IQq-xw-bRH">
+                                <rect key="frame" x="147" y="529" width="27" height="21"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ai-0N-vGf">
-                                <rect key="frame" x="16" y="527" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="466" width="304" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -337,11 +356,18 @@
                     <navigationItem key="navigationItem" title="Set Date" id="LN2-Jf-VFA">
                         <barButtonItem key="leftBarButtonItem" image="chevronLeft" id="KOL-gd-o0n">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="jL3-ak-onY" kind="unwind" unwindAction="backToAddFromCalendar:" id="eh3-f5-BWx"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="4ai-0N-vGf" id="fUA-q0-S3Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAZ-1T-KCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jL3-ak-onY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3258" y="-416"/>
         </scene>
@@ -594,24 +620,21 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="mbM-n0-wrg">
                                 <rect key="frame" x="0.0" y="159" width="320" height="1"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="themePurple" translatesAutoresizingMaskIntoConstraints="NO" id="p4X-gN-jIt">
-                                <rect key="frame" x="14" y="130" width="21" height="21"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOD-07-Ssf">
-                                <rect key="frame" x="14" y="130" width="21" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOD-07-Ssf">
+                                <rect key="frame" x="14" y="130" width="21" height="22"/>
                                 <state key="normal">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="tapPurpleTheme:" destination="UF0-xq-MZ9" eventType="touchUpInside" id="Z8e-4u-EuZ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="themeturquoise" translatesAutoresizingMaskIntoConstraints="NO" id="Wh2-gO-6oL">
-                                <rect key="frame" x="45" y="130" width="21" height="21"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egh-eL-1zH">
-                                <rect key="frame" x="45" y="130" width="21" height="21"/>
+                                <rect key="frame" x="43" y="130" width="21" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -653,14 +676,11 @@
     <resources>
         <image name="CalendarIcon" width="56" height="56"/>
         <image name="addBackground" width="320" height="58"/>
-        <image name="addButton" width="24" height="25"/>
         <image name="badgeEdit" width="30" height="30"/>
         <image name="categories" width="25" height="22"/>
         <image name="checkmark" width="28" height="21"/>
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>
         <image name="editTitleLine" width="261" height="1"/>
-        <image name="themePurple" width="21" height="21"/>
-        <image name="themeturquoise" width="21" height="21"/>
     </resources>
 </document>
