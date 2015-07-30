@@ -15,7 +15,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var dateLabel: UILabel!
-   
+    
     // Initialize realm
     let realm = Realm()
     
@@ -111,10 +111,10 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        // Sets the date to today
-//        var date = NSDate()
-//        let todaysDate = NSDateFormatter()
-//        todaysDate.dateFormat = "EEEE, MMMM d"
+        //        // Sets the date to today
+        //        var date = NSDate()
+        //        let todaysDate = NSDateFormatter()
+        //        todaysDate.dateFormat = "EEEE, MMMM d"
         
         // Sets todays date as the text of the label
         self.dateLabel.text = "Today"
@@ -173,7 +173,7 @@ extension EditTaskViewController: FSCalendarDelegate {
         var compareTodayDateString = todayDateString.substringToIndex(advance(todayDateString.startIndex, 10))
         var comparePickedDateString = pickedDateString.substringToIndex(advance(pickedDateString.startIndex, 10))
         var frontTomorrowDateString = tomorrowDateString.substringToIndex(advance(tomorrowDateString.startIndex, 10))
-//        var backTomorrowDateString = tomorrowDateString.substringFromIndex(advance(tomorrowDateString.startIndex, 8))
+        //        var backTomorrowDateString = tomorrowDateString.substringFromIndex(advance(tomorrowDateString.startIndex, 8))
         var tomorrowWithoutdash = frontTomorrowDateString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         var todayWithoutDash = compareTodayDateString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         //println(frontTomorrowDateString.toInt())
@@ -184,20 +184,14 @@ extension EditTaskViewController: FSCalendarDelegate {
             tomorrowFlag = false
             tomorrowInt = 1
         } else {
-            tomorrowFlag = false
+            tomorrowFlag = true
         }
         
         if compareTodayDateString == comparePickedDateString {
             self.dateLabel.text = "Today"
-        } else if tomorrowInt > todayInt && tomorrowFlag == true {
-            self.dateLabel.text = "Tomorrow"
         } else {
-        
-        
-        // if date is tomorrow, then display, due tomorrow, else display the date.
-        
-        // If date is today, then display, due today, else display the date
-        self.dateLabel.text = "Due \(dateString)"
+            
+            self.dateLabel.text = "Due \(dateString)"
         }
     }
 }

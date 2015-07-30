@@ -155,7 +155,7 @@ class TaskViewController: UIViewController {
             let selectedIndexPath = taskHomeTableView.indexPathForSelectedRow()!
             let selectedTask = tasks[selectedIndexPath.row]
             targetVC.editedTask = selectedTask
-            println(targetVC.editedTask)
+
             realm.write() {
                 targetVC.editedTask!.badge = selectedTask.badge
                 println(targetVC.editedTask!.badge)

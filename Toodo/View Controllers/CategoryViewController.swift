@@ -158,14 +158,17 @@ class CategoryViewController: UIViewController {
             
             // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
             
+            // Set the editedCategory as selectedCategory
+            let selectedIndexPath = categoryTableView.indexPathForSelectedRow()!
+            let selectedCategory = categories[selectedIndexPath.row]
             
             titleVC.category = selectedCategory
             
             // Sets the nav bar color to the color of whatever the cell color was in the previous VC
             // Purple Theme
-            if ((selectedCategory?.R == 0.81) &&
-                (selectedCategory?.G == 0.59) &&
-                (selectedCategory?.B == 0.93 )) {
+            if ((selectedCategory.R == 0.81) &&
+                (selectedCategory.G == 0.59) &&
+                (selectedCategory.B == 0.93 )) {
                     
                     // TODO: Change navbar color
                     
@@ -174,9 +177,9 @@ class CategoryViewController: UIViewController {
             }
             
             // Sets the category title in the next VC to be the selected category's title
-            if (selectedCategory != nil) {
-                titleVC.categoryTitleForNavBar = selectedCategory!.categoryTitle
-            } else if (selectedCategory == nil) {
+            if (selectedCategory.categoryTitle != "") {
+                titleVC.categoryTitleForNavBar = selectedCategory.categoryTitle
+            } else if (selectedCategory.categoryTitle == "") {
                 titleVC.categoryTitleForNavBar = ""
             }
         }
@@ -235,7 +238,7 @@ class CategoryViewController: UIViewController {
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             
             let indexPath = tableView.indexPathForCell(cell)
-            self.selectedCategory = self.categories[indexPath!.row]
+//            self.selectedCategory = self.categories[indexPath!.row]
             cell.backgroundColor = UIColor.lightGrayColor()
             
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
@@ -349,16 +352,16 @@ extension CategoryViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         // Sets the selectedCategory to be the category at indexPath.row
-        selectedCategory = categories[indexPath.row]
+        let selectedCategory = categories[indexPath.row]
         println("hi")
         if (editing == true) {
             // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
-            if (selectedRow.containsObject(selectedCategory!)) {
+            if (selectedRow.containsObject(selectedCategory)) {
                 println("It's in the array already!")
-                selectedRow.removeObject(selectedCategory!)
+                selectedRow.removeObject(selectedCategory)
             } else {
                 // Use a "set"
-                selectedRow.addObject(selectedCategory!)
+                selectedRow.addObject(selectedCategory)
                 println("Its not in the array")
 //                println(selectedRow)
             }
