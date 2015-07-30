@@ -83,6 +83,7 @@ class EditCategoryViewController: UIViewController, UITextFieldDelegate {
         // Calls displayCategory on editedCategory
         displayCategory(editedCategory)
         displayBadge(editedCategory)
+    
     }
     
     override func viewWillDisappear(animated: Bool) {

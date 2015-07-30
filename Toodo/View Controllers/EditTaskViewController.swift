@@ -25,7 +25,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         didSet {
             displayTask(editedTask)
             displayBadge(editedTask)
-            
+            displayDate(editedTask)
         }
     }
     
@@ -47,14 +47,24 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Displays the date
+    func displayDate(task: Task?) {
+        if let task = task, dateLabel = dateLabel {
+            realm.write() {
+                self.dateLabel.text = self.editedTask!.modificationDate
+            }
+        }
+    }
+    
     // Saves the task
     func saveTask() {
         if let editedTask = editedTask, taskTextField = taskTextField {
             println(editedTask.badge)
             realm.write() {
                 if ((editedTask.taskTitle != self.taskTextField.text) ||
-                    (editedTask.badge != self.badge)) {
-                        
+                    (editedTask.badge != self.badge) ||
+                    (editedTask.modificationDate != self.dateLabel.text)){
+                        editedTask.modificationDate = self.dateLabel.text!
                         editedTask.taskTitle = self.taskTextField.text
                         // Saves the badge as the editedTask.badge passed from TaskVC
                         editedTask.badge = self.editedTask!.badge
@@ -139,6 +149,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         displayTask(editedTask)
         displayBadge(editedTask)
+        displayDate(editedTask)
         
         // Displays the badge image of the selectedTask
         badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[editedTask!.badge])
@@ -150,6 +161,34 @@ extension EditTaskViewController: FSCalendarDataSource {
 }
 
 extension EditTaskViewController: FSCalendarDelegate {
+    
+    func tomorrowFlag() {
+        
+        var tomorrowFlag: Bool = true
+        
+        
+        
+        //        if (self.dateLabel.text == "Tomorrow") {
+        //            tomorrowFlag = false
+        //            tomorrowInt = 1
+        //        } else {
+        //            tomorrowFlag = true
+        //        }
+        //
+        //        if compareTodayDateString == comparePickedDateString {
+        //            self.dateLabel.text = "Today"
+        //        } else if tomorrowInt > todayInt && tomorrowFlag == true {
+        //            self.dateLabel.text = "Tomorrow"
+        //            tomorrowFlag = false
+        //        }
+        //
+        //        if ((tomorrowInt > todayInt) && (tomorrowFlag == false)) {
+        //            self.dateLabel.text = "Due \(dateString)"
+        //        } else
+        //    }
+        
+    }
+    
     func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
         
         var tomorrowFlag: Bool = true
@@ -170,29 +209,21 @@ extension EditTaskViewController: FSCalendarDelegate {
         var tomorrow = todaysDate.dateByAddingTimeInterval(24 * 60 * 60)
         var tomorrowDateString = tomorrow.description
         
+        // The date for today in string
         var compareTodayDateString = todayDateString.substringToIndex(advance(todayDateString.startIndex, 10))
-        var comparePickedDateString = pickedDateString.substringToIndex(advance(pickedDateString.startIndex, 10))
-        var frontTomorrowDateString = tomorrowDateString.substringToIndex(advance(tomorrowDateString.startIndex, 10))
-        //        var backTomorrowDateString = tomorrowDateString.substringFromIndex(advance(tomorrowDateString.startIndex, 8))
-        var tomorrowWithoutdash = frontTomorrowDateString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        var todayWithoutDash = compareTodayDateString.stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        //println(frontTomorrowDateString.toInt())
-        var tomorrowInt = tomorrowWithoutdash.toInt()!
-        var todayInt = todayWithoutDash.toInt()!
         
-        if (self.dateLabel.text == "Tomorrow") {
-            tomorrowFlag = false
-            tomorrowInt = 1
-        } else {
-            tomorrowFlag = true
-        }
+        // The date which has been picked in string
+        var comparePickedDateString = pickedDateString.substringToIndex(advance(pickedDateString.startIndex, 10))
+        
+        // The date for tomorrow in string
+        var frontTomorrowDateString = tomorrowDateString.substringToIndex(advance(tomorrowDateString.startIndex, 10))
         
         if compareTodayDateString == comparePickedDateString {
-            self.dateLabel.text = "Today"
+            self.dateLabel.text = "Due Today"
+        } else if comparePickedDateString == frontTomorrowDateString {
+            self.dateLabel.text = "Due Tomorrow"
         } else {
-            
             self.dateLabel.text = "Due \(dateString)"
         }
     }
 }
-

@@ -13,7 +13,8 @@ class TaskTableViewCell: SBGestureTableViewCell {
 
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var badgeImage: UIImageView!
-
+    @IBOutlet weak var dateLabel: UILabel!
+    
     static var presentDate: NSDateFormatter {
        var formatter = NSDateFormatter()
         // Can set custom dates, refer to http://www.codingexplorer.com/swiftly-getting-human-readable-date-nsdateformatter/
@@ -35,7 +36,8 @@ class TaskTableViewCell: SBGestureTableViewCell {
     // didSet updates everytime task is changed
     var task: Task? {
         didSet {
-            if let task = task, taskLabel = taskLabel {
+            if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
+                dateLabel.text = task.modificationDate
                 taskLabel.text = task.taskTitle
                 badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
             }
