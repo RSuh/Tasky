@@ -110,7 +110,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MDr-AE-52X" customClass="SBGestureTableView" customModule="Toodo" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="69" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MDr-AE-52X" customClass="SBGestureTableView" customModule="Toodo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="320" height="447"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -132,6 +132,9 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="j9Z-zI-5Gu">
+                                                    <rect key="frame" x="0.0" y="68" width="320" height="1"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -154,7 +157,7 @@
                                 </state>
                                 <connections>
                                     <action selector="addOrDeleteButton:" destination="Ncj-My-Rse" eventType="touchUpInside" id="a04-f3-4pZ"/>
-                                    <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="Qcl-Is-aec"/>
+                                    <action selector="addOrDeleteButton:" destination="Tkz-QC-Deg" eventType="touchUpInside" id="doM-8k-7CA"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whC-cE-PUS">
@@ -179,12 +182,13 @@
                         <outlet property="buttonImage" destination="whC-cE-PUS" id="GS4-Rh-eVA"/>
                         <outlet property="taskHomeTableView" destination="MDr-AE-52X" id="aB6-RJ-4Ag"/>
                         <segue destination="shg-3L-Bnq" kind="show" identifier="editTask" id="aDi-Sv-uhb"/>
+                        <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="9Oh-4d-rfy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pid-l6-g5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1Jo-dx-3ZJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2844" y="380"/>
+            <point key="canvasLocation" x="3051" y="368"/>
         </scene>
         <!--Add New Task-->
         <scene sceneID="tpP-w2-kVd">
@@ -309,7 +313,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IbA-b5-H7J" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="acw-eh-aM0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2798" y="-391"/>
+            <point key="canvasLocation" x="2811" y="-416"/>
         </scene>
         <!--Set Date-->
         <scene sceneID="y3i-8c-9l9">

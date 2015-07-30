@@ -36,6 +36,12 @@ class TaskViewController: UIViewController {
     let editIcon = FAKIonIcons.androidCreateIconWithSize(30)
     let completeIcon = FAKIonIcons.androidDoneIconWithSize(30)
     
+    // A array for deleting
+    var selectedRow: NSMutableArray = []
+    
+    // For adding, flag is true, for deleting, flag is false
+    var flagForAddOrDelete: Bool = true
+    
     // Colors
     let greenColor = UIColor(red: 48.0/255, green: 220.0/255, blue: 107.0/255, alpha: 80)
     let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
@@ -76,7 +82,7 @@ class TaskViewController: UIViewController {
                 // If the Exit button is pressed
             case "exitFromEdit":
                 println("Exit from Edit")
-
+                
                 // Else
             default:
                 println("Nothing from edit \(identifier)")
@@ -86,6 +92,29 @@ class TaskViewController: UIViewController {
             tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
             //var taskOne = taskList[0]
             
+        }
+    }
+    
+    @IBAction func addOrDeleteButton(sender: AnyObject) {
+        if (flagForAddOrDelete == false) {
+            
+            realm.write() {
+                // Goes through each row and deletes all the selected ones
+                for (var index = 0; index <= self.selectedRow.count - 1; index++) {
+                    // TODO: Get rows to animate and delete 1 by 1.
+                    self.realm.delete(self.selectedRow[index] as! Object)
+                }
+            }
+            
+            println("item successfully deleted")
+            
+            
+            tasks = realm.objects(Task).sorted("modificationDate", ascending: false)
+        } else{
+            
+            // Segues to addVC
+            performSegueWithIdentifier("addTask", sender: sender)
+            println("segue has been performed")
         }
     }
     
@@ -138,17 +167,49 @@ class TaskViewController: UIViewController {
             targetVC.category = self.category
             targetVC.newTask?.category = self.category
         }
-//        else if (segue.identifier == "backToCategoryFromTask") {
-//            let targetVC = segue.destinationViewController as! CategoryViewController
-//            
-//            // Updates the task count when going back to the categoryVC after deleting or completing a task
-//            targetVC.categoryTableView.reloadData()
+        //        else if (segue.identifier == "backToCategoryFromTask") {
+        //            let targetVC = segue.destinationViewController as! CategoryViewController
+        //
+        //            // Updates the task count when going back to the categoryVC after deleting or completing a task
+        //            targetVC.categoryTableView.reloadData()
         tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        // Sets edit mode for the tableView
+        self.taskHomeTableView.setEditing(editing, animated: true)
+        if (editing == true) {
+            let toImage = UIImage(named: "Garbage")
+            UIView.transitionWithView(self.buttonImage,
+                duration: 0.35,
+                options: UIViewAnimationOptions.TransitionFlipFromBottom,
+                animations: { self.buttonImage.image = toImage },
+                completion: nil)
+            flagForAddOrDelete = false
+            println(flagForAddOrDelete)
+        } else if (editing == false) {
+            let backImage = UIImage(named: "addButton")
+            UIView.transitionWithView(self.buttonImage,
+                duration: 0.35,
+                options: UIViewAnimationOptions.TransitionFlipFromTop,
+                animations: { self.buttonImage.image = backImage },
+                completion: nil)
+            flagForAddOrDelete = true
+            println(flagForAddOrDelete)
         }
+        
+        // Reloads the data for the tableView for cellforrowatindexpath function so enabling the edit can be turned off and on
+        self.taskHomeTableView.reloadData()
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Disables the interaction with the image so that the image is basically transparent
+        buttonImage.userInteractionEnabled = false
         
         // Intializes the add button
         buttonImage.image = UIImage(named: "addButton")
@@ -156,6 +217,14 @@ class TaskViewController: UIViewController {
         // Sets title to the categoryTitleForNavBar
         //self.title = "\(categoryTitleForNavBar) Category"
         self.title = categoryTitleForNavBar
+        
+        // Sets the multiple editing feature
+        self.taskHomeTableView.allowsMultipleSelectionDuringEditing = true
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blackColor()
+        
+        taskHomeTableView.delegate = self
+        taskHomeTableView.dataSource = self
         
         // Calls setupIcons method
         setupIcons()
@@ -212,7 +281,7 @@ class TaskViewController: UIViewController {
         
         // Sorts tasks based on their modification Date
         tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
-         
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -229,20 +298,26 @@ extension TaskViewController: UITableViewDataSource {
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
         
+        // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
         // The Actions for the cells
-        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-        cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+        if (editing == false) {
+            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            
+            // A bool to see if the editing is enabled
+            taskHomeTableView.isEnabled = true
+        } else if (editing == true) {
+            // A bool to see if the editing is enabled
+            taskHomeTableView.isEnabled = false
+        }
         
+        // Sets custom separators between cells on viewDidLoad
+//                taskHomeTableView.separatorInset = UIEdgeInsetsZero
+//                taskHomeTableView.layoutMargins = UIEdgeInsetsZero
         // Configure cell
         let row = indexPath.row
         let task = tasks[row] as Task
         cell.task = task
-        
-        // Sets custom separators between cells on viewDidLoad
-        taskHomeTableView.separatorInset = UIEdgeInsetsZero
-        taskHomeTableView.layoutMargins = UIEdgeInsetsZero
-        
-        
         
         // This makes the separator be centered between the cells.
         //tableView.separatorInset.right = tableView.separatorInset.left
@@ -259,18 +334,32 @@ extension TaskViewController: UITableViewDataSource {
 extension TaskViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         // Assigns the task object at the cell to selectedTask
         selectedTask = tasks[indexPath.row]
         
-        // Performs the segue to editTaskVC
-        self.performSegueWithIdentifier("editTask", sender: self)
-        
-        // To deselect a cell after it's tapped
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        if (editing == true) {
+            // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
+            if (selectedRow.containsObject(selectedTask!)) {
+                println("It's in the array already!")
+                selectedRow.removeObject(selectedTask!)
+            } else {
+                // Use a "set"
+                selectedRow.addObject(selectedTask!)
+                println("Its not in the array")
+            }
+        } else {
+            // Performs the segue to editTaskVC
+            self.performSegueWithIdentifier("editTask", sender: self)
+            
+            // To deselect a cell after it's tapped
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
 }
+
+func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    return true
+}
+
 

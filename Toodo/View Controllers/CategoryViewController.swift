@@ -31,7 +31,9 @@ class CategoryViewController: UIViewController {
     // For adding, flag is true, for deleting, flag is false
     var flagForAddOrDelete: Bool = true
     
-    var rgbValue: UIColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    var editR = 0.0
+    var editB = 0.0
+    var editG = 0.0
     
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
@@ -45,6 +47,8 @@ class CategoryViewController: UIViewController {
     
     // Variable to removeCellBlock
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
+    
+    // Variable to replaceCell
     var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
     // A var of type category which indicates the selectedList
@@ -75,8 +79,12 @@ class CategoryViewController: UIViewController {
                     println(saveSourceFromAdd.R)
                     println(saveSourceFromAdd.G)
                     println(saveSourceFromAdd.B)
-                    
                 }
+                
+                // Sets the rgb value from other VC to self.VC
+                saveSourceFromAdd.R = self.editR
+                saveSourceFromAdd.G = self.editG
+                saveSourceFromAdd.B = self.editB
                 
             default:
                 println("failed")
@@ -218,9 +226,6 @@ class CategoryViewController: UIViewController {
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
         
-        // Sets up the lists cells by the modificationDate
-        categories = realm.objects(Category).sorted("taskCount", ascending: false)
-        
         // Calls setupIcons method
         setupIcons()
         
@@ -251,6 +256,9 @@ class CategoryViewController: UIViewController {
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
         }
+        
+        // Sets up the lists cells by the modificationDate
+        categories = realm.objects(Category).sorted("taskCount", ascending: false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -286,8 +294,12 @@ extension CategoryViewController: UITableViewDataSource {
         
 //        if (cell.backgroundView == nil) {
 //            cell.backgroundView = UIView()
+//            println("cell.backgroundView is nil")
 //        }
-//        cell.backgroundView?.backgroundColor = UIColor(red: 
+//    
+//        cell.backgroundView?.backgroundColor = UIColor.redColor()
+//    
+        //cell.backgroundView?.backgroundColor = UIColor(red: CGFloat(editR), green: CGFloat(editG), blue: CGFloat(editB), alpha: 1.0)
         
         let size = CGSizeMake(30, 30)
         
