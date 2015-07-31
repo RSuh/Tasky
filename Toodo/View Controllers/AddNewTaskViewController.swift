@@ -23,6 +23,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var category: Category?
     
+    var dateLabel: String = "Due:"
+    
     // A bool which determines whether or not the keyboard should automatically popup
     var keyboardPopUp: Bool = true
     
@@ -30,6 +32,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         didSet {
             displayNewTask(newTask)
             displayNewBadge(newTask)
+            displayDate(newTask)
         }
     }
     
@@ -42,7 +45,6 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    
     // Displays the badge of the new task
     func displayNewBadge(task: Task?) {
         if let task = task, badgeImage = badgeImage {
@@ -52,16 +54,27 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    // Displays the due date of the task
+    func displayDate(task: Task?) {
+        if let task = task {
+            realm.write() {
+                task.modificationDate = self.dateLabel
+            }
+        }
+    }
+    
     // Saves the new task
     func saveNewTask() {
         if let newTask = newTask {
             realm.write() {
                 if ((newTask.taskTitle != self.taskTitle.text) ||
-                    (newTask.badge != self.badge)) {
+                    (newTask.badge != self.badge) ||
+                    (newTask.modificationDate != self.dateLabel)) {
                         newTask.taskTitle = self.taskTitle.text
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
+                        newTask.modificationDate = self.dateLabel
                         println("\(newTask.taskTitle)")
                 } else {
                     println("nothing has changed")
@@ -102,6 +115,11 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             case "backToAddFromCalendar":
                 println("Back to add from calendar")
                 keyboardPopUp = false
+                
+            case "saveFromAddCalendar":
+                println("Save from add calendar")
+                keyboardPopUp = false
+                
             default:
                 println("failed")
             }

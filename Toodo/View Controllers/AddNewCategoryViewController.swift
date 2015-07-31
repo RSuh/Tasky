@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AddNewCategoryViewController: UIViewController {
+class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var purpleTheme: UIButton!
     @IBOutlet weak var turquoiseTheme: UIButton!
@@ -103,6 +103,25 @@ class AddNewCategoryViewController: UIViewController {
         
         turquoiseTheme.backgroundColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
         turquoiseTheme.layer.cornerRadius = 11
+        
+        categoryTitle.delegate = self
+        categoryTitle.returnKeyType = UIReturnKeyType.Done
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        categoryTitle.becomeFirstResponder()
+    }
+    
+    //Called when 'return' key pressed. return NO to ignore.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        categoryTitle.resignFirstResponder()
+        return true
+    }
+    
+    // Hides keyboard whenever you tap outside the keyboard
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {

@@ -128,30 +128,6 @@ class CategoryViewController: UIViewController {
         }
     }
     
-    @IBAction func addOrDeleteButton(sender: AnyObject) {
-        if (flagForAddOrDelete == false) {
-            
-            realm.write() {
-                // Goes through each row and deletes all the selected ones
-                for (var index = 0; index <= self.selectedRow.count - 1; index++) {
-                    // TODO: Get rows to animate and delete 1 by 1.
-                    //self.categoryTableView.deleteRowsAtIndexPaths(<#indexPaths: [AnyObject]#>, withRowAnimation: <#UITableViewRowAnimation#>)
-                    self.realm.delete(self.selectedRow[index] as! Object)
-                }
-            }
-            
-            println("item successfully deleted")
-            
-            // Updates categories in real time when we delete, so that they disappear immediately.
-            categories = realm.objects(Category).sorted("taskCount", ascending: false)
-        } else {
-            
-            // Segues to addVC
-            performSegueWithIdentifier("addCategory", sender: sender)
-            println("segue has been performed")
-        }
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "categoryToTask") {
             let titleVC = segue.destinationViewController as! TaskViewController
@@ -185,48 +161,16 @@ class CategoryViewController: UIViewController {
         }
     }
     
-    override func setEditing(editing: Bool, animated: Bool) {
-        super.setEditing(editing, animated: animated)
-        
-        // Sets edit mode for the tableview
-        self.categoryTableView.setEditing(editing, animated: true)
-        if (editing == true) {
-            let toImage = UIImage(named: "Garbage")
-            UIView.transitionWithView(self.buttonImage,
-                duration: 0.35,
-                options: UIViewAnimationOptions.TransitionFlipFromBottom,
-                animations: { self.buttonImage.image = toImage },
-                completion: nil)
-            flagForAddOrDelete = false
-            println(flagForAddOrDelete)
-        } else if (editing == false) {
-            let backImage = UIImage(named: "addButton")
-            UIView.transitionWithView(self.buttonImage,
-                duration: 0.35,
-                options: UIViewAnimationOptions.TransitionFlipFromTop,
-                animations: { self.buttonImage.image = backImage },
-                completion: nil)
-            flagForAddOrDelete = true
-            println(flagForAddOrDelete)
-        }
-        
-        // Reloads the data for the tableView for cellforrowatindexpath function so enabling the edit can be turned off and on
-        self.categoryTableView.reloadData()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.navigationController?.navigationBar = UIColor.whiteColor()
         
         // Disables the interaction with the image so that the image is basically transparent
         buttonImage.userInteractionEnabled = false
         
         // Intializes the add button
         buttonImage.image = UIImage(named: "addButton")
-        
-        // Sets the multiple editing feature
-        self.categoryTableView.allowsMultipleSelectionDuringEditing = true
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blackColor()
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
@@ -237,37 +181,48 @@ class CategoryViewController: UIViewController {
         // The fullSwipeCell function
         fullSwipeCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             
-            // The alert to ask if the user wants to delete the task
-            let popUpAlertView = UIAlertController(title: "Are you sure you want to delete", message: "AlertView message comes here", preferredStyle: .Alert)
-            
+            // Sets the indexpath
             var indexPath = tableView.indexPathForCell(cell)
             
-            var okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) in
-                println("ok")
+            // Create a category to delete, before the animation is run
+            let category = self.categories[indexPath!.row] as Category
+            
+            if (category.taskCount >= 3) {
+                // The alert to ask if the user wants to delete the task
+                let popUpAlertView = UIAlertController(title: "Are you sure you want to delete category \(category.categoryTitle)", message: "Deleting cannot be undone", preferredStyle: .Alert)
                 
-                // Create a category to delete, before the animation is run
-                let category = self.categories[indexPath!.row] as Category
+                var okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) in
+                    println("ok")
+                    
+                    // Deletes the category
+                    self.realm.write() {
+                        self.realm.delete(category)
+                    }
+                    
+                    // The animation to remove the Cell
+                    tableView.removeCell(cell, duration: 0.3, completion: nil)
+                    
+                }
+                
+                var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) in
+                    println("cancelled")
+                    tableView.replaceCell(cell, duration: 0.2, bounce: 0.2, completion: nil)
+                }
+                
+                // Adds the action to press ok
+                popUpAlertView.addAction(okAction)
+                popUpAlertView.addAction(cancelAction)
+                
+                // Presents the alertView
+                self.presentViewController(popUpAlertView, animated: true, completion: nil)
+            } else {
                 
                 self.realm.write() {
                     self.realm.delete(category)
                 }
                 
-                // The animation to remove the Cell
                 tableView.removeCell(cell, duration: 0.3, completion: nil)
-                
             }
-            
-            var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) in
-                println("cancelled")
-                tableView.replaceCell(cell, duration: 0.2, bounce: 0.2, completion: nil)
-            }
-            
-            // Adds the action to press ok
-            popUpAlertView.addAction(okAction)
-            popUpAlertView.addAction(cancelAction)
-            
-            // Presents the alertView
-            self.presentViewController(popUpAlertView, animated: true, completion: nil)
             
             // The original animation before the alert is displayed
             tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
@@ -332,33 +287,11 @@ extension CategoryViewController: UITableViewDataSource {
         // Initialize cell
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
-        //        categoryTableView.backgroundColor = UIColor.lightGrayColor()
-        //        cell.backgroundColor = UIColor.lightGrayColor()
-        
-        //        if (cell.backgroundView == nil) {
-        //            cell.backgroundView = UIView()
-        //            println("cell.backgroundView is nil")
-        //        }
-        //
-        //        cell.backgroundView?.backgroundColor = UIColor.redColor()
-        //
-        //cell.backgroundView?.backgroundColor = UIColor(red: CGFloat(editR), green: CGFloat(editG), blue: CGFloat(editB), alpha: 1.0)
-        
         let size = CGSizeMake(30, 30)
         
-        // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
-        if (editing == false) {
-            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
-            
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
-            
-            // A bool to see if the editing is enabled
-            categoryTableView.isEnabled = true
-        } else if (editing == true) {
-            
-            // A bool to see if the editing is enabled
-            categoryTableView.isEnabled = false
-        }
+        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
+        
+        cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
         
         // Set up cell
         let row = indexPath.row
@@ -386,35 +319,19 @@ extension CategoryViewController: UITableViewDataSource {
     }
 }
 
+
 extension CategoryViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // Sets the selectedCategory to be the category at indexPath.row
-        let selectedCategory = categories[indexPath.row]
-        println("hi")
-        if (editing == true) {
-            // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
-            if (selectedRow.containsObject(selectedCategory)) {
-                println("It's in the array already!")
-                //selectedRow.removeObject(selectedCategory)
-            } else {
-                // Use a "set"
-                selectedRow.addObject(selectedCategory)
-                println("Its not in the array")
-                //                println(selectedRow)
-            }
-        } else {
             // Performs a segue "categoryToTask"
             self.performSegueWithIdentifier("categoryToTask", sender: self)
-            
+        
             // Deselects the row when they were tapped
             categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
 }
-

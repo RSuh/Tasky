@@ -120,14 +120,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        // Sets the date to today
-        //        var date = NSDate()
-        //        let todaysDate = NSDateFormatter()
-        //        todaysDate.dateFormat = "EEEE, MMMM d"
-        
-        // Sets todays date as the text of the label
-        self.dateLabel.text = "Today"
+        println(self.editedTask!.modificationDate)
+        // Checks to see if the due date is empty
     }
     
     override func didReceiveMemoryWarning() {
@@ -142,7 +136,20 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if (self.editedTask!.modificationDate == "") {
+            println("no mod date!")
+            
+            // Sets label to no due date
+            self.dateLabel.text = "Due: Never"
+        } else {
+            
+            // Sets label as Today"
+            dateLabel.text = "Today"
+        }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -205,13 +212,13 @@ extension EditTaskViewController: FSCalendarDelegate {
         
         // these var gets the string of the dates.
         var pickedDateString = date.description
-//        var todayDateFormatter = NSDateFormatter()
-//        todayDateFormatter.dateFormat = "YYYY-MM-dd"
+        //        var todayDateFormatter = NSDateFormatter()
+        //        todayDateFormatter.dateFormat = "YYYY-MM-dd"
         var todayDateString = todaysDate.description
         //todaysDate.descriptionWithLocale(NSLocale.currentLocale())!
-//        todayDateFormatter.dateFromString(todayDateString)
-//        println(todayDateFormatter.dateFromString(todayDateString))
-//        var dateString: String = NSDateFormatter.localizedStringFromDate(NSDate.date(), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.FullStyle)
+        //        todayDateFormatter.dateFromString(todayDateString)
+        //        println(todayDateFormatter.dateFromString(todayDateString))
+        //        var dateString: String = NSDateFormatter.localizedStringFromDate(NSDate.date(), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.FullStyle)
         
         
         

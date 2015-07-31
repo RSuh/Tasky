@@ -28,6 +28,17 @@ class CalendarViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "saveFromAddCalendar" {
+            
+            let targetVC = segue.destinationViewController as! AddNewTaskViewController
+            
+            targetVC.dateLabel = self.dateLabel.text!
+        } else {
+            println("date was not saved")
+        }
+    }
 }
 
 extension CalendarViewController: FSCalendarDataSource {

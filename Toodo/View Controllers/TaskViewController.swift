@@ -110,9 +110,6 @@ class TaskViewController: UIViewController {
             tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
             
         } else{
-            
-            // Segues to addVC
-            performSegueWithIdentifier("addTask", sender: sender)
             println("segue has been performed")
         }
     }
@@ -232,6 +229,10 @@ class TaskViewController: UIViewController {
         
         // Calls setupIcons method
         setupIcons()
+        
+        if (category?.taskCount == 0) {
+            performSegueWithIdentifier("addTask", sender: self)
+        }
         
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
