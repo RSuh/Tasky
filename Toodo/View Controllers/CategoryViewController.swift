@@ -187,7 +187,8 @@ class CategoryViewController: UIViewController {
             // Create a category to delete, before the animation is run
             let category = self.categories[indexPath!.row] as Category
             
-            if (category.taskCount >= 3) {
+            println(category.tasksWithinCategory.count)
+            if (category.tasksWithinCategory.count >= 3) {
                 // The alert to ask if the user wants to delete the task
                 let popUpAlertView = UIAlertController(title: "Are you sure you want to delete category \(category.categoryTitle)", message: "Deleting cannot be undone", preferredStyle: .Alert)
                 
