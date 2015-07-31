@@ -195,28 +195,42 @@ extension EditTaskViewController: FSCalendarDelegate {
         
         // date = the date which is picked and todays date is todays date
         let todaysDate = NSDate()
+        //println(todaysDate.descriptionWithLocale(NSLocale.currentLocale()))
         
         // Sets the format for the date which is picked
         var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEEE, MMMM d"
+        dateFormatter.dateFormat = "EEEE, MMMM dd"
         var dateString = dateFormatter.stringFromDate(date)
+        
         
         // these var gets the string of the dates.
         var pickedDateString = date.description
+//        var todayDateFormatter = NSDateFormatter()
+//        todayDateFormatter.dateFormat = "YYYY-MM-dd"
         var todayDateString = todaysDate.description
+        //todaysDate.descriptionWithLocale(NSLocale.currentLocale())!
+//        todayDateFormatter.dateFromString(todayDateString)
+//        println(todayDateFormatter.dateFromString(todayDateString))
+//        var dateString: String = NSDateFormatter.localizedStringFromDate(NSDate.date(), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.FullStyle)
+        
+        
         
         // Gives tomorrows date
         var tomorrow = todaysDate.dateByAddingTimeInterval(24 * 60 * 60)
         var tomorrowDateString = tomorrow.description
+        //println(tomorrowDateString)
         
         // The date for today in string
         var compareTodayDateString = todayDateString.substringToIndex(advance(todayDateString.startIndex, 10))
+        //println(compareTodayDateString)
         
         // The date which has been picked in string
         var comparePickedDateString = pickedDateString.substringToIndex(advance(pickedDateString.startIndex, 10))
         
         // The date for tomorrow in string
         var frontTomorrowDateString = tomorrowDateString.substringToIndex(advance(tomorrowDateString.startIndex, 10))
+        
+        //println(todaysDate)
         
         if compareTodayDateString == comparePickedDateString {
             self.dateLabel.text = "Due Today"

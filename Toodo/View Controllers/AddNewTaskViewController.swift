@@ -23,6 +23,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var category: Category?
     
+    // A bool which determines whether or not the keyboard should automatically popup
+    var keyboardPopUp: Bool = true
+    
     var newTask: Task? {
         didSet {
             displayNewTask(newTask)
@@ -98,7 +101,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             switch identifier {
             case "backToAddFromCalendar":
                 println("Back to add from calendar")
-                
+                keyboardPopUp = false
             default:
                 println("failed")
             }
@@ -120,7 +123,23 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         taskTitle.placeholder = "Task Title here..."
-        // Do any additional setup after loading the view.
+        taskTitle.delegate = self
+        taskTitle.returnKeyType = UIReturnKeyType.Done
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        println(keyboardPopUp)
+        if (keyboardPopUp == true) {
+            taskTitle.becomeFirstResponder()
+        } else {
+            println("Keyboard not showing!")
+        }
+    }
+    
+    //Called when 'return' key pressed. return NO to ignore.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     // Hides keyboard whenever you tap outside the keyboard

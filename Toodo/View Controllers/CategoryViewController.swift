@@ -51,8 +51,8 @@ class CategoryViewController: UIViewController {
     // Variable to replaceCell
     var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
-    // A var of type category which indicates the selectedList
-//    var selectedCategory: Category?
+    // Variable to fullswipcell
+    var fullSwipeCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
@@ -234,11 +234,49 @@ class CategoryViewController: UIViewController {
         // Calls setupIcons method
         setupIcons()
         
+        // The fullSwipeCell function
+        fullSwipeCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            
+            // The alert to ask if the user wants to delete the task
+            let popUpAlertView = UIAlertController(title: "Are you sure you want to delete", message: "AlertView message comes here", preferredStyle: .Alert)
+            
+            var indexPath = tableView.indexPathForCell(cell)
+            
+            var okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) in
+                println("ok")
+                
+                // Create a category to delete, before the animation is run
+                let category = self.categories[indexPath!.row] as Category
+                
+                self.realm.write() {
+                    self.realm.delete(category)
+                }
+                
+                // The animation to remove the Cell
+                tableView.removeCell(cell, duration: 0.3, completion: nil)
+                
+            }
+            
+            var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) in
+                println("cancelled")
+                tableView.replaceCell(cell, duration: 0.2, bounce: 0.2, completion: nil)
+            }
+            
+            // Adds the action to press ok
+            popUpAlertView.addAction(okAction)
+            popUpAlertView.addAction(cancelAction)
+            
+            // Presents the alertView
+            self.presentViewController(popUpAlertView, animated: true, completion: nil)
+            
+            // The original animation before the alert is displayed
+            tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
+        }
+        
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             
             let indexPath = tableView.indexPathForCell(cell)
-//            self.selectedCategory = self.categories[indexPath!.row]
             cell.backgroundColor = UIColor.lightGrayColor()
             
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
@@ -246,12 +284,12 @@ class CategoryViewController: UIViewController {
         
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
-            
+            println("remove run")
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
             
             // let category = the category object at indexPath.row AS AN OBJECT
-            let category = self.categories[indexPath!.row] as Object
+            let category = self.categories[indexPath!.row] as Category
             
             // Pass the object we just created to delete
             self.realm.write() {
@@ -297,21 +335,22 @@ extension CategoryViewController: UITableViewDataSource {
         //        categoryTableView.backgroundColor = UIColor.lightGrayColor()
         //        cell.backgroundColor = UIColor.lightGrayColor()
         
-//        if (cell.backgroundView == nil) {
-//            cell.backgroundView = UIView()
-//            println("cell.backgroundView is nil")
-//        }
-//    
-//        cell.backgroundView?.backgroundColor = UIColor.redColor()
-//    
+        //        if (cell.backgroundView == nil) {
+        //            cell.backgroundView = UIView()
+        //            println("cell.backgroundView is nil")
+        //        }
+        //
+        //        cell.backgroundView?.backgroundColor = UIColor.redColor()
+        //
         //cell.backgroundView?.backgroundColor = UIColor(red: CGFloat(editR), green: CGFloat(editG), blue: CGFloat(editB), alpha: 1.0)
         
         let size = CGSizeMake(30, 30)
         
         // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
         if (editing == false) {
-            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
+            
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
             
             // A bool to see if the editing is enabled
             categoryTableView.isEnabled = true
@@ -358,12 +397,12 @@ extension CategoryViewController: UITableViewDelegate {
             // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
             if (selectedRow.containsObject(selectedCategory)) {
                 println("It's in the array already!")
-                selectedRow.removeObject(selectedCategory)
+                //selectedRow.removeObject(selectedCategory)
             } else {
                 // Use a "set"
                 selectedRow.addObject(selectedCategory)
                 println("Its not in the array")
-//                println(selectedRow)
+                //                println(selectedRow)
             }
         } else {
             // Performs a segue "categoryToTask"

@@ -371,7 +371,7 @@
                         <barButtonItem key="leftBarButtonItem" image="backArrow" id="KOL-gd-o0n">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="jL3-ak-onY" kind="unwind" unwindAction="backToAddFromCalendar:" id="eh3-f5-BWx"/>
+                                <segue destination="jL3-ak-onY" kind="unwind" identifier="backToAddFromCalendar" unwindAction="backToAddFromCalendar:" id="eh3-f5-BWx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
