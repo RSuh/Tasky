@@ -17,7 +17,7 @@ class Category: Object {
     dynamic var badge = 0
     dynamic var tasksWithinCategory = List<Task>()
     // RGB values
-    dynamic var R = 0.0
-    dynamic var G = 0.0
-    dynamic var B = 0.0
+    dynamic var R = 1.0
+    dynamic var G = 1.0
+    dynamic var B = 1.0
 }

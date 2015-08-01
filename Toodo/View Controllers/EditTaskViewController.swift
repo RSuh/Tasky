@@ -144,12 +144,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             
             // Sets label to no due date
             self.dateLabel.text = "Due: Never"
-        } else {
-            
-            // Sets label as Today"
-            dateLabel.text = "Today"
         }
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -219,8 +214,6 @@ extension EditTaskViewController: FSCalendarDelegate {
         //        todayDateFormatter.dateFromString(todayDateString)
         //        println(todayDateFormatter.dateFromString(todayDateString))
         //        var dateString: String = NSDateFormatter.localizedStringFromDate(NSDate.date(), dateStyle: NSDateFormatterStyle.ShortStyle, timeStyle: NSDateFormatterStyle.FullStyle)
-        
-        
         
         // Gives tomorrows date
         var tomorrow = todaysDate.dateByAddingTimeInterval(24 * 60 * 60)

@@ -126,15 +126,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    // This is the button to add a task
-    @IBAction func addTask(sender: AnyObject) {
-        newTask = Task()
-        saveNewTask()
-    }
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "exitFromAdd" {
             println("exitFromAdd")
+        } else if segue.identifier == "saveFromAdd" {
+            newTask = Task()
+            saveNewTask()
         }
     }
     

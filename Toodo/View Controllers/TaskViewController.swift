@@ -122,10 +122,12 @@ class TaskViewController: UIViewController {
                 println("Save from add!")
                 
                 let newSource = segue.sourceViewController as! AddNewTaskViewController
+                let indexPath = taskHomeTableView.indexPathForSelectedRow()
                 
                 realm.write() {
                     // Creates a newTask
                     self.realm.add(newSource.newTask!)
+                    
                     //println(self.category!.tasksWithinCategory.append(newSource.newTask!))
                 }
                 

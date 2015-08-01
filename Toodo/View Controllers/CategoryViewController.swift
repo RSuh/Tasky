@@ -31,9 +31,9 @@ class CategoryViewController: UIViewController {
     // For adding, flag is true, for deleting, flag is false
     var flagForAddOrDelete: Bool = true
     
-    var editR = 0.0
-    var editB = 0.0
-    var editG = 0.0
+    var editR = 1.0
+    var editB = 1.0
+    var editG = 1.0
     
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)

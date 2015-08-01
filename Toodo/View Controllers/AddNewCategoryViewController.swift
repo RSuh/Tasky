@@ -16,9 +16,9 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var categoryTitle: UITextField!
     
     var themeColor: UIColor = UIColor.whiteColor()
-    var R: Double = 0
-    var G: Double = 0
-    var B: Double = 0
+    var R: Double = 1.0
+    var G: Double = 1.0
+    var B: Double = 1.0
     
     var addNewCategory: Category? {
         didSet {
