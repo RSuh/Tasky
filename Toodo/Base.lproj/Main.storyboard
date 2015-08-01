@@ -187,20 +187,25 @@
                                 </state>
                                 <connections>
                                     <action selector="addOrDeleteButton:" destination="Tkz-QC-Deg" eventType="touchUpInside" id="doM-8k-7CA"/>
-                                    <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="acA-kW-reR"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whC-cE-PUS">
                                 <rect key="frame" x="148" y="527" width="24" height="25"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jjf-B6-Ar0">
+                                <rect key="frame" x="139" y="529" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Work" id="bsC-6c-dVU">
-                        <barButtonItem key="leftBarButtonItem" image="categories" id="z4E-Rp-0Gv">
+                        <barButtonItem key="leftBarButtonItem" image="backArrow" id="H9L-eN-knB">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="1Jo-dx-3ZJ" kind="unwind" identifier="backToCategoryFromTask" unwindAction="backToCategoryFromTasks:" id="MSq-m1-ZTW"/>
+                                <segue destination="3r2-Wh-pwN" kind="unwind" unwindAction="backToCategoryFromTasks:" id="oHQ-AG-FWi"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="7c6-VG-LOx">
@@ -211,11 +216,13 @@
                     <connections>
                         <outlet property="buttonImage" destination="whC-cE-PUS" id="GS4-Rh-eVA"/>
                         <outlet property="taskHomeTableView" destination="MDr-AE-52X" id="aB6-RJ-4Ag"/>
-                        <segue destination="shg-3L-Bnq" kind="show" identifier="editTask" id="aDi-Sv-uhb"/>
+                        <outlet property="taskStreakNum" destination="Jjf-B6-Ar0" id="9vv-a8-8fY"/>
+                        <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="fBS-dO-oi6"/>
+                        <segue destination="shg-3L-Bnq" kind="show" identifier="editTask" id="Huh-Lq-WVj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pid-l6-g5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="1Jo-dx-3ZJ" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="3r2-Wh-pwN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3051" y="368"/>
         </scene>
@@ -443,12 +450,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="badgeEdit" translatesAutoresizingMaskIntoConstraints="NO" id="5PI-B5-2bI">
                                 <rect key="frame" x="86" y="87" width="30" height="30"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sRz-3k-iew">
-                                <rect key="frame" x="124" y="78.5" width="180" height="96"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-mC-WLe">
                                 <rect key="frame" x="0.0" y="571" width="375" height="1"/>
                             </imageView>
@@ -472,6 +473,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="QrU-7P-1zr">
                                 <rect key="frame" x="0.0" y="527" width="320" height="1"/>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="49c-5i-IWx">
+                                <rect key="frame" x="124" y="78" width="180" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -493,13 +499,13 @@
                     <connections>
                         <outlet property="badgeImage" destination="oMP-uO-zyB" id="y0x-Y7-jWA"/>
                         <outlet property="dateLabel" destination="H1M-DF-c3y" id="Txd-VC-uGs"/>
-                        <outlet property="taskTextField" destination="sRz-3k-iew" id="tzF-6G-hPF"/>
+                        <outlet property="taskTextField" destination="49c-5i-IWx" id="UVR-cs-KlU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGp-Vn-nq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mKd-GH-PUP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3646" y="-416"/>
+            <point key="canvasLocation" x="3652" y="-416"/>
         </scene>
         <!--Change Badge-->
         <scene sceneID="MQT-rz-rLB">
@@ -718,7 +724,6 @@
         <image name="addButton" width="24" height="25"/>
         <image name="backArrow" width="24" height="21"/>
         <image name="badgeEdit" width="30" height="30"/>
-        <image name="categories" width="25" height="22"/>
         <image name="checkmark" width="27" height="21"/>
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>

@@ -14,6 +14,7 @@ class TaskViewController: UIViewController {
     // REMEMBER TO CONNECT THE OUTLET IN STORYBOARD
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
     @IBOutlet weak var buttonImage: UIImageView!
+    @IBOutlet weak var taskStreakNum: UILabel!
     
     // The variable for the navbar color of this view controller. We need this variable to transfer the color from the previous VC using a segue
     var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
@@ -111,6 +112,7 @@ class TaskViewController: UIViewController {
             
         } else{
             println("segue has been performed")
+            performSegueWithIdentifier("addTask", sender: self)
         }
     }
     
@@ -183,24 +185,36 @@ class TaskViewController: UIViewController {
         
         // Sets edit mode for the tableView
         self.taskHomeTableView.setEditing(editing, animated: true)
+
+        
         if (editing == true) {
+            // Changes the image to a garbage can
             let toImage = UIImage(named: "Garbage")
             UIView.transitionWithView(self.buttonImage,
                 duration: 0.35,
                 options: UIViewAnimationOptions.TransitionFlipFromBottom,
                 animations: { self.buttonImage.image = toImage },
                 completion: nil)
+            
+            taskHomeTableView.isEnabled = false
+            
             flagForAddOrDelete = false
-            println(flagForAddOrDelete)
+            println("Flag is \(flagForAddOrDelete)")
+            println("Editing is \(editing)")
         } else if (editing == false) {
+            // Changes the image to the addButton
             let backImage = UIImage(named: "addButton")
             UIView.transitionWithView(self.buttonImage,
                 duration: 0.35,
                 options: UIViewAnimationOptions.TransitionFlipFromTop,
                 animations: { self.buttonImage.image = backImage },
                 completion: nil)
+            
+            taskHomeTableView.isEnabled = true
+            
             flagForAddOrDelete = true
-            println(flagForAddOrDelete)
+            println("Flag is \(flagForAddOrDelete)")
+            println("Editing is \(editing)")
         }
         
         // Reloads the data for the tableView for cellforrowatindexpath function so enabling the edit can be turned off and on
@@ -210,6 +224,11 @@ class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Segues to add task if category tasks is 0
+        if (category?.tasksWithinCategory.count == 0) {
+            performSegueWithIdentifier("addTask", sender: self)
+        }
         
         // Disables the interaction with the image so that the image is basically transparent
         buttonImage.userInteractionEnabled = false
@@ -231,10 +250,6 @@ class TaskViewController: UIViewController {
         
         // Calls setupIcons method
         setupIcons()
-        
-        if (category?.taskCount == 0) {
-            performSegueWithIdentifier("addTask", sender: self)
-        }
         
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
@@ -312,10 +327,10 @@ extension TaskViewController: UITableViewDataSource {
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             
             // A bool to see if the editing is enabled
-            taskHomeTableView.isEnabled = true
-        } else if (editing == true) {
-            // A bool to see if the editing is enabled
-            taskHomeTableView.isEnabled = false
+            
+            println("swipe is \(taskHomeTableView.isEnabled)")
+        } else {
+            println("swipe is \(taskHomeTableView.isEnabled)")
         }
         
         // Sets custom separators between cells on viewDidLoad
@@ -345,7 +360,6 @@ extension TaskViewController: UITableViewDelegate {
         
         // Assigns the task object at the cell to selectedTask
         let selectedTask = tasks[indexPath.row]
-        
         
         if (editing == true) {
             // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array

@@ -106,11 +106,20 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         
         categoryTitle.delegate = self
         categoryTitle.returnKeyType = UIReturnKeyType.Done
+//        
+//        if (self.categoryTitle.text.isEmpty) {
+//            println("text is empty")
+//        } else {
+//            println("its not empty")
+//        }
         
     }
     
     override func viewDidAppear(animated: Bool) {
         categoryTitle.becomeFirstResponder()
+        if (categoryTitle.text.isEmpty) {
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
     }
     
     //Called when 'return' key pressed. return NO to ignore.

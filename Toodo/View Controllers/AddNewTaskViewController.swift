@@ -23,7 +23,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var category: Category?
     
-    var dateLabel: String = "Due:"
+    var dateLabel: String = "Due: Never"
     
     // A bool which determines whether or not the keyboard should automatically popup
     var keyboardPopUp: Bool = true

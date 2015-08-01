@@ -14,7 +14,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextField!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UITextField!
     
     // Initialize realm
     let realm = Realm()
@@ -114,7 +114,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     // Hides keyboard when you press done the view controller ends
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        //taskTextField.resignFirstResponder()
+        taskTextField.resignFirstResponder()
         return true
     }
     
@@ -122,12 +122,17 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         println(self.editedTask!.modificationDate)
         // Checks to see if the due date is empty
+        
+        taskTextField.delegate = self
+        taskTextField.returnKeyType = UIReturnKeyType.Done
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     // Hides keyboard whenever you tap outside the keyboard
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -145,6 +150,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             // Sets label to no due date
             self.dateLabel.text = "Due: Never"
         }
+        
+        taskTextField.becomeFirstResponder()
     }
     
     override func viewWillAppear(animated: Bool) {
