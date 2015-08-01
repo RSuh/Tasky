@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import FontAwesomeKit
 
 class TaskViewController: UIViewController {
     

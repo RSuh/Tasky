@@ -8,6 +8,8 @@
 
 import UIKit
 import RealmSwift
+import FontAwesomeKit
+import SCLAlertView
 
 class CategoryViewController: UIViewController {
     
@@ -72,19 +74,21 @@ class CategoryViewController: UIViewController {
                 println("save to category from add")
                 
                 let saveSourceFromAdd = segue.sourceViewController as! AddNewCategoryViewController
+                    realm.write() {
+                        // Adds a newList
+                        self.realm.add(saveSourceFromAdd.addNewCategory!)
+                        println(saveSourceFromAdd.R)
+                        println(saveSourceFromAdd.G)
+                        println(saveSourceFromAdd.B)
+                    }
+                    
+                    
+                    // Sets the rgb value from other VC to self.VC
+                    saveSourceFromAdd.R = self.editR
+                    saveSourceFromAdd.G = self.editG
+                    saveSourceFromAdd.B = self.editB
                 
-                realm.write() {
-                    // Adds a newList
-                    self.realm.add(saveSourceFromAdd.addNewCategory!)
-                    println(saveSourceFromAdd.R)
-                    println(saveSourceFromAdd.G)
-                    println(saveSourceFromAdd.B)
-                }
-                
-                // Sets the rgb value from other VC to self.VC
-                saveSourceFromAdd.R = self.editR
-                saveSourceFromAdd.G = self.editG
-                saveSourceFromAdd.B = self.editB
+                    SCLAlertView().showInfo("Important info", subTitle: "You are great")
                 
             default:
                 println("failed")
@@ -325,11 +329,11 @@ extension CategoryViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-            // Performs a segue "categoryToTask"
-            self.performSegueWithIdentifier("categoryToTask", sender: self)
+        // Performs a segue "categoryToTask"
+        self.performSegueWithIdentifier("categoryToTask", sender: self)
         
-            // Deselects the row when they were tapped
-            categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
+        // Deselects the row when they were tapped
+        categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {

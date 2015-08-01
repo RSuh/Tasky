@@ -82,6 +82,29 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         println("\(R)\(G)\(B)")
     }
     
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "saveToCategoryFromAdd" {
+            
+            if (categoryTitle.text.isEmpty) {
+                
+                let alert = UIAlertView()
+                alert.title = "No Text"
+                alert.message = "Please Enter Text In The Box"
+                alert.addButtonWithTitle("Ok")
+                alert.show()
+                
+                return false
+            }
+                
+            else {
+                return true
+            }
+        }
+        
+        // by default, transition
+        return true
+    }
+    
     // Passing category object to Home View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let realm = Realm()
@@ -91,6 +114,8 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         println("category object is created")
         saveCategory()
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,20 +131,18 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         
         categoryTitle.delegate = self
         categoryTitle.returnKeyType = UIReturnKeyType.Done
-//        
-//        if (self.categoryTitle.text.isEmpty) {
-//            println("text is empty")
-//        } else {
-//            println("its not empty")
-//        }
+        //
+        //        if (self.categoryTitle.text.isEmpty) {
+        //            println("text is empty")
+        //        } else {
+        //            println("its not empty")
+        //        }
         
     }
     
     override func viewDidAppear(animated: Bool) {
         categoryTitle.becomeFirstResponder()
-        if (categoryTitle.text.isEmpty) {
-            self.navigationItem.rightBarButtonItem?.enabled = false
-        }
+        
     }
     
     //Called when 'return' key pressed. return NO to ignore.
