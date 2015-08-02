@@ -154,6 +154,12 @@ class CategoryViewController: UIViewController {
                     
                     //titleVC.navbarColor =
                     //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+            } else if ((selectedCategory.R == 0.15) &&
+                (selectedCategory.G == 0.85) &&
+                (selectedCategory.B == 0.70)) {
+                    
+                    println("Chose turquoise category")
+                    titleVC.addButtonColor = "addTurquoise"
             }
             
             // Sets the category title in the next VC to be the selected category's title
@@ -168,7 +174,10 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.navigationController?.navigationBar = UIColor.whiteColor()
+        // Changes Nav bar color to green theme
+        
+        
+        
         
         // Disables the interaction with the image so that the image is basically transparent
         buttonImage.userInteractionEnabled = false
@@ -276,14 +285,14 @@ class CategoryViewController: UIViewController {
         
         // Sorts the realm objects by taskCount
         categories = realm.objects(Category).sorted("taskCount", ascending: false)
+        
+        var navigation = self.navigationController?.navigationBar
+        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Changes Nav bar color to green theme
-        //var navigation = self.navigationController?.navigationBar
-        //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
     }
     
     override func didReceiveMemoryWarning() {

@@ -51,6 +51,7 @@ class TaskViewController: UIViewController {
     let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
     let yellowColor = UIColor(red: 241.0/255, green: 196.0/255, blue: 15.0/255, alpha: 100)
     let purpleColor = UIColor(red: 0.81, green: 0.59, blue: 0.93, alpha: 1.0)
+    let turquoiseColor = UIColor(red: 0.15, green: 0.85, blue: 0.70, alpha: 1.0)
     
     // Variable to removeCellBlock
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
@@ -236,14 +237,24 @@ class TaskViewController: UIViewController {
         if (category?.tasksWithinCategory.count == 0) {
             performSegueWithIdentifier("addTask", sender: self)
         }
+        
         println("The color is \(addButtonColor)")
+        
         if (addButtonColor == "addPurple") {
             // Sets the button color!
             self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
             
             // Sets the navbar color to purple
             navigation?.barTintColor = purpleColor
+        } else if (addButtonColor == "addTurquoise") {
+            // Sets the button Color
+            self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
+            
+            // sets the navbar color to turquoise
+            navigation?.barTintColor = turquoiseColor
         }
+        
+        
         
         //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
         // Disables the interaction with the image so that the image is basically transparent
