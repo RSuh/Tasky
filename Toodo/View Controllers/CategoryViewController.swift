@@ -147,6 +147,8 @@ class CategoryViewController: UIViewController {
             if ((selectedCategory.R == 0.81) &&
                 (selectedCategory.G == 0.59) &&
                 (selectedCategory.B == 0.93 )) {
+                    println("Chose purple category")
+                    titleVC.addButtonColor = "addPurple"
                     
                     // TODO: Change navbar color
                     
@@ -193,9 +195,10 @@ class CategoryViewController: UIViewController {
             
             // If the taskCount is 3 or larger
             if (category.tasksWithinCategory.count >= 3) {
-                println("tasks higher than 3")
+                
                 // Show a popup alert!
                 let popUpAlertView = SCLAlertView()
+                
                 // The delete button
                 popUpAlertView.addButton("Delete") {
                     println("Delete has been tapped")
@@ -204,17 +207,21 @@ class CategoryViewController: UIViewController {
                         self.realm.delete(category)
                     }
                     
+                    // Closes the alertView
                     popUpAlertView.close()
+                    
                     // The animation to remove the Cell
-                    tableView.removeCell(cell, duration: 0.3, completion: nil)
+                    tableView.removeCell(cell, duration: 0.2, completion: nil)
                 }
                 
                 // The cancel button
                 popUpAlertView.addButton("Cancel") {
                     println("Cancel has been tapped")
                     
+                    // Closes the alertView
                     popUpAlertView.close()
                     
+                    // The animation to replace the cell
                     tableView.replaceCell(cell, duration: 0.2, bounce: 0.2, completion: nil)
                 }
                 
@@ -275,8 +282,8 @@ class CategoryViewController: UIViewController {
         super.viewDidAppear(animated)
         
         // Changes Nav bar color to green theme
-        var navigation = self.navigationController?.navigationBar
-        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+        //var navigation = self.navigationController?.navigationBar
+        //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
     }
     
     override func didReceiveMemoryWarning() {
@@ -331,6 +338,7 @@ extension CategoryViewController: UITableViewDelegate {
         
         // Performs a segue "categoryToTask"
         self.performSegueWithIdentifier("categoryToTask", sender: self)
+        
         
         // Deselects the row when they were tapped
         categoryTableView.deselectRowAtIndexPath(indexPath, animated: true)

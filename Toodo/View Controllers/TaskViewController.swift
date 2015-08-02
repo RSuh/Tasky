@@ -16,7 +16,7 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
     @IBOutlet weak var buttonImage: UIImageView!
     @IBOutlet weak var taskStreakNum: UILabel!
-    
+    @IBOutlet weak var addBackgroundButton: UIButton!
     // The variable for the navbar color of this view controller. We need this variable to transfer the color from the previous VC using a segue
     var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
     
@@ -33,6 +33,8 @@ class TaskViewController: UIViewController {
         }
     }
     
+    var addButtonColor: String = ""
+    
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
     let editIcon = FAKIonIcons.androidCreateIconWithSize(30)
@@ -48,6 +50,7 @@ class TaskViewController: UIViewController {
     let greenColor = UIColor(red: 48.0/255, green: 220.0/255, blue: 107.0/255, alpha: 80)
     let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
     let yellowColor = UIColor(red: 241.0/255, green: 196.0/255, blue: 15.0/255, alpha: 100)
+    let purpleColor = UIColor(red: 0.81, green: 0.59, blue: 0.93, alpha: 1.0)
     
     // Variable to removeCellBlock
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
@@ -186,7 +189,7 @@ class TaskViewController: UIViewController {
         
         // Sets edit mode for the tableView
         self.taskHomeTableView.setEditing(editing, animated: true)
-
+        
         
         if (editing == true) {
             // Changes the image to a garbage can
@@ -226,11 +229,23 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let navigation = self.navigationController?.navigationBar
+       // navigation?.translucent = false
+        
         // Segues to add task if category tasks is 0
         if (category?.tasksWithinCategory.count == 0) {
             performSegueWithIdentifier("addTask", sender: self)
         }
+        println("The color is \(addButtonColor)")
+        if (addButtonColor == "addPurple") {
+            // Sets the button color!
+            self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
+            
+            // Sets the navbar color to purple
+            navigation?.barTintColor = purpleColor
+        }
         
+        //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
         // Disables the interaction with the image so that the image is basically transparent
         buttonImage.userInteractionEnabled = false
         
@@ -295,7 +310,7 @@ class TaskViewController: UIViewController {
         let navigation = self.navigationController?.navigationBar
         
         // Customizes the color of the navbar
-        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+        //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
         
     }
     
@@ -329,9 +344,7 @@ extension TaskViewController: UITableViewDataSource {
             
             // A bool to see if the editing is enabled
             
-            println("swipe is \(taskHomeTableView.isEnabled)")
         } else {
-            println("swipe is \(taskHomeTableView.isEnabled)")
         }
         
         // Sets custom separators between cells on viewDidLoad
