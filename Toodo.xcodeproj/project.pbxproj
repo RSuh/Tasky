@@ -35,7 +35,7 @@
 		457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */; };
 		457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */; };
 		457E33BA1B6193E800D900E6 /* SBGestureTableViewCellSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */; };
-		99B49034F07CA687FF567DB7 /* libPods-Toodo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 595D0425427007692BADB2F7 /* libPods-Toodo.a */; };
+		A095295095E8A8CFE8903542 /* Pods_Toodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92159307A5F09E27A74BB4 /* Pods_Toodo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +96,7 @@
 		457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCell.swift; sourceTree = "<group>"; };
 		457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellAction.swift; sourceTree = "<group>"; };
 		457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellSideView.swift; sourceTree = "<group>"; };
-		595D0425427007692BADB2F7 /* libPods-Toodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Toodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E92159307A5F09E27A74BB4 /* Pods_Toodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Toodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E2495E1BFE66D79DF66177 /* Pods-Toodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toodo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Toodo/Pods-Toodo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,7 +107,7 @@
 			files = (
 				4536C3861B50719A00A35889 /* Realm.framework in Frameworks */,
 				4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */,
-				99B49034F07CA687FF567DB7 /* libPods-Toodo.a in Frameworks */,
+				A095295095E8A8CFE8903542 /* Pods_Toodo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +206,7 @@
 			children = (
 				4536C37F1B506B1B00A35889 /* Realm.framework */,
 				4536C3801B506B1B00A35889 /* RealmSwift.framework */,
-				595D0425427007692BADB2F7 /* libPods-Toodo.a */,
+				6E92159307A5F09E27A74BB4 /* Pods_Toodo.framework */,
 			);
 			name = Frameworks;
 			path = Toodo/Frameworks;
@@ -255,6 +255,7 @@
 				4536C34F1B505ACD00A35889 /* Resources */,
 				4536C38A1B50719A00A35889 /* Embed Frameworks */,
 				C0A567B2C7A4DBCBF6994FCB /* Copy Pods Resources */,
+				1AE0C4CBB887002FF5F2CF1C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -341,6 +342,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1AE0C4CBB887002FF5F2CF1C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Toodo/Pods-Toodo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		99EE23290F7EDDDAE07EB4D0 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

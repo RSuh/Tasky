@@ -74,21 +74,19 @@ class CategoryViewController: UIViewController {
                 println("save to category from add")
                 
                 let saveSourceFromAdd = segue.sourceViewController as! AddNewCategoryViewController
-                    realm.write() {
-                        // Adds a newList
-                        self.realm.add(saveSourceFromAdd.addNewCategory!)
-                        println(saveSourceFromAdd.R)
-                        println(saveSourceFromAdd.G)
-                        println(saveSourceFromAdd.B)
-                    }
-                    
-                    
-                    // Sets the rgb value from other VC to self.VC
-                    saveSourceFromAdd.R = self.editR
-                    saveSourceFromAdd.G = self.editG
-                    saveSourceFromAdd.B = self.editB
+                realm.write() {
+                    // Adds a newList
+                    self.realm.add(saveSourceFromAdd.addNewCategory!)
+                    println(saveSourceFromAdd.R)
+                    println(saveSourceFromAdd.G)
+                    println(saveSourceFromAdd.B)
+                }
                 
-                    SCLAlertView().showInfo("Important info", subTitle: "You are great")
+                
+                // Sets the rgb value from other VC to self.VC
+                saveSourceFromAdd.R = self.editR
+                saveSourceFromAdd.G = self.editG
+                saveSourceFromAdd.B = self.editB
                 
             default:
                 println("failed")
@@ -192,34 +190,36 @@ class CategoryViewController: UIViewController {
             let category = self.categories[indexPath!.row] as Category
             
             println(category.tasksWithinCategory.count)
+            
+            // If the taskCount is 3 or larger
             if (category.tasksWithinCategory.count >= 3) {
-                // The alert to ask if the user wants to delete the task
-                let popUpAlertView = UIAlertController(title: "Are you sure you want to delete category \(category.categoryTitle)", message: "Deleting cannot be undone", preferredStyle: .Alert)
-                
-                var okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) in
-                    println("ok")
-                    
+                println("tasks higher than 3")
+                // Show a popup alert!
+                let popUpAlertView = SCLAlertView()
+                // The delete button
+                popUpAlertView.addButton("Delete") {
+                    println("Delete has been tapped")
                     // Deletes the category
                     self.realm.write() {
                         self.realm.delete(category)
                     }
                     
+                    popUpAlertView.close()
                     // The animation to remove the Cell
                     tableView.removeCell(cell, duration: 0.3, completion: nil)
-                    
                 }
                 
-                var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel) { (action) in
-                    println("cancelled")
+                // The cancel button
+                popUpAlertView.addButton("Cancel") {
+                    println("Cancel has been tapped")
+                    
+                    popUpAlertView.close()
+                    
                     tableView.replaceCell(cell, duration: 0.2, bounce: 0.2, completion: nil)
                 }
                 
-                // Adds the action to press ok
-                popUpAlertView.addAction(okAction)
-                popUpAlertView.addAction(cancelAction)
+                popUpAlertView.showWarning("Are you sure?", subTitle: "This will delete the list and all its tasks")
                 
-                // Presents the alertView
-                self.presentViewController(popUpAlertView, animated: true, completion: nil)
             } else {
                 
                 self.realm.write() {

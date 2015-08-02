@@ -9,6 +9,8 @@ target 'Toodo' do
 	pod 'FontAwesomeKit/Zocial'
 	pod 'FontAwesomeKit/IonIcons'
 	pod 'FSCalendar'
+	pod 'SCLAlertView'
+	use_frameworks!
 end
 
 target 'ToodoTests' do

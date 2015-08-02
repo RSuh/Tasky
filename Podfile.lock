@@ -9,7 +9,8 @@ PODS:
   - FontAwesomeKit/Zocial (2.2.0):
     - FontAwesomeKit/Core
   - FSCalendar (0.9.2)
-  - MGSwipeTableCell (1.4.3)
+  - MGSwipeTableCell (1.5.1)
+  - SCLAlertView (0.4.1)
 
 DEPENDENCIES:
   - FontAwesomeKit/FontAwesome
@@ -18,10 +19,12 @@ DEPENDENCIES:
   - FontAwesomeKit/Zocial
   - FSCalendar
   - MGSwipeTableCell
+  - SCLAlertView
 
 SPEC CHECKSUMS:
   FontAwesomeKit: 025fd4dd1017fe4e3f8d47b03e024deedbb33cd4
   FSCalendar: 6f8ad93d2999a225cd1e2e1024bfaeeea8ca6c4d
-  MGSwipeTableCell: cb9805df3cc5cad75ad43a5c1eb424be0316f0bf
+  MGSwipeTableCell: a51fa670c01f0aa048f12af040acebf315223137
+  SCLAlertView: 9e60641edd9efcfc6d58227558eb7b03678dbcf3
 
 COCOAPODS: 0.38.0

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "33D104A7822EBE10A4070281"
-               BuildableName = "FontAwesomeKit.framework"
-               BlueprintName = "FontAwesomeKit"
+               BlueprintIdentifier = "375F801079B06237DEE53F8F"
+               BuildableName = "SCLAlertView.framework"
+               BlueprintName = "SCLAlertView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

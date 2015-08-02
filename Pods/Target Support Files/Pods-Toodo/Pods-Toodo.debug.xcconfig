@@ -1,5 +1,7 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FSCalendar" "${PODS_ROOT}/Headers/Public/FontAwesomeKit" "${PODS_ROOT}/Headers/Public/MGSwipeTableCell"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/FSCalendar" -isystem "${PODS_ROOT}/Headers/Public/FontAwesomeKit" -isystem "${PODS_ROOT}/Headers/Public/MGSwipeTableCell"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FSCalendar" -l"FontAwesomeKit" -l"MGSwipeTableCell" -framework "CoreText" -framework "QuartzCore" -framework "UIKit"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/FSCalendar.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FontAwesomeKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MGSwipeTableCell.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SCLAlertView.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "FSCalendar" -framework "FontAwesomeKit" -framework "MGSwipeTableCell" -framework "SCLAlertView"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Toodo
 PODS_ROOT = ${SRCROOT}/Pods
