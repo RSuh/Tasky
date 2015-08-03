@@ -14,6 +14,8 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var purpleTheme: UIButton!
     @IBOutlet weak var turquoiseTheme: UIButton!
     @IBOutlet weak var categoryTitle: UITextField!
+    @IBOutlet weak var purpleImage: UIImageView!
+    @IBOutlet weak var turquoiseImage: UIImageView!
     
     var themeColor: UIColor = UIColor.whiteColor()
     var R: Double = 1.0
@@ -26,6 +28,10 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
             displayCellColor(addNewCategory)
         }
     }
+    
+    var addButtonColor = ""
+    
+    var flagForImage = true
     
     // Displays the new Category
     func displayNewCategory(category: Category?) {
@@ -66,20 +72,37 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func tapPurpleTheme(sender: AnyObject) {
         println("tapped purple")
+        println(flagForImage)
         themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
         R = 0.81
         G = 0.59
         B = 0.93
         println("\(R)\(G)\(B)")
+        if (flagForImage == true) {
+            purpleImage.image = UIImage(named: "themePurpleSelected")
+            flagForImage = false
+        } else {
+            purpleImage.image = UIImage(named: "themePurple")
+        }
     }
     
     @IBAction func tapTurquoiseTheme(sender: AnyObject) {
         println("tapped turquoise")
+        println(flagForImage)
         themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
         R = 0.15
         G = 0.85
         B = 0.70
         println("\(R)\(G)\(B)")
+        if (flagForImage == true) {
+            turquoiseImage.image = UIImage(named: "themeTurquoiseSelected")
+            flagForImage = false
+        } else {
+            turquoiseImage.image = UIImage(named: "themeTurquoise")
+        }
+        
+        
+        //turquoiseTheme.setImage(UIImage(named: "themeTurquoiseSelected"), forState: .Normal)
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
@@ -123,11 +146,13 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         // Placeholder text for textfield in Add
         categoryTitle.placeholder = "Title of your Category..."
         
-        purpleTheme.backgroundColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+        //purpleTheme.backgroundColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
         purpleTheme.layer.cornerRadius = 11
+        purpleImage.image = UIImage(named: "themePurple")
         
-        turquoiseTheme.backgroundColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+        //turquoiseTheme.backgroundColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
         turquoiseTheme.layer.cornerRadius = 11
+        turquoiseImage.image = UIImage(named: "themeTurquoise")
         
         categoryTitle.delegate = self
         categoryTitle.returnKeyType = UIReturnKeyType.Done
@@ -137,6 +162,15 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         //        } else {
         //            println("its not empty")
         //        }
+        
+        // Initialize the bar button items
+        let leftNavigation = self.navigationItem.leftBarButtonItem
+        let rightNavigation = self.navigationItem.rightBarButtonItem
+        
+        if (addButtonColor == "") {
+            leftNavigation?.tintColor = UIColor.whiteColor()
+            rightNavigation?.tintColor = UIColor.whiteColor()
+        }
         
     }
     

@@ -27,6 +27,8 @@ class CategoryViewController: UIViewController {
         }
     }
     
+    var addButtonColor = ""
+    
     // A array for deleting
     var selectedRow: NSMutableArray = []
     
@@ -168,6 +170,10 @@ class CategoryViewController: UIViewController {
             } else if (selectedCategory.categoryTitle == "") {
                 titleVC.categoryTitleForNavBar = ""
             }
+        } else if (segue.identifier == "addCategory") {
+            let targetVC = segue.destinationViewController as! AddNewCategoryViewController
+            
+            targetVC.addButtonColor = self.addButtonColor
         }
     }
     

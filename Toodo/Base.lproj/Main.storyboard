@@ -73,7 +73,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UF0-xq-MZ9" kind="show" id="TJr-3m-KIQ"/>
+                                    <segue destination="UF0-xq-MZ9" kind="show" identifier="addCategory" id="TJr-3m-KIQ"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addButtonWhite" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-m3-XXg">
@@ -643,7 +643,7 @@
             </objects>
             <point key="canvasLocation" x="1818" y="-320"/>
         </scene>
-        <!--Add New List-->
+        <!--Add New Category-->
         <scene sceneID="EKS-yB-vrL">
             <objects>
                 <viewController id="UF0-xq-MZ9" customClass="AddNewCategoryViewController" customModule="Toodo" customModuleProvider="target" sceneMemberID="viewController">
@@ -667,7 +667,7 @@
                                 <rect key="frame" x="0.0" y="159" width="320" height="1"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOD-07-Ssf">
-                                <rect key="frame" x="14" y="130" width="21" height="22"/>
+                                <rect key="frame" x="14" y="130" width="21" height="21"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -676,9 +676,8 @@
                                     <action selector="tapPurpleTheme:" destination="UF0-xq-MZ9" eventType="touchUpInside" id="Z8e-4u-EuZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egh-eL-1zH">
-                                <rect key="frame" x="43" y="130" width="21" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egh-eL-1zH">
+                                <rect key="frame" x="45" y="130" width="21" height="21"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -687,11 +686,41 @@
                                     <action selector="tapTurquoiseTheme:" destination="UF0-xq-MZ9" eventType="touchUpInside" id="orz-Kh-m6o"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="byx-5F-LBK">
+                                <rect key="frame" x="14" y="130" width="21" height="21"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zwB-lu-77E">
+                                <rect key="frame" x="45" y="130" width="21" height="21"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vOS-OB-gZc">
+                                <rect key="frame" x="0.0" y="159" width="320" height="76"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aXT-v1-s2M">
+                                    <size key="itemSize" width="21" height="21"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="14" minY="8" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YIo-43-QzB">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="UF0-xq-MZ9" id="pHJ-qZ-eNL"/>
+                                    <outlet property="delegate" destination="UF0-xq-MZ9" id="KE1-H4-Ywu"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Add New List" id="LD0-Rj-HcG">
+                    <navigationItem key="navigationItem" title="Add New Category" id="LD0-Rj-HcG">
                         <barButtonItem key="leftBarButtonItem" image="backArrow" id="xtG-UT-A6s">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -709,7 +738,9 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="categoryTitle" destination="58v-pa-Ppy" id="EaA-zQ-4NJ"/>
+                        <outlet property="purpleImage" destination="byx-5F-LBK" id="XLQ-j9-1wb"/>
                         <outlet property="purpleTheme" destination="dOD-07-Ssf" id="VTJ-Ja-G26"/>
+                        <outlet property="turquoiseImage" destination="zwB-lu-77E" id="fLp-RR-2wI"/>
                         <outlet property="turquoiseTheme" destination="egh-eL-1zH" id="RDI-bf-1ak"/>
                     </connections>
                 </viewController>
