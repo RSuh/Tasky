@@ -66,12 +66,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addBackground" translatesAutoresizingMaskIntoConstraints="NO" id="LWI-JR-bJd">
                                 <rect key="frame" x="0.0" y="511" width="320" height="57"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addButton" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-m3-XXg">
-                                <rect key="frame" x="148" y="527" width="24" height="25"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrQ-rA-5Q5">
                                 <rect key="frame" x="0.0" y="511" width="320" height="57"/>
-                                <state key="normal">
+                                <state key="normal" backgroundImage="addSkyBlue">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -79,6 +76,9 @@
                                     <segue destination="UF0-xq-MZ9" kind="show" id="TJr-3m-KIQ"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addButton" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-m3-XXg">
+                                <rect key="frame" x="148" y="527" width="24" height="25"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -181,7 +181,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiD-Oi-fzP">
                                 <rect key="frame" x="0.0" y="511" width="320" height="57"/>
-                                <state key="normal" backgroundImage="addBackground">
+                                <state key="normal" backgroundImage="addSkyBlue">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -723,6 +723,7 @@
         <image name="CalendarIcon" width="56" height="56"/>
         <image name="addBackground" width="320" height="58"/>
         <image name="addButton" width="24" height="25"/>
+        <image name="addSkyBlue" width="320" height="57"/>
         <image name="backArrow" width="24" height="21"/>
         <image name="badgeEdit" width="30" height="30"/>
         <image name="checkmark" width="27" height="21"/>

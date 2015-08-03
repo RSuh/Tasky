@@ -287,7 +287,7 @@ class CategoryViewController: UIViewController {
         categories = realm.objects(Category).sorted("taskCount", ascending: false)
         
         var navigation = self.navigationController?.navigationBar
-        navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
+        navigation?.barTintColor = UIColor(red:0.42, green:0.83, blue:1.00, alpha:1.0)
     }
     
     override func viewDidAppear(animated: Bool) {
