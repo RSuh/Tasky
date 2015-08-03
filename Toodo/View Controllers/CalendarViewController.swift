@@ -13,6 +13,8 @@ class CalendarViewController: UIViewController {
 
     @IBOutlet weak var dateLabel: UILabel!
     
+    var addButtonColor = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +25,15 @@ class CalendarViewController: UIViewController {
 //        var todaysDate = dateFormatter.stringFromDate(date)
         
         dateLabel.text = "Due Today"
+        
+        // Initializes the navigation buttons
+        let leftNavigation = self.navigationItem.leftBarButtonItem
+        let rightNavigation = self.navigationItem.rightBarButtonItem
+    
+        if (addButtonColor == "") {
+            rightNavigation?.tintColor = UIColor.whiteColor()
+            leftNavigation?.tintColor = UIColor.whiteColor()
+        }
     }
 
     override func didReceiveMemoryWarning() {

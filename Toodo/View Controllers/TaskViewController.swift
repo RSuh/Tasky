@@ -14,7 +14,7 @@ class TaskViewController: UIViewController {
     
     // REMEMBER TO CONNECT THE OUTLET IN STORYBOARD
     @IBOutlet weak var taskHomeTableView: SBGestureTableView!
-    @IBOutlet weak var buttonImage: UIImageView!
+    @IBOutlet weak var addImage: UIImageView!
     @IBOutlet weak var taskStreakNum: UILabel!
     @IBOutlet weak var addBackgroundButton: UIButton!
     // The variable for the navbar color of this view controller. We need this variable to transfer the color from the previous VC using a segue
@@ -170,12 +170,16 @@ class TaskViewController: UIViewController {
                 println(targetVC.editedTask!.badge)
             }
             
+            targetVC.addButtonColor = self.addButtonColor
+            
         } else if (segue.identifier == "addTask") {
             let targetVC = segue.destinationViewController as! AddNewTaskViewController
             
             // Sets the category for AddNewTaskVC to be the category that has been transferred from CategoryVC
             targetVC.category = self.category
             targetVC.newTask?.category = self.category
+            
+            targetVC.addButtonColor = self.addButtonColor
         }
         //        else if (segue.identifier == "backToCategoryFromTask") {
         //            let targetVC = segue.destinationViewController as! CategoryViewController
@@ -195,10 +199,10 @@ class TaskViewController: UIViewController {
         if (editing == true) {
             // Changes the image to a garbage can
             let toImage = UIImage(named: "Garbage")
-            UIView.transitionWithView(self.buttonImage,
+            UIView.transitionWithView(self.addImage,
                 duration: 0.35,
                 options: UIViewAnimationOptions.TransitionFlipFromBottom,
-                animations: { self.buttonImage.image = toImage },
+                animations: { self.addImage.image = toImage },
                 completion: nil)
             
             taskHomeTableView.isEnabled = false
@@ -209,10 +213,10 @@ class TaskViewController: UIViewController {
         } else if (editing == false) {
             // Changes the image to the addButton
             let backImage = UIImage(named: "addButton")
-            UIView.transitionWithView(self.buttonImage,
+            UIView.transitionWithView(self.addImage,
                 duration: 0.35,
                 options: UIViewAnimationOptions.TransitionFlipFromTop,
-                animations: { self.buttonImage.image = backImage },
+                animations: { self.addImage.image = backImage },
                 completion: nil)
             
             taskHomeTableView.isEnabled = true
@@ -230,9 +234,14 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let navigation = self.navigationController?.navigationBar
-       // navigation?.translucent = false
+        // Sets the right bar button item to be a edit button item.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        // Navigation color controls
+        let navigation = self.navigationController?.navigationBar
+        let leftNavigation = self.navigationItem.leftBarButtonItem
+        let rightNavigation = self.navigationItem.rightBarButtonItem
+
         // Segues to add task if category tasks is 0
         if (category?.tasksWithinCategory.count == 0) {
             performSegueWithIdentifier("addTask", sender: self)
@@ -246,22 +255,43 @@ class TaskViewController: UIViewController {
             
             // Sets the navbar color to purple
             navigation?.barTintColor = purpleColor
+            
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+            rightNavigation?.tintColor = UIColor.blackColor()
+            
+            // Intializes the add button
+            addImage.image = UIImage(named: "addButton")
+            
+            
         } else if (addButtonColor == "addTurquoise") {
             // Sets the button Color
             self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
             
             // sets the navbar color to turquoise
             navigation?.barTintColor = turquoiseColor
+            
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+            rightNavigation?.tintColor = UIColor.blackColor()
+            
+            // Intializes the add button
+            addImage.image = UIImage(named: "addButton")
+            
+        } else {
+            // If the bar has no color
+            // Changes the navbar controls
+            rightNavigation?.tintColor = UIColor.whiteColor()
+            leftNavigation?.tintColor = UIColor.whiteColor()
+            
+            // Intializes the add button
+            addImage.image = UIImage(named: "addButtonWhite")
         }
         
         
         
         //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
         // Disables the interaction with the image so that the image is basically transparent
-        buttonImage.userInteractionEnabled = false
+        addImage.userInteractionEnabled = false
         
-        // Intializes the add button
-        buttonImage.image = UIImage(named: "addButton")
         
         // Sets title to the categoryTitleForNavBar
         //self.title = "\(categoryTitleForNavBar) Category"
@@ -269,8 +299,6 @@ class TaskViewController: UIViewController {
         
         // Sets the multiple editing feature
         self.taskHomeTableView.allowsMultipleSelectionDuringEditing = true
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.blackColor()
         
         taskHomeTableView.delegate = self
         taskHomeTableView.dataSource = self

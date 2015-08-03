@@ -15,7 +15,7 @@ class CategoryViewController: UIViewController {
     
     //@IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var categoryTableView: SBGestureTableView!
-    @IBOutlet var buttonImage: UIImageView!
+    @IBOutlet var addImage: UIImageView!
     
     // Initialize Realm
     let realm = Realm()
@@ -174,16 +174,11 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Changes Nav bar color to green theme
-        
-        
-        
-        
         // Disables the interaction with the image so that the image is basically transparent
-        buttonImage.userInteractionEnabled = false
+        addImage.userInteractionEnabled = false
         
         // Intializes the add button
-        buttonImage.image = UIImage(named: "addButton")
+        addImage.image = UIImage(named: "addButtonWhite")
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
@@ -286,8 +281,13 @@ class CategoryViewController: UIViewController {
         // Sorts the realm objects by taskCount
         categories = realm.objects(Category).sorted("taskCount", ascending: false)
         
+        // Changes Nav bar color to dark Theme
         var navigation = self.navigationController?.navigationBar
-        navigation?.barTintColor = UIColor(red:0.42, green:0.83, blue:1.00, alpha:1.0)
+        navigation?.barTintColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
+        
+        // Changes the title of the navbar
+        //let font: UIFont = UIFont(name: "fontName", size: 17)!
+        navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
     }
     
     override func viewDidAppear(animated: Bool) {

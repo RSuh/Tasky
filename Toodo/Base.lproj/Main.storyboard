@@ -63,12 +63,12 @@
                                     <outlet property="delegate" destination="Ncj-My-Rse" id="OYj-Bf-O46"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addBackground" translatesAutoresizingMaskIntoConstraints="NO" id="LWI-JR-bJd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LWI-JR-bJd">
                                 <rect key="frame" x="0.0" y="511" width="320" height="57"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrQ-rA-5Q5">
                                 <rect key="frame" x="0.0" y="511" width="320" height="57"/>
-                                <state key="normal" backgroundImage="addSkyBlue">
+                                <state key="normal" backgroundImage="addDark">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -76,7 +76,7 @@
                                     <segue destination="UF0-xq-MZ9" kind="show" id="TJr-3m-KIQ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addButton" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-m3-XXg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="addButtonWhite" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-m3-XXg">
                                 <rect key="frame" x="148" y="527" width="24" height="25"/>
                             </imageView>
                         </subviews>
@@ -84,7 +84,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Toodo Category" id="lib-z6-UaC">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="lRu-2f-U9T">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="AOT-LU-pl2" kind="show" identifier="menu" id="sro-8P-BnX"/>
                             </connections>
@@ -92,7 +92,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="buttonImage" destination="AKg-m3-XXg" id="QWr-xm-wma"/>
+                        <outlet property="addImage" destination="AKg-m3-XXg" id="M1P-yh-TsG"/>
                         <outlet property="categoryTableView" destination="P7N-vr-83j" id="6U8-d9-f8r"/>
                         <segue destination="Tkz-QC-Deg" kind="show" identifier="categoryToTask" id="Mgm-1X-av1"/>
                         <segue destination="ha9-re-vnT" kind="show" identifier="listToEdit" id="MWI-sv-82W"/>
@@ -181,7 +181,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiD-Oi-fzP">
                                 <rect key="frame" x="0.0" y="511" width="320" height="57"/>
-                                <state key="normal" backgroundImage="addSkyBlue">
+                                <state key="normal" backgroundImage="addDark">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -215,7 +215,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addBackgroundButton" destination="BiD-Oi-fzP" id="BVT-oW-INU"/>
-                        <outlet property="buttonImage" destination="whC-cE-PUS" id="GS4-Rh-eVA"/>
+                        <outlet property="addImage" destination="whC-cE-PUS" id="ipt-x5-TxT"/>
                         <outlet property="taskHomeTableView" destination="MDr-AE-52X" id="aB6-RJ-4Ag"/>
                         <outlet property="taskStreakNum" destination="Jjf-B6-Ar0" id="9vv-a8-8fY"/>
                         <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="fBS-dO-oi6"/>
@@ -298,7 +298,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Img-gE-gqF" kind="show" identifier="setDate" id="lk3-Ep-PIf"/>
+                                    <segue destination="Img-gE-gqF" kind="show" identifier="setDate" id="ISx-wd-NPO"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="YEU-9k-mDf">
@@ -721,9 +721,8 @@
     </scenes>
     <resources>
         <image name="CalendarIcon" width="56" height="56"/>
-        <image name="addBackground" width="320" height="58"/>
-        <image name="addButton" width="24" height="25"/>
-        <image name="addSkyBlue" width="320" height="57"/>
+        <image name="addButtonWhite" width="25" height="26"/>
+        <image name="addDark" width="319" height="56"/>
         <image name="backArrow" width="24" height="21"/>
         <image name="badgeEdit" width="30" height="30"/>
         <image name="checkmark" width="27" height="21"/>

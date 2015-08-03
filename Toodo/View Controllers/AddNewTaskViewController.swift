@@ -21,6 +21,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     // Var to control the image
     var badge = 0
     
+    var addButtonColor = ""
+    
     var category: Category?
     
     var dateLabel: String = "Due: Never"
@@ -132,6 +134,10 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         } else if segue.identifier == "saveFromAdd" {
             newTask = Task()
             saveNewTask()
+        } else if segue.identifier == "setDate" {
+            let targetVC = segue.destinationViewController as! CalendarViewController
+            targetVC.addButtonColor = self.addButtonColor
+
         }
     }
     
@@ -140,6 +146,15 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         taskTitle.placeholder = "Task Title here..."
         taskTitle.delegate = self
         taskTitle.returnKeyType = UIReturnKeyType.Done
+        
+        // Initializes the navigation buttons
+        let leftNavigation = self.navigationItem.leftBarButtonItem
+        let rightNavigation = self.navigationItem.rightBarButtonItem
+        
+        if (addButtonColor == "") {
+            leftNavigation?.tintColor = UIColor.whiteColor()
+            rightNavigation?.tintColor = UIColor.whiteColor()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {

@@ -22,6 +22,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     var badge = 0
     
+    var addButtonColor: String = ""
+    
     var editedTask: Task? {
         didSet {
             displayTask(editedTask)
@@ -126,6 +128,15 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         
         taskTextField.delegate = self
         taskTextField.returnKeyType = UIReturnKeyType.Done
+        
+        // Initializes the navigation buttons
+        let leftNavigation = self.navigationItem.leftBarButtonItem
+        let rightNavigation = self.navigationItem.rightBarButtonItem
+        
+        if (addButtonColor == "") {
+            leftNavigation?.tintColor = UIColor.whiteColor()
+            rightNavigation?.tintColor = UIColor.whiteColor()
+        }
     }
     
     override func didReceiveMemoryWarning() {
