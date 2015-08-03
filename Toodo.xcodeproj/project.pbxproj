@@ -35,6 +35,7 @@
 		457E33B81B6193E800D900E6 /* SBGestureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */; };
 		457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */; };
 		457E33BA1B6193E800D900E6 /* SBGestureTableViewCellSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */; };
+		458E1D8D1B70159000CCF92F /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E1D8C1B70159000CCF92F /* ColorCollectionViewCell.swift */; };
 		A095295095E8A8CFE8903542 /* Pods_Toodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92159307A5F09E27A74BB4 /* Pods_Toodo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 		457E33B41B6193E800D900E6 /* SBGestureTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCell.swift; sourceTree = "<group>"; };
 		457E33B51B6193E800D900E6 /* SBGestureTableViewCellAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellAction.swift; sourceTree = "<group>"; };
 		457E33B61B6193E800D900E6 /* SBGestureTableViewCellSideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SBGestureTableViewCellSideView.swift; sourceTree = "<group>"; };
+		458E1D8C1B70159000CCF92F /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		6E92159307A5F09E27A74BB4 /* Pods_Toodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Toodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E2495E1BFE66D79DF66177 /* Pods-Toodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Toodo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Toodo/Pods-Toodo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +199,7 @@
 				456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */,
 				456C99F51B698494002E1074 /* CalendarViewController.swift */,
 				456C99F91B6AB5B8002E1074 /* NSDate-Equatable.swift */,
+				458E1D8C1B70159000CCF92F /* ColorCollectionViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 				457E33B71B6193E800D900E6 /* SBGestureTableView.swift in Sources */,
 				457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */,
 				4536C37A1B505CA600A35889 /* TaskViewController.swift in Sources */,
+				458E1D8D1B70159000CCF92F /* ColorCollectionViewCell.swift in Sources */,
 				457D28901B558460000952CC /* CategoryViewController.swift in Sources */,
 				4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */,
 				457D28941B558908000952CC /* Category.swift in Sources */,

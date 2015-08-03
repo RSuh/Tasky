@@ -9,13 +9,9 @@
 import UIKit
 import RealmSwift
 
-class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
+class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    @IBOutlet weak var purpleTheme: UIButton!
-    @IBOutlet weak var turquoiseTheme: UIButton!
     @IBOutlet weak var categoryTitle: UITextField!
-    @IBOutlet weak var purpleImage: UIImageView!
-    @IBOutlet weak var turquoiseImage: UIImageView!
     
     var themeColor: UIColor = UIColor.whiteColor()
     var R: Double = 1.0
@@ -31,7 +27,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
     
     var addButtonColor = ""
     
-    var flagForImage = true
+    var colorIndex = 0
     
     // Displays the new Category
     func displayNewCategory(category: Category?) {
@@ -70,41 +66,58 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func tapPurpleTheme(sender: AnyObject) {
-        println("tapped purple")
-        println(flagForImage)
-        themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
-        R = 0.81
-        G = 0.59
-        B = 0.93
-        println("\(R)\(G)\(B)")
-        if (flagForImage == true) {
-            purpleImage.image = UIImage(named: "themePurpleSelected")
-            flagForImage = false
-        } else {
-            purpleImage.image = UIImage(named: "themePurple")
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arrayConstants.colorImagesUnselected.count
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("colorCell", forIndexPath: indexPath) as! ColorCollectionViewCell
+        cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[indexPath.row])
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        println("You have selected cell \(indexPath.row)")
+        colorIndex = indexPath.row
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell
+        if (colorIndex > 0) {
+            
+        }
+        cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[indexPath.row])
+        println(colorIndex)
+        
+        if (colorIndex == 0) {
+            themeColor = UIColor
+        } else if (colorIndex == 1) {
+            themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            R = 0.81
+            G = 0.59
+            B = 0.93
+            println("\(R)\(G)\(B)")
+        } else if (colorIndex == 1) {
+            themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+            R = 0.15
+            G = 0.85
+            B = 0.70
+            println("\(R)\(G)\(B)")
+        } else if (colorIndex == 2) {
+            
+        } else if (colorIndex == 3) {
+            
+        } else if (colorIndex == 4) {
+            
         }
     }
     
-    @IBAction func tapTurquoiseTheme(sender: AnyObject) {
-        println("tapped turquoise")
-        println(flagForImage)
-        themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
-        R = 0.15
-        G = 0.85
-        B = 0.70
-        println("\(R)\(G)\(B)")
-        if (flagForImage == true) {
-            turquoiseImage.image = UIImage(named: "themeTurquoiseSelected")
-            flagForImage = false
-        } else {
-            turquoiseImage.image = UIImage(named: "themeTurquoise")
-        }
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell
+
+        cell.backgroundColor = UIColor.clearColor()
         
-        
-        //turquoiseTheme.setImage(UIImage(named: "themeTurquoiseSelected"), forState: .Normal)
+        (collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell).colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[indexPath.row])
     }
-    
+
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "saveToCategoryFromAdd" {
             
@@ -145,14 +158,8 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate {
         
         // Placeholder text for textfield in Add
         categoryTitle.placeholder = "Title of your Category..."
+
         
-        //purpleTheme.backgroundColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
-        purpleTheme.layer.cornerRadius = 11
-        purpleImage.image = UIImage(named: "themePurple")
-        
-        //turquoiseTheme.backgroundColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
-        turquoiseTheme.layer.cornerRadius = 11
-        turquoiseImage.image = UIImage(named: "themeTurquoise")
         
         categoryTitle.delegate = self
         categoryTitle.returnKeyType = UIReturnKeyType.Done

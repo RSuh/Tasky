@@ -13,6 +13,6 @@ class arrayConstants {
     static let cellImagesUnselected: [String] = ["badgeWork", "badgeDefault", "badgeFinance"]
     static let cellImagesSelected: [String] = []
     //static let cellColor: [String] = []
-    var alertCancelButton: String = "Default"
-    
+    static let colorImagesUnselected: [String] = ["themeButtonSelected", "themePurple", "themeTurquoise", "themeRed", "themeBlue"]
+    static let colorImagesSelected: [String] = ["themeButton", "themePurpleSelected", "themeTurquoiseSelected", "themeRedSelected", "themeBlueSelected"]
 }
