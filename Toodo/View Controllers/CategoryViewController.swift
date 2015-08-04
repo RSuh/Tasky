@@ -94,7 +94,7 @@ class CategoryViewController: UIViewController {
                 println("failed")
                 
                 // Sort by number of tasks, able to sort by count.
-                categories = realm.objects(Category).sorted("tasksWithinCategory", ascending: false)
+                categories = realm.objects(Category).sorted("taskCount", ascending: false)
             }
         }
     }
@@ -114,7 +114,7 @@ class CategoryViewController: UIViewController {
                 println("failed")
                 
                 // Sorts by number of tasks, able to sort by count.
-                categories = realm.objects(Category).sorted("tasksWithinCategory", ascending: false)
+                categories = realm.objects(Category).sorted("taskCount", ascending: false)
             }
         }
     }
@@ -286,14 +286,14 @@ class CategoryViewController: UIViewController {
         }
         
         // Sets up the lists cells by the modificationDate
-        categories = realm.objects(Category).sorted("tasksWithinCategory.count", ascending: false)
+        categories = realm.objects(Category).sorted("taskCount", ascending: false)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         // Sorts the realm objects by taskCount
-        categories = realm.objects(Category).sorted("tasksWithinCategory.count", ascending: false)
+        categories = realm.objects(Category).sorted("taskCount", ascending: false)
         
         // Changes Nav bar color to dark Theme
         var navigation = self.navigationController?.navigationBar
