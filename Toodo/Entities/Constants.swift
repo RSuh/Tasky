@@ -10,7 +10,7 @@ import Foundation
 import SCLAlertView
 
 class arrayConstants {
-    static let cellImagesUnselected: [String] = ["badgeWork", "badgeDefault", "badgeFinance"]
+    static let cellImagesUnselected: [String] = ["badgeDefault", "badgeLowPriority", "badgeMedPriority", "badgeHighPriority", "badgeLove", "badgeHome", "badgeBar", "badgeParty", "badgeNotes", "badgePill", "badgeLocation", "badgeFinance"]
     static let cellImagesSelected: [String] = []
     //static let cellColor: [String] = []
     static let colorImagesUnselected: [String] = ["themeButtonSelected", "themePurple", "themeTurquoise", "themeRed", "themeBlue"]
