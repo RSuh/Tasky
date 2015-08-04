@@ -492,6 +492,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="badgeImage" destination="oMP-uO-zyB" id="y0x-Y7-jWA"/>
+                        <outlet property="calendar" destination="Xm2-IV-qMw" id="TLW-h6-hi2"/>
                         <outlet property="dateLabel" destination="H1M-DF-c3y" id="Txd-VC-uGs"/>
                         <outlet property="editImage" destination="5PI-B5-2bI" id="X14-By-bXK"/>
                         <outlet property="taskTextField" destination="49c-5i-IWx" id="UVR-cs-KlU"/>

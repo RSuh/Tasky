@@ -283,8 +283,8 @@ class TaskViewController: UIViewController {
             // Sets the button Color
             self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
             
-            // sets the navbar color to turquoise
-            navigation?.barTintColor = turquoiseColor
+            // sets the navbar color to red
+            navigation?.barTintColor = redColor
             
             navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
             rightNavigation?.tintColor = UIColor.blackColor()
@@ -296,8 +296,8 @@ class TaskViewController: UIViewController {
             // Sets the button Color
             self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
             
-            // sets the navbar color to turquoise
-            navigation?.barTintColor = turquoiseColor
+            // sets the navbar color to blue
+            navigation?.barTintColor = blueColor
             
             navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
             rightNavigation?.tintColor = UIColor.blackColor()
@@ -305,8 +305,6 @@ class TaskViewController: UIViewController {
             // Intializes the add button
             addImage.image = UIImage(named: "addButton")
 
-            
-            
         } else {
             // If the bar has no color
             // Changes the navbar controls

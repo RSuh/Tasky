@@ -17,6 +17,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var dateLabel: UITextField!
     @IBOutlet weak var editImage: UIImageView!
+    @IBOutlet weak var calendar: FSCalendar!
     
     // Initialize realm
     let realm = Realm()
@@ -128,6 +129,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         // println(self.editedTask!.modificationDate)
         // Checks to see if the due date is empty
         
+        // Changes the calendar flow to vertical
+        calendar.flow = .Vertical
+        
         taskTextField.delegate = self
         taskTextField.returnKeyType = UIReturnKeyType.Done
         
@@ -142,14 +146,34 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         
         if (editButtonImage == "addPurple") {
             editImage.image = UIImage(named: "editPurple")
+            // Changes the calendar to purple color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+
         } else if (editButtonImage == "addTurquoise") {
             editImage.image = UIImage(named: "editTurquoise")
+            
+            // Changes the calendar to turquoise color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
         } else if (editButtonImage == "addRed") {
             editImage.image = UIImage(named: "editRed")
+            
+            // Changes the calendar to red color
+            calendar.appearance.weekdayTextColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
         } else if (editButtonImage == "addBlue") {
             editImage.image = UIImage(named: "editBlue")
+            
+            // Changes the calendar to blue color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
         } else {
             editImage.image = UIImage(named: "editDark")
+            
+            // Changes the calendar to dark, default color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
         }
         
         println(editButtonImage)
@@ -195,6 +219,11 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension EditTaskViewController: FSCalendarDataSource {
+    
+    
+//    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
+//        return true
+//    }
     
 }
 
