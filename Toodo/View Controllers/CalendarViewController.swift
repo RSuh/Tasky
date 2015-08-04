@@ -12,17 +12,15 @@ import FSCalendar
 class CalendarViewController: UIViewController {
 
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var calendar: FSCalendar!
     
     var addButtonColor = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        var date = NSDate()
-//        var dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "EEEE, MMMM d"
-//        
-//        var todaysDate = dateFormatter.stringFromDate(date)
+        // Makes the calendar vertical flow
+        calendar.flow = .Vertical
         
         dateLabel.text = "Due Today"
         
@@ -34,6 +32,54 @@ class CalendarViewController: UIViewController {
             rightNavigation?.tintColor = UIColor.whiteColor()
             leftNavigation?.tintColor = UIColor.whiteColor()
         }
+        
+        if (addButtonColor == "addPurple") {
+                        // Changes the calendar to purple color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            //            calendar.appearance.todayColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            calendar.appearance.selectionColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            
+        } else if (addButtonColor == "addTurquoise") {
+            
+            
+            // Changes the calendar to turquoise color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+        } else if (addButtonColor == "addRed") {
+            
+            
+            // Changes the calendar to red color
+            calendar.appearance.weekdayTextColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+        } else if (addButtonColor == "addBlue") {
+            
+            
+            // Changes the calendar to blue color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+        } else {
+            
+            
+            // Changes the calendar to dark, default color
+            calendar.appearance.weekdayTextColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
+            calendar.appearance.headerTitleColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
+        }
+
     }
 
     override func didReceiveMemoryWarning() {

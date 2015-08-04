@@ -254,9 +254,8 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         categoryTitle.becomeFirstResponder()
-        
     }
     
     //Called when 'return' key pressed. return NO to ignore.

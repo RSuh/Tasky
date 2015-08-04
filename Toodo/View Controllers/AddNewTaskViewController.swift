@@ -158,7 +158,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         println(keyboardPopUp)
         if (keyboardPopUp == true) {
             taskTitle.becomeFirstResponder()

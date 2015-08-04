@@ -149,31 +149,47 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             // Changes the calendar to purple color
             calendar.appearance.weekdayTextColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
             calendar.appearance.headerTitleColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
-
+            
+            // Changes the calendar color to theme color for selection
+//            calendar.appearance.todayColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            calendar.appearance.selectionColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+            
         } else if (editButtonImage == "addTurquoise") {
             editImage.image = UIImage(named: "editTurquoise")
             
             // Changes the calendar to turquoise color
             calendar.appearance.weekdayTextColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
             calendar.appearance.headerTitleColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
         } else if (editButtonImage == "addRed") {
             editImage.image = UIImage(named: "editRed")
             
             // Changes the calendar to red color
             calendar.appearance.weekdayTextColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
             calendar.appearance.headerTitleColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
         } else if (editButtonImage == "addBlue") {
             editImage.image = UIImage(named: "editBlue")
             
             // Changes the calendar to blue color
             calendar.appearance.weekdayTextColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
             calendar.appearance.headerTitleColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
         } else {
             editImage.image = UIImage(named: "editDark")
             
             // Changes the calendar to dark, default color
             calendar.appearance.weekdayTextColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
             calendar.appearance.headerTitleColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
+            
+            // Changes the calendar color to theme color for selection
+            calendar.appearance.selectionColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
         }
         
         println(editButtonImage)
@@ -204,7 +220,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             self.dateLabel.text = "Due: Never"
         }
         
-        taskTextField.becomeFirstResponder()
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -212,6 +228,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         displayTask(editedTask)
         displayBadge(editedTask)
         displayDate(editedTask)
+        
+        // keyboard pops up right away
+        taskTextField.becomeFirstResponder()
         
         // Displays the badge image of the selectedTask
         badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[editedTask!.badge])
@@ -221,9 +240,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
 extension EditTaskViewController: FSCalendarDataSource {
     
     
-//    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
-//        return true
-//    }
+    //    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
+    //        return true
+    //    }
     
 }
 
