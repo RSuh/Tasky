@@ -48,10 +48,12 @@ class TaskViewController: UIViewController {
     
     // Colors
     let greenColor = UIColor(red: 48.0/255, green: 220.0/255, blue: 107.0/255, alpha: 80)
-    let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
+    //let redColor = UIColor(red: 231.0/255, green: 76.0/255, blue: 60.0/255, alpha: 100)
     let yellowColor = UIColor(red: 241.0/255, green: 196.0/255, blue: 15.0/255, alpha: 100)
     let purpleColor = UIColor(red: 0.81, green: 0.59, blue: 0.93, alpha: 1.0)
     let turquoiseColor = UIColor(red: 0.15, green: 0.85, blue: 0.70, alpha: 1.0)
+    let redColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+    let blueColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
     
     // Variable to removeCellBlock
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
@@ -170,6 +172,7 @@ class TaskViewController: UIViewController {
                 println(targetVC.editedTask!.badge)
             }
             
+            targetVC.editButtonImage = self.addButtonColor
             targetVC.addButtonColor = self.addButtonColor
             
         } else if (segue.identifier == "addTask") {
@@ -276,6 +279,34 @@ class TaskViewController: UIViewController {
             // Intializes the add button
             addImage.image = UIImage(named: "addButton")
             
+        } else if (addButtonColor == "addRed") {
+            // Sets the button Color
+            self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
+            
+            // sets the navbar color to turquoise
+            navigation?.barTintColor = turquoiseColor
+            
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+            rightNavigation?.tintColor = UIColor.blackColor()
+            
+            // Intializes the add button
+            addImage.image = UIImage(named: "addButton")
+            
+        } else if (addButtonColor == "addBlue") {
+            // Sets the button Color
+            self.addBackgroundButton.setBackgroundImage(UIImage(named: "\(addButtonColor)"), forState: .Normal)
+            
+            // sets the navbar color to turquoise
+            navigation?.barTintColor = turquoiseColor
+            
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+            rightNavigation?.tintColor = UIColor.blackColor()
+            
+            // Intializes the add button
+            addImage.image = UIImage(named: "addButton")
+
+            
+            
         } else {
             // If the bar has no color
             // Changes the navbar controls
@@ -347,9 +378,6 @@ class TaskViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         // Selects the nav bar
         let navigation = self.navigationController?.navigationBar
-        
-        // Customizes the color of the navbar
-        //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
         
     }
     

@@ -16,6 +16,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var dateLabel: UITextField!
+    @IBOutlet weak var editImage: UIImageView!
     
     // Initialize realm
     let realm = Realm()
@@ -23,6 +24,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     var badge = 0
     
     var addButtonColor: String = ""
+    var editButtonImage: String = ""
     
     var editedTask: Task? {
         didSet {
@@ -123,7 +125,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(self.editedTask!.modificationDate)
+        // println(self.editedTask!.modificationDate)
         // Checks to see if the due date is empty
         
         taskTextField.delegate = self
@@ -137,6 +139,21 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             leftNavigation?.tintColor = UIColor.whiteColor()
             rightNavigation?.tintColor = UIColor.whiteColor()
         }
+        
+        if (editButtonImage == "addPurple") {
+            editImage.image = UIImage(named: "editPurple")
+        } else if (editButtonImage == "addTurquoise") {
+            editImage.image = UIImage(named: "editTurquoise")
+        } else if (editButtonImage == "addRed") {
+            editImage.image = UIImage(named: "editRed")
+        } else if (editButtonImage == "addBlue") {
+            editImage.image = UIImage(named: "editBlue")
+        } else {
+            editImage.image = UIImage(named: "editDark")
+        }
+        
+        println(editButtonImage)
+        
     }
     
     override func didReceiveMemoryWarning() {

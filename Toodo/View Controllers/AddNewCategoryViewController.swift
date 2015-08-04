@@ -74,6 +74,57 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("colorCell", forIndexPath: indexPath) as! ColorCollectionViewCell
         cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[indexPath.row])
+        
+        // If indexpath is 0
+        if(indexPath.row==0) {
+            
+            println("You have selected cell \(indexPath.row)")
+            
+            cell.selected = true
+            
+            colorIndex = indexPath.row
+            
+            cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[indexPath.row])
+            println(colorIndex)
+            
+            if (colorIndex == 0) {
+                themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+                R = 1.00
+                G = 1.00
+                B = 1.00
+                println("\(R)\(G)\(B)")
+                
+            } else if (colorIndex == 1) {
+                themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
+                R = 0.81
+                G = 0.59
+                B = 0.93
+                println("\(R)\(G)\(B)")
+                
+            } else if (colorIndex == 2) {
+                themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
+                R = 0.15
+                G = 0.85
+                B = 0.70
+                println("\(R)\(G)\(B)")
+                
+            } else if (colorIndex == 3) {
+                themeColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+                R = 1.00
+                G = 0.45
+                B = 0.45
+                println("\(R)\(G)\(B)")
+                
+            } else if (colorIndex == 4) {
+                themeColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+                R = 0.40
+                G = 0.60
+                B = 1.00
+                println("\(R)\(G)\(B)")
+                
+            }
+            
+        }
         return cell
     }
     
@@ -82,42 +133,64 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
         colorIndex = indexPath.row
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell
         if (colorIndex > 0) {
+            // Sets index path for cell 0
+            let ip = NSIndexPath(forRow: 0, inSection: 0)
             
+            // Sets image at collectionCell 0
+            (collectionView.cellForItemAtIndexPath(ip) as! ColorCollectionViewCell).colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[0])
         }
-        cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[indexPath.row])
-        println(colorIndex)
         
         if (colorIndex == 0) {
-            themeColor = UIColor
+            themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+            R = 1.00
+            G = 1.00
+            B = 1.00
+            println("\(R)\(G)\(B)")
+            
         } else if (colorIndex == 1) {
             themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
             R = 0.81
             G = 0.59
             B = 0.93
             println("\(R)\(G)\(B)")
-        } else if (colorIndex == 1) {
+            
+        } else if (colorIndex == 2) {
             themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
             R = 0.15
             G = 0.85
             B = 0.70
             println("\(R)\(G)\(B)")
-        } else if (colorIndex == 2) {
             
         } else if (colorIndex == 3) {
+            themeColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
+            R = 1.00
+            G = 0.45
+            B = 0.45
+            println("\(R)\(G)\(B)")
             
         } else if (colorIndex == 4) {
+            themeColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+            R = 0.40
+            G = 0.60
+            B = 1.00
+            println("\(R)\(G)\(B)")
             
         }
+        
+        cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[indexPath.row])
+        
+        println(colorIndex)
+        
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell
-
+        
         cell.backgroundColor = UIColor.clearColor()
         
         (collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell).colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[indexPath.row])
     }
-
+    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "saveToCategoryFromAdd" {
             
@@ -158,7 +231,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
         
         // Placeholder text for textfield in Add
         categoryTitle.placeholder = "Title of your Category..."
-
+        
         
         
         categoryTitle.delegate = self

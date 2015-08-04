@@ -152,16 +152,24 @@ class CategoryViewController: UIViewController {
                     println("Chose purple category")
                     titleVC.addButtonColor = "addPurple"
                     
-                    // TODO: Change navbar color
-                    
-                    //titleVC.navbarColor =
-                    //navigation?.barTintColor = UIColor(red: 48/255, green: 220/255, blue: 107/255, alpha: 80)
             } else if ((selectedCategory.R == 0.15) &&
                 (selectedCategory.G == 0.85) &&
                 (selectedCategory.B == 0.70)) {
                     
                     println("Chose turquoise category")
                     titleVC.addButtonColor = "addTurquoise"
+            } else if ((selectedCategory.R == 1.00) &&
+                (selectedCategory.G == 0.45) &&
+                (selectedCategory.B == 0.45)) {
+                    
+                    println("Chose red category")
+                    titleVC.addButtonColor = "addRed"
+            } else if ((selectedCategory.R == 0.40) &&
+                (selectedCategory.G == 0.60) &&
+                (selectedCategory.B == 1.00)) {
+                    
+                    println("chose blue category")
+                    titleVC.addButtonColor = "addBlue"
             }
             
             // Sets the category title in the next VC to be the selected category's title

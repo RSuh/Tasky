@@ -82,14 +82,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Toodo Category" id="lib-z6-UaC">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="lRu-2f-U9T">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <segue destination="AOT-LU-pl2" kind="show" identifier="menu" id="sro-8P-BnX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Toodo Category" id="lib-z6-UaC"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="addImage" destination="AKg-m3-XXg" id="M1P-yh-TsG"/>
@@ -448,7 +441,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oMP-uO-zyB">
                                 <rect key="frame" x="16" y="78" width="85" height="96.5"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="badgeEdit" translatesAutoresizingMaskIntoConstraints="NO" id="5PI-B5-2bI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5PI-B5-2bI">
                                 <rect key="frame" x="86" y="87" width="30" height="30"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="VZb-mC-WLe">
@@ -500,6 +493,7 @@
                     <connections>
                         <outlet property="badgeImage" destination="oMP-uO-zyB" id="y0x-Y7-jWA"/>
                         <outlet property="dateLabel" destination="H1M-DF-c3y" id="Txd-VC-uGs"/>
+                        <outlet property="editImage" destination="5PI-B5-2bI" id="X14-By-bXK"/>
                         <outlet property="taskTextField" destination="49c-5i-IWx" id="UVR-cs-KlU"/>
                     </connections>
                 </viewController>
@@ -734,7 +728,6 @@
         <image name="addButtonWhite" width="25" height="26"/>
         <image name="addDark" width="319" height="56"/>
         <image name="backArrow" width="24" height="21"/>
-        <image name="badgeEdit" width="30" height="30"/>
         <image name="checkmark" width="27" height="21"/>
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>
