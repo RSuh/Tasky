@@ -12,4 +12,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var chooseBadgeImage: UIImageView!
     
+    @IBOutlet weak var checkmarkImage: UIImageView!
+
 }

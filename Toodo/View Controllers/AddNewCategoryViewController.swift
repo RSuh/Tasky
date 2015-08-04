@@ -84,7 +84,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
             
             colorIndex = indexPath.row
             
-            cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[indexPath.row])
+            cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[0])
             println(colorIndex)
             
             if (colorIndex == 0) {
@@ -179,6 +179,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
         
         cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[indexPath.row])
         
+        
         println(colorIndex)
         
     }
@@ -186,9 +187,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell
         
-        cell.backgroundColor = UIColor.clearColor()
-        
-        (collectionView.cellForItemAtIndexPath(indexPath) as! ColorCollectionViewCell).colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[indexPath.row])
+        cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[indexPath.row])
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {

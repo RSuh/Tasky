@@ -113,8 +113,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "saveFromEdit") {
             saveTask()
-        } else {
-            println("task was not saved")
+        } else if (segue.identifier == "tapOnBadge") {
+            let targetVC = segue.destinationViewController as! ChangeBadgeViewController
+            targetVC.addButtonColor = self.addButtonColor
         }
     }
     
@@ -230,7 +231,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         displayDate(editedTask)
         
         // keyboard pops up right away
-        taskTextField.becomeFirstResponder()
+        //taskTextField.becomeFirstResponder()
         
         // Displays the badge image of the selectedTask
         badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[editedTask!.badge])

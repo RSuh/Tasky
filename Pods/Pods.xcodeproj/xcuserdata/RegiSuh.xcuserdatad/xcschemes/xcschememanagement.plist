@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CheckMarkView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1EA7FF9E37332749344989B3CE653B49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>35E51874B443CACFED2B025199503FD5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>478F67B3798FDDC6E8005651131B4521</key>
+		<key>57F3357784117B564C92F8228753DDFA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B20F20133D1E4DC26E7502A40879E6A</key>
+		<key>756ED7A48B019896299FF1D4F72B3539</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F8E712032FB8B54D1EA127689A2A8A4</key>
+		<key>B6613B52A963EB8C5CC213211EB983F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AE01BD3787DE5526DB89BE846EB26EF</key>
+		<key>B7AF158AA4C5672A178EB91428CFFFF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

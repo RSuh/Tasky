@@ -52,12 +52,14 @@ code_sign_if_enabled() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework 'Pods-Toodo/CheckMarkView.framework'
   install_framework 'Pods-Toodo/FSCalendar.framework'
   install_framework 'Pods-Toodo/FontAwesomeKit.framework'
   install_framework 'Pods-Toodo/MGSwipeTableCell.framework'
   install_framework 'Pods-Toodo/SCLAlertView.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework 'Pods-Toodo/CheckMarkView.framework'
   install_framework 'Pods-Toodo/FSCalendar.framework'
   install_framework 'Pods-Toodo/FontAwesomeKit.framework'
   install_framework 'Pods-Toodo/MGSwipeTableCell.framework'

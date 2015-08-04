@@ -13,6 +13,8 @@ class ChangeBadgeViewController: UIViewController, UICollectionViewDelegate, UIC
 
     @IBOutlet weak var badgeImage: UICollectionView!
     
+    var addButtonColor = ""
+    
     var badge = 0
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -29,15 +31,34 @@ class ChangeBadgeViewController: UIViewController, UICollectionViewDelegate, UIC
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         badge = indexPath.row
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
-        cell.chooseBadgeImage.image = UIImage(named: "badgeFinance")
+        
+        // Makes the checkmark non-hidden when you click
+        cell.checkmarkImage.hidden = false
+        
+        if (addButtonColor == "addPurple") {
+            cell.checkmarkImage.image = UIImage(named: "checkmarkPurple")
+        } else if (addButtonColor == "addRed") {
+            cell.checkmarkImage.image = UIImage(named: "checkmarkRed")
+        } else if (addButtonColor == "addTurquoise") {
+            cell.checkmarkImage.image = UIImage(named: "checkmarkTurquoise")
+        } else if (addButtonColor == "addBlue") {
+            cell.checkmarkImage.image = UIImage(named: "checkmarkBlue")
+        } else {
+            cell.checkmarkImage.image = UIImage(named: "checkmarkDark")
+        }
+        
+        
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
         
-        cell.backgroundColor = UIColor.clearColor()
+//        cell.backgroundColor = UIColor.clearColor()
+//        
+//        (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
         
-        (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
+        // Hides the checkmark when the cell is deselected
+        cell.checkmarkImage.hidden = true
     }
     
     override func viewDidLoad() {

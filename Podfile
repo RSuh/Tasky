@@ -10,6 +10,7 @@ target 'Toodo' do
 	pod 'FontAwesomeKit/IonIcons'
 	pod 'FSCalendar'
 	pod 'SCLAlertView'
+	pod 'CheckMarkView'
 	use_frameworks!
 end
 

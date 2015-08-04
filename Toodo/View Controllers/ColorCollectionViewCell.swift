@@ -12,4 +12,5 @@ class ColorCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var colorPickerCell: UIImageView!
 
+    @IBOutlet weak var checkmarkImage: UIImageView!
 }
