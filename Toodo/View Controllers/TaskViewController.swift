@@ -54,6 +54,7 @@ class TaskViewController: UIViewController {
     let turquoiseColor = UIColor(red: 0.15, green: 0.85, blue: 0.70, alpha: 1.0)
     let redColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
     let blueColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
+    let darkColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
     
     // Variable to removeCellBlock
     var removeCellBlock: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
@@ -262,6 +263,9 @@ class TaskViewController: UIViewController {
             navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
             rightNavigation?.tintColor = UIColor.blackColor()
             
+            // Changes the fill color of checkmark in edit mode
+            self.taskHomeTableView.tintColor = purpleColor
+            
             // Intializes the add button
             addImage.image = UIImage(named: "addButton")
             
@@ -276,6 +280,8 @@ class TaskViewController: UIViewController {
             navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
             rightNavigation?.tintColor = UIColor.blackColor()
             
+            // Changes the fill color of checkmark in edit mode
+            self.taskHomeTableView.tintColor = turquoiseColor
             // Intializes the add button
             addImage.image = UIImage(named: "addButton")
             
@@ -288,6 +294,9 @@ class TaskViewController: UIViewController {
             
             navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
             rightNavigation?.tintColor = UIColor.blackColor()
+            
+            // Changes the fill color of checkmark in edit mode
+            self.taskHomeTableView.tintColor = redColor
             
             // Intializes the add button
             addImage.image = UIImage(named: "addButton")
@@ -302,6 +311,9 @@ class TaskViewController: UIViewController {
             navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
             rightNavigation?.tintColor = UIColor.blackColor()
             
+            // Changes the fill color of checkmark in edit mode
+            self.taskHomeTableView.tintColor = blueColor
+            
             // Intializes the add button
             addImage.image = UIImage(named: "addButton")
 
@@ -310,6 +322,9 @@ class TaskViewController: UIViewController {
             // Changes the navbar controls
             rightNavigation?.tintColor = UIColor.whiteColor()
             leftNavigation?.tintColor = UIColor.whiteColor()
+            
+            // Changes the fill color of checkmark in edit mode
+            self.taskHomeTableView.tintColor = darkColor
             
             // Intializes the add button
             addImage.image = UIImage(named: "addButtonWhite")

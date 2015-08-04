@@ -76,6 +76,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
+                        s
                         newTask.modificationDate = self.dateLabel
                         println("\(newTask.taskTitle)")
                 } else {
