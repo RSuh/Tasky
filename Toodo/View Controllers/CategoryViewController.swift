@@ -217,7 +217,7 @@ class CategoryViewController: UIViewController {
                 // Show a popup alert!
                 let popUpAlertView = SCLAlertView()
                 
-                // The delete button
+                // The delete button    
                 popUpAlertView.addButton("Delete") {
                     println("Delete has been tapped")
                     // Deletes the category
