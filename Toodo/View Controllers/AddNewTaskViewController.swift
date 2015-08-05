@@ -25,6 +25,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var category: Category?
     
+    var selectedRow: Int = 0
+    
     var dateLabel: String = "Due: Never"
     
     // A bool which determines whether or not the keyboard should automatically popup
@@ -93,17 +95,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! CategoryCollectionViewCell
+        if (indexPath.row == self.selectedRow) {
+            cell.checkmarkImage.hidden = false
+        } else {
+            cell.checkmarkImage.hidden = true
+        }
         cell.chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
-        return cell
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("You have selected cell \(indexPath.row)")
-        badge = indexPath.row
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
-        
-        // Makes the checkmark non-hidden when you click
-        cell.checkmarkImage.hidden = false
         
         if (addButtonColor == "addPurple") {
             cell.checkmarkImage.image = UIImage(named: "checkmarkPurple")
@@ -117,19 +114,19 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             cell.checkmarkImage.image = UIImage(named: "checkmarkDark")
         }
         
+        return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        println("You have selected cell \(indexPath.row)")
+        badge = indexPath.row
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
         
-//        cell.backgroundColor = UIColor.clearColor()
-//        
-//        (collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell).chooseBadgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[indexPath.row])
+        self.selectedRow = indexPath.row
         
-        // Hides the checkmark when the cell is deselected
-        cell.checkmarkImage.hidden = true
+        collectionView.reloadData()        
     }
-    
+
     @IBAction func backToAddFromCalendar(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
