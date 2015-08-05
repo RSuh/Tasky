@@ -22,7 +22,16 @@ class CalendarViewController: UIViewController {
         // Makes the calendar vertical flow
         calendar.flow = .Vertical
         
-        dateLabel.text = "Due Today"
+        let todayDate = NSDate()
+    
+        var dateFormatter = NSDateFormatter()
+        // if date is tomorrow, then display, due tomorrow, else display the date.
+        
+        // If date is today, then display, due today, else display the date
+        dateFormatter.dateFormat = "EEEE, MMMM d"
+        var dateString = dateFormatter.stringFromDate(todayDate)
+        self.dateLabel.text = "Due: \(dateString)"
+
         
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem

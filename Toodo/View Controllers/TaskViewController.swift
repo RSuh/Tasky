@@ -247,9 +247,9 @@ class TaskViewController: UIViewController {
         let rightNavigation = self.navigationItem.rightBarButtonItem
 
         // Segues to add task if category tasks is 0
-        if (category?.tasksWithinCategory.count == 0) {
-            performSegueWithIdentifier("addTask", sender: self)
-        }
+//        if (category?.tasksWithinCategory.count == 0) {
+//            performSegueWithIdentifier("addTask", sender: self)
+//        }
         
         println("The color is \(addButtonColor)")
         
