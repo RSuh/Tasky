@@ -313,6 +313,7 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add New Task" id="DzO-uF-QLj">

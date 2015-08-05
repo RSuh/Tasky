@@ -119,11 +119,18 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         println("You have selected cell \(indexPath.row)")
+        
+        // Set badge to indexPath.row
         badge = indexPath.row
+        
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
         
+        // Sets selectedRow to be indexPath.row
         self.selectedRow = indexPath.row
         
+        taskTitle.endEditing(true)
+        
+        // Reloads data
         collectionView.reloadData()        
     }
 
