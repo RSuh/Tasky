@@ -188,6 +188,8 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.translucent = false
+        
         // Disables the interaction with the image so that the image is basically transparent
         addImage.userInteractionEnabled = false
         

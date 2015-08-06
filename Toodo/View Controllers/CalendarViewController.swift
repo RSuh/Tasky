@@ -22,6 +22,9 @@ class CalendarViewController: UIViewController {
         // Makes the calendar vertical flow
         calendar.flow = .Vertical
         
+        //calendar.appearance.autoAdjustTitleSize = false
+        //calendar.appearance.titleFont = UIFont(name: "HelveticaNeue-UltraLight", size: 11.0)
+        
         let todayDate = NSDate()
     
         var dateFormatter = NSDateFormatter()

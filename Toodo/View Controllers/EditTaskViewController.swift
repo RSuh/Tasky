@@ -140,6 +140,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
         
+        // Colors the nav bar items
+        leftNavigation
+        
         if (addButtonColor == "") {
             leftNavigation?.tintColor = UIColor.whiteColor()
             rightNavigation?.tintColor = UIColor.whiteColor()

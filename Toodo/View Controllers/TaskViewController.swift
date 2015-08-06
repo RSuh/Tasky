@@ -33,6 +33,7 @@ class TaskViewController: UIViewController {
         }
     }
     
+    var toImage: UIImage?
     var addButtonColor: String = ""
     
     // Icons
@@ -201,12 +202,28 @@ class TaskViewController: UIViewController {
         
         
         if (editing == true) {
-            // Changes the image to a garbage can
-            let toImage = UIImage(named: "Garbage")
+    
+            if (addButtonColor == "addPurple") {
+                // Changes the image to a garbage can
+                toImage = UIImage(named: "GarbagePurple")
+            } else if (addButtonColor == "addTurquoise") {
+                // Changes the image to a garbage can
+                toImage = UIImage(named: "GarbageTurquoise")
+            } else if (addButtonColor == "addRed") {
+                // Changes the image to a garbage can
+                toImage = UIImage(named: "GarbageRed")
+            } else if (addButtonColor == "addBlue") {
+                // Changes the image to a garbage can
+                toImage = UIImage(named: "GarbageBlue")
+            } else {
+                // Changes the image to a garbage can
+                toImage = UIImage(named: "GarbageDark")
+            }
+            
             UIView.transitionWithView(self.addImage,
                 duration: 0.35,
                 options: UIViewAnimationOptions.TransitionFlipFromBottom,
-                animations: { self.addImage.image = toImage },
+                animations: { self.addImage.image = self.toImage },
                 completion: nil)
             
             taskHomeTableView.isEnabled = false
@@ -215,8 +232,9 @@ class TaskViewController: UIViewController {
             println("Flag is \(flagForAddOrDelete)")
             println("Editing is \(editing)")
         } else if (editing == false) {
+            
             // Changes the image to the addButton
-            let backImage = UIImage(named: "addButton")
+            let backImage = UIImage(named: "addButtonWhite")
             UIView.transitionWithView(self.addImage,
                 duration: 0.35,
                 options: UIViewAnimationOptions.TransitionFlipFromTop,
@@ -260,15 +278,14 @@ class TaskViewController: UIViewController {
             // Sets the navbar color to purple
             navigation?.barTintColor = purpleColor
             
-            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-            rightNavigation?.tintColor = UIColor.blackColor()
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+            rightNavigation?.tintColor = UIColor.whiteColor()
             
             // Changes the fill color of checkmark in edit mode
             self.taskHomeTableView.tintColor = purpleColor
             
             // Intializes the add button
-            addImage.image = UIImage(named: "addButton")
-            
+            addImage.image = UIImage(named: "addButtonWhite")
             
         } else if (addButtonColor == "addTurquoise") {
             // Sets the button Color
@@ -277,13 +294,13 @@ class TaskViewController: UIViewController {
             // sets the navbar color to turquoise
             navigation?.barTintColor = turquoiseColor
             
-            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-            rightNavigation?.tintColor = UIColor.blackColor()
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+            rightNavigation?.tintColor = UIColor.whiteColor()
             
             // Changes the fill color of checkmark in edit mode
             self.taskHomeTableView.tintColor = turquoiseColor
             // Intializes the add button
-            addImage.image = UIImage(named: "addButton")
+            addImage.image = UIImage(named: "addButtonWhite")
             
         } else if (addButtonColor == "addRed") {
             // Sets the button Color
@@ -292,14 +309,14 @@ class TaskViewController: UIViewController {
             // sets the navbar color to red
             navigation?.barTintColor = redColor
             
-            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-            rightNavigation?.tintColor = UIColor.blackColor()
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+            rightNavigation?.tintColor = UIColor.whiteColor()
             
             // Changes the fill color of checkmark in edit mode
             self.taskHomeTableView.tintColor = redColor
             
             // Intializes the add button
-            addImage.image = UIImage(named: "addButton")
+            addImage.image = UIImage(named: "addButtonWhite")
             
         } else if (addButtonColor == "addBlue") {
             // Sets the button Color
@@ -308,14 +325,14 @@ class TaskViewController: UIViewController {
             // sets the navbar color to blue
             navigation?.barTintColor = blueColor
             
-            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
-            rightNavigation?.tintColor = UIColor.blackColor()
+            navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+            rightNavigation?.tintColor = UIColor.whiteColor()
             
             // Changes the fill color of checkmark in edit mode
             self.taskHomeTableView.tintColor = blueColor
             
             // Intializes the add button
-            addImage.image = UIImage(named: "addButton")
+            addImage.image = UIImage(named: "addButtonWhite")
 
         } else {
             // If the bar has no color
