@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D7E08086C894F226A49C702F"
+               BlueprintIdentifier = "5AB395D5C4DF26178596AFD4"
                BuildableName = "FSCalendar.framework"
                BlueprintName = "FSCalendar"
                ReferencedContainer = "container:Pods.xcodeproj">

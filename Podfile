@@ -11,10 +11,8 @@ target 'Tasky' do
 	pod 'FSCalendar'
 	pod 'SCLAlertView'
 	pod 'CheckMarkView'
+	pod 'RealmSwift'
 	use_frameworks!
 end
 
-target 'ToodoTests' do
-
-end
 

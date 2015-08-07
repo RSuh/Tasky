@@ -56,6 +56,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-Tasky/FSCalendar.framework'
   install_framework 'Pods-Tasky/FontAwesomeKit.framework'
   install_framework 'Pods-Tasky/MGSwipeTableCell.framework'
+  install_framework 'Pods-Tasky/Realm.framework'
+  install_framework 'Pods-Tasky/RealmSwift.framework'
   install_framework 'Pods-Tasky/SCLAlertView.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -63,5 +65,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Tasky/FSCalendar.framework'
   install_framework 'Pods-Tasky/FontAwesomeKit.framework'
   install_framework 'Pods-Tasky/MGSwipeTableCell.framework'
+  install_framework 'Pods-Tasky/Realm.framework'
+  install_framework 'Pods-Tasky/RealmSwift.framework'
   install_framework 'Pods-Tasky/SCLAlertView.framework'
 fi

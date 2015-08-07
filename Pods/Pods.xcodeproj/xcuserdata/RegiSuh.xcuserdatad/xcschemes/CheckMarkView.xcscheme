@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "73734C48E2FF92699CEE11F4"
+               BlueprintIdentifier = "BD44F8620EB99BA03A213EF8"
                BuildableName = "CheckMarkView.framework"
                BlueprintName = "CheckMarkView"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -15,10 +15,6 @@
 		4536C37A1B505CA600A35889 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3791B505CA600A35889 /* TaskViewController.swift */; };
 		4536C37C1B505CB700A35889 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */; };
 		4536C3851B506C6F00A35889 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3841B506C6F00A35889 /* Task.swift */; };
-		4536C3861B50719A00A35889 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; };
-		4536C3871B50719A00A35889 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C37F1B506B1B00A35889 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; };
-		4536C3891B50719A00A35889 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4536C3801B506B1B00A35889 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4536C38C1B50761600A35889 /* AddNewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */; };
 		4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38D1B5078E200A35889 /* EditTaskViewController.swift */; };
 		456C99F21B66B1B8002E1074 /* ChangeBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */; };
@@ -46,8 +42,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4536C3891B50719A00A35889 /* RealmSwift.framework in Embed Frameworks */,
-				4536C3871B50719A00A35889 /* Realm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,8 +59,6 @@
 		4536C36C1B505ACD00A35889 /* ToodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToodoTests.swift; sourceTree = "<group>"; };
 		4536C3791B505CA600A35889 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		4536C37B1B505CB700A35889 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
-		4536C37F1B506B1B00A35889 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../realm-swift-0.93.2/ios/Realm.framework"; sourceTree = "<group>"; };
-		4536C3801B506B1B00A35889 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "../../../realm-swift-0.93.2/ios/RealmSwift.framework"; sourceTree = "<group>"; };
 		4536C3841B506C6F00A35889 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCategoryViewController.swift; sourceTree = "<group>"; };
 		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
@@ -97,8 +89,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4536C3861B50719A00A35889 /* Realm.framework in Frameworks */,
-				4536C3881B50719A00A35889 /* RealmSwift.framework in Frameworks */,
 				30FF73D67A1D901E5EF68048 /* Pods_Tasky.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,8 +189,6 @@
 		4536C37E1B506A8300A35889 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4536C37F1B506B1B00A35889 /* Realm.framework */,
-				4536C3801B506B1B00A35889 /* RealmSwift.framework */,
 				4EB10B33BB8D5727B5124706 /* Pods_Tasky.framework */,
 			);
 			name = Frameworks;
@@ -500,6 +488,7 @@
 				PROVISIONING_PROFILE = "827a70a3-ea82-4f28-bf11-7c869f288a9f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Toodo/Toodo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -521,6 +510,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "827a70a3-ea82-4f28-bf11-7c869f288a9f";
 				SWIFT_OBJC_BRIDGING_HEADER = "Toodo/Toodo-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
