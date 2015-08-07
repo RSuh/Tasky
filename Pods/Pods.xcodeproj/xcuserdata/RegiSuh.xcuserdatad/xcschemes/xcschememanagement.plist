@@ -24,7 +24,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Toodo.xcscheme</key>
+		<key>Pods-Tasky.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1EA7FF9E37332749344989B3CE653B49</key>
+		<key>06852D7F989A6FA23E8B1400495C9F2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>35E51874B443CACFED2B025199503FD5</key>
+		<key>0F4812D83B62B2BAE64E27F20A741D52</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57F3357784117B564C92F8228753DDFA</key>
+		<key>766C175B734C4419A88C222F1831B24D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>756ED7A48B019896299FF1D4F72B3539</key>
+		<key>7FF961D7480A3006578DF9CBB2B033BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B6613B52A963EB8C5CC213211EB983F3</key>
+		<key>AF6821D9C60648A222A9ADD3A043CFEF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B7AF158AA4C5672A178EB91428CFFFF7</key>
+		<key>CC84C2E20EE89E389BB05765728D412E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

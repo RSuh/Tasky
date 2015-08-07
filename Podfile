@@ -2,7 +2,7 @@
 # platform :ios, '6.0'
 
 
-target 'Toodo' do
+target 'Tasky' do
 	pod 'MGSwipeTableCell'
 	pod 'FontAwesomeKit/FontAwesome'
 	pod 'FontAwesomeKit/FoundationIcons'

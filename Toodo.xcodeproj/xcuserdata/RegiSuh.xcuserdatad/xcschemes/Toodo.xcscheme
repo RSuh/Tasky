@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4536C3501B505ACD00A35889"
-               BuildableName = "Toodo.app"
-               BlueprintName = "Toodo"
+               BuildableName = "Tasky.app"
+               BlueprintName = "Tasky"
                ReferencedContainer = "container:Toodo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4536C3501B505ACD00A35889"
-            BuildableName = "Toodo.app"
-            BlueprintName = "Toodo"
+            BuildableName = "Tasky.app"
+            BlueprintName = "Tasky"
             ReferencedContainer = "container:Toodo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -77,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4536C3501B505ACD00A35889"
-            BuildableName = "Toodo.app"
-            BlueprintName = "Toodo"
+            BuildableName = "Tasky.app"
+            BlueprintName = "Tasky"
             ReferencedContainer = "container:Toodo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -96,8 +96,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4536C3501B505ACD00A35889"
-            BuildableName = "Toodo.app"
-            BlueprintName = "Toodo"
+            BuildableName = "Tasky.app"
+            BlueprintName = "Tasky"
             ReferencedContainer = "container:Toodo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

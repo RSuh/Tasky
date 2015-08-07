@@ -3,5 +3,5 @@ LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_pa
 OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/CheckMarkView.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FSCalendar.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/FontAwesomeKit.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MGSwipeTableCell.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SCLAlertView.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "CheckMarkView" -framework "FSCalendar" -framework "FontAwesomeKit" -framework "MGSwipeTableCell" -framework "SCLAlertView"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
-PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Toodo
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Tasky
 PODS_ROOT = ${SRCROOT}/Pods

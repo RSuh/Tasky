@@ -112,6 +112,9 @@ class TaskViewController: UIViewController {
                 for (var index = 0; index <= self.selectedRows.count - 1; index++) {
                     // TODO: Get rows to animate and delete 1 by 1.
                     self.realm.delete(self.selectedRows[index])
+                    
+                    // Deletes the task from the array
+                    self.selectedRows.removeAtIndex(index)
                     println("item at index \(index) has been deleted")
                 }
             }
@@ -138,6 +141,7 @@ class TaskViewController: UIViewController {
                 realm.write() {
                     // Creates a newTask
                     self.realm.add(newSource.newTask!)
+                    println("added \(newSource.newTask!)")
                     
                     //println(self.category!.tasksWithinCategory.append(newSource.newTask!))
                 }
@@ -393,6 +397,7 @@ class TaskViewController: UIViewController {
             self.realm.write() {
                 self.realm.delete(tasks)
                 
+                
                 // Subtracts 1 count from the taskCount when removecellBlock is called
                 self.category!.tasksWithinCategory.count - 1
             }
@@ -477,6 +482,7 @@ extension TaskViewController: UITableViewDelegate {
             if let index = find(selectedRows, selectedTask) {
                 // Removing at index "index" the selectedTask form selectedRows
                 selectedRows.removeAtIndex(index)
+                println(selectedRows)
             } else {
                 // Appending selectedTask to the array of selectedRows
                 selectedRows.append(selectedTask)

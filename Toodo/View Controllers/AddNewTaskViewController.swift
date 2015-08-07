@@ -80,7 +80,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
                         //self.category!.tasksWithinCategory.count = self.category!.numberOfTasksWithinCategory
                         newTask.modificationDate = self.dateLabel
-                        println("\(newTask.taskTitle)")
+                        println(newTask)
                 } else {
                     println("nothing has changed")
                 }

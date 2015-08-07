@@ -137,6 +137,7 @@ class CategoryViewController: UIViewController {
             let titleVC = segue.destinationViewController as! TaskViewController
             
             // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
+           
             
             // Set the editedCategory as selectedCategory
             let selectedIndexPath = categoryTableView.indexPathForSelectedRow()!

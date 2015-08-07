@@ -56,7 +56,7 @@ public class SCLAlertViewResponder {
     public func setSubTitle(subTitle: String) {
         self.alertview.viewText.text = subTitle
     }
-    
+
     public func close() {
         self.alertview.hideView()
     }
@@ -88,7 +88,7 @@ public class SCLAlertView: UIViewController {
     var pressBrightnessFactor = 0.85
     
     // UI Options
-    public var showCloseButton = false
+    public var showCloseButton = true
 
     // Members declaration
     var baseView = UIView()
@@ -103,7 +103,6 @@ public class SCLAlertView: UIViewController {
     private var buttons = [SCLButton]()
     private var selfReference: SCLAlertView?
     
-    // The function to hide the view on call by SCLAlertView.
     public func close() {
         self.hideView()
     }
@@ -138,7 +137,7 @@ public class SCLAlertView: UIViewController {
         circleView.frame = CGRect(x:x, y:x, width:kCircleHeight, height:kCircleHeight)
         circleView.layer.cornerRadius = circleView.frame.size.height / 2
         // Title
-        labelTitle.numberOfLines = 2
+        labelTitle.numberOfLines = 1
         labelTitle.textAlignment = .Center
         labelTitle.font = UIFont(name: kDefaultFont, size:20)
         labelTitle.frame = CGRect(x:12, y:kTitleTop, width: kWindowWidth - 24, height:kTitleHeight)
@@ -292,7 +291,6 @@ public class SCLAlertView: UIViewController {
         } else {
             println("Unknow action type for button")
         }
-        // This hideView call is repeating the call so animation is being cancelled.
         //hideView()
     }
 
@@ -419,10 +417,10 @@ public class SCLAlertView: UIViewController {
         }
 
         // Done button
-        if showCloseButton {
-            let txt = completeText != nil ? completeText! : "Cancel"
-            addButton(txt, target:self, selector:Selector("hideView"))
-        }
+//        if showCloseButton {
+//            let txt = completeText != nil ? completeText! : "Done"
+//            addButton(txt, target:self, selector:Selector("hideView"))
+//        }
 
         // Alert view colour and images
         circleView.backgroundColor = viewColor
@@ -469,15 +467,12 @@ public class SCLAlertView: UIViewController {
 
     // Close SCLAlertView
     public func hideView() {
-        println("done button has been tapped")
-        // The done button animation time
         UIView.animateWithDuration(0.2, animations: {
             self.view.alpha = 0
             }, completion: { finished in
                 self.view.removeFromSuperview()
                 self.selfReference = nil
         })
-        // What to do when cancel is pressed
     }
 
     // Helper function to convert from RGB to UIColor
