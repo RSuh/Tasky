@@ -485,7 +485,7 @@
 				INFOPLIST_FILE = Toodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "827a70a3-ea82-4f28-bf11-7c869f288a9f";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Toodo/Toodo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -508,7 +508,7 @@
 				INFOPLIST_FILE = Toodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "827a70a3-ea82-4f28-bf11-7c869f288a9f";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Toodo/Toodo-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

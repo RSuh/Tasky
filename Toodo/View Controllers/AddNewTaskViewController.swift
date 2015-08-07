@@ -95,6 +95,10 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("badgeImage", forIndexPath: indexPath) as! CategoryCollectionViewCell
+        
+        // Dismisses the keyboard on drag
+        collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
+        
         if (indexPath.row == self.selectedRow) {
             cell.checkmarkImage.hidden = false
         } else {
@@ -114,6 +118,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             cell.checkmarkImage.image = UIImage(named: "checkmarkDark")
         }
         
+    
+        
         return cell
     }
     
@@ -131,8 +137,10 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         taskTitle.endEditing(true)
         
         // Reloads data
-        collectionView.reloadData()        
+        collectionView.reloadData()
+    
     }
+    
 
     @IBAction func backToAddFromCalendar(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
