@@ -16,6 +16,8 @@ class CategoryViewController: UIViewController {
     //@IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var categoryTableView: SBGestureTableView!
     @IBOutlet var addImage: UIImageView!
+    @IBOutlet weak var fadedIconImage: UIImageView!
+    @IBOutlet weak var displayNoCategories: UILabel!
     
     // Initialize Realm
     let realm = Realm()
@@ -137,7 +139,7 @@ class CategoryViewController: UIViewController {
             let titleVC = segue.destinationViewController as! TaskViewController
             
             // Sets the category for the task to be the selectedCategory which the user pressed on the tableview.
-           
+            
             
             // Set the editedCategory as selectedCategory
             let selectedIndexPath = categoryTableView.indexPathForSelectedRow()!
@@ -189,6 +191,12 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // self.categoryTableView.reloadData()
+        println("tableview reloadeD")
+        
+        fadedIconImage.hidden = true
+        displayNoCategories.hidden = true
+        
         self.navigationController?.navigationBar.translucent = false
         
         // Disables the interaction with the image so that the image is basically transparent
@@ -220,7 +228,7 @@ class CategoryViewController: UIViewController {
                 // Show a popup alert!
                 let popUpAlertView = SCLAlertView()
                 
-                // The delete button    
+                // The delete button
                 popUpAlertView.addButton("Delete") {
                     println("Delete has been tapped")
                     // Deletes the category
@@ -325,6 +333,21 @@ extension CategoryViewController: UITableViewDataSource {
         // Initialize cell
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         
+        //        let categoryForCount = self.categories[indexPath.row]
+        //
+        //        println("HELLOOOO")
+        
+        // Shows the onboarding image, etc
+        //        if (categoryForCount.tasksWithinCategory.count == 0) {
+        //            displayNoCategories.hidden = false
+        //            fadedIconImage.hidden = false
+        //            println("labels and stuff should be shown")
+        //        } else {
+        //            displayNoCategories.hidden = true
+        //            fadedIconImage.hidden = true
+        //            println("labels are hidden")
+        //        }
+        
         let size = CGSizeMake(30, 30)
         
         cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
@@ -336,20 +359,25 @@ extension CategoryViewController: UITableViewDataSource {
         let category = categories[row] as Category
         cell.category = category
         
-        // Sets custom separators between cells on viewDidLoad
-        //        categoryTableView.separatorInset = UIEdgeInsetsZero
-        //        categoryTableView.layoutMargins = UIEdgeInsetsZero
-        
-        //cell.accessoryView?.tintColor = UIColor.blackColor()
-        // Custom separator lines between cells
-        //cell.layoutMargins = UIEdgeInsetsZero
-        
         return cell
     }
     
     // How many rows are in the tableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        println(categories!.count)
+        if (categories!.count == 0) {
+            
+            displayNoCategories.hidden = false
+            fadedIconImage.hidden = false
+        } else {
+            
+            displayNoCategories.hidden = true
+            fadedIconImage.hidden = true
+            
+        }
         return Int(categories?.count ?? 0)
+        
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {

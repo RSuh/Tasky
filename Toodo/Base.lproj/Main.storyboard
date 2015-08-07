@@ -98,31 +98,70 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addButtonWhite" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-m3-XXg">
-                                <rect key="frame" x="287.5" y="559" width="25" height="26"/>
+                                <rect key="frame" x="287" y="559" width="25" height="26"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y58-yh-AsY">
+                                <rect key="frame" x="195" y="325.5" width="210.5" height="58.5"/>
+                                <string key="text">No categories yet! 
+Add one now!</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fadedIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="Boq-6c-nea">
+                                <rect key="frame" x="254" y="214" width="91" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="84i-sv-6pa"/>
+                                    <constraint firstAttribute="height" constant="91" id="cWl-wI-Ffu"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="LWI-JR-bJd" secondAttribute="top" id="5ke-c6-8vj"/>
+                            <constraint firstAttribute="centerX" secondItem="Boq-6c-nea" secondAttribute="centerX" id="5rG-Md-uSQ"/>
                             <constraint firstItem="9Hn-Ha-5aZ" firstAttribute="top" secondItem="MrQ-rA-5Q5" secondAttribute="bottom" id="6vz-G2-1mg"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="P7N-vr-83j" secondAttribute="bottom" id="78N-Jh-YLA"/>
+                            <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="y58-yh-AsY" secondAttribute="bottom" constant="160" id="9Lw-6A-oPP"/>
                             <constraint firstItem="AKg-m3-XXg" firstAttribute="centerX" secondItem="MrQ-rA-5Q5" secondAttribute="centerX" id="GXu-Pt-GFe"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leading" id="HtX-ta-JUr"/>
+                            <constraint firstItem="y58-yh-AsY" firstAttribute="top" secondItem="Boq-6c-nea" secondAttribute="bottom" constant="20.5" id="IDv-87-vWK"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="trailing" secondItem="LWI-JR-bJd" secondAttribute="trailing" id="KGw-ey-DbI"/>
                             <constraint firstItem="P7N-vr-83j" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leading" id="QAi-YM-NbH"/>
                             <constraint firstItem="AKg-m3-XXg" firstAttribute="centerY" secondItem="MrQ-rA-5Q5" secondAttribute="centerY" id="Qoo-l7-eMP"/>
+                            <constraint firstAttribute="centerX" secondItem="y58-yh-AsY" secondAttribute="centerX" id="RmR-Dw-kMp"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="P7N-vr-83j" secondAttribute="bottom" id="RpA-8F-myr"/>
+                            <constraint firstItem="y58-yh-AsY" firstAttribute="top" secondItem="Boq-6c-nea" secondAttribute="bottom" constant="20" id="YPw-iJ-j5j"/>
                             <constraint firstAttribute="trailing" secondItem="P7N-vr-83j" secondAttribute="trailing" id="ZXO-yG-5os"/>
                             <constraint firstAttribute="trailing" secondItem="MrQ-rA-5Q5" secondAttribute="trailing" id="bC1-gv-ywH"/>
                             <constraint firstItem="P7N-vr-83j" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" id="bKa-aP-FXc"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="bottom" secondItem="LWI-JR-bJd" secondAttribute="bottom" id="dwu-aE-tkI"/>
+                            <constraint firstItem="Boq-6c-nea" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leadingMargin" constant="238" id="ink-63-qSV"/>
+                            <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="y58-yh-AsY" secondAttribute="bottom" constant="160" id="l46-sY-uOC"/>
+                            <constraint firstItem="Boq-6c-nea" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" constant="150" id="m4O-sS-F62"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Boq-6c-nea" secondAttribute="trailing" constant="239" id="o9Y-yf-6oR"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="leading" secondItem="LWI-JR-bJd" secondAttribute="leading" id="oSb-zD-7PK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="y58-yh-AsY" secondAttribute="trailing" constant="170" id="u2Y-TF-ecw"/>
+                            <constraint firstItem="y58-yh-AsY" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leadingMargin" constant="170" id="x30-8D-i9R"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ink-63-qSV"/>
+                                <exclude reference="o9Y-yf-6oR"/>
+                                <exclude reference="YPw-iJ-j5j"/>
+                                <exclude reference="u2Y-TF-ecw"/>
+                                <exclude reference="x30-8D-i9R"/>
+                                <exclude reference="9Lw-6A-oPP"/>
+                                <exclude reference="l46-sY-uOC"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Tasky Category" id="lib-z6-UaC"/>
                     <connections>
                         <outlet property="addImage" destination="AKg-m3-XXg" id="M1P-yh-TsG"/>
                         <outlet property="categoryTableView" destination="P7N-vr-83j" id="6U8-d9-f8r"/>
+                        <outlet property="displayNoCategories" destination="y58-yh-AsY" id="iRF-GJ-Jau"/>
+                        <outlet property="fadedIconImage" destination="Boq-6c-nea" id="BGp-gG-6lJ"/>
                         <segue destination="Tkz-QC-Deg" kind="show" identifier="categoryToTask" id="Mgm-1X-av1"/>
                         <segue destination="ha9-re-vnT" kind="show" identifier="listToEdit" id="MWI-sv-82W"/>
                     </connections>
@@ -912,5 +951,6 @@
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>
         <image name="editTitleLine" width="261" height="1"/>
+        <image name="fadedIconImage" width="91" height="91"/>
     </resources>
 </document>

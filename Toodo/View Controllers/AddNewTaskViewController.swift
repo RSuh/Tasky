@@ -118,8 +118,6 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             cell.checkmarkImage.image = UIImage(named: "checkmarkDark")
         }
         
-    
-        
         return cell
     }
     
