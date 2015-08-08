@@ -11,7 +11,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconImage" translatesAutoresizingMaskIntoConstraints="NO" id="FAC-pW-Lup">
-                    <rect key="frame" x="180" y="180" width="120" height="120"/>
+                    <rect key="frame" x="180" y="100" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="MY1-7D-m2D"/>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="bIi-IM-YFv"/>
@@ -22,11 +22,17 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="FAC-pW-Lup" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="Eu8-MA-nEY"/>
                 <constraint firstAttribute="centerX" secondItem="FAC-pW-Lup" secondAttribute="centerX" id="Kri-ns-aWB"/>
                 <constraint firstAttribute="centerY" secondItem="FAC-pW-Lup" secondAttribute="centerY" id="pWr-hQ-n0N"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="pWr-hQ-n0N"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>

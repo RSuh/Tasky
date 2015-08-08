@@ -100,15 +100,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addButtonWhite" translatesAutoresizingMaskIntoConstraints="NO" id="AKg-m3-XXg">
                                 <rect key="frame" x="287" y="559" width="25" height="26"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y58-yh-AsY">
-                                <rect key="frame" x="195" y="325.5" width="210.5" height="58.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y58-yh-AsY">
+                                <rect key="frame" x="216" y="325.5" width="168.5" height="47"/>
                                 <string key="text">No categories yet! 
-Add one now!</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+Add one!</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fadedIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="Boq-6c-nea">
+                            <imageView userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fadedIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="Boq-6c-nea">
                                 <rect key="frame" x="254" y="214" width="91" height="91"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="84i-sv-6pa"/>
@@ -136,6 +136,7 @@ Add one now!</string>
                             <constraint firstAttribute="trailing" secondItem="MrQ-rA-5Q5" secondAttribute="trailing" id="bC1-gv-ywH"/>
                             <constraint firstItem="P7N-vr-83j" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" id="bKa-aP-FXc"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="bottom" secondItem="LWI-JR-bJd" secondAttribute="bottom" id="dwu-aE-tkI"/>
+                            <constraint firstItem="y58-yh-AsY" firstAttribute="top" secondItem="Boq-6c-nea" secondAttribute="bottom" constant="20.5" id="hXB-93-t8r"/>
                             <constraint firstItem="Boq-6c-nea" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leadingMargin" constant="238" id="ink-63-qSV"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="y58-yh-AsY" secondAttribute="bottom" constant="160" id="l46-sY-uOC"/>
                             <constraint firstItem="Boq-6c-nea" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" constant="150" id="m4O-sS-F62"/>
@@ -148,6 +149,7 @@ Add one now!</string>
                             <mask key="constraints">
                                 <exclude reference="ink-63-qSV"/>
                                 <exclude reference="o9Y-yf-6oR"/>
+                                <exclude reference="IDv-87-vWK"/>
                                 <exclude reference="YPw-iJ-j5j"/>
                                 <exclude reference="u2Y-TF-ecw"/>
                                 <exclude reference="x30-8D-i9R"/>
@@ -267,19 +269,46 @@ Add one now!</string>
                                     <constraint firstAttribute="width" constant="25" id="i9y-yF-sjz"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hm-kW-fQ9">
+                                <rect key="frame" x="241.5" y="326" width="117" height="47"/>
+                                <string key="text">No tasks yet!
+Add one!</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fadedIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="fYk-vs-SsL">
+                                <rect key="frame" x="254" y="215" width="91" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="I4M-3J-Ew0"/>
+                                    <constraint firstAttribute="width" constant="91" id="vqe-rS-z2o"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="3hm-kW-fQ9" firstAttribute="top" secondItem="fYk-vs-SsL" secondAttribute="bottom" constant="20" id="4Sd-J7-CeQ"/>
                             <constraint firstItem="MDr-AE-52X" firstAttribute="top" secondItem="xLT-qu-nrB" secondAttribute="bottom" id="4dw-2V-Yo0"/>
                             <constraint firstItem="BiD-Oi-fzP" firstAttribute="top" secondItem="MDr-AE-52X" secondAttribute="bottom" id="84o-d0-sUl"/>
                             <constraint firstItem="d6P-nP-Q1z" firstAttribute="top" secondItem="BiD-Oi-fzP" secondAttribute="bottom" id="8qF-2c-rLQ"/>
                             <constraint firstAttribute="trailing" secondItem="MDr-AE-52X" secondAttribute="trailing" id="EAz-j8-ezk"/>
+                            <constraint firstItem="BiD-Oi-fzP" firstAttribute="top" secondItem="3hm-kW-fQ9" secondAttribute="bottom" constant="171" id="F5R-XL-JiN"/>
+                            <constraint firstAttribute="centerX" secondItem="fYk-vs-SsL" secondAttribute="centerX" id="Sy3-A6-8E5"/>
+                            <constraint firstAttribute="centerX" secondItem="3hm-kW-fQ9" secondAttribute="centerX" id="Wk7-Ez-Ada"/>
                             <constraint firstItem="MDr-AE-52X" firstAttribute="leading" secondItem="BUC-SJ-1jl" secondAttribute="leading" id="f5k-b8-QGk"/>
                             <constraint firstItem="BiD-Oi-fzP" firstAttribute="leading" secondItem="BUC-SJ-1jl" secondAttribute="leading" id="kGE-Mi-CCj"/>
+                            <constraint firstItem="3hm-kW-fQ9" firstAttribute="leading" secondItem="BUC-SJ-1jl" secondAttribute="leading" constant="216" id="mt1-bR-uJf"/>
                             <constraint firstAttribute="trailing" secondItem="BiD-Oi-fzP" secondAttribute="trailing" id="nwj-2m-5ca"/>
                             <constraint firstItem="whC-cE-PUS" firstAttribute="centerX" secondItem="BiD-Oi-fzP" secondAttribute="centerX" constant="0.5" id="qJY-ni-5nY"/>
+                            <constraint firstAttribute="trailing" secondItem="3hm-kW-fQ9" secondAttribute="trailing" constant="216" id="v5J-Qb-Qnz"/>
                             <constraint firstItem="whC-cE-PUS" firstAttribute="centerY" secondItem="BiD-Oi-fzP" secondAttribute="centerY" id="zpq-X6-E1c"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="mt1-bR-uJf"/>
+                                <exclude reference="v5J-Qb-Qnz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Work" id="bsC-6c-dVU">
                         <barButtonItem key="leftBarButtonItem" image="backArrow" id="H9L-eN-knB">
@@ -295,6 +324,8 @@ Add one now!</string>
                     <connections>
                         <outlet property="addBackgroundButton" destination="BiD-Oi-fzP" id="BVT-oW-INU"/>
                         <outlet property="addImage" destination="whC-cE-PUS" id="ipt-x5-TxT"/>
+                        <outlet property="fadedIconImage" destination="fYk-vs-SsL" id="ONd-uK-Hra"/>
+                        <outlet property="noTaskLabel" destination="3hm-kW-fQ9" id="Jv4-xc-q5z"/>
                         <outlet property="taskHomeTableView" destination="MDr-AE-52X" id="aB6-RJ-4Ag"/>
                         <segue destination="fvL-CD-BgV" kind="show" identifier="addTask" id="fBS-dO-oi6"/>
                         <segue destination="shg-3L-Bnq" kind="show" identifier="editTask" id="Huh-Lq-WVj"/>

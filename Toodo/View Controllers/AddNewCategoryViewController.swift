@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SCLAlertView
 
 class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -195,11 +196,18 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
             
             if (categoryTitle.text.isEmpty) {
                 
-                let alert = UIAlertView()
-                alert.title = "No Text"
-                alert.message = "Please Enter Text In The Box"
-                alert.addButtonWithTitle("Ok")
-                alert.show()
+                // Show a popup alert!
+                let emptyTextFieldAlertView = SCLAlertView()
+                
+                // The ok button
+                emptyTextFieldAlertView.addButton("Ok") {
+                    
+                    // Closes the alertView
+                    emptyTextFieldAlertView.close()
+                }
+                
+                // This is what the type of popup the alert will show
+                emptyTextFieldAlertView.showError("No Text", subTitle: "Please Enter Text In The Field")
                 
                 return false
             }

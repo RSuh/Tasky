@@ -365,7 +365,7 @@ extension CategoryViewController: UITableViewDataSource {
     // How many rows are in the tableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        println(categories!.count)
+        //println(categories!.count)
         if (categories!.count == 0) {
             
             displayNoCategories.hidden = false
