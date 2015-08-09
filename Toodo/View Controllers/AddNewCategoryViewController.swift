@@ -194,6 +194,8 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "saveToCategoryFromAdd" {
             
+            categoryTitle.resignFirstResponder()
+            
             if (categoryTitle.text.isEmpty) {
                 
                 // Show a popup alert!
@@ -204,6 +206,8 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
                     
                     // Closes the alertView
                     emptyTextFieldAlertView.close()
+                    
+                    self.categoryTitle.becomeFirstResponder()
                 }
                 
                 // This is what the type of popup the alert will show

@@ -349,7 +349,7 @@ Add one!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a badge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrh-BP-1KQ">
-                                <rect key="frame" x="234" y="108" width="133" height="26"/>
+                                <rect key="frame" x="234" y="108" width="133" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="133" id="xRH-Bz-pCb"/>
                                 </constraints>
@@ -477,8 +477,16 @@ Add one!</string>
                             <constraint firstItem="kQz-te-IGt" firstAttribute="top" secondItem="Vbr-10-7Dh" secondAttribute="bottom" constant="20" id="h1Q-Yu-dk4"/>
                             <constraint firstItem="TQT-jD-AxK" firstAttribute="top" secondItem="G7d-EH-Y7k" secondAttribute="bottom" constant="22" id="ij9-JU-3JP"/>
                             <constraint firstItem="5Yo-hd-dR8" firstAttribute="bottom" secondItem="TaF-zV-2RQ" secondAttribute="top" id="kA6-Tu-H8N"/>
+                            <constraint firstItem="kQz-te-IGt" firstAttribute="leading" secondItem="rad-mO-Oyf" secondAttribute="leading" id="xKQ-Yu-oet"/>
                             <constraint firstAttribute="trailing" secondItem="G7d-EH-Y7k" secondAttribute="trailing" id="zCg-Cm-5wd"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2zx-Zs-OVL"/>
+                                <exclude reference="epp-vp-PfB"/>
+                                <exclude reference="ij9-JU-3JP"/>
+                            </mask>
+                        </variation>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add New Task" id="DzO-uF-QLj">

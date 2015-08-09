@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RealmSwift
+import SCLAlertView
 
 class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
@@ -136,10 +137,10 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         
         // Reloads data
         collectionView.reloadData()
-    
+        
     }
     
-
+    
     @IBAction func backToAddFromCalendar(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
@@ -161,12 +162,29 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         if segue.identifier == "exitFromAdd" {
             println("exitFromAdd")
         } else if segue.identifier == "saveFromAdd" {
-            newTask = Task()
-            saveNewTask()
+            if (taskTitle.text.isEmpty) {
+                
+                // Show a popup alert!
+                let emptyTextFieldAlertView = SCLAlertView()
+                
+                // The ok button
+                emptyTextFieldAlertView.addButton("Ok") {
+                    
+                    // Closes the alertView
+                    emptyTextFieldAlertView.close()
+                }
+                
+                // This is what the type of popup the alert will show
+                emptyTextFieldAlertView.showError("No Text", subTitle: "Please Enter Text In The Field")
+                
+            } else {
+                newTask = Task()
+                saveNewTask()
+            }
         } else if segue.identifier == "setDate" {
             let targetVC = segue.destinationViewController as! CalendarViewController
             targetVC.addButtonColor = self.addButtonColor
-
+            
         }
     }
     

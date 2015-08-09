@@ -20,6 +20,7 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var addBackgroundButton: UIButton!
     @IBOutlet weak var fadedIconImage: UIImageView!
     @IBOutlet weak var noTaskLabel: UILabel!
+    @IBOutlet weak var smileyImage: UIImageView!
     // The variable for the navbar color of this view controller. We need this variable to transfer the color from the previous VC using a segue
     var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
     
