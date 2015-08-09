@@ -39,6 +39,7 @@ class TaskViewController: UIViewController {
     
     var toImage: UIImage?
     var addButtonColor: String = ""
+    var deleteAlreadyPressed: Bool = false
     
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
@@ -167,7 +168,7 @@ class TaskViewController: UIViewController {
                 // If the number of tasks is less than 3, then just delete them with no warning
                 self.realm.write() {
                     // Goes through each row and deletes all the selected ones
-                    for (var index = 0; index <= self.selectedRows.count + 1; index++) {
+                    for (var index = 0; index <= self.selectedRows.count - 1; index++) {
                         // TODO: Get rows to animate and delete 1 by 1.
                         
                         self.realm.delete(self.selectedRows[index])
@@ -181,13 +182,12 @@ class TaskViewController: UIViewController {
                         self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
                     }
                     
-                    
                 }
                 
                 if (self.navigationItem.rightBarButtonItem?.enabled == false) {
                     self.navigationItem.rightBarButtonItem?.enabled = true
+                    deleteAlreadyPressed = true
                 }
-                
             
         }   else {
             println("segue has been performed")
@@ -313,6 +313,11 @@ class TaskViewController: UIViewController {
                 completion: nil)
             
             taskHomeTableView.isEnabled = true
+            
+            if (deleteAlreadyPressed == true) {
+            // Disable edit button again
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            }
             
             flagForAddOrDelete = true
             println("Flag is \(flagForAddOrDelete)")

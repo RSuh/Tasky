@@ -252,6 +252,13 @@ extension EditTaskViewController: FSCalendarDataSource {
 
 extension EditTaskViewController: FSCalendarDelegate {
     
+    func calendarCurrentMonthDidChange(calendar: FSCalendar!) {
+        taskTextField.resignFirstResponder()
+    
+    
+    }
+    
+    
     func tomorrowFlag() {
         
         var tomorrowFlag: Bool = true

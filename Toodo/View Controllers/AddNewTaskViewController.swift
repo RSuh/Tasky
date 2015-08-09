@@ -158,12 +158,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "exitFromAdd" {
-            println("exitFromAdd")
-        } else if segue.identifier == "saveFromAdd" {
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == "saveFromAdd" {
+            taskTitle.resignFirstResponder()
+            
             if (taskTitle.text.isEmpty) {
-                
+                println("EMPTY")
                 // Show a popup alert!
                 let emptyTextFieldAlertView = SCLAlertView()
                 
@@ -172,20 +172,33 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                     
                     // Closes the alertView
                     emptyTextFieldAlertView.close()
+                
+                    self.taskTitle.becomeFirstResponder()
                 }
                 
                 // This is what the type of popup the alert will show
                 emptyTextFieldAlertView.showError("No Text", subTitle: "Please Enter Text In The Field")
                 
+                return false
+                
             } else {
                 newTask = Task()
                 saveNewTask()
+                
+                return true
             }
-        } else if segue.identifier == "setDate" {
+        }
+        return true
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "setDate" {
             let targetVC = segue.destinationViewController as! CalendarViewController
             targetVC.addButtonColor = self.addButtonColor
-            
+        } else if segue.identifier == "exitFromAdd" {
+            println("exitFromAdd")
         }
+
     }
     
     override func viewDidLoad() {
