@@ -14,7 +14,7 @@ import FSCalendar
 class EditTaskViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var badgeImage: UIImageView!
-    @IBOutlet weak var taskTextField: UITextField!
+    @IBOutlet weak var taskTextField: UITextView!
     @IBOutlet weak var dateLabel: UITextField!
     @IBOutlet weak var editImage: UIImageView!
     @IBOutlet weak var calendar: FSCalendar!
@@ -133,8 +133,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
         // Changes the calendar flow to vertical
         calendar.flow = .Vertical
         
-        taskTextField.delegate = self
-        taskTextField.returnKeyType = UIReturnKeyType.Done
+        //taskTextField.delegate = self
+        taskTextField.returnKeyType = UIReturnKeyType.Default
         
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem
@@ -221,7 +221,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate {
             println("no mod date!")
             
             // Sets label to no due date
-            self.dateLabel.text = "Due: Never"
+            self.dateLabel.text = ""
         }
         
     
@@ -253,17 +253,15 @@ extension EditTaskViewController: FSCalendarDataSource {
 extension EditTaskViewController: FSCalendarDelegate {
     
     func calendarCurrentMonthDidChange(calendar: FSCalendar!) {
+        
+        // If the calendar changes month, then hide textfield
         taskTextField.resignFirstResponder()
-    
     
     }
     
     
     func tomorrowFlag() {
-        
         var tomorrowFlag: Bool = true
-        
-        
         
         //        if (self.dateLabel.text == "Tomorrow") {
         //            tomorrowFlag = false
@@ -287,6 +285,9 @@ extension EditTaskViewController: FSCalendarDelegate {
     }
     
     func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
+        
+        // Hides the keyboard when a date is selected
+        taskTextField.resignFirstResponder()
         
         var tomorrowFlag: Bool = true
         

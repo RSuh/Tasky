@@ -15,6 +15,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var taskTitle: UITextField!
     @IBOutlet weak var badgeImage: UICollectionView!
+    @IBOutlet weak var date: UILabel!
     
     // Initialize Realm
     let realm = Realm()
@@ -28,7 +29,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     var selectedRow: Int = 0
     
-    var dateLabel: String = "Due: Never"
+    var dateLabel: String = ""
     
     // A bool which determines whether or not the keyboard should automatically popup
     var keyboardPopUp: Bool = true
@@ -151,6 +152,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             case "saveFromAddCalendar":
                 println("Save from add calendar")
                 keyboardPopUp = false
+                // Makes the Set Date text to be the date
+                date.text = self.dateLabel
                 
             default:
                 println("failed")
@@ -206,7 +209,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         taskTitle.placeholder = "Task Title here..."
         taskTitle.delegate = self
         taskTitle.returnKeyType = UIReturnKeyType.Done
-        
+        date.text = "Set Date"
+        println(date)
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
@@ -218,6 +222,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     override func viewWillAppear(animated: Bool) {
+        
         println(keyboardPopUp)
         if (keyboardPopUp == true) {
             taskTitle.becomeFirstResponder()
