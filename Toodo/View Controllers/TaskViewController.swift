@@ -109,88 +109,86 @@ class TaskViewController: UIViewController {
     
     @IBAction func addOrDeleteButton(sender: AnyObject) {
         if (flagForAddOrDelete == false) {
+         
             // If the number of selected rows to delete is 3 or greater
-            if (selectedRows.count >= 3) {
-                // Show a popup alert!
-                let deleteThreeOrMoreTasksAlertView = SCLAlertView()
-                println("I am at index 0 \(self.selectedRows[0])")
-                println("I am at index 1 \(self.selectedRows[1])")
-                println("I am at index 2 \(self.selectedRows[2])")
-                // The ok button
-                deleteThreeOrMoreTasksAlertView.addButton("Ok") {
-                    println(self.selectedRows.count)
-                    self.realm.write() {
-                        // Goes through each row and deletes all the selected ones
-                        for (var index = 0; index <= self.selectedRows.count - 1; index++) {
-                            println("This is the array \(self.selectedRows[index]) at index \(index)")
-                            
-                            // TODO: Get rows to animate and delete 1 by 1.
-                            self.realm.delete(self.selectedRows[index])
-                            
-                            // Deletes the task from the array
-                            
-//                            if let index = find(selectedRows) {
-//                                // Removing at index "index" the selectedTask form selectedRows
-//                                selectedRows.removeAtIndex(index)
-//                            }
+            //            if (selectedRows.count >= 3) {
+            //                // Show a popup alert!
+            //                let deleteThreeOrMoreTasksAlertView = SCLAlertView()
+            //                println("I am at index 0 \(self.selectedRows[0])")
+            //                println("I am at index 1 \(self.selectedRows[1])")
+            //                println("I am at index 2 \(self.selectedRows[2])")
+            //                // The ok button
+            //                deleteThreeOrMoreTasksAlertView.addButton("Ok") {
+            //                    println(self.selectedRows.count)
+            //                    self.realm.write() {
+            //                        // Goes through each row and deletes all the selected ones
+            //                        for (var index = 0; index <= self.selectedRows.count - 1; index++) {
+            //                            println("This is the array \(self.selectedRows[index]) at index \(index)")
+            //
+            //                            // TODO: Get rows to animate and delete 1 by 1.
+            //                            self.realm.delete(self.selectedRows[index])
+            //
+            //                            // Deletes the task from the array
+            //
+            ////                            if let index = find(selectedRows) {
+            ////                                // Removing at index "index" the selectedTask form selectedRows
+            ////                                selectedRows.removeAtIndex(index)
+            ////                            }
+            //
+            //
+            //                            // THIS CAUSED PROBLEMS
+            //                            //self.selectedRows.removeAtIndex(index)
+            //                            println("item at index \(index) has been deleted")
+            //                        }
+            //                        println(self.selectedRows)
+            //                        // Refreshes the tasks in real time according to modificationDate
+            //                        self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+            //                    }
+            //
+            //                    // Closes the alertView
+            //                    deleteThreeOrMoreTasksAlertView.close()
+            //
+            //                }
+            //
+            //                // The cancel button
+            //                deleteThreeOrMoreTasksAlertView.addButton("Cancel") {
+            //
+            //                    // Closes the alertVIew
+            //                    deleteThreeOrMoreTasksAlertView.close()
+            //                    
+            //                    // Deselect the items which were previously selected
+            //                }
+            //                
+            //                // This is what the type of popup the alert will show
+            //                deleteThreeOrMoreTasksAlertView.showWarning("Are you sure?", subTitle: "This will delete \(selectedRows.count) items permanently")
+            //                
 
-                            
-                            // THIS CAUSED PROBLEMS
-                            //self.selectedRows.removeAtIndex(index)
-                            println("item at index \(index) has been deleted")
-                        }
-                        println(self.selectedRows)
-                        // Refreshes the tasks in real time according to modificationDate
-                        self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
-                    }
-                
-                    
-                    
-                    // Closes the alertView
-                    deleteThreeOrMoreTasksAlertView.close()
-                
-                    
-                }
-                
-                // The cancel button
-                deleteThreeOrMoreTasksAlertView.addButton("Cancel") {
-                    
-                    // Closes the alertVIew
-                    deleteThreeOrMoreTasksAlertView.close()
-                    
-                    // Deselect the items which were previously selected
-                }
-                
-                // This is what the type of popup the alert will show
-                deleteThreeOrMoreTasksAlertView.showWarning("Are you sure?", subTitle: "This will delete \(selectedRows.count) items permanently")
-                
-            } else {
-                
                 // If the number of tasks is less than 3, then just delete them with no warning
                 self.realm.write() {
                     // Goes through each row and deletes all the selected ones
-                    for (var index = 0; index <= self.selectedRows.count - 1; index++) {
+                    for (var index = 0; index <= self.selectedRows.count + 1; index++) {
                         // TODO: Get rows to animate and delete 1 by 1.
-                        self.realm.delete(self.selectedRows[index])
                         
+                        self.realm.delete(self.selectedRows[index])
+                        // This line is giving me problems
+                        //self.selectedRows.removeAtIndex(index)
+                        println("deleted")
                         // Deletes the task from the array
-                        self.selectedRows.removeAtIndex(index)
-                        println("\(self.selectedRows.removeAtIndex(index))")
+                        
 //                        println("item at index \(index) has been deleted")
+                        // Refreshes the tasks in real time according to modificationDate
+                        self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
                     }
+                    
+                    
                 }
                 
                 if (self.navigationItem.rightBarButtonItem?.enabled == false) {
                     self.navigationItem.rightBarButtonItem?.enabled = true
                 }
                 
-                // Refreshes the tasks in real time according to modificationDate
-                tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
-            }
             
-           
-            
-        } else {
+        }   else {
             println("segue has been performed")
             performSegueWithIdentifier("addTask", sender: self)
         }
