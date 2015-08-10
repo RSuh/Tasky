@@ -55,6 +55,8 @@ class ChangeBadgeViewController: UIViewController, UICollectionViewDelegate, UIC
         
         self.selectedRow = indexPath.row
         
+        //UIView.animateWithDuration(1, animations: UIViewAnimationOptions.CurveEaseIn)
+        
         collectionView.reloadData()
 
     }

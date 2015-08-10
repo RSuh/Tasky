@@ -330,6 +330,8 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         // Hides the fadedIconImage and the no task label when loaded
         fadedIconImage.hidden = true
         noTaskLabel.hidden = true
@@ -523,7 +525,7 @@ extension TaskViewController: UITableViewDataSource {
         // The Actions for the cells
         if (editing == false) {
             cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             
             // A bool to see if the editing is enabled
             
@@ -574,11 +576,11 @@ extension TaskViewController: UITableViewDataSource {
         return true
     }
     
-//    func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-//        var itemToMove = tasks[fromIndexPath.row]
-//        tasks.removeAtIndex(fromIndexPath.row)
-//        selectedRows.insert(itemToMove, atIndex: toIndexPath.row)
-//    }
+    func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+        var itemToMove = tasks[fromIndexPath.row]
+        tasks.removeAtIndex(fromIndexPath.row)
+        selectedRows.insert(itemToMove, atIndex: toIndexPath.row)
+    }
 }
 
 extension TaskViewController: UITableViewDelegate {

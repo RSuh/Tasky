@@ -20,6 +20,14 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     // Initialize Realm
     let realm = Realm()
     
+    var newTask: Task? {
+        didSet {
+            displayNewTask(newTask)
+            displayNewBadge(newTask)
+            displayDate(newTask)
+        }
+    }
+    
     // Var to control the image
     var badge = 0
     
@@ -30,17 +38,10 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var selectedRow: Int = 0
     
     var dateLabel: String = ""
+//    var taskTitleMutable: NSMutableString =
     
     // A bool which determines whether or not the keyboard should automatically popup
     var keyboardPopUp: Bool = true
-    
-    var newTask: Task? {
-        didSet {
-            displayNewTask(newTask)
-            displayNewBadge(newTask)
-            displayDate(newTask)
-        }
-    }
     
     // Displays the contents of the new task
     func displayNewTask(task: Task?) {
@@ -76,7 +77,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 if ((newTask.taskTitle != self.taskTitle.text) ||
                     (newTask.badge != self.badge) ||
                     (newTask.modificationDate != self.dateLabel)) {
-                        newTask.taskTitle = self.taskTitle.text: NSMutableString
+                        newTask.taskTitle = self.taskTitle.text
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
