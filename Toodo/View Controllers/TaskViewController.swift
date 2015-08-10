@@ -112,60 +112,53 @@ class TaskViewController: UIViewController {
     
     @IBAction func addOrDeleteButton(sender: AnyObject) {
         if (flagForAddOrDelete == false) {
-         
+            
             // If the number of selected rows to delete is 3 or greater
-            //            if (selectedRows.count >= 3) {
-            //                // Show a popup alert!
-            //                let deleteThreeOrMoreTasksAlertView = SCLAlertView()
-            //                println("I am at index 0 \(self.selectedRows[0])")
-            //                println("I am at index 1 \(self.selectedRows[1])")
-            //                println("I am at index 2 \(self.selectedRows[2])")
-            //                // The ok button
-            //                deleteThreeOrMoreTasksAlertView.addButton("Ok") {
-            //                    println(self.selectedRows.count)
-            //                    self.realm.write() {
-            //                        // Goes through each row and deletes all the selected ones
-            //                        for (var index = 0; index <= self.selectedRows.count - 1; index++) {
-            //                            println("This is the array \(self.selectedRows[index]) at index \(index)")
-            //
-            //                            // TODO: Get rows to animate and delete 1 by 1.
-            //                            self.realm.delete(self.selectedRows[index])
-            //
-            //                            // Deletes the task from the array
-            //
-            ////                            if let index = find(selectedRows) {
-            ////                                // Removing at index "index" the selectedTask form selectedRows
-            ////                                selectedRows.removeAtIndex(index)
-            ////                            }
-            //
-            //
-            //                            // THIS CAUSED PROBLEMS
-            //                            //self.selectedRows.removeAtIndex(index)
-            //                            println("item at index \(index) has been deleted")
-            //                        }
-            //                        println(self.selectedRows)
-            //                        // Refreshes the tasks in real time according to modificationDate
-            //                        self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
-            //                    }
-            //
-            //                    // Closes the alertView
-            //                    deleteThreeOrMoreTasksAlertView.close()
-            //
-            //                }
-            //
-            //                // The cancel button
-            //                deleteThreeOrMoreTasksAlertView.addButton("Cancel") {
-            //
-            //                    // Closes the alertVIew
-            //                    deleteThreeOrMoreTasksAlertView.close()
-            //                    
-            //                    // Deselect the items which were previously selected
-            //                }
-            //                
-            //                // This is what the type of popup the alert will show
-            //                deleteThreeOrMoreTasksAlertView.showWarning("Are you sure?", subTitle: "This will delete \(selectedRows.count) items permanently")
-            //                
-
+            if (selectedRows.count >= 3) {
+                // Show a popup alert!
+                let deleteThreeOrMoreTasksAlertView = SCLAlertView()
+                
+                // The ok button
+                deleteThreeOrMoreTasksAlertView.addButton("Ok") {
+                    println(self.selectedRows.count)
+                    self.realm.write() {
+                        // Goes through each row and deletes all the selected ones
+                        for (var index = 0; index <= self.selectedRows.count - 1; index++) {
+                            // TODO: Get rows to animate and delete 1 by 1.
+                            
+                            self.realm.delete(self.selectedRows[index])
+                        }
+                        
+                        self.selectedRows.removeAll(keepCapacity: false)
+                    }
+                    
+                    // Refreshes the tasks and updates
+                    self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+                    
+                    // Closes the alertView
+                    deleteThreeOrMoreTasksAlertView.close()
+                    
+                    // Disables edit after done is pressed
+                    if (self.navigationItem.rightBarButtonItem?.enabled == false) {
+                        self.navigationItem.rightBarButtonItem?.enabled = true
+                        self.deleteAlreadyPressed = true
+                    }
+                }
+                
+                // The cancel button
+                deleteThreeOrMoreTasksAlertView.addButton("Cancel") {
+                    
+                    // Closes the alertVIew
+                    deleteThreeOrMoreTasksAlertView.close()
+                    
+                    // Deselect the items which were previously selected
+                }
+                
+                // This is what the type of popup the alert will show
+                deleteThreeOrMoreTasksAlertView.showWarning("Are you sure?", subTitle: "This will delete \(selectedRows.count) items permanently")
+                
+            } else {
+                
                 // If the number of tasks is less than 3, then just delete them with no warning
                 self.realm.write() {
                     // Goes through each row and deletes all the selected ones
@@ -173,27 +166,28 @@ class TaskViewController: UIViewController {
                         // TODO: Get rows to animate and delete 1 by 1.
                         
                         self.realm.delete(self.selectedRows[index])
-                        // This line is giving me problems
-                        //self.selectedRows.removeAtIndex(index)
-                        println("deleted")
-                        // Deletes the task from the array
-                        
-//                        println("item at index \(index) has been deleted")
-                        // Refreshes the tasks in real time according to modificationDate
-                        self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
                     }
                     
+                    self.selectedRows.removeAll(keepCapacity: false)
                 }
                 
+                // Refreshes the tasks and updates
+                self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+                
+                // Disables edit after done is pressed
                 if (self.navigationItem.rightBarButtonItem?.enabled == false) {
                     self.navigationItem.rightBarButtonItem?.enabled = true
                     deleteAlreadyPressed = true
                 }
+            }
+            
+            
             
         }   else {
             println("segue has been performed")
             performSegueWithIdentifier("addTask", sender: self)
         }
+        
     }
     
     @IBAction func backToTaskFromAdd(segue: UIStoryboardSegue) {
@@ -238,10 +232,10 @@ class TaskViewController: UIViewController {
             let selectedTask = tasks[selectedIndexPath.row]
             targetVC.editedTask = selectedTask
             
-//            // Sets selectedDate as selectedDate
-//            targetVC.showSelectedDate = self.showSelectedDate
-//
-//            println("hi \(showSelectedDate)")
+            //            // Sets selectedDate as selectedDate
+            //            targetVC.showSelectedDate = self.showSelectedDate
+            //
+            //            println("hi \(showSelectedDate)")
             
             realm.write() {
                 targetVC.editedTask!.badge = selectedTask.badge
@@ -276,9 +270,8 @@ class TaskViewController: UIViewController {
         // Sets edit mode for the tableView
         self.taskHomeTableView.setEditing(editing, animated: true)
         
-        
         if (editing == true) {
-    
+            
             if (addButtonColor == "addPurple") {
                 // Changes the image to a garbage can
                 toImage = UIImage(named: "GarbagePurple")
@@ -320,8 +313,8 @@ class TaskViewController: UIViewController {
             taskHomeTableView.isEnabled = true
             
             if (deleteAlreadyPressed == true) {
-            // Disable edit button again
-            self.navigationItem.rightBarButtonItem?.enabled = false
+                // Disable edit button again
+                self.navigationItem.rightBarButtonItem?.enabled = false
             }
             
             flagForAddOrDelete = true
@@ -340,7 +333,7 @@ class TaskViewController: UIViewController {
         // Hides the fadedIconImage and the no task label when loaded
         fadedIconImage.hidden = true
         noTaskLabel.hidden = true
-    
+        
         // Sets the right bar button item to be a edit button item.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
@@ -348,11 +341,11 @@ class TaskViewController: UIViewController {
         let navigation = self.navigationController?.navigationBar
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
-
+        
         // Segues to add task if category tasks is 0
-//        if (category?.tasksWithinCategory.count == 0) {
-//            performSegueWithIdentifier("addTask", sender: self)
-//        }
+        //        if (category?.tasksWithinCategory.count == 0) {
+        //            performSegueWithIdentifier("addTask", sender: self)
+        //        }
         
         println("The color is \(addButtonColor)")
         
@@ -418,7 +411,7 @@ class TaskViewController: UIViewController {
             
             // Intializes the add button
             addImage.image = UIImage(named: "addButtonWhite")
-
+            
         } else {
             // If the bar has no color
             // Changes the navbar controls
@@ -454,13 +447,17 @@ class TaskViewController: UIViewController {
         
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            
             let indexPath = tableView.indexPathForCell(cell)
+            
+            let selectedCell = self.tasks[indexPath!.row]
             
             //self.prepareForSegue(segue, sender: self)
             //            self.selectedTask = self.tasks[indexPath!.row]
             
             // For the grey background.
-            cell.backgroundColor = UIColor(red: 220/255, green: 216/255, blue: 216/255, alpha: 100)
+            cell.backgroundColor = UIColor(red: 58/255, green: 217/255, blue: 58/255, alpha: 100)
+            
             
             // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
@@ -516,6 +513,9 @@ extension TaskViewController: UITableViewDataSource {
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
+        // Allows reordering
+        cell.showsReorderControl = true
+        
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
         
@@ -523,12 +523,15 @@ extension TaskViewController: UITableViewDataSource {
         // The Actions for the cells
         if (editing == false) {
             cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
             
             // A bool to see if the editing is enabled
             
-        } else {
         }
+//        else if (editing == true) {
+//            cell.chevronRight.hidden = true
+//            println("chevron is hidden")
+//        }
         
         // Sets custom separators between cells on viewDidLoad
         //taskHomeTableView.separatorInset = UIEdgeInsetsZero
@@ -539,8 +542,6 @@ extension TaskViewController: UITableViewDataSource {
         let task = tasks[row] as Task
         cell.task = task
         
-        // This makes the separator be centered between the cells.
-        //tableView.separatorInset.right = tableView.separatorInset.left
         
         return cell
     }
@@ -568,6 +569,16 @@ extension TaskViewController: UITableViewDataSource {
         
         return Int(tasks?.count ?? 0)
     }
+    
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+//    func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+//        var itemToMove = tasks[fromIndexPath.row]
+//        tasks.removeAtIndex(fromIndexPath.row)
+//        selectedRows.insert(itemToMove, atIndex: toIndexPath.row)
+//    }
 }
 
 extension TaskViewController: UITableViewDelegate {
@@ -582,11 +593,13 @@ extension TaskViewController: UITableViewDelegate {
             if let index = find(selectedRows, selectedTask) {
                 // Removing at index "index" the selectedTask form selectedRows
                 selectedRows.removeAtIndex(index)
+                println(selectedRows.count)
                 //println("\(selectedTask) at index \(index)")
             } else {
                 // Appending selectedTask to the array of selectedRows
                 selectedRows.append(selectedTask)
-                println("\(selectedTask) at index \(indexPath.row)")
+                println(selectedRows.count)
+                //println("\(selectedTask) at index \(indexPath.row)")
             }
             
         } else {
@@ -603,20 +616,18 @@ extension TaskViewController: UITableViewDelegate {
         // taskTodeselect is the task at indexPath.row
         let taskToDeselect = tasks[indexPath.row]
         if let index = find(selectedRows, taskToDeselect) {
-            println(index)
-            println("this is indexpath.row \(indexPath.row)")
+            //println(index)
+            //println("this is indexpath.row \(indexPath.row)")
             // Removing from selectedRows the selectedRow at index
             selectedRows.removeAtIndex(index)
+            println(selectedRows.count)
             
         }
-        
-        
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    
 }
 
 

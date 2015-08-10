@@ -12,7 +12,7 @@ import UIKit
 
 // Initialize a Task Object.
 class Task: Object {
-    dynamic var taskTitle: String = ""
+    dynamic var taskTitle: NSMutableString = ""
     dynamic var modificationDate = ""
     dynamic var taskNote: String = ""
     dynamic var badge = 0

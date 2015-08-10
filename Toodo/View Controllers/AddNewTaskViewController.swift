@@ -76,7 +76,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 if ((newTask.taskTitle != self.taskTitle.text) ||
                     (newTask.badge != self.badge) ||
                     (newTask.modificationDate != self.dateLabel)) {
-                        newTask.taskTitle = self.taskTitle.text
+                        newTask.taskTitle = self.taskTitle.text: NSMutableString
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
@@ -210,7 +210,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         taskTitle.delegate = self
         taskTitle.returnKeyType = UIReturnKeyType.Done
         date.text = "Set Date"
-        println(date)
+
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
@@ -222,8 +222,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        println(keyboardPopUp)
+
         if (keyboardPopUp == true) {
             taskTitle.becomeFirstResponder()
         } else {

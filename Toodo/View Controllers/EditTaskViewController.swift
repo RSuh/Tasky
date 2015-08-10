@@ -48,7 +48,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     func displayTask(task: Task?) {
         if let task = task, taskTextField = taskTextField {
             realm.write() {
-                self.taskTextField.text = self.editedTask!.taskTitle
+                self.taskTextField.text = self.editedTask!.taskTitle as String
             }
         }
     }
@@ -71,8 +71,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
                     (editedTask.badge != self.badge) ||
                     (editedTask.modificationDate != self.dateLabel.text)){
                         editedTask.modificationDate = self.dateLabel.text!
-                        editedTask.taskTitle = self.taskTextField.text
-                        
+                        editedTask.taskTitle = self.taskTextField.text                         
                         // Saves the badge as the editedTask.badge passed from TaskVC
                         editedTask.badge = self.editedTask!.badge
                 } else {

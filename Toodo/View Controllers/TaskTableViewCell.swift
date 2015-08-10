@@ -14,6 +14,7 @@ class TaskTableViewCell: SBGestureTableViewCell {
     @IBOutlet weak var taskLabel: UILabel!
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var chevronRight: UIImageView!
     
     static var presentDate: NSDateFormatter {
        var formatter = NSDateFormatter()
@@ -38,8 +39,9 @@ class TaskTableViewCell: SBGestureTableViewCell {
         didSet {
             if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
                 dateLabel.text = task.modificationDate
-                taskLabel.text = task.taskTitle
+                taskLabel.text = task.taskTitle as String
                 badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
+                //chevronRight.image = UIImage(named: "chevronRight")
             }
         }
     }
