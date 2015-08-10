@@ -301,7 +301,10 @@ class TaskViewController: UIViewController {
             println("Flag is \(flagForAddOrDelete)")
             println("Editing is \(editing)")
         } else if (editing == false) {
-            
+          
+            // Enables the delete button
+            addBackgroundButton.enabled = true
+
             // Changes the image to the addButton
             let backImage = UIImage(named: "addButtonWhite")
             UIView.transitionWithView(self.addImage,
@@ -530,10 +533,6 @@ extension TaskViewController: UITableViewDataSource {
             // A bool to see if the editing is enabled
             
         }
-//        else if (editing == true) {
-//            cell.chevronRight.hidden = true
-//            println("chevron is hidden")
-//        }
         
         // Sets custom separators between cells on viewDidLoad
         //taskHomeTableView.separatorInset = UIEdgeInsetsZero
@@ -571,16 +570,6 @@ extension TaskViewController: UITableViewDataSource {
         
         return Int(tasks?.count ?? 0)
     }
-    
-    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        var itemToMove = tasks[fromIndexPath.row]
-        tasks.removeAtIndex(fromIndexPath.row)
-        selectedRows.insert(itemToMove, atIndex: toIndexPath.row)
-    }
 }
 
 extension TaskViewController: UITableViewDelegate {
@@ -591,6 +580,7 @@ extension TaskViewController: UITableViewDelegate {
         let selectedTask = tasks[indexPath.row]
         
         if (editing == true) {
+            
             // If its in the selectedRow array, then remove, else add. Fixes problem with overlapping objects in the array
             if let index = find(selectedRows, selectedTask) {
                 // Removing at index "index" the selectedTask form selectedRows
@@ -603,6 +593,12 @@ extension TaskViewController: UITableViewDelegate {
                 println(selectedRows.count)
                 //println("\(selectedTask) at index \(indexPath.row)")
             }
+            
+//            if (selectedRows.count > 0) {
+//                addBackgroundButton.enabled = true
+//            } else {
+//                addBackgroundButton.enabled = false
+//            }
             
         } else {
             // Performs the segue to editTaskVC
@@ -623,8 +619,11 @@ extension TaskViewController: UITableViewDelegate {
             // Removing from selectedRows the selectedRow at index
             selectedRows.removeAtIndex(index)
             println(selectedRows.count)
-            
         }
+        
+//        if (selectedRows.count == 0) {
+//            addBackgroundButton.enabled = false
+//        }
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
