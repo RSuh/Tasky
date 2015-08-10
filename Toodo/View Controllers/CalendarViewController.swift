@@ -15,26 +15,16 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
     
     var addButtonColor = ""
+    var showSelectedDate: NSDate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // On load, the dateLabel is nothing
+        dateLabel.text = ""
+        
         // Makes the calendar vertical flow
         calendar.flow = .Vertical
-        
-        //calendar.appearance.autoAdjustTitleSize = false
-        //calendar.appearance.titleFont = UIFont(name: "HelveticaNeue-UltraLight", size: 11.0)
-        
-        let todayDate = NSDate()
-    
-        var dateFormatter = NSDateFormatter()
-        // if date is tomorrow, then display, due tomorrow, else display the date.
-        
-        // If date is today, then display, due today, else display the date
-        dateFormatter.dateFormat = "EEEE, MMMM d"
-        var dateString = dateFormatter.stringFromDate(todayDate)
-        self.dateLabel.text = "Due: \(dateString)"
-
         
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem
@@ -105,6 +95,8 @@ class CalendarViewController: UIViewController {
             let targetVC = segue.destinationViewController as! AddNewTaskViewController
             
             targetVC.dateLabel = self.dateLabel.text!
+            
+            //targetVC.showSelectedDate =
         } else {
             println("date was not saved")
         }
@@ -118,6 +110,12 @@ extension CalendarViewController: FSCalendarDataSource {
 extension CalendarViewController: FSCalendarDelegate {
     // What happens when the user selects the date
     func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
+        
+        // Gets rid of todays circle
+        calendar.appearance.todayColor = UIColor.clearColor()
+        calendar.appearance.titleTodayColor = calendar.appearance.titleDefaultColor;
+        calendar.appearance.subtitleTodayColor = calendar.appearance.subtitleDefaultColor;
+        
         var dateFormatter = NSDateFormatter()
         // if date is tomorrow, then display, due tomorrow, else display the date.
         

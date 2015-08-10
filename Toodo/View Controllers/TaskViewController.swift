@@ -40,6 +40,7 @@ class TaskViewController: UIViewController {
     var toImage: UIImage?
     var addButtonColor: String = ""
     var deleteAlreadyPressed: Bool = false
+    var showSelectedDate: NSDate?
     
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
@@ -237,7 +238,11 @@ class TaskViewController: UIViewController {
             let selectedTask = tasks[selectedIndexPath.row]
             targetVC.editedTask = selectedTask
             
-            println(selectedTask.modificationDate)
+//            // Sets selectedDate as selectedDate
+//            targetVC.showSelectedDate = self.showSelectedDate
+//
+//            println("hi \(showSelectedDate)")
+            
             realm.write() {
                 targetVC.editedTask!.badge = selectedTask.badge
                 
