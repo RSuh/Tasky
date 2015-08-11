@@ -32,7 +32,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var badge = 0
     
     var addButtonColor = ""
-    var showSelectedDate: NSDate?
+    var orderingDate: NSDate?
     var category: Category?
     
     var selectedRow: Int = 0
@@ -76,14 +76,19 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             realm.write() {
                 if ((newTask.taskTitle != self.taskTitle.text) ||
                     (newTask.badge != self.badge) ||
-                    (newTask.modificationDate != self.dateLabel)) {
+                    (newTask.modificationDate != self.dateLabel) ||
+                    (newTask.orderingDate != self.orderingDate)) {
                         newTask.taskTitle = self.taskTitle.text
                         newTask.badge = self.badge
                         self.category!.tasksWithinCategory.append(newTask)
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
                         //self.category!.tasksWithinCategory.count = self.category!.numberOfTasksWithinCategory
                         newTask.modificationDate = self.dateLabel
-                        println(newTask)
+                        // Sets the ordering date
+                        if (self.orderingDate != nil) {
+                        newTask.orderingDate = self.orderingDate!
+                        }
+                        println(newTask.modificationDate)
                 } else {
                     println("nothing has changed")
                 }
@@ -155,6 +160,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 keyboardPopUp = false
                 // Makes the Set Date text to be the date
                 date.text = self.dateLabel
+                println(orderingDate)
                 
             default:
                 println("failed")

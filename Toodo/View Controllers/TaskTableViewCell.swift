@@ -15,6 +15,7 @@ class TaskTableViewCell: SBGestureTableViewCell {
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var chevronRight: UIImageView!
+    @IBOutlet weak var crossOutTask: UIImageView!
     
     static var presentDate: NSDateFormatter {
        var formatter = NSDateFormatter()
@@ -26,6 +27,9 @@ class TaskTableViewCell: SBGestureTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        // Hides the crossOutLabel on load
+        self.crossOutTask.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

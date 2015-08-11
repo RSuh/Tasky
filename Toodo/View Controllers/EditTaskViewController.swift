@@ -114,7 +114,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
         if (segue.identifier == "saveFromEdit") {
             let target = segue.destinationViewController as! TaskViewController
             //target.showSelectedDate = self.showSelectedDate
-            println("show selected date is \(target.showSelectedDate)")
+            
             saveTask()
             
         } else if (segue.identifier == "tapOnBadge") {

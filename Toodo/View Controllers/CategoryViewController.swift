@@ -101,6 +101,18 @@ class CategoryViewController: UIViewController {
         }
     }
     
+    @IBAction func backToCategoryFromSettings(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "exitToCategoryFromSettings":
+                println("exitToCategoryFromSettings")
+                
+            default:
+                println("failed")
+            }
+        }
+    }
+    
     @IBAction func backToCategoryFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {

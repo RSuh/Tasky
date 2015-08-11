@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     
     var addButtonColor = ""
     var showSelectedDate: NSDate?
+    var orderingDate: NSDate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +97,9 @@ class CalendarViewController: UIViewController {
             
             targetVC.dateLabel = self.dateLabel.text!
             
-            //targetVC.showSelectedDate =
+            // Pass the ordering date to ADDNEWTASKVIEWCONTROLLER
+            targetVC.orderingDate = self.orderingDate
+        
         } else {
             println("date was not saved")
         }
@@ -123,5 +126,8 @@ extension CalendarViewController: FSCalendarDelegate {
         dateFormatter.dateFormat = "EEEE, MMMM d"
         var dateString = dateFormatter.stringFromDate(date)
         self.dateLabel.text = "Due: \(dateString)"
+        
+        // Takes the date we selected and assigns it to orderingDate
+        self.orderingDate = date
     }
 }

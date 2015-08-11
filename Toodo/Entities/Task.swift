@@ -14,6 +14,7 @@ import UIKit
 class Task: Object {
     dynamic var taskTitle: String = ""
     dynamic var modificationDate = ""
+    dynamic var orderingDate: NSDate = NSDate()
     dynamic var taskNote: String = ""
     dynamic var badge = 0
     dynamic var category: Category?

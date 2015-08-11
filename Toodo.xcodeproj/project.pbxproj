@@ -17,6 +17,7 @@
 		4536C3851B506C6F00A35889 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C3841B506C6F00A35889 /* Task.swift */; };
 		4536C38C1B50761600A35889 /* AddNewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */; };
 		4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38D1B5078E200A35889 /* EditTaskViewController.swift */; };
+		454B50501B7A704500AE0D64 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454B504F1B7A704500AE0D64 /* SettingsTableViewController.swift */; };
 		456C99F21B66B1B8002E1074 /* ChangeBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */; };
 		456C99F41B66D19F002E1074 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */; };
 		456C99F61B698494002E1074 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F51B698494002E1074 /* CalendarViewController.swift */; };
@@ -62,6 +63,7 @@
 		4536C3841B506C6F00A35889 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCategoryViewController.swift; sourceTree = "<group>"; };
 		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		454B504F1B7A704500AE0D64 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeBadgeViewController.swift; sourceTree = "<group>"; };
 		456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		456C99F51B698494002E1074 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				456C99F51B698494002E1074 /* CalendarViewController.swift */,
 				456C99F91B6AB5B8002E1074 /* NSDate-Equatable.swift */,
 				458E1D8C1B70159000CCF92F /* ColorCollectionViewCell.swift */,
+				454B504F1B7A704500AE0D64 /* SettingsTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				4536C3571B505ACD00A35889 /* AppDelegate.swift in Sources */,
 				457E33B71B6193E800D900E6 /* SBGestureTableView.swift in Sources */,
 				457E33B91B6193E800D900E6 /* SBGestureTableViewCellAction.swift in Sources */,
+				454B50501B7A704500AE0D64 /* SettingsTableViewController.swift in Sources */,
 				4536C37A1B505CA600A35889 /* TaskViewController.swift in Sources */,
 				458E1D8D1B70159000CCF92F /* ColorCollectionViewCell.swift in Sources */,
 				457D28901B558460000952CC /* CategoryViewController.swift in Sources */,

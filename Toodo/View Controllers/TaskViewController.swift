@@ -21,6 +21,7 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var fadedIconImage: UIImageView!
     @IBOutlet weak var noTaskLabel: UILabel!
     @IBOutlet weak var smileyImage: UIImageView!
+    
     // The variable for the navbar color of this view controller. We need this variable to transfer the color from the previous VC using a segue
     var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
     
@@ -40,7 +41,7 @@ class TaskViewController: UIViewController {
     var toImage: UIImage?
     var addButtonColor: String = ""
     var deleteAlreadyPressed: Bool = false
-    var showSelectedDate: NSDate?
+    var orderingDate: NSDate?
     
     // Icons
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
@@ -105,7 +106,7 @@ class TaskViewController: UIViewController {
             }
             
             // Adds new tasks in real-time
-            tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+            tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
             
         }
     }
@@ -133,7 +134,7 @@ class TaskViewController: UIViewController {
                     }
                     
                     // Refreshes the tasks and updates
-                    self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+                    self.tasks = self.category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
                     
                     // Closes the alertView
                     deleteThreeOrMoreTasksAlertView.close()
@@ -172,7 +173,7 @@ class TaskViewController: UIViewController {
                 }
                 
                 // Refreshes the tasks and updates
-                self.tasks = self.category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+                self.tasks = self.category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
                 
                 // Disables edit after done is pressed
                 if (self.navigationItem.rightBarButtonItem?.enabled == false) {
@@ -218,7 +219,7 @@ class TaskViewController: UIViewController {
             }
             
             // Sort tasks which are within each category by modificationDate
-            tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+            tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
             
         }
     }
@@ -261,7 +262,7 @@ class TaskViewController: UIViewController {
         //
         //            // Updates the task count when going back to the categoryVC after deleting or completing a task
         //            targetVC.categoryTableView.reloadData()
-        tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+        tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
     }
     
     override func setEditing(editing: Bool, animated: Bool) {
@@ -333,7 +334,7 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        println("ordering date is \(orderingDate)")
         
         // Hides the fadedIconImage and the no task label when loaded
         fadedIconImage.hidden = true
@@ -457,15 +458,21 @@ class TaskViewController: UIViewController {
             
             let selectedCell = self.tasks[indexPath!.row]
             
+            // Animation for the replaceCell Function
+            tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
+            
+            println(selectedCell)
+            
+            //let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath!) as! TaskTableViewCell
+            
+            // Unhides the crossOutmark
+            //cell.crossOutTask.hidden = false
             //self.prepareForSegue(segue, sender: self)
             //            self.selectedTask = self.tasks[indexPath!.row]
             
             // For the grey background.
-            cell.backgroundColor = UIColor(red: 58/255, green: 217/255, blue: 58/255, alpha: 100)
-            
-            
-            // Animation for the replaceCell Function
-            tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
+            cell.backgroundColor = UIColor(red: 89/255, green: 227/255, blue: 137/255, alpha: 100)
+        
         }
         
         // The remove block function
@@ -480,7 +487,6 @@ class TaskViewController: UIViewController {
             self.realm.write() {
                 self.realm.delete(tasks)
                 
-                
                 // Subtracts 1 count from the taskCount when removecellBlock is called
                 self.category!.tasksWithinCategory.count - 1
             }
@@ -489,7 +495,7 @@ class TaskViewController: UIViewController {
         }
         
         // Sort tasks which are within each category by modificationDate
-        tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+        tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
     }
     
     // Customizes the title Bar
@@ -503,7 +509,7 @@ class TaskViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // Sorts tasks based on their modification Date
-        tasks = category?.tasksWithinCategory.sorted("modificationDate", ascending: false)
+        tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
         
     }
     
@@ -529,6 +535,7 @@ extension TaskViewController: UITableViewDataSource {
         if (editing == false) {
             cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            
             
             // A bool to see if the editing is enabled
             

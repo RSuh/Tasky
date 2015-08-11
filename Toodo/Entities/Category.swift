@@ -13,11 +13,9 @@ import UIKit
 // A new Category object
 class Category: Object {
     dynamic var categoryTitle = ""
-    dynamic var taskCount = 0
     dynamic var badge = 0
+    dynamic var taskCount = 0
     dynamic var tasksWithinCategory = List<Task>()
-    //dynamic var numberOfTasksWithinCategory = 0
-    // RGB values
     dynamic var R = 1.0
     dynamic var G = 1.0
     dynamic var B = 1.0
