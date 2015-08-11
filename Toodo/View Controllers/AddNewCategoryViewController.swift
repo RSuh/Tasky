@@ -88,35 +88,35 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
             cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[0])
             println(colorIndex)
             
+//            if (colorIndex == 0) {
+//                themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+//                R = 1.00
+//                G = 1.00
+//                B = 1.00
+//                println("\(R)\(G)\(B)")
+            
             if (colorIndex == 0) {
-                themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
-                R = 1.00
-                G = 1.00
-                B = 1.00
-                println("\(R)\(G)\(B)")
-                
-            } else if (colorIndex == 1) {
                 themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
                 R = 0.81
                 G = 0.59
                 B = 0.93
                 println("\(R)\(G)\(B)")
                 
-            } else if (colorIndex == 2) {
+            } else if (colorIndex == 1) {
                 themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
                 R = 0.15
                 G = 0.85
                 B = 0.70
                 println("\(R)\(G)\(B)")
                 
-            } else if (colorIndex == 3) {
+            } else if (colorIndex == 2) {
                 themeColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
                 R = 1.00
                 G = 0.45
                 B = 0.45
                 println("\(R)\(G)\(B)")
                 
-            } else if (colorIndex == 4) {
+            } else if (colorIndex == 3) {
                 themeColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
                 R = 0.40
                 G = 0.60
@@ -141,35 +141,34 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
             (collectionView.cellForItemAtIndexPath(ip) as! ColorCollectionViewCell).colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[0])
         }
         
-        if (colorIndex == 0) {
-            themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
-            R = 1.00
-            G = 1.00
-            B = 1.00
-            println("\(R)\(G)\(B)")
-            
-        } else if (colorIndex == 1) {
+//        if (colorIndex == 0) {
+//            themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+//            R = 1.00
+//            G = 1.00
+//            B = 1.00
+//            println("\(R)\(G)\(B)")
+        
+         if (colorIndex == 0) {
             themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
             R = 0.81
             G = 0.59
             B = 0.93
             println("\(R)\(G)\(B)")
-            
-        } else if (colorIndex == 2) {
+        } else if (colorIndex == 1) {
             themeColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
             R = 0.15
             G = 0.85
             B = 0.70
             println("\(R)\(G)\(B)")
             
-        } else if (colorIndex == 3) {
+        } else if (colorIndex == 2) {
             themeColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
             R = 1.00
             G = 0.45
             B = 0.45
             println("\(R)\(G)\(B)")
             
-        } else if (colorIndex == 4) {
+        } else if (colorIndex == 3) {
             themeColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
             R = 0.40
             G = 0.60

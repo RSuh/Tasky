@@ -53,8 +53,8 @@
                                                     <color key="textColor" red="0.97142857140000005" green="1" blue="0.9428571429" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="olN-gR-mXF">
-                                                    <rect key="frame" x="574" y="30" width="10" height="15"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" image="chevronRightWhite" translatesAutoresizingMaskIntoConstraints="NO" id="olN-gR-mXF">
+                                                    <rect key="frame" x="574" y="30" width="10" height="16"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -102,7 +102,7 @@
                                 <rect key="frame" x="287" y="559" width="25" height="26"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y58-yh-AsY">
-                                <rect key="frame" x="216" y="325.5" width="168.5" height="47"/>
+                                <rect key="frame" x="216" y="326" width="169" height="47"/>
                                 <string key="text">No categories yet! 
 Add one!</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -176,7 +176,7 @@ Add one!</string>
         <!--Settings-->
         <scene sceneID="nYd-El-wno">
             <objects>
-                <tableViewController id="vZW-qP-H0x" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="settingsViewController" id="vZW-qP-H0x" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kvd-Ca-cfx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,7 +190,7 @@ Add one!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f2-pS-cAu">
-                                                    <rect key="frame" x="66" y="14.5" width="75.5" height="20.5"/>
+                                                    <rect key="frame" x="66" y="14" width="76" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -219,7 +219,7 @@ Add one!</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share on Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsO-Kk-feh">
-                                                    <rect key="frame" x="66" y="14.5" width="149.5" height="20.5"/>
+                                                    <rect key="frame" x="66" y="14" width="150" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -251,7 +251,7 @@ Add one!</string>
                                                     <rect key="frame" x="15" y="5" width="36" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet about Tasky" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jxn-at-6k0">
-                                                    <rect key="frame" x="66" y="14" width="142" height="20.5"/>
+                                                    <rect key="frame" x="66" y="14" width="142" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -284,7 +284,7 @@ Add one!</string>
                                                     <rect key="frame" x="15" y="5" width="36" height="40"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share by E-Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liy-ax-4yk">
-                                                    <rect key="frame" x="66" y="14.5" width="122" height="20.5"/>
+                                                    <rect key="frame" x="66" y="14" width="122" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -448,7 +448,7 @@ Add one!</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hm-kW-fQ9">
-                                <rect key="frame" x="241.5" y="326" width="117" height="47"/>
+                                <rect key="frame" x="242" y="326" width="117" height="47"/>
                                 <string key="text">No tasks yet!
 Add one!</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -492,7 +492,7 @@ Add one!</string>
                         <barButtonItem key="leftBarButtonItem" image="backArrow" id="H9L-eN-knB">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <segue destination="3r2-Wh-pwN" kind="unwind" unwindAction="backToCategoryFromTasks:" id="oHQ-AG-FWi"/>
+                                <segue destination="3r2-Wh-pwN" kind="unwind" identifier="backToCategoryFromTask" unwindAction="backToCategoryFromTasks:" id="oHQ-AG-FWi"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="7c6-VG-LOx">
@@ -811,12 +811,12 @@ Add one!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ihM-Ws-PMe">
-                                <rect key="frame" x="16" y="78" width="80" height="94.5"/>
+                                <rect key="frame" x="16" y="78" width="80" height="95"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="wye-bd-jgG" kind="show" identifier="tapOnBadge" id="NU4-qo-Hjg"/>
+                                    <segue destination="wye-bd-jgG" kind="show" identifier="tapOnBadge" id="qTm-Eb-v7g"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EKE-0s-YAK">
@@ -863,7 +863,7 @@ Add one!</string>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="hii" translatesAutoresizingMaskIntoConstraints="NO" id="gzN-HD-ekl">
-                                <rect key="frame" x="119" y="81" width="465" height="91.5"/>
+                                <rect key="frame" x="119" y="81" width="465" height="92"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -929,7 +929,7 @@ Add one!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGp-Vn-nq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="mKd-GH-PUP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3575" y="-299"/>
+            <point key="canvasLocation" x="3288" y="-206"/>
         </scene>
         <!--Change Badge-->
         <scene sceneID="MQT-rz-rLB">
@@ -1206,6 +1206,7 @@ Add one!</string>
         <image name="checkmark" width="27" height="21"/>
         <image name="chevronLeft" width="13" height="20"/>
         <image name="chevronRight" width="10" height="15"/>
+        <image name="chevronRightWhite" width="10" height="16"/>
         <image name="editTitleLine" width="261" height="1"/>
         <image name="email" width="36" height="40"/>
         <image name="facebook" width="36" height="40"/>
@@ -1214,6 +1215,6 @@ Add one!</string>
         <image name="twitter" width="36" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NU4-qo-Hjg"/>
+        <segue reference="qTm-Eb-v7g"/>
     </inferredMetricsTieBreakers>
 </document>

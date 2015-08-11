@@ -242,7 +242,6 @@ class TaskViewController: UIViewController {
                 targetVC.editedTask!.badge = selectedTask.badge
                 
                 targetVC.editedTask!.modificationDate = selectedTask.modificationDate
-                println(targetVC.editedTask!.badge)
             }
             
             targetVC.editButtonImage = self.addButtonColor
@@ -256,12 +255,16 @@ class TaskViewController: UIViewController {
             targetVC.newTask?.category = self.category
             
             targetVC.addButtonColor = self.addButtonColor
+        } else if (segue.identifier == "backToCategoryFromTask") {
+            let targetVC = segue.destinationViewController as! CategoryViewController
+            
+            targetVC.category = self.category
+            //println("HIHIHIHIHIHI \(category)")
+            // Updates the task count when going back to the categoryVC after deleting or completing a task
+            //targetVC.taskCount = self.category!.tasksWithinCategory.count
+            //println(targetVC.taskCount)
         }
-        //        else if (segue.identifier == "backToCategoryFromTask") {
-        //            let targetVC = segue.destinationViewController as! CategoryViewController
-        //
-        //            // Updates the task count when going back to the categoryVC after deleting or completing a task
-        //            targetVC.categoryTableView.reloadData()
+        
         tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
     }
     
@@ -333,6 +336,8 @@ class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        println(category?.taskCount)
         
         println("ordering date is \(orderingDate)")
         
@@ -471,7 +476,18 @@ class TaskViewController: UIViewController {
             //            self.selectedTask = self.tasks[indexPath!.row]
             
             // For the grey background.
-            cell.backgroundColor = UIColor(red: 89/255, green: 227/255, blue: 137/255, alpha: 100)
+            cell.backgroundColor = UIColor(red: 112.5/255, green: 165.7/255, blue: 130.8/255, alpha: 1.0)
+//            cell.backgroundColor = UIColor(
+//            cell.userInteractionEnabled = false
+            if let cell = cell as? TaskTableViewCell {
+                cell.taskLabel.text = "POTATOgfhbfhfghfh"
+                let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
+                cell.taskLabel.attributedText = NSAttributedString(string: "POTATOJFDKLSJFDKLSFJDKSLFJDKSLFSJDF", attributes: attributes)
+                cell.taskLabel.textColor = UIColor ( red: 0.298, green: 0.298, blue: 0.298, alpha: 1.0 )
+                
+                
+//                cell.crossOutTask.hidden = false
+            }
         
         }
         
@@ -489,6 +505,8 @@ class TaskViewController: UIViewController {
                 
                 // Subtracts 1 count from the taskCount when removecellBlock is called
                 self.category!.tasksWithinCategory.count - 1
+                
+                println(self.category!.tasksWithinCategory.count)
             }
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
@@ -534,7 +552,7 @@ extension TaskViewController: UITableViewDataSource {
         // The Actions for the cells
         if (editing == false) {
             cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
             
             
             // A bool to see if the editing is enabled

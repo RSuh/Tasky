@@ -84,6 +84,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
                         //self.category!.tasksWithinCategory.count = self.category!.numberOfTasksWithinCategory
                         newTask.modificationDate = self.dateLabel
+                        println(self.category!.taskCount)
                         // Sets the ordering date
                         if (self.orderingDate != nil) {
                         newTask.orderingDate = self.orderingDate!
@@ -194,6 +195,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             } else {
                 newTask = Task()
                 saveNewTask()
+                
+                
                 
                 return true
             }

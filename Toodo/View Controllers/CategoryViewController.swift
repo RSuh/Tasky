@@ -29,7 +29,11 @@ class CategoryViewController: UIViewController {
         }
     }
     
+    // Category variable to see the taskCount
+    var category: Category?
+    
     var addButtonColor = ""
+    var taskCount = 0
     
     // A array for deleting
     var selectedRow: NSMutableArray = []
@@ -127,9 +131,11 @@ class CategoryViewController: UIViewController {
             default:
                 println("failed")
                 
+                
                 // Sorts by number of tasks, able to sort by count.
                 categories = realm.objects(Category).sorted("taskCount", ascending: false)
             }
+            
         }
     }
     
@@ -140,9 +146,16 @@ class CategoryViewController: UIViewController {
                 println("Back to Category from tasks")
                 let displayTaskVC = segue.sourceViewController as! TaskViewController
                 
+                
+                
             default:
                 println("nothing")
+                
+                // Sorts by number of tasks, able to sort by count.
+                categories = realm.objects(Category).sorted("taskCount", ascending: false)
             }
+            
+            
         }
     }
     
@@ -158,6 +171,7 @@ class CategoryViewController: UIViewController {
             let selectedCategory = categories[selectedIndexPath.row]
             
             titleVC.category = selectedCategory
+            //titleVC.category?.taskCount =
             
             // Sets the nav bar color to the color of whatever the cell color was in the previous VC
             // Purple Theme
@@ -314,7 +328,8 @@ class CategoryViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        //println(self.category.taskCount)
+
         // Sorts the realm objects by taskCount
         categories = realm.objects(Category).sorted("taskCount", ascending: false)
         
@@ -364,7 +379,10 @@ extension CategoryViewController: UITableViewDataSource {
         
         cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
         
-        cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+        cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
+        
+        // Sorts by number of tasks, able to sort by count.
+        //categories = realm.objects(Category).sorted("taskCount", ascending: false)
         
         // Set up cell
         let row = indexPath.row
