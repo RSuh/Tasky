@@ -16,6 +16,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var taskTitle: UITextField!
     @IBOutlet weak var badgeImage: UICollectionView!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var calendarDateLabel: UILabel!
     
     // Initialize Realm
     let realm = Realm()
@@ -30,7 +31,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     
     // Var to control the image
     var badge = 0
-    
+    var numDateLabel = ""
     var addButtonColor = ""
     var orderingDate: NSDate?
     var category: Category?
@@ -155,6 +156,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             case "backToAddFromCalendar":
                 println("Back to add from calendar")
                 keyboardPopUp = false
+            
                 
             case "saveFromAddCalendar":
                 println("Save from add calendar")
@@ -162,6 +164,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 // Makes the Set Date text to be the date
                 date.text = self.dateLabel
                 println(orderingDate)
+                
+                // Sets calendar date to be numDate
+                calendarDateLabel.text = numDateLabel
                 
             default:
                 println("failed")
@@ -220,6 +225,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         taskTitle.delegate = self
         taskTitle.returnKeyType = UIReturnKeyType.Done
         date.text = "Set Date"
+        calendarDateLabel.text = ""
 
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem

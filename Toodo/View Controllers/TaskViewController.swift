@@ -475,17 +475,18 @@ class TaskViewController: UIViewController {
             //self.prepareForSegue(segue, sender: self)
             //            self.selectedTask = self.tasks[indexPath!.row]
             
+            
             // For the grey background.
-            cell.backgroundColor = UIColor(red: 112.5/255, green: 165.7/255, blue: 130.8/255, alpha: 1.0)
+            cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
 //            cell.backgroundColor = UIColor(
 //            cell.userInteractionEnabled = false
             if let cell = cell as? TaskTableViewCell {
-                cell.taskLabel.text = "POTATOgfhbfhfghfh"
-                let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
-                cell.taskLabel.attributedText = NSAttributedString(string: "POTATOJFDKLSJFDKLSFJDKSLFJDKSLFSJDF", attributes: attributes)
-                cell.taskLabel.textColor = UIColor ( red: 0.298, green: 0.298, blue: 0.298, alpha: 1.0 )
-                
-                
+//                cell.taskLabel.text = "POTATOgfhbfhfghfh"
+//                let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
+//                cell.taskLabel.attributedText = NSAttributedString(string: "POTATOJFDKLSJFDKLSFJDKSLFJDKSLFSJDF", attributes: attributes)
+                cell.badgeImage.image = UIImage(named: "badgeComplete")
+                cell.taskLabel.textColor = UIColor.whiteColor()
+                cell.dateLabel.textColor = UIColor.whiteColor()
 //                cell.crossOutTask.hidden = false
             }
         
