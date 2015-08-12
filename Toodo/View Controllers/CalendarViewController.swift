@@ -15,7 +15,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
     
     var addButtonColor = ""
-    var showSelectedDate: NSDate?
+    var notificationDate: NSDate?
     var orderingDate: NSDate?
     var numberDate = ""
     
@@ -125,6 +125,9 @@ extension CalendarViewController: FSCalendarDelegate {
         var dateFormatter = NSDateFormatter()
         // if date is tomorrow, then display, due tomorrow, else display the date.
         
+        // Set the notification date to be the NSDate that we selected
+        notificationDate = date
+        println(notificationDate)
         // If date is today, then display, due today, else display the date
         dateFormatter.dateFormat = "EEEE, MMMM d"
         numDateFormat.dateFormat = "d"

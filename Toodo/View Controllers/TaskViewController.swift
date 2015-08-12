@@ -467,44 +467,44 @@ class TaskViewController: UIViewController {
             // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
             
-            if (selectedCell.complete == true) {
-                println("cell is completed")
-                if let cell = cell as? TaskTableViewCell {
-                    
-                    // Changes the badge to what it was before
-                    cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[selectedCell.badge])
-                    
-                    // Sets text as black and chevron as black
-                    cell.taskLabel.textColor = UIColor.blackColor()
-                    cell.dateLabel.textColor = UIColor.blackColor()
-                    cell.chevronRight.image = UIImage(named: "chevronRight")
-                    // Sets background as white
-                    cell.backgroundColor = UIColor.whiteColor()
-                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
-                    self.realm.write() {
-                        selectedCell.complete = false
-                    }
-                    println("its false now")
-                }
-            } else if (selectedCell.complete == false) {
-                println("cell is not complete")
-                if let cell = cell as? TaskTableViewCell {
-                    cell.badgeImage.image = UIImage(named: "badgeComplete")
-                    cell.taskLabel.textColor = UIColor.whiteColor()
-                    cell.dateLabel.textColor = UIColor.whiteColor()
-                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
-                    
-                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-                    
-                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
-                    
-                    self.realm.write() {
-                        selectedCell.complete = true
-                    }
-                    println("it's true now")
-                }
-                
-            }
+//            if (selectedCell.complete == true) {
+//                println("cell is completed")
+//                if let cell = cell as? TaskTableViewCell {
+//                    
+//                    // Changes the badge to what it was before
+//                    cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[selectedCell.badge])
+//                    
+//                    // Sets text as black and chevron as black
+//                    cell.taskLabel.textColor = UIColor.blackColor()
+//                    cell.dateLabel.textColor = UIColor.blackColor()
+//                    cell.chevronRight.image = UIImage(named: "chevronRight")
+//                    // Sets background as white
+//                    cell.backgroundColor = UIColor.whiteColor()
+//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+//                    self.realm.write() {
+//                        selectedCell.complete = false
+//                    }
+//                    println("its false now")
+//                }
+//            } else if (selectedCell.complete == false) {
+//                println("cell is not complete")
+//                if let cell = cell as? TaskTableViewCell {
+//                    cell.badgeImage.image = UIImage(named: "badgeComplete")
+//                    cell.taskLabel.textColor = UIColor.whiteColor()
+//                    cell.dateLabel.textColor = UIColor.whiteColor()
+//                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+//                    
+//                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+//                    
+//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+//                    
+//                    self.realm.write() {
+//                        selectedCell.complete = true
+//                    }
+//                    println("it's true now")
+//                }
+//                
+//            }
             
             println(selectedCell)
         }
@@ -562,11 +562,14 @@ extension TaskViewController: UITableViewDataSource {
         
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
+        
         let completedCell = tasks[indexPath.row]
         
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
-        
+//        self.realm.write() {
+//            completedCell.badge = 3
+//        }
         // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
         // The Actions for the cells
         if (editing == false) {
@@ -581,8 +584,13 @@ extension TaskViewController: UITableViewDataSource {
         
         // If the task has been completed
         if (completedCell.complete == true) {
-            println("loading cell complete")
-            //cell.badgeImage.image = UIImage(named: "badgeComplete")
+            println("The cell is complete")
+            //cell.badgeImage.image = UIImage(named: arrayConstants.colorImagesSelected[0])
+            self.realm.write() {
+//                completedCell.badge = 12
+            }
+            
+            cell.badgeImage.image = UIImage(named: "badgeComplete")
             cell.taskLabel.textColor = UIColor.whiteColor()
             cell.dateLabel.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
@@ -590,6 +598,7 @@ extension TaskViewController: UITableViewDataSource {
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0.3, didTriggerBlock: replaceCell)
             
         } else {
+            println("cell is not complete")
             // Sets the default cell properties
             cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[completedCell.badge])
             cell.backgroundColor = UIColor.whiteColor()
@@ -653,13 +662,6 @@ extension TaskViewController: UITableViewDelegate {
                 println(selectedRows.count)
                 //println("\(selectedTask) at index \(indexPath.row)")
             }
-            
-            //            if (selectedRows.count > 0) {
-            //                addBackgroundButton.enabled = true
-            //            } else {
-            //                addBackgroundButton.enabled = false
-            //            }
-            
         } else {
             
             // If the badge is the checkmark badge

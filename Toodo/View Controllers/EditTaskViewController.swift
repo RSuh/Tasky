@@ -352,17 +352,17 @@ extension EditTaskViewController: FSCalendarDelegate {
         var dateFromString = dateFormatter.dateFromString(longDateString)
         var todayDateFromString = dateFormatter.dateFromString(longLocalTimeDate)
         
-        println(dateFromString!)
-        println(todayDateFromString!)
+//        println(dateFromString!)
+//        println(todayDateFromString!)
         
         if (dateString == localTimeDate) {
             dateLabel.text = "Due Today"
             //showSelectedDate = todayDateFromString
-            println(showSelectedDate)
+            //println(showSelectedDate)
         } else {
             dateLabel.text = "Due \(dateString)"
             //showSelectedDate = dateFromString
-            println(showSelectedDate)
+            //println(showSelectedDate)
         }
     }
 }
