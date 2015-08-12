@@ -17,6 +17,7 @@ class Task: Object {
     dynamic var orderingDate: NSDate = NSDate()
     dynamic var taskNote: String = ""
     dynamic var badge = 0
+    dynamic var completeBadge = 0
     dynamic var category: Category?
     dynamic var complete: Bool = false
 }

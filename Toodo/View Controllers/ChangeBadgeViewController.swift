@@ -20,7 +20,9 @@ class ChangeBadgeViewController: UIViewController, UICollectionViewDelegate, UIC
     var selectedRow: Int = 0
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayConstants.cellImagesUnselected.count
+        println(arrayConstants.cellImagesUnselected.count - 1)
+        return arrayConstants.cellImagesUnselected.count - 1
+
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

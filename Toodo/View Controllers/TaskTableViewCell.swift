@@ -1,4 +1,4 @@
-//
+    //
 //  TaskTableViewCell.swift
 //  Toodo
 //
@@ -38,9 +38,13 @@ class TaskTableViewCell: SBGestureTableViewCell {
             if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
                 dateLabel.text = task.modificationDate
                 taskLabel.text = task.taskTitle as String
-                badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
                 
-                //chevronRight.image = UIImage(named: "chevronRight")
+                if (task.badge == 12) {
+                    println("hi")
+                    badgeImage.image = UIImage(named: "badgeComplete")
+                } else {
+                    badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
+                }
             }
         }
     }

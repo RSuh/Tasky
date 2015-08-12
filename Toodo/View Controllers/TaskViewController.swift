@@ -466,8 +466,6 @@ class TaskViewController: UIViewController {
             // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
             
-            
-            
             //let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath!) as! TaskTableViewCell
             
             // Unhides the crossOutmark
@@ -487,9 +485,13 @@ class TaskViewController: UIViewController {
                 cell.badgeImage.image = UIImage(named: "badgeComplete")
                 cell.taskLabel.textColor = UIColor.whiteColor()
                 cell.dateLabel.textColor = UIColor.whiteColor()
-//                cell.crossOutTask.hidden = false
+                //cell.userInteractionEnabled = false
+                println("user interaction false")
+//              cell.crossOutTask.hidden = false
                 self.realm.write() {
                     selectedCell.complete = true
+                    selectedCell.badge = 12
+                    println(selectedCell.badge)
                 }
             }
             println(selectedCell)
@@ -538,6 +540,8 @@ class TaskViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override
 }
 
 extension TaskViewController: UITableViewDataSource {
@@ -546,9 +550,6 @@ extension TaskViewController: UITableViewDataSource {
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         let completedCell = tasks[indexPath.row]
-        
-        // Allows reordering
-        cell.showsReorderControl = true
         
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
@@ -564,20 +565,21 @@ extension TaskViewController: UITableViewDataSource {
         println(completedCell)
         if (completedCell.complete == true) {
             // Change the text and blah blah
+            //cell.badgeImage.image = UIImage(named: "badgeComplete")
+            cell.taskLabel.textColor = UIColor.whiteColor()
+            cell.dateLabel.textColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+            cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+
         } else {
             // nothing
+            println("not completed")
         }
-        
-        
-        // Sets custom separators between cells on viewDidLoad
-        //taskHomeTableView.separatorInset = UIEdgeInsetsZero
-        //taskHomeTableView.layoutMargins = UIEdgeInsetsZero
         
         // Configure cell
         let row = indexPath.row
         let task = tasks[row] as Task
         cell.task = task
-        
         
         return cell
     }
@@ -641,6 +643,24 @@ extension TaskViewController: UITableViewDelegate {
             
             // To deselect a cell after it's tapped
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+        
+        if (selectedTask.badge == 12) {
+            
+            let cannotEditAlertView = SCLAlertView()
+            
+            // The delete button
+            cannotEditAlertView.addButton("Ok") {
+                println("Ok has been tapped")
+                
+                // Closes the alertView
+                cannotEditAlertView.close()
+                
+            }
+            
+            cannotEditAlertView.showWarning("Are you sure?", subTitle: "This will delete the list and all its tasks")
+
+            
         }
     }
     
