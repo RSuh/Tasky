@@ -462,15 +462,17 @@ class TaskViewController: UIViewController {
             
             let selectedCell = self.tasks[indexPath!.row]
             
+            let size = CGSizeMake(30, 30)
+            
             // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
             
             if (selectedCell.complete == true) {
-               println("cell is completed")
+                println("cell is completed")
                 if let cell = cell as? TaskTableViewCell {
                     
                     // Changes the badge to what it was before
-                    //cell.badgeImage.image = UIImage(named: )
+                    cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[selectedCell.badge])
                     
                     // Sets text as black and chevron as black
                     cell.taskLabel.textColor = UIColor.blackColor()
@@ -478,91 +480,36 @@ class TaskViewController: UIViewController {
                     cell.chevronRight.image = UIImage(named: "chevronRight")
                     // Sets background as white
                     cell.backgroundColor = UIColor.whiteColor()
-                    selectedCell.complete = false
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+                    self.realm.write() {
+                        selectedCell.complete = false
+                    }
                     println("its false now")
                 }
-                
-                
-                
-                
-                
-                
-                
-            } else {
+            } else if (selectedCell.complete == false) {
+                println("cell is not complete")
+                if let cell = cell as? TaskTableViewCell {
+                    cell.badgeImage.image = UIImage(named: "badgeComplete")
+                    cell.taskLabel.textColor = UIColor.whiteColor()
+                    cell.dateLabel.textColor = UIColor.whiteColor()
+                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+                    
+                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+                    
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+                    
+                    self.realm.write() {
+                        selectedCell.complete = true
+                    }
+                    println("it's true now")
+                }
                 
             }
-            
-            
-            
-            
-            //let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath!) as! TaskTableViewCell
-            
-            // Unhides the crossOutmark
-            //cell.crossOutTask.hidden = false
-            //self.prepareForSegue(segue, sender: self)
-            //            self.selectedTask = self.tasks[indexPath!.row]
-            
-            
-            // For the grey background.
-            //            cell.backgroundColor = UIColor(
-            //            cell.userInteractionEnabled = false
-            
-            // Downcasting cell to inherit properties from TaskTableViewCell
-//            if let cell = cell as? TaskTableViewCell {
-//                //                cell.taskLabel.text = "POTATOgfhbfhfghfh"
-//                //                let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
-//                //                cell.taskLabel.attributedText = NSAttributedString(string: "POTATOJFDKLSJFDKLSFJDKSLFJDKSLFSJDF", attributes: attributes)
-//                cell.badgeImage.image = UIImage(named: "badgeComplete")
-//                cell.taskLabel.textColor = UIColor.whiteColor()
-//                cell.dateLabel.textColor = UIColor.whiteColor()
-//                cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-//                //cell.tintColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-//                cell.chevronRight.image = UIImage(named: "chevronRightWhite")
-//                //cell.userInteractionEnabled = false
-//                println("user interaction false")
-//                //              cell.crossOutTask.hidden = false
-//                
-//                // Changes the task object
-//                self.realm.write() {
-//                    selectedCell.complete = true
-//                    selectedCell.badge = 12
-//                    println(selectedCell.badge)
-//                }
-//                
-//                let size = CGSizeMake(30, 30)
-//                // If the complete is true, then revert the task back to not complete
-//                if (selectedCell.complete == true) {
-//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
-////                    // Sets the default cell properties
-////                    cell.backgroundColor = UIColor.whiteColor()
-////                    cell.taskLabel.textColor = UIColor.blackColor()
-////                    cell.dateLabel.textColor = UIColor.blackColor()
-////                    cell.chevronRight.image = UIImage(named: "chevronRight")
-//////                    cell.taskLabel.textColor = UIColor.whiteColor()
-//////                    cell.dateLabel.textColor = UIColor.whiteColor()
-//////                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-//////                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
-////                    println("cell has been replaced")
-////                    self.realm.write() {
-////                        selectedCell.complete = false
-//                
-//                    println("cell is completed")
-//                }
-//
-//                } else {
-//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
-//                    
-////                    cell.taskLabel.textColor = UIColor.whiteColor()
-////                    cell.dateLabel.textColor = UIColor.whiteColor()
-////                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-////                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
-//                }
-//            }
             
             println(selectedCell)
         }
         
-
+        
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             // indexPath = int, sets up indexPath
@@ -644,10 +591,12 @@ extension TaskViewController: UITableViewDataSource {
             
         } else {
             // Sets the default cell properties
+            cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[completedCell.badge])
             cell.backgroundColor = UIColor.whiteColor()
             cell.taskLabel.textColor = UIColor.blackColor()
             cell.dateLabel.textColor = UIColor.blackColor()
             cell.chevronRight.image = UIImage(named: "chevronRight")
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
         }
         
         // Configure cell
