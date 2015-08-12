@@ -392,9 +392,6 @@ Add one!</string>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="sp2-XN-fPR">
-                                                    <rect key="frame" x="67" y="24" width="497" height="1"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="MLJ-Rn-nfw" firstAttribute="leading" secondItem="mLG-Vr-jPp" secondAttribute="leading" constant="8" id="44o-6m-xMd"/>
@@ -419,7 +416,6 @@ Add one!</string>
                                         <connections>
                                             <outlet property="badgeImage" destination="MLJ-Rn-nfw" id="xAr-sQ-6jh"/>
                                             <outlet property="chevronRight" destination="tQk-Fi-Gjv" id="Mne-ns-iUY"/>
-                                            <outlet property="crossOutTask" destination="sp2-XN-fPR" id="3co-jy-1BM"/>
                                             <outlet property="dateLabel" destination="05F-ua-e6u" id="SD3-Wj-WaD"/>
                                             <outlet property="taskLabel" destination="qgx-z4-A96" id="Cwm-p9-9AL"/>
                                         </connections>
@@ -1035,7 +1031,7 @@ Add one!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6X-H4-KBX" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="qIZ-PM-v20" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4231" y="-299"/>
+            <point key="canvasLocation" x="4289" y="-306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="s9z-Hs-9k9">
@@ -1113,6 +1109,9 @@ Add one!</string>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="58v-pa-Ppy">
                                 <rect key="frame" x="14" y="78" width="586" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="jEM-ss-PfL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -1120,8 +1119,11 @@ Add one!</string>
                                 <rect key="frame" x="0.0" y="116" width="600" height="1"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vOS-OB-gZc">
-                                <rect key="frame" x="0.0" y="122" width="600" height="96"/>
+                                <rect key="frame" x="0.0" y="122" width="600" height="90"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="ePh-65-Nmv"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="aXT-v1-s2M">
                                     <size key="itemSize" width="40" height="40"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1176,6 +1178,7 @@ Add one!</string>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="DjV-Xt-7SQ"/>
+                                <exclude reference="lD4-ne-cEx"/>
                             </mask>
                         </variation>
                     </view>

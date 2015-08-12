@@ -18,6 +18,7 @@ class Task: Object {
     dynamic var taskNote: String = ""
     dynamic var badge = 0
     dynamic var category: Category?
+    dynamic var complete: Bool = false
 }
 
 

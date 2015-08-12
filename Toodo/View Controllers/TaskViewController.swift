@@ -466,7 +466,7 @@ class TaskViewController: UIViewController {
             // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
             
-            println(selectedCell)
+            
             
             //let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath!) as! TaskTableViewCell
             
@@ -488,8 +488,11 @@ class TaskViewController: UIViewController {
                 cell.taskLabel.textColor = UIColor.whiteColor()
                 cell.dateLabel.textColor = UIColor.whiteColor()
 //                cell.crossOutTask.hidden = false
+                self.realm.write() {
+                    selectedCell.complete = true
+                }
             }
-        
+            println(selectedCell)
         }
         
         // The remove block function
@@ -542,6 +545,7 @@ extension TaskViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
+        let completedCell = tasks[indexPath.row]
         
         // Allows reordering
         cell.showsReorderControl = true
@@ -554,11 +558,16 @@ extension TaskViewController: UITableViewDataSource {
         if (editing == false) {
             cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
-            
-            
             // A bool to see if the editing is enabled
-            
         }
+        
+        println(completedCell)
+        if (completedCell.complete == true) {
+            // Change the text and blah blah
+        } else {
+            // nothing
+        }
+        
         
         // Sets custom separators between cells on viewDidLoad
         //taskHomeTableView.separatorInset = UIEdgeInsetsZero
