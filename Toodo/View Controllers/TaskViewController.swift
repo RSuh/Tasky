@@ -475,8 +475,7 @@ class TaskViewController: UIViewController {
             
             
             // For the grey background.
-            cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-//            cell.backgroundColor = UIColor(
+            //            cell.backgroundColor = UIColor(
 //            cell.userInteractionEnabled = false
             if let cell = cell as? TaskTableViewCell {
 //                cell.taskLabel.text = "POTATOgfhbfhfghfh"
@@ -485,6 +484,7 @@ class TaskViewController: UIViewController {
                 cell.badgeImage.image = UIImage(named: "badgeComplete")
                 cell.taskLabel.textColor = UIColor.whiteColor()
                 cell.dateLabel.textColor = UIColor.whiteColor()
+                cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
                 //cell.userInteractionEnabled = false
                 println("user interaction false")
 //              cell.crossOutTask.hidden = false
@@ -540,8 +540,6 @@ class TaskViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    override
 }
 
 extension TaskViewController: UITableViewDataSource {
@@ -563,6 +561,7 @@ extension TaskViewController: UITableViewDataSource {
         }
         
         println(completedCell)
+        
         if (completedCell.complete == true) {
             // Change the text and blah blah
             //cell.badgeImage.image = UIImage(named: "badgeComplete")
@@ -570,10 +569,10 @@ extension TaskViewController: UITableViewDataSource {
             cell.dateLabel.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
             cell.chevronRight.image = UIImage(named: "chevronRightWhite")
-
+            
         } else {
             // nothing
-            println("not completed")
+            cell.backgroundColor = UIColor.whiteColor()
         }
         
         // Configure cell
@@ -638,29 +637,31 @@ extension TaskViewController: UITableViewDelegate {
 //            }
             
         } else {
+            
+            if (selectedTask.badge == 12) {
+                
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                
+                let cannotEditAlertView = SCLAlertView()
+                
+                // The delete button
+                cannotEditAlertView.addButton("Ok") {
+                    println("Ok has been tapped")
+                    
+                    // Closes the alertView
+                    cannotEditAlertView.close()
+                    
+                }
+                
+                cannotEditAlertView.showWarning("Sorry", subTitle: "You cannot edit a complete task")
+            
+            } else {
             // Performs the segue to editTaskVC
             self.performSegueWithIdentifier("editTask", sender: self)
             
             // To deselect a cell after it's tapped
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        }
-        
-        if (selectedTask.badge == 12) {
-            
-            let cannotEditAlertView = SCLAlertView()
-            
-            // The delete button
-            cannotEditAlertView.addButton("Ok") {
-                println("Ok has been tapped")
-                
-                // Closes the alertView
-                cannotEditAlertView.close()
-                
             }
-            
-            cannotEditAlertView.showWarning("Are you sure?", subTitle: "This will delete the list and all its tasks")
-
-            
         }
     }
     
