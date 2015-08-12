@@ -299,8 +299,8 @@ class CategoryViewController: UIViewController {
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             
             let indexPath = tableView.indexPathForCell(cell)
-            cell.backgroundColor = UIColor.lightGrayColor()
-            
+            //cell.backgroundColor = UIColor.lightGrayColor()
+            //cell.tintColor = UIColor.lightGrayColor()
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
         }
         

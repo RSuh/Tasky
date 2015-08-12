@@ -173,10 +173,12 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
         }
     }
     
+    // Checks if the cell has any left action
     func hasAnyLeftAction() -> Bool {
         return firstLeftAction != nil || secondLeftAction != nil
     }
-
+    
+    // Checks if the cell has any right action
     func hasAnyRightAction() -> Bool {
         return firstRightAction != nil || secondRightAction != nil
     }

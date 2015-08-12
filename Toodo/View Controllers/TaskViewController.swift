@@ -38,15 +38,18 @@ class TaskViewController: UIViewController {
         }
     }
     
+    // Variables
     var toImage: UIImage?
     var addButtonColor: String = ""
     var deleteAlreadyPressed: Bool = false
     var orderingDate: NSDate?
     
     // Icons
-    var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
+    let deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
     let editIcon = FAKIonIcons.androidCreateIconWithSize(30)
     let completeIcon = FAKIonIcons.androidDoneIconWithSize(30)
+    let backToListIcon = FAKIonIcons.naviconIconWithSize(30)
+    // TODO: Get a triple line button which looks like a list, then make the color, yellow
     
     // A array for deleting
     var selectedRows = [Task]()
@@ -69,9 +72,6 @@ class TaskViewController: UIViewController {
     // Variable to replaceCell
     var replaceCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
-    // The task which is currently selected
-    //    var selectedTask: Task?
-    
     // The title of the nav bar
     var categoryTitleForNavBar: String = ""
     
@@ -81,6 +81,7 @@ class TaskViewController: UIViewController {
         deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
         editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
         completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        backToListIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
     }
     
     // When a cell is pressed, then the user can save, or exit without saving.
@@ -127,9 +128,11 @@ class TaskViewController: UIViewController {
                         for (var index = 0; index <= self.selectedRows.count - 1; index++) {
                             // TODO: Get rows to animate and delete 1 by 1.
                             
+                            // Deletes the rows which are selected
                             self.realm.delete(self.selectedRows[index])
                         }
                         
+                        // Deletes all the items from the array SelectedRows
                         self.selectedRows.removeAll(keepCapacity: false)
                     }
                     
@@ -169,6 +172,7 @@ class TaskViewController: UIViewController {
                         self.realm.delete(self.selectedRows[index])
                     }
                     
+                    // Deletes all the items from the selectedRows array
                     self.selectedRows.removeAll(keepCapacity: false)
                 }
                 
@@ -181,11 +185,10 @@ class TaskViewController: UIViewController {
                     deleteAlreadyPressed = true
                 }
             }
-            
-            
-            
-        }   else {
+        } else {
             println("segue has been performed")
+            
+            // Performs the segue
             performSegueWithIdentifier("addTask", sender: self)
         }
         
@@ -199,14 +202,13 @@ class TaskViewController: UIViewController {
                 println("Save from add!")
                 
                 let newSource = segue.sourceViewController as! AddNewTaskViewController
+                
+                // Set the indexPath
                 let indexPath = taskHomeTableView.indexPathForSelectedRow()
                 
                 realm.write() {
                     // Creates a newTask
                     self.realm.add(newSource.newTask!)
-                    //println("added \(newSource.newTask!)")
-                    
-                    //println(self.category!.tasksWithinCategory.append(newSource.newTask!))
                 }
                 
                 // If the exit button is pressed from New
@@ -230,17 +232,14 @@ class TaskViewController: UIViewController {
             
             // Set the editedTask as selectedTask
             let selectedIndexPath = taskHomeTableView.indexPathForSelectedRow()!
+            
+            // Sets the selectedTask
             let selectedTask = tasks[selectedIndexPath.row]
             targetVC.editedTask = selectedTask
             
-            //            // Sets selectedDate as selectedDate
-            //            targetVC.showSelectedDate = self.showSelectedDate
-            //
-            //            println("hi \(showSelectedDate)")
-            
+            // New changes made to the task Object
             realm.write() {
                 targetVC.editedTask!.badge = selectedTask.badge
-                
                 targetVC.editedTask!.modificationDate = selectedTask.modificationDate
             }
             
@@ -305,10 +304,10 @@ class TaskViewController: UIViewController {
             println("Flag is \(flagForAddOrDelete)")
             println("Editing is \(editing)")
         } else if (editing == false) {
-          
+            
             // Enables the delete button
             addBackgroundButton.enabled = true
-
+            
             // Changes the image to the addButton
             let backImage = UIImage(named: "addButtonWhite")
             UIView.transitionWithView(self.addImage,
@@ -466,6 +465,36 @@ class TaskViewController: UIViewController {
             // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
             
+            if (selectedCell.complete == true) {
+               println("cell is completed")
+                if let cell = cell as? TaskTableViewCell {
+                    
+                    // Changes the badge to what it was before
+                    //cell.badgeImage.image = UIImage(named: )
+                    
+                    // Sets text as black and chevron as black
+                    cell.taskLabel.textColor = UIColor.blackColor()
+                    cell.dateLabel.textColor = UIColor.blackColor()
+                    cell.chevronRight.image = UIImage(named: "chevronRight")
+                    // Sets background as white
+                    cell.backgroundColor = UIColor.whiteColor()
+                    selectedCell.complete = false
+                    println("its false now")
+                }
+                
+                
+                
+                
+                
+                
+                
+            } else {
+                
+            }
+            
+            
+            
+            
             //let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath!) as! TaskTableViewCell
             
             // Unhides the crossOutmark
@@ -476,27 +505,64 @@ class TaskViewController: UIViewController {
             
             // For the grey background.
             //            cell.backgroundColor = UIColor(
-//            cell.userInteractionEnabled = false
-            if let cell = cell as? TaskTableViewCell {
-//                cell.taskLabel.text = "POTATOgfhbfhfghfh"
-//                let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
-//                cell.taskLabel.attributedText = NSAttributedString(string: "POTATOJFDKLSJFDKLSFJDKSLFJDKSLFSJDF", attributes: attributes)
-                cell.badgeImage.image = UIImage(named: "badgeComplete")
-                cell.taskLabel.textColor = UIColor.whiteColor()
-                cell.dateLabel.textColor = UIColor.whiteColor()
-                cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-                //cell.userInteractionEnabled = false
-                println("user interaction false")
-//              cell.crossOutTask.hidden = false
-                self.realm.write() {
-                    selectedCell.complete = true
-                    selectedCell.badge = 12
-                    println(selectedCell.badge)
-                }
-            }
+            //            cell.userInteractionEnabled = false
+            
+            // Downcasting cell to inherit properties from TaskTableViewCell
+//            if let cell = cell as? TaskTableViewCell {
+//                //                cell.taskLabel.text = "POTATOgfhbfhfghfh"
+//                //                let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
+//                //                cell.taskLabel.attributedText = NSAttributedString(string: "POTATOJFDKLSJFDKLSFJDKSLFJDKSLFSJDF", attributes: attributes)
+//                cell.badgeImage.image = UIImage(named: "badgeComplete")
+//                cell.taskLabel.textColor = UIColor.whiteColor()
+//                cell.dateLabel.textColor = UIColor.whiteColor()
+//                cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+//                //cell.tintColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+//                cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+//                //cell.userInteractionEnabled = false
+//                println("user interaction false")
+//                //              cell.crossOutTask.hidden = false
+//                
+//                // Changes the task object
+//                self.realm.write() {
+//                    selectedCell.complete = true
+//                    selectedCell.badge = 12
+//                    println(selectedCell.badge)
+//                }
+//                
+//                let size = CGSizeMake(30, 30)
+//                // If the complete is true, then revert the task back to not complete
+//                if (selectedCell.complete == true) {
+//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+////                    // Sets the default cell properties
+////                    cell.backgroundColor = UIColor.whiteColor()
+////                    cell.taskLabel.textColor = UIColor.blackColor()
+////                    cell.dateLabel.textColor = UIColor.blackColor()
+////                    cell.chevronRight.image = UIImage(named: "chevronRight")
+//////                    cell.taskLabel.textColor = UIColor.whiteColor()
+//////                    cell.dateLabel.textColor = UIColor.whiteColor()
+//////                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+//////                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+////                    println("cell has been replaced")
+////                    self.realm.write() {
+////                        selectedCell.complete = false
+//                
+//                    println("cell is completed")
+//                }
+//
+//                } else {
+//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+//                    
+////                    cell.taskLabel.textColor = UIColor.whiteColor()
+////                    cell.dateLabel.textColor = UIColor.whiteColor()
+////                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+////                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+//                }
+//            }
+            
             println(selectedCell)
         }
         
+
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             // indexPath = int, sets up indexPath
@@ -545,6 +611,8 @@ class TaskViewController: UIViewController {
 extension TaskViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        println("loaded")
+        
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         let completedCell = tasks[indexPath.row]
@@ -557,22 +625,29 @@ extension TaskViewController: UITableViewDataSource {
         if (editing == false) {
             cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
+            
+            println("The old gesture")
             // A bool to see if the editing is enabled
         }
         
         println(completedCell)
         
+        // If the task has been completed
         if (completedCell.complete == true) {
-            // Change the text and blah blah
+            println("loading cell complete")
             //cell.badgeImage.image = UIImage(named: "badgeComplete")
             cell.taskLabel.textColor = UIColor.whiteColor()
             cell.dateLabel.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
             cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0.3, didTriggerBlock: replaceCell)
             
         } else {
-            // nothing
+            // Sets the default cell properties
             cell.backgroundColor = UIColor.whiteColor()
+            cell.taskLabel.textColor = UIColor.blackColor()
+            cell.dateLabel.textColor = UIColor.blackColor()
+            cell.chevronRight.image = UIImage(named: "chevronRight")
         }
         
         // Configure cell
@@ -630,18 +705,20 @@ extension TaskViewController: UITableViewDelegate {
                 //println("\(selectedTask) at index \(indexPath.row)")
             }
             
-//            if (selectedRows.count > 0) {
-//                addBackgroundButton.enabled = true
-//            } else {
-//                addBackgroundButton.enabled = false
-//            }
+            //            if (selectedRows.count > 0) {
+            //                addBackgroundButton.enabled = true
+            //            } else {
+            //                addBackgroundButton.enabled = false
+            //            }
             
         } else {
             
+            // If the badge is the checkmark badge
             if (selectedTask.badge == 12) {
-                
+                // Deselect the row on tap
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 
+                // Setup the alertView
                 let cannotEditAlertView = SCLAlertView()
                 
                 // The delete button
@@ -650,17 +727,16 @@ extension TaskViewController: UITableViewDelegate {
                     
                     // Closes the alertView
                     cannotEditAlertView.close()
-                    
                 }
                 
                 cannotEditAlertView.showWarning("Sorry", subTitle: "You cannot edit a complete task")
-            
+                
             } else {
-            // Performs the segue to editTaskVC
-            self.performSegueWithIdentifier("editTask", sender: self)
-            
-            // To deselect a cell after it's tapped
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                // Performs the segue to editTaskVC
+                self.performSegueWithIdentifier("editTask", sender: self)
+                
+                // To deselect a cell after it's tapped
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
             }
         }
     }
@@ -676,10 +752,6 @@ extension TaskViewController: UITableViewDelegate {
             selectedRows.removeAtIndex(index)
             println(selectedRows.count)
         }
-        
-//        if (selectedRows.count == 0) {
-//            addBackgroundButton.enabled = false
-//        }
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
