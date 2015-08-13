@@ -8,9 +8,12 @@
 
 import UIKit
 import FSCalendar
+import RealmSwift
 
 class CalendarViewController: UIViewController {
 
+    let realm = Realm()
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendar: FSCalendar!
     
@@ -101,7 +104,25 @@ class CalendarViewController: UIViewController {
             // Pass the ordering date to ADDNEWTASKVIEWCONTROLLER
             targetVC.orderingDate = self.orderingDate
             targetVC.numDateLabel = self.numberDate
-        
+            targetVC.notificationDate = self.notificationDate
+            
+//            let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
+//            
+//            let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: notificationDate!)
+//            
+//            let strippedDate = NSCalendar.currentCalendar().dateFromComponents(components)
+//            
+//            self.realm.write() {
+//            // Sets the notification date of newTask to be strippedDate
+//                targetVC.newTask?.notificationDate = strippedDate!
+//            }
+//            
+//            var localNotification: UILocalNotification = UILocalNotification()
+//            localNotification.alertTitle = targetVC.newTask?.taskTitle
+//            localNotification.fireDate = targetVC.newTask?.notificationDate
+//            localNotification.userInfo = ["editTask": "\(targetVC.newTask?.taskTitle)"]
+//            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            
         } else {
             println("date was not saved")
         }
@@ -125,9 +146,7 @@ extension CalendarViewController: FSCalendarDelegate {
         var dateFormatter = NSDateFormatter()
         // if date is tomorrow, then display, due tomorrow, else display the date.
         
-        // Set the notification date to be the NSDate that we selected
-        notificationDate = date
-        println(notificationDate)
+        
         // If date is today, then display, due today, else display the date
         dateFormatter.dateFormat = "EEEE, MMMM d"
         numDateFormat.dateFormat = "d"
@@ -140,5 +159,9 @@ extension CalendarViewController: FSCalendarDelegate {
         // Takes the date we selected and assigns it to orderingDate
         self.orderingDate = date
         self.numberDate = numberDate
+        
+        // Set the notification date to be the NSDate that we selected
+        notificationDate = date
+        println(notificationDate)
     }
 }

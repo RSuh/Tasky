@@ -64,6 +64,8 @@ class CategoryViewController: UIViewController {
     // Variable to fullswipcell
     var fullSwipeCell: ((SBGestureTableView, SBGestureTableViewCell) -> Void)!
     
+    let categorySortDescriptors = [SortDescriptor(property: "taskCount", ascending: false), SortDescriptor(property: "categoryTitle", ascending: true)]
+    
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
         // Custom white color
@@ -100,7 +102,7 @@ class CategoryViewController: UIViewController {
                 println("failed")
                 
                 // Sort by number of tasks, able to sort by count.
-                categories = realm.objects(Category).sorted("taskCount", ascending: false)
+                categories = realm.objects(Category).sorted(categorySortDescriptors)
             }
         }
     }
@@ -133,7 +135,7 @@ class CategoryViewController: UIViewController {
                 
                 
                 // Sorts by number of tasks, able to sort by count.
-                categories = realm.objects(Category).sorted("taskCount", ascending: false)
+                categories = realm.objects(Category).sorted(categorySortDescriptors)
             }
             
         }
@@ -152,7 +154,7 @@ class CategoryViewController: UIViewController {
                 println("nothing")
                 
                 // Sorts by number of tasks, able to sort by count.
-                categories = realm.objects(Category).sorted("taskCount", ascending: false)
+                categories = realm.objects(Category).sorted(categorySortDescriptors)
             }
             
             
@@ -286,9 +288,14 @@ class CategoryViewController: UIViewController {
                 
                 self.realm.write() {
                     self.realm.delete(category)
+                    
+                    tableView.removeCell(cell, duration: 0.3, completion: {
+                        self.categories = self.realm.objects(Category).sorted(self.categorySortDescriptors)
+//                        self.categories = self.realm.objects(Category).sorted("categoryTitle", ascending: true).sorted("taskCount", ascending: false)
+                    })
+
                 }
                 
-                tableView.removeCell(cell, duration: 0.3, completion: nil)
             }
             
             // The original animation before the alert is displayed
@@ -316,14 +323,19 @@ class CategoryViewController: UIViewController {
             // Pass the object we just created to delete
             self.realm.write() {
                 self.realm.delete(category)
-            }
             
             // The animation to delete (manditory/ needed)
             tableView.removeCell(cell, duration: 0.3, completion: nil)
+            
+            // To prevent the duplication
+//            tableView.reloadData()
+            }
+            
+            
         }
         
         // Sets up the lists cells by the modificationDate
-        categories = realm.objects(Category).sorted("taskCount", ascending: false)
+        categories = realm.objects(Category).sorted(categorySortDescriptors)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -331,7 +343,7 @@ class CategoryViewController: UIViewController {
         //println(self.category.taskCount)
 
         // Sorts the realm objects by taskCount
-        categories = realm.objects(Category).sorted("taskCount", ascending: false)
+        categories = realm.objects(Category).sorted(categorySortDescriptors)
         
         // Changes Nav bar color to dark Theme
         var navigation = self.navigationController?.navigationBar
@@ -388,6 +400,7 @@ extension CategoryViewController: UITableViewDataSource {
         let row = indexPath.row
         let category = categories[row] as Category
         cell.category = category
+        
         
         return cell
     }

@@ -20,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set the status bar to white
         application.setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         
+        // For notifications
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
+        // types are UIUserNotificationType members
+
+        
         // Override point for customization after application launch.
         return true
     }

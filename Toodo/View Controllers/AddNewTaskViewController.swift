@@ -35,6 +35,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var addButtonColor = ""
     var orderingDate: NSDate?
     var category: Category?
+    var notificationDate: NSDate?
     
     var selectedRow: Int = 0
     
@@ -164,6 +165,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 // Makes the Set Date text to be the date
                 date.text = self.dateLabel
                 println(orderingDate)
+                
+                //newTask?.notificationDate = self.notificationDate!
+                
+                println("This is notification date \(newTask?.notificationDate)")
+                
+                
                 
                 // Sets calendar date to be numDate
                 calendarDateLabel.text = numDateLabel
