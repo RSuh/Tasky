@@ -18,9 +18,7 @@ class TaskTableViewCell: SBGestureTableViewCell {
     @IBOutlet weak var crossOutTask: UIImageView!
     
     var complete: Bool?
-    
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,11 +34,11 @@ class TaskTableViewCell: SBGestureTableViewCell {
     var task: Task? {
         didSet {
             if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
-                dateLabel.text = task.modificationDate
+                
+                dateLabel.text! = task.modificationDate
                 taskLabel.text = task.taskTitle as String
                 
-                if (task.badge == 12) {
-                    println("hi")
+                if (task.complete == true) {
                     badgeImage.image = UIImage(named: "badgeComplete")
                 } else {
                     badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])

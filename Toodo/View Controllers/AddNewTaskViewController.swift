@@ -40,7 +40,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var selectedRow: Int = 0
     
     var dateLabel: String = ""
-//    var taskTitleMutable: NSMutableString =
+    //    var taskTitleMutable: NSMutableString =
     
     // A bool which determines whether or not the keyboard should automatically popup
     var keyboardPopUp: Bool = true
@@ -67,7 +67,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     func displayDate(task: Task?) {
         if let task = task {
             realm.write() {
-                task.modificationDate = self.dateLabel
+                self.date.text = self.newTask?.modificationDate
+                println(task.modificationDate)
             }
         }
     }
@@ -86,12 +87,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
                         //self.category!.tasksWithinCategory.count = self.category!.numberOfTasksWithinCategory
                         newTask.modificationDate = self.dateLabel
-                        println(self.category!.taskCount)
+                        
                         // Sets the ordering date
                         if (self.orderingDate != nil) {
-                        newTask.orderingDate = self.orderingDate!
+                            newTask.orderingDate = self.orderingDate!
                         }
-                        println(newTask.modificationDate)
+                 
                 } else {
                     println("nothing has changed")
                 }
@@ -101,7 +102,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayConstants.cellImagesUnselected.count
+        return arrayConstants.cellImagesUnselected.count - 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -151,24 +152,19 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     
-    @IBAction func backToAddFromCalendar(segue: UIStoryboardSegue) {
+    @IBAction func backFromCalendar(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "backToAddFromCalendar":
+            case "exitFromCalendar":
                 println("Back to add from calendar")
                 keyboardPopUp = false
-            
                 
-            case "saveFromAddCalendar":
+            case "saveFromCalendar":
                 println("Save from add calendar")
                 keyboardPopUp = false
                 // Makes the Set Date text to be the date
                 date.text = self.dateLabel
-                println(orderingDate)
-                
-                //newTask?.notificationDate = self.notificationDate!
-                
-                println("This is notification date \(newTask?.notificationDate)")
+
                 
                 
                 
@@ -195,7 +191,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                     
                     // Closes the alertView
                     emptyTextFieldAlertView.close()
-                
+                    
                     self.taskTitle.becomeFirstResponder()
                 }
                 
@@ -223,7 +219,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         } else if segue.identifier == "exitFromAdd" {
             println("exitFromAdd")
         }
-
+        
     }
     
     override func viewDidLoad() {
@@ -233,7 +229,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         taskTitle.returnKeyType = UIReturnKeyType.Done
         date.text = "Set Date"
         calendarDateLabel.text = ""
-
+        
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
@@ -245,7 +241,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     override func viewWillAppear(animated: Bool) {
-
+        
         if (keyboardPopUp == true) {
             taskTitle.becomeFirstResponder()
         } else {

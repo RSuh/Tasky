@@ -43,6 +43,7 @@ class TaskViewController: UIViewController {
     var addButtonColor: String = ""
     var deleteAlreadyPressed: Bool = false
     var orderingDate: NSDate?
+    var numDateLabel = ""
     
     // Icons
     let deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
@@ -211,6 +212,8 @@ class TaskViewController: UIViewController {
                     self.realm.add(newSource.newTask!)
                 }
                 
+                
+                
                 // If the exit button is pressed from New
             case "exitFromAdd":
                 println("Exit from add!")
@@ -235,7 +238,14 @@ class TaskViewController: UIViewController {
             
             // Sets the selectedTask
             let selectedTask = tasks[selectedIndexPath.row]
+            
+            println(selectedTask)
+            //targetVC.editedTask = selectedTask
+            println("TARGET VC \(selectedTask)")
+            println("HELLO \(targetVC.editedTask)")
             targetVC.editedTask = selectedTask
+            println("JFKDLSJFDKSLFJDKSLF \(targetVC.editedTask)")
+
             
             // New changes made to the task Object
             realm.write() {
@@ -467,44 +477,44 @@ class TaskViewController: UIViewController {
             // Animation for the replaceCell Function
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
             
-//            if (selectedCell.complete == true) {
-//                println("cell is completed")
-//                if let cell = cell as? TaskTableViewCell {
+            if (selectedCell.complete == true) {
+                println("HI COMPLETED")
+                if let cell = cell as? TaskTableViewCell {
 //                    
 //                    // Changes the badge to what it was before
-//                    cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[selectedCell.badge])
+                    cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[selectedCell.badge])
 //                    
 //                    // Sets text as black and chevron as black
-//                    cell.taskLabel.textColor = UIColor.blackColor()
-//                    cell.dateLabel.textColor = UIColor.blackColor()
-//                    cell.chevronRight.image = UIImage(named: "chevronRight")
+                    cell.taskLabel.textColor = UIColor.blackColor()
+                    cell.dateLabel.textColor = UIColor.blackColor()
+                    cell.chevronRight.image = UIImage(named: "chevronRight")
 //                    // Sets background as white
-//                    cell.backgroundColor = UIColor.whiteColor()
-//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
-//                    self.realm.write() {
-//                        selectedCell.complete = false
-//                    }
+                    cell.backgroundColor = UIColor.whiteColor()
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+                    self.realm.write() {
+                        selectedCell.complete = false
+                    }
 //                    println("its false now")
-//                }
-//            } else if (selectedCell.complete == false) {
-//                println("cell is not complete")
-//                if let cell = cell as? TaskTableViewCell {
-//                    cell.badgeImage.image = UIImage(named: "badgeComplete")
-//                    cell.taskLabel.textColor = UIColor.whiteColor()
-//                    cell.dateLabel.textColor = UIColor.whiteColor()
-//                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+                }
+            } else if (selectedCell.complete == false) {
+                println("NO NOT COMPLETE")
+                if let cell = cell as? TaskTableViewCell {
+                    cell.badgeImage.image = UIImage(named: "badgeComplete")
+                    cell.taskLabel.textColor = UIColor.whiteColor()
+                    cell.dateLabel.textColor = UIColor.whiteColor()
+                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
 //                    
-//                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
+                    cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
 //                    
-//                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
 //                    
-//                    self.realm.write() {
-//                        selectedCell.complete = true
-//                    }
+                    self.realm.write() {
+                        selectedCell.complete = true
+                    }
 //                    println("it's true now")
-//                }
+                }
 //                
-//            }
+            }
             
             println(selectedCell)
         }
@@ -553,6 +563,8 @@ class TaskViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+
 }
 
 extension TaskViewController: UITableViewDataSource {
@@ -564,7 +576,7 @@ extension TaskViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
         let completedCell = tasks[indexPath.row]
-        
+        println(completedCell.modificationDate)
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
 //        self.realm.write() {
@@ -585,19 +597,21 @@ extension TaskViewController: UITableViewDataSource {
         // If the task has been completed
         if (completedCell.complete == true) {
             println("The cell is complete")
-            //cell.badgeImage.image = UIImage(named: arrayConstants.colorImagesSelected[0])
+            //cell.badgeImage.image = UIImage(named: arrayConstants.completedBadge[0])
+            println(arrayConstants.completedBadge[0])
             self.realm.write() {
 //                completedCell.badge = 12
             }
             
             cell.badgeImage.image = UIImage(named: "badgeComplete")
+            println("THE BADGE SHOULD BE COMPLETE")
             cell.taskLabel.textColor = UIColor.whiteColor()
             cell.dateLabel.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
             cell.chevronRight.image = UIImage(named: "chevronRightWhite")
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0.3, didTriggerBlock: replaceCell)
-            
-        } else {
+        }
+        else {
             println("cell is not complete")
             // Sets the default cell properties
             cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[completedCell.badge])
@@ -665,7 +679,7 @@ extension TaskViewController: UITableViewDelegate {
         } else {
             
             // If the badge is the checkmark badge
-            if (selectedTask.badge == 12) {
+            if (selectedTask.complete == true) {
                 // Deselect the row on tap
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 
@@ -680,7 +694,7 @@ extension TaskViewController: UITableViewDelegate {
                     cannotEditAlertView.close()
                 }
                 
-                cannotEditAlertView.showWarning("Sorry", subTitle: "You cannot edit a complete task")
+                cannotEditAlertView.showError("Sorry", subTitle: "You cannot edit a complete task")
                 
             } else {
                 // Performs the segue to editTaskVC

@@ -10,14 +10,17 @@ import Foundation
 import UIKit
 import RealmSwift
 import FSCalendar
+import SCLAlertView
 
 class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var taskTextField: UITextView!
-    @IBOutlet weak var dateLabel: UITextField!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var editImage: UIImageView!
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var goToCalendarScreenButton: UIButton!
+    @IBOutlet weak var calendarDateLabel: UILabel!
     
     // Initialize realm
     let realm = Realm()
@@ -26,6 +29,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     var showSelectedDate: NSDate?
     var addButtonColor: String = ""
     var editButtonImage: String = ""
+    var date = ""
+    var numDateLabel = ""
     
     var editedTask: Task? {
         didSet {
@@ -57,7 +62,14 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     func displayDate(task: Task?) {
         if let task = task, dateLabel = dateLabel {
             realm.write() {
-                self.dateLabel.text = self.editedTask!.modificationDate
+
+                //self.dateLabel.text = self.editedTask?.modificationDate
+                self.dateLabel.text = self.editedTask?.modificationDate
+
+                println("HFLEJFKLSJFSE \(self.calendarDateLabel.text)")
+                //task.modificationDate =
+                    //self.dateLabel
+
             }
         }
     }
@@ -71,7 +83,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
                     (editedTask.badge != self.badge) ||
                     (editedTask.modificationDate != self.dateLabel.text)){
                         editedTask.modificationDate = self.dateLabel.text!
-                        editedTask.taskTitle = self.taskTextField.text                         
+                        
+                        println("THIS IS DATELABEL \(self.dateLabel)")
+                        editedTask.taskTitle = self.taskTextField.text
                         // Saves the badge as the editedTask.badge passed from TaskVC
                         editedTask.badge = self.editedTask!.badge
                 } else {
@@ -110,14 +124,63 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
         }
     }
     
+    @IBAction func backFromCalendar(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "exitFromCalendar":
+                println("exit from calendar")
+                
+            case "saveFromCalendar":
+                println("save form calendar")
+//                dateLabel.text = self.editedTask!.modificationDate
+                realm.write() {
+                    self.editedTask?.modificationDate = self.date
+                }
+                println(self.editedTask?.modificationDate)
+                //println(dateLabel.text!)
+                
+                // Sets calendar date to be numDate
+                calendarDateLabel.text = numDateLabel
+                
+            default:
+                println("hi")
+            }
+        }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if (identifier == "saveFromEdit") {
+            if (taskTextField.text.isEmpty) {
+                
+                println("EMPTY")
+                // Show a popup alert!
+                let emptyTextFieldAlertView = SCLAlertView()
+                
+                // The ok button
+                emptyTextFieldAlertView.addButton("Ok") {
+                    
+                    // Closes the alertView
+                    emptyTextFieldAlertView.close()
+                    
+                    self.taskTextField.becomeFirstResponder()
+                }
+                
+                // This is what the type of popup the alert will show
+                emptyTextFieldAlertView.showError("No Text", subTitle: "Please Enter Text In The Field")
+                
+                return false
+                
+            } else {
+                saveTask()
+                
+                return true
+            }
+        }
+        return true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "saveFromEdit") {
-            let target = segue.destinationViewController as! TaskViewController
-            //target.showSelectedDate = self.showSelectedDate
-            
-            saveTask()
-            
-        } else if (segue.identifier == "tapOnBadge") {
+        if (segue.identifier == "tapOnBadge") {
             let targetVC = segue.destinationViewController as! ChangeBadgeViewController
             targetVC.addButtonColor = self.addButtonColor
         }
@@ -141,8 +204,13 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
         
         
         
+        // Sticks keyboard so that you can never hide it
+        
+        calendarDateLabel.text = ""
+        dateLabel.text = "Set Date"
+        //println(self.date)
         // Changes the calendar flow to vertical
-        calendar.flow = .Vertical
+        //calendar.flow = .Vertical
         
         //taskTextField.delegate = self
         taskTextField.returnKeyType = UIReturnKeyType.Default
@@ -152,7 +220,6 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
         let rightNavigation = self.navigationItem.rightBarButtonItem
         
         // Colors the nav bar items
-        leftNavigation
         
         if (addButtonColor == "") {
             leftNavigation?.tintColor = UIColor.whiteColor()
@@ -161,50 +228,18 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
         
         if (editButtonImage == "addPurple") {
             editImage.image = UIImage(named: "editPurple")
-            // Changes the calendar to purple color
-            calendar.appearance.weekdayTextColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
-            calendar.appearance.headerTitleColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
-            
-            // Changes the calendar color to theme color for selection
-//            calendar.appearance.todayColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
-            calendar.appearance.selectionColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
             
         } else if (editButtonImage == "addTurquoise") {
             editImage.image = UIImage(named: "editTurquoise")
             
-            // Changes the calendar to turquoise color
-            calendar.appearance.weekdayTextColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
-            calendar.appearance.headerTitleColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
             
-            // Changes the calendar color to theme color for selection
-            calendar.appearance.selectionColor = UIColor(red:0.15, green:0.85, blue:0.70, alpha:1.0)
         } else if (editButtonImage == "addRed") {
             editImage.image = UIImage(named: "editRed")
-            
-            // Changes the calendar to red color
-            calendar.appearance.weekdayTextColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
-            calendar.appearance.headerTitleColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
-            
-            // Changes the calendar color to theme color for selection
-            calendar.appearance.selectionColor = UIColor(red:1.00, green:0.45, blue:0.45, alpha:1.0)
         } else if (editButtonImage == "addBlue") {
             editImage.image = UIImage(named: "editBlue")
             
-            // Changes the calendar to blue color
-            calendar.appearance.weekdayTextColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
-            calendar.appearance.headerTitleColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
-            
-            // Changes the calendar color to theme color for selection
-            calendar.appearance.selectionColor = UIColor(red:0.40, green:0.60, blue:1.00, alpha:1.0)
         } else {
             editImage.image = UIImage(named: "editDark")
-            
-            // Changes the calendar to dark, default color
-            calendar.appearance.weekdayTextColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
-            calendar.appearance.headerTitleColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
-            
-            // Changes the calendar color to theme color for selection
-            calendar.appearance.selectionColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
         }
         
         println(editButtonImage)
@@ -225,17 +260,11 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        
     }
     
     override func viewDidAppear(animated: Bool) {
-        if (self.editedTask!.modificationDate == "") {
-            println("no mod date!")
-            
-            // Sets label to no due date
-            self.dateLabel.text = ""
-        }
         
-    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -245,124 +274,124 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
         displayDate(editedTask)
         
         // keyboard pops up right away
-        //taskTextField.becomeFirstResponder()
+        taskTextField.becomeFirstResponder()
         
         // Displays the badge image of the selectedTask
         badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[editedTask!.badge])
     }
 }
 
-extension EditTaskViewController: FSCalendarDataSource {
-    
-    
-    //    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
-    //        return true
-    //    }
-    
-}
-
-extension EditTaskViewController: FSCalendarDelegate {
-    
-    func calendarCurrentMonthDidChange(calendar: FSCalendar!) {
-        
-        // If the calendar changes month, then hide textfield
-        taskTextField.resignFirstResponder()
-    
-    }
-    
-    
-    func tomorrowFlag() {
-        var tomorrowFlag: Bool = true
-        
-        //        if (self.dateLabel.text == "Tomorrow") {
-        //            tomorrowFlag = false
-        //            tomorrowInt = 1
-        //        } else {
-        //            tomorrowFlag = true
-        //        }
-        //
-        //        if compareTodayDateString == comparePickedDateString {
-        //            self.dateLabel.text = "Today"
-        //        } else if tomorrowInt > todayInt && tomorrowFlag == true {
-        //            self.dateLabel.text = "Tomorrow"
-        //            tomorrowFlag = false
-        //        }
-        //
-        //        if ((tomorrowInt > todayInt) && (tomorrowFlag == false)) {
-        //            self.dateLabel.text = "Due \(dateString)"
-        //        } else
-        //    }
-        
-    }
-    
-    func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
-        
-        // Gets rid of todays date circle
-        calendar.appearance.todayColor = UIColor.clearColor()
-        calendar.appearance.titleTodayColor = calendar.appearance.titleDefaultColor;
-        calendar.appearance.subtitleTodayColor = calendar.appearance.subtitleDefaultColor;
-        
-        // Hides the keyboard when a date is selected
-        taskTextField.resignFirstResponder()
-        
-        var tomorrowFlag: Bool = true
-        
-        // date = the date which is picked and todays date is todays date
-        let todaysDate = NSDate()
-        
-        // Sets the format for the date which is picked
-        var dateFormatter = NSDateFormatter()
-        var secondDateFormatter = NSDateFormatter()
-        //dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
-        //dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        secondDateFormatter.dateFormat = "EEEE, MMMM dd"
-        
-        dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
-        
-        // The proper date, but at 12:00:00 AM each day
-        var dateString = secondDateFormatter.stringFromDate(date)
-        var longDateString = dateFormatter.stringFromDate(date)
-        // The local date plus correct time
-        var localTimeDate = secondDateFormatter.stringFromDate(todaysDate)
-        var longLocalTimeDate = dateFormatter.stringFromDate(todaysDate)
-        // these var gets the string of the dates.
-//        var pickedDateString = date.description
-//        var todayDateString = localTimeDate
+//extension EditTaskViewController: FSCalendarDataSource {
 //
-//        // Gives tomorrows date
-//        var tomorrow = localTimeDate.dateByAddingTimeInterval(24 * 60 * 60)
-//        var tomorrowDateString = tomorrow.description
-//        //println(tomorrowDateString)
-//        
-//        // The date for today in string
-        var compareTodayDateString = localTimeDate.substringToIndex(advance(localTimeDate.startIndex, 15))
-//        //println(compareTodayDateString)
-//        
-//        // The date which has been picked in string
-        var comparePickedDateString = dateString.substringToIndex(advance(dateString.startIndex, 15))
-//        
-//        // The date for tomorrow in string
-//        var frontTomorrowDateString = tomorrowDateString.substringToIndex(advance(tomorrowDateString.startIndex, 10))
-        
-//        // string to NSDate
-//        dateFormatter.dateFormat = "EEEE MMMM d, YYYY"
-//        localTimeDate = dateFormatter.stringFromDate(date)
-//        dateFormatter.release()
-        var dateFromString = dateFormatter.dateFromString(longDateString)
-        var todayDateFromString = dateFormatter.dateFromString(longLocalTimeDate)
-        
-//        println(dateFromString!)
-//        println(todayDateFromString!)
-        
-        if (dateString == localTimeDate) {
-            dateLabel.text = "Due Today"
-            //showSelectedDate = todayDateFromString
-            //println(showSelectedDate)
-        } else {
-            dateLabel.text = "Due \(dateString)"
-            //showSelectedDate = dateFromString
-            //println(showSelectedDate)
-        }
-    }
-}
+//
+//    //    func calendar(calendar: FSCalendar!, hasEventForDate date: NSDate!) -> Bool {
+//    //        return true
+//    //    }
+//
+//}
+//
+//extension EditTaskViewController: FSCalendarDelegate {
+//
+//    func calendarCurrentMonthDidChange(calendar: FSCalendar!) {
+//
+//        // If the calendar changes month, then hide textfield
+//        taskTextField.resignFirstResponder()
+//
+//    }
+//
+//
+//    func tomorrowFlag() {
+//        var tomorrowFlag: Bool = true
+//
+//        //        if (self.dateLabel.text == "Tomorrow") {
+//        //            tomorrowFlag = false
+//        //            tomorrowInt = 1
+//        //        } else {
+//        //            tomorrowFlag = true
+//        //        }
+//        //
+//        //        if compareTodayDateString == comparePickedDateString {
+//        //            self.dateLabel.text = "Today"
+//        //        } else if tomorrowInt > todayInt && tomorrowFlag == true {
+//        //            self.dateLabel.text = "Tomorrow"
+//        //            tomorrowFlag = false
+//        //        }
+//        //
+//        //        if ((tomorrowInt > todayInt) && (tomorrowFlag == false)) {
+//        //            self.dateLabel.text = "Due \(dateString)"
+//        //        } else
+//        //    }
+//
+//    }
+//
+//    func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
+//
+//        // Gets rid of todays date circle
+//        calendar.appearance.todayColor = UIColor.clearColor()
+//        calendar.appearance.titleTodayColor = calendar.appearance.titleDefaultColor;
+//        calendar.appearance.subtitleTodayColor = calendar.appearance.subtitleDefaultColor;
+//
+//        // Hides the keyboard when a date is selected
+//        taskTextField.resignFirstResponder()
+//
+//        var tomorrowFlag: Bool = true
+//
+//        // date = the date which is picked and todays date is todays date
+//        let todaysDate = NSDate()
+//
+//        // Sets the format for the date which is picked
+//        var dateFormatter = NSDateFormatter()
+//        var secondDateFormatter = NSDateFormatter()
+//        //dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
+//        //dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        secondDateFormatter.dateFormat = "EEEE, MMMM dd"
+//
+//        dateFormatter.timeZone = NSTimeZone.defaultTimeZone()
+//
+//        // The proper date, but at 12:00:00 AM each day
+//        var dateString = secondDateFormatter.stringFromDate(date)
+//        var longDateString = dateFormatter.stringFromDate(date)
+//        // The local date plus correct time
+//        var localTimeDate = secondDateFormatter.stringFromDate(todaysDate)
+//        var longLocalTimeDate = dateFormatter.stringFromDate(todaysDate)
+//        // these var gets the string of the dates.
+////        var pickedDateString = date.description
+////        var todayDateString = localTimeDate
+////
+////        // Gives tomorrows date
+////        var tomorrow = localTimeDate.dateByAddingTimeInterval(24 * 60 * 60)
+////        var tomorrowDateString = tomorrow.description
+////        //println(tomorrowDateString)
+////
+////        // The date for today in string
+//        var compareTodayDateString = localTimeDate.substringToIndex(advance(localTimeDate.startIndex, 15))
+////        //println(compareTodayDateString)
+////
+////        // The date which has been picked in string
+//        var comparePickedDateString = dateString.substringToIndex(advance(dateString.startIndex, 15))
+////
+////        // The date for tomorrow in string
+////        var frontTomorrowDateString = tomorrowDateString.substringToIndex(advance(tomorrowDateString.startIndex, 10))
+//
+////        // string to NSDate
+////        dateFormatter.dateFormat = "EEEE MMMM d, YYYY"
+////        localTimeDate = dateFormatter.stringFromDate(date)
+////        dateFormatter.release()
+//        var dateFromString = dateFormatter.dateFromString(longDateString)
+//        var todayDateFromString = dateFormatter.dateFromString(longLocalTimeDate)
+//
+////        println(dateFromString!)
+////        println(todayDateFromString!)
+//
+//        if (dateString == localTimeDate) {
+//            dateLabel.text = "Due Today"
+//            //showSelectedDate = todayDateFromString
+//            //println(showSelectedDate)
+//        } else {
+//            dateLabel.text = "Due \(dateString)"
+//            //showSelectedDate = dateFromString
+//            //println(showSelectedDate)
+//        }
+//    }
+
