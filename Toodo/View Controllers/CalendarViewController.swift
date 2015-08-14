@@ -14,19 +14,33 @@ class CalendarViewController: UIViewController {
     
     let realm = Realm()
     
-    @IBOutlet weak var dateLabel: UILabel!
+    //@IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     var addButtonColor = ""
     var notificationDate: NSDate?
     var orderingDate: NSDate?
     var numberDate = ""
+    var dateString = ""
+    var dateTime = ""
     
+    @IBAction func datePickerAction(sender: AnyObject) {
+        
+        var dateFormatter = NSDateFormatter()
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        
+        var dateFromDatePicker = dateFormatter.stringFromDate(datePicker.date)
+        self.dateTime = dateFromDatePicker
+        println("This is the time from datepicker \(dateFromDatePicker)")
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // On load, the dateLabel is nothing
-        dateLabel.text = ""
+        //dateLabel.text = ""
         
         // Makes the calendar vertical flow
         calendar.flow = .Vertical
@@ -99,21 +113,24 @@ class CalendarViewController: UIViewController {
             if segue.destinationViewController is AddNewTaskViewController {
                 let targetVC = segue.destinationViewController as! AddNewTaskViewController
                 
-                targetVC.dateLabel = self.dateLabel.text!
+                // Sets the dateLabel of AddNewTaskViewController to be the date the user selected
+                targetVC.dateLabel = self.dateString
                 
-                // Pass the ordering date to ADDNEWTASKVIEWCONTROLLER
+                // Pass the ordering date to AddNewTaskViewController
                 targetVC.orderingDate = self.orderingDate
                 targetVC.numDateLabel = self.numberDate
                 targetVC.notificationDate = self.notificationDate
                 
+                println(dateString + " " + dateTime)
+                
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController
                 
-                //targetVC.dateLabel.text = self.dateLabel.text!
-                targetVC.date = self.dateLabel.text!
+                // Set the date of EditTaskViewController to be the dateString the user selected
+                targetVC.date = self.dateString
+                
                 targetVC.numDateLabel = self.numberDate
                 
-                println("THIS IS COOL \(targetVC.date)")
 
             }
             
@@ -155,13 +172,15 @@ extension CalendarViewController: FSCalendarDelegate {
         var dateFormatter = NSDateFormatter()
         // if date is tomorrow, then display, due tomorrow, else display the date.
         
-        
-        // If date is today, then display, due today, else display the date
+        // Sets the dateFormat for both the dates
         dateFormatter.dateFormat = "EEEE, MMMM d"
         numDateFormat.dateFormat = "dd"
-        var dateString = dateFormatter.stringFromDate(date)
-        self.dateLabel.text = "Due: \(dateString)"
         
+        // This is the actual date
+        var dateString = dateFormatter.stringFromDate(date)
+        //self.dateLabel.text = "Due: \(dateString)"
+        
+        // The number of the date
         var numberDate = numDateFormat.stringFromDate(date)
         //var numberDate = dateString.substringFromIndex(advance(dateString.startIndex, 20))
         
@@ -169,8 +188,12 @@ extension CalendarViewController: FSCalendarDelegate {
         self.orderingDate = date
         self.numberDate = numberDate
         
+        // Sets the dateString to be the date you selected
+        self.dateString = dateString
+        println("This is dateString \(dateString)")
+        
         // Set the notification date to be the NSDate that we selected
         notificationDate = date
-        println(notificationDate)
+        
     }
 }

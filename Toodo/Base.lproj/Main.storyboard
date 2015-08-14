@@ -757,29 +757,60 @@ Add one!</string>
                                     <outlet property="delegate" destination="Img-gE-gqF" id="cHE-8b-LDM"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ai-0N-vGf">
-                                <rect key="frame" x="16" y="466" width="568" height="134"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="pD4-SC-6pF">
                                 <rect key="frame" x="0.0" y="465" width="600" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="62i-R8-3yV"/>
+                                </constraints>
                             </imageView>
+                            <datePicker contentMode="scaleToFill" verticalCompressionResistancePriority="740" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jx2-79-CHB">
+                                <rect key="frame" x="0.0" y="466" width="600" height="134"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jx2-79-CHB" secondAttribute="height" multiplier="150:23" id="3Iz-F5-edd"/>
+                                    <constraint firstAttribute="width" secondItem="jx2-79-CHB" secondAttribute="height" multiplier="150:23" id="sQk-do-35U"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="461212601.05461699">
+                                    <!--2015-08-14 02:36:41 +0000-->
+                                </date>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3Iz-F5-edd"/>
+                                        <exclude reference="sQk-do-35U"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="datePickerAction:" destination="Img-gE-gqF" eventType="valueChanged" id="TNU-5X-uuX"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="tXS-Ju-qaf" firstAttribute="top" secondItem="4ai-0N-vGf" secondAttribute="bottom" id="7aG-jy-9fs"/>
-                            <constraint firstItem="4ai-0N-vGf" firstAttribute="top" secondItem="pD4-SC-6pF" secondAttribute="bottom" id="CU3-XK-x6g"/>
+                            <constraint firstItem="jx2-79-CHB" firstAttribute="leading" secondItem="M4y-AD-haa" secondAttribute="leading" id="0vJ-vW-XuV"/>
+                            <constraint firstItem="jx2-79-CHB" firstAttribute="top" secondItem="pD4-SC-6pF" secondAttribute="bottom" id="3KN-U8-ODX"/>
+                            <constraint firstAttribute="trailing" secondItem="jx2-79-CHB" secondAttribute="trailing" id="8n4-rj-6Vc"/>
+                            <constraint firstItem="pD4-SC-6pF" firstAttribute="top" secondItem="zMS-sq-blL" secondAttribute="bottom" constant="1" id="BN8-Do-wtr"/>
+                            <constraint firstItem="jx2-79-CHB" firstAttribute="width" secondItem="zMS-sq-blL" secondAttribute="height" multiplier="3:2" id="BYj-kn-hTG"/>
+                            <constraint firstItem="jx2-79-CHB" firstAttribute="top" secondItem="zMS-sq-blL" secondAttribute="bottom" constant="2" id="C5S-Gy-Hcg"/>
                             <constraint firstItem="zMS-sq-blL" firstAttribute="leading" secondItem="M4y-AD-haa" secondAttribute="leading" constant="5" id="Gyu-Tp-t96"/>
                             <constraint firstAttribute="trailing" secondItem="zMS-sq-blL" secondAttribute="trailing" constant="5" id="J1p-65-GAL"/>
-                            <constraint firstAttribute="trailing" secondItem="pD4-SC-6pF" secondAttribute="trailing" id="O0V-Vj-ppD"/>
-                            <constraint firstAttribute="trailing" secondItem="4ai-0N-vGf" secondAttribute="trailing" constant="16" id="V3M-pN-Ryq"/>
+                            <constraint firstAttribute="trailing" secondItem="jx2-79-CHB" secondAttribute="trailing" id="JDk-Xx-B7O"/>
+                            <constraint firstItem="jx2-79-CHB" firstAttribute="top" secondItem="zMS-sq-blL" secondAttribute="bottom" constant="2" id="KyV-ab-6OH"/>
+                            <constraint firstAttribute="trailing" secondItem="pD4-SC-6pF" secondAttribute="trailing" id="QW2-dd-tf7"/>
+                            <constraint firstItem="pD4-SC-6pF" firstAttribute="leading" secondItem="M4y-AD-haa" secondAttribute="leading" id="aEk-Hh-ZFp"/>
                             <constraint firstItem="zMS-sq-blL" firstAttribute="top" secondItem="doA-mp-VZp" secondAttribute="bottom" id="dFB-tj-xsN"/>
-                            <constraint firstItem="pD4-SC-6pF" firstAttribute="leading" secondItem="M4y-AD-haa" secondAttribute="leading" id="e2R-ON-vSM"/>
-                            <constraint firstItem="4ai-0N-vGf" firstAttribute="leading" secondItem="M4y-AD-haa" secondAttribute="leading" constant="16" id="hx7-s7-FVt"/>
-                            <constraint firstItem="pD4-SC-6pF" firstAttribute="top" secondItem="zMS-sq-blL" secondAttribute="bottom" constant="1" id="mvo-Qg-kXg"/>
+                            <constraint firstItem="jx2-79-CHB" firstAttribute="leading" secondItem="M4y-AD-haa" secondAttribute="leading" id="jsq-zB-OTz"/>
+                            <constraint firstItem="jx2-79-CHB" firstAttribute="leading" secondItem="M4y-AD-haa" secondAttribute="leading" id="zwC-pg-brb"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0vJ-vW-XuV"/>
+                                <exclude reference="8n4-rj-6Vc"/>
+                                <exclude reference="BYj-kn-hTG"/>
+                                <exclude reference="C5S-Gy-Hcg"/>
+                                <exclude reference="KyV-ab-6OH"/>
+                                <exclude reference="jsq-zB-OTz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Set Date" id="LN2-Jf-VFA">
                         <barButtonItem key="leftBarButtonItem" image="backArrow" id="KOL-gd-o0n">
@@ -797,7 +828,7 @@ Add one!</string>
                     </navigationItem>
                     <connections>
                         <outlet property="calendar" destination="zMS-sq-blL" id="baX-uG-uYY"/>
-                        <outlet property="dateLabel" destination="4ai-0N-vGf" id="fUA-q0-S3Q"/>
+                        <outlet property="datePicker" destination="jx2-79-CHB" id="uem-Lb-Pyr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAZ-1T-KCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
