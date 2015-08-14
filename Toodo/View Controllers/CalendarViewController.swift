@@ -35,7 +35,13 @@ class CalendarViewController: UIViewController {
         self.dateTime = dateFromDatePicker
         println("This is the time from datepicker \(dateFromDatePicker)")
         
+        let requiredTimeComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
+        
+        let timeComponents = NSCalendar.currentCalendar().components(requiredTimeComponents, fromDate: datePicker.date)
+        println("This is time \(timeComponents)")
+        
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -134,11 +140,7 @@ class CalendarViewController: UIViewController {
 
             }
             
-            //            let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
-            //
-            //            let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: notificationDate!)
-            //
-            //            let strippedDate = NSCalendar.currentCalendar().dateFromComponents(components)
+            
             //
             //            self.realm.write() {
             //            // Sets the notification date of newTask to be strippedDate
@@ -173,7 +175,7 @@ extension CalendarViewController: FSCalendarDelegate {
         // if date is tomorrow, then display, due tomorrow, else display the date.
         
         // Sets the dateFormat for both the dates
-        dateFormatter.dateFormat = "EEEE, MMMM d"
+        dateFormatter.dateFormat = "EEEE, MMM d"
         numDateFormat.dateFormat = "dd"
         
         // This is the actual date
@@ -190,10 +192,27 @@ extension CalendarViewController: FSCalendarDelegate {
         
         // Sets the dateString to be the date you selected
         self.dateString = dateString
-        println("This is dateString \(dateString)")
+//        println("This is dateString \(dateString)")
         
         // Set the notification date to be the NSDate that we selected
-        notificationDate = date
+//        println(date)
         
+        self.notificationDate = date
+        println(self.notificationDate)
+        
+        // Stripping the date from the NSDate, this gets the first portion of the NSDate.
+        let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
+        
+        
+        // gives componenets from requiredDate componenets from the NSDate
+        let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: notificationDate!)
+        
+        
+        
+        println(components)
+        
+        // Giving me a day month
+        let strippedDate = NSCalendar.currentCalendar().dateFromComponents(components)
+        //println("strippd date \(strippedDate)")
     }
 }
