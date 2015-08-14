@@ -19,7 +19,6 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var addButtonColor = ""
-    var notificationDate: NSDate?
     var orderingDate: NSDate?
     var numberDate = ""
     var dateString = ""
@@ -29,7 +28,7 @@ class CalendarViewController: UIViewController {
         
         var dateFormatter = NSDateFormatter()
         
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.dateFormat = "MMM dd 'at' h:mm a"
         
         var dateFromDatePicker = dateFormatter.stringFromDate(datePicker.date)
         self.dateTime = dateFromDatePicker
@@ -38,7 +37,12 @@ class CalendarViewController: UIViewController {
         let requiredTimeComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
         
         let timeComponents = NSCalendar.currentCalendar().components(requiredTimeComponents, fromDate: datePicker.date)
+        
         println("This is time \(timeComponents)")
+        
+        orderingDate = dateFormatter.dateFromString(dateString + dateTime)
+        
+        println("ORDERING DATE \(orderingDate)")
         
     }
     
@@ -125,8 +129,7 @@ class CalendarViewController: UIViewController {
                 // Pass the ordering date to AddNewTaskViewController
                 targetVC.orderingDate = self.orderingDate
                 targetVC.numDateLabel = self.numberDate
-                targetVC.notificationDate = self.notificationDate
-                
+        
                 println(dateString + " " + dateTime)
                 
             } else if segue.destinationViewController is EditTaskViewController {
@@ -186,8 +189,7 @@ extension CalendarViewController: FSCalendarDelegate {
         var numberDate = numDateFormat.stringFromDate(date)
         //var numberDate = dateString.substringFromIndex(advance(dateString.startIndex, 20))
         
-        // Takes the date we selected and assigns it to orderingDate
-        self.orderingDate = date
+        // Takes the date we selected and assign the number
         self.numberDate = numberDate
         
         // Sets the dateString to be the date you selected
@@ -197,15 +199,15 @@ extension CalendarViewController: FSCalendarDelegate {
         // Set the notification date to be the NSDate that we selected
 //        println(date)
         
-        self.notificationDate = date
-        println(self.notificationDate)
+//        self.orderingDate = date
+//        println(self.orderingDate)
         
         // Stripping the date from the NSDate, this gets the first portion of the NSDate.
         let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
         
         
         // gives componenets from requiredDate componenets from the NSDate
-        let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: notificationDate!)
+        let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: orderingDate!)
         
         
         

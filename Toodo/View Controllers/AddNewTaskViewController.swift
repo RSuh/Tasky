@@ -35,7 +35,6 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var addButtonColor = ""
     var orderingDate: NSDate?
     var category: Category?
-    var notificationDate: NSDate?
     
     var selectedRow: Int = 0
     
