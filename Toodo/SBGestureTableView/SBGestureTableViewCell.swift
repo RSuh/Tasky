@@ -26,6 +26,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
             }
         }
     }
+    
     var secondLeftAction: SBGestureTableViewCellAction? {
         didSet {
             if (secondLeftAction?.fraction == 0) {
@@ -43,7 +44,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     var secondRightAction: SBGestureTableViewCellAction? {
         didSet {
             if (secondRightAction?.fraction == 0) {
-                secondRightAction?.fraction = 0.7
+                secondRightAction?.fraction = 0.8
             }
         }
     }

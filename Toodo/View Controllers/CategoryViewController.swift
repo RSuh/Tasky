@@ -92,9 +92,9 @@ class CategoryViewController: UIViewController {
                 }
                 
                 // Sets the rgb value from other VC to self.VC
-//                saveSourceFromAdd.R = self.editR
-//                saveSourceFromAdd.G = self.editG
-//                saveSourceFromAdd.B = self.editB
+                //                saveSourceFromAdd.R = self.editR
+                //                saveSourceFromAdd.G = self.editG
+                //                saveSourceFromAdd.B = self.editB
                 
                 self.editR = saveSourceFromAdd.R
                 self.editG = saveSourceFromAdd.G
@@ -266,8 +266,10 @@ class CategoryViewController: UIViewController {
             
             println(category.tasksWithinCategory.count)
             
-            // If the taskCount is 3 or larger
-            if (category.tasksWithinCategory.count >= 3) {
+            //            // If the taskCount is 3 or larger
+            if (category.tasksWithinCategory.count >= 1) {
+                
+                tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
                 
                 // Show a popup alert!
                 let popUpAlertView = SCLAlertView()
@@ -300,6 +302,7 @@ class CategoryViewController: UIViewController {
                 
                 popUpAlertView.showWarning("Are you sure?", subTitle: "This will delete the list and all its tasks")
                 
+                
             } else {
                 
                 self.realm.write() {
@@ -312,10 +315,9 @@ class CategoryViewController: UIViewController {
                     
                 }
                 
+                // The original animation before the alert is displayed
+                tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
             }
-            
-            // The original animation before the alert is displayed
-            tableView.fullSwipeCell(cell, duration: 0.3, completion: nil)
         }
         
         // The replace cell function
@@ -346,9 +348,9 @@ class CategoryViewController: UIViewController {
                     println("turning nothing to completed")
                     self.realm.write() {
                         selectedCategory.complete = false
-//                        selectedCategory.R = self.editR
-//                        selectedCategory.G = self.editG
-//                        selectedCategory.B = self.editB
+                        //                        selectedCategory.R = self.editR
+                        //                        selectedCategory.G = self.editG
+                        //                        selectedCategory.B = self.editB
                     }
                     println(selectedCategory.R)
                     println(selectedCategory.G)
@@ -372,9 +374,9 @@ class CategoryViewController: UIViewController {
                     self.realm.write() {
                         selectedCategory.complete = true
                         
-//                        selectedCategory.R = 0.11
-//                        selectedCategory.G = 0.78
-//                        selectedCategory.B = 0.35
+                        //                        selectedCategory.R = 0.11
+                        //                        selectedCategory.G = 0.78
+                        //                        selectedCategory.B = 0.35
                         
                     }
                     
@@ -474,18 +476,18 @@ extension CategoryViewController: UITableViewDataSource {
         let size = CGSizeMake(30, 30)
         
         //if completedCategory.complete == true {
-            
-            //cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
+        
+        //cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
         //cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
-        cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
-
-            
+        cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
+        
+        
         //} else {
-
-//            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
-//            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
-
-            
+        
+        //            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
+        //            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
+        
+        
         
         
         // Sorts by number of tasks, able to sort by count.
@@ -495,7 +497,6 @@ extension CategoryViewController: UITableViewDataSource {
         let row = indexPath.row
         let category = categories[row] as Category
         cell.category = category
-        
         
         return cell
     }

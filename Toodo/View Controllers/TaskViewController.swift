@@ -245,7 +245,7 @@ class TaskViewController: UIViewController {
             println("HELLO \(targetVC.editedTask)")
             targetVC.editedTask = selectedTask
             println("JFKDLSJFDKSLFJDKSLF \(targetVC.editedTask)")
-
+            
             
             // New changes made to the task Object
             realm.write() {
@@ -347,7 +347,7 @@ class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         println(category?.taskCount)
         
         println("ordering date is \(orderingDate)")
@@ -367,7 +367,7 @@ class TaskViewController: UIViewController {
         let navigation = self.navigationController?.navigationBar
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
-
+        
         // Hide the edit button
         
         
@@ -489,11 +489,11 @@ class TaskViewController: UIViewController {
             if (selectedCell.complete == true) {
                 println("HI COMPLETED")
                 if let cell = cell as? TaskTableViewCell {
-//                    
-//                    // Changes the badge to what it was before
+                    //
+                    //                    // Changes the badge to what it was before
                     cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[selectedCell.badge])
-//                    
-//                    // Sets text as black and chevron as black
+                    //
+                    //                    // Sets text as black and chevron as black
                     cell.taskLabel.textColor = UIColor.blackColor()
                     cell.dateLabel.textColor = UIColor.blackColor()
                     cell.chevronRight.image = UIImage(named: "chevronRight")
@@ -502,13 +502,13 @@ class TaskViewController: UIViewController {
                     // Undos the strikethrough
                     cell.taskLabel.attributedText = NSAttributedString(string: cell.taskLabel.text!, attributes: nil)
                     
-//                    // Sets background as white
+                    //                    // Sets background as white
                     cell.backgroundColor = UIColor.whiteColor()
                     cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0, didTriggerBlock: self.replaceCell)
                     self.realm.write() {
                         selectedCell.complete = false
                     }
-//                    println("its false now")
+                    //                    println("its false now")
                 }
             } else if (selectedCell.complete == false) {
                 println("NO NOT COMPLETE")
@@ -516,23 +516,23 @@ class TaskViewController: UIViewController {
                     cell.badgeImage.image = UIImage(named: "badgeComplete")
                     cell.taskLabel.textColor = UIColor.whiteColor()
                     cell.dateLabel.textColor = UIColor.whiteColor()
-//                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+                    //                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
                     cell.chevronRight.hidden = true
                     
                     // Does the strikethrough of the text
                     let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
                     cell.taskLabel.attributedText = NSAttributedString(string: cell.taskLabel.text!, attributes: attributes)
-//
+                    //
                     cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
-//                    
+                    //
                     cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0, didTriggerBlock: self.replaceCell)
-//                    
+                    //
                     self.realm.write() {
                         selectedCell.complete = true
                     }
-//                    println("it's true now")
+                    //                    println("it's true now")
                 }
-//                
+                //
             }
             
             println(selectedCell)
@@ -541,29 +541,75 @@ class TaskViewController: UIViewController {
         
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
             
             // let category = the category object at indexPath.row AS AN OBJECT
-            let tasks = self.tasks[indexPath!.row] as Object
+            var tasks = self.tasks[indexPath!.row] as Object
             
-            // Pass the object we just created to delete
-            self.realm.write() {
-                self.realm.delete(tasks)
+            let selectedCell = self.tasks[indexPath!.row]
+            
+            // Setup the alertView
+            let deleteTaskAlertView = SCLAlertView()
+            
+            tableView.fullSwipeCell(cell, duration: 0.2, completion: nil)
+            
+            if (selectedCell.complete == false) {
                 
-                // Subtracts 1 count from the taskCount when removecellBlock is called
-                self.category!.tasksWithinCategory.count - 1
+                // The delete button
+                deleteTaskAlertView.addButton("Ok") {
+                    println("Ok has been tapped")
+                    
+                    // Pass the object we just created to delete
+                    self.realm.write() {
+                        self.realm.delete(tasks)
+                        
+                        // Subtracts 1 count from the taskCount when removecellBlock is called
+                        self.category!.tasksWithinCategory.count - 1
+                        
+                        println(self.category!.tasksWithinCategory.count)
+                    }
+                    // The animation to delete (manditory/ needed)
+                    tableView.removeCell(cell, duration: 0.3, completion: nil)
+                    
+                    // Closes the alertView
+                    deleteTaskAlertView.close()
+  
+                }
                 
-                println(self.category!.tasksWithinCategory.count)
+                // The cancel button
+                deleteTaskAlertView.addButton("Cancel") {
+                    println("Cancel has been tapped")
+                    
+                    // Closes the alertView
+                    deleteTaskAlertView.close()
+                    
+                    // The animation to replace the cell
+                    tableView.replaceCell(cell, duration: 0.2, bounce: 0.2, completion: nil)
+                }
+                
+                deleteTaskAlertView.showWarning("Are you sure?", subTitle: "This will delete task")
+            } else {
+                // Pass the object we just created to delete
+                self.realm.write() {
+                    self.realm.delete(tasks)
+                    
+                    // Subtracts 1 count from the taskCount when removecellBlock is called
+                    self.category!.tasksWithinCategory.count - 1
+                    
+                    println(self.category!.tasksWithinCategory.count)
+                }
+                // The animation to delete (manditory/ needed)
+                tableView.removeCell(cell, duration: 0.3, completion: nil)
+                
+
+                
             }
-            // The animation to delete (manditory/ needed)
-            tableView.removeCell(cell, duration: 0.3, completion: nil)
+            
+            
         }
-        
-        // Sort tasks which are within each category by modificationDate
-        tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)
     }
-    
     // Customizes the title Bar
     override func viewDidAppear(animated: Bool) {
         
@@ -590,7 +636,7 @@ class TaskViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-
+    
 }
 
 extension TaskViewController: UITableViewDataSource {
@@ -605,15 +651,15 @@ extension TaskViewController: UITableViewDataSource {
         println(completedCell.modificationDate)
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
-//        self.realm.write() {
-//            completedCell.badge = 3
-//        }
+        //        self.realm.write() {
+        //            completedCell.badge = 3
+        //        }
         // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
         // The Actions for the cells
         if (editing == false) {
             cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
-//            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
+            //            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             
             println("The old gesture")
             // A bool to see if the editing is enabled
@@ -626,12 +672,12 @@ extension TaskViewController: UITableViewDataSource {
             println("The cell is complete")
             //cell.badgeImage.image = UIImage(named: arrayConstants.completedBadge[0])
             println(arrayConstants.completedBadge[0])
-
+            
             
             cell.badgeImage.image = UIImage(named: "badgeComplete")
             println("THE BADGE SHOULD BE COMPLETE")
             cell.taskLabel.textColor = UIColor.whiteColor()
-            cell.dateLabel.textColor = UIColor.whiteColor()            
+            cell.dateLabel.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
             cell.chevronRight.image = UIImage(named: "chevronRightWhite")
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
