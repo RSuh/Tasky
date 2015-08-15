@@ -91,7 +91,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         if (self.orderingDate != nil) {
                             newTask.orderingDate = self.orderingDate!
                         }
-                 
+                        
                 } else {
                     println("nothing has changed")
                 }
@@ -162,10 +162,11 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 println("Save from add calendar")
                 keyboardPopUp = false
                 // Makes the Set Date text to be the date
+//                if (self.dateLabel == "") {
+//                    date.text = "Set Date"
+//                } else {
                 date.text = self.dateLabel
-
-                
-                
+                println(self.dateLabel)
                 
                 // Sets calendar date to be numDate
                 calendarDateLabel.text = numDateLabel

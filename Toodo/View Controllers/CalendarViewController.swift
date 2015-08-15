@@ -28,21 +28,28 @@ class CalendarViewController: UIViewController {
         
         var dateFormatter = NSDateFormatter()
         
-        dateFormatter.dateFormat = "MMM dd 'at' h:mm a"
+        //dateFormatter.dateFormat = "MMM dd 'at' h:mm a"
+        //dateFormatter.dateFormat = "h:mm a"
+        
+        dateFormatter.timeStyle = .ShortStyle
         
         var dateFromDatePicker = dateFormatter.stringFromDate(datePicker.date)
         self.dateTime = dateFromDatePicker
-        println("This is the time from datepicker \(dateFromDatePicker)")
+        //        /self.dateTime = dateFormatter.
+        //println("This is the time from datepicker \(dateFromDatePicker)")
         
         let requiredTimeComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
         
         let timeComponents = NSCalendar.currentCalendar().components(requiredTimeComponents, fromDate: datePicker.date)
         
-        println("This is time \(timeComponents)")
+        //        println("This is time \(timeComponents)")
         
         orderingDate = dateFormatter.dateFromString(dateString + dateTime)
+        println(self.dateTime)
+        //        println("ORDERING DATE \(orderingDate)")
         
-        println("ORDERING DATE \(orderingDate)")
+        
+        // SEE HOW TO GET CURRENT DATE ON DATESTRING
         
     }
     
@@ -124,23 +131,38 @@ class CalendarViewController: UIViewController {
                 let targetVC = segue.destinationViewController as! AddNewTaskViewController
                 
                 // Sets the dateLabel of AddNewTaskViewController to be the date the user selected
-                targetVC.dateLabel = self.dateString
+                //targetVC.dateLabel = self.dateString
                 
                 // Pass the ordering date to AddNewTaskViewController
                 targetVC.orderingDate = self.orderingDate
                 targetVC.numDateLabel = self.numberDate
-        
+                
+                // Sets the datestring as the long date
+                
+                    targetVC.dateLabel = dateString + " at " + dateTime
+                
                 println(dateString + " " + dateTime)
                 
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController
                 
                 // Set the date of EditTaskViewController to be the dateString the user selected
-                targetVC.date = self.dateString
+                //targetVC.date = self.dateString
                 
                 targetVC.numDateLabel = self.numberDate
-                
+//                
+//                if (dateString == "" && dateTime != "") {
+//                    targetVC.date = dateString + " at " + dateTime
+//                }
+//                if (dateTime == "") {
+//                    targetVC.date = dateString
+//                }
+//                
 
+                targetVC.date = dateString + " " + dateTime
+                println(dateString + " " + dateTime)
+                
+                
             }
             
             
@@ -194,27 +216,28 @@ extension CalendarViewController: FSCalendarDelegate {
         
         // Sets the dateString to be the date you selected
         self.dateString = dateString
-//        println("This is dateString \(dateString)")
+        println(dateString)
+        //        println("This is dateString \(dateString)")
         
         // Set the notification date to be the NSDate that we selected
-//        println(date)
+        //        println(date)
         
-//        self.orderingDate = date
-//        println(self.orderingDate)
+        //        self.orderingDate = date
+        //        println(self.orderingDate)
         
         // Stripping the date from the NSDate, this gets the first portion of the NSDate.
-        let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
+        //let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
         
         
         // gives componenets from requiredDate componenets from the NSDate
-        let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: orderingDate!)
+        //let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: orderingDate!)
         
         
         
-        println(components)
+        //println(components)
         
         // Giving me a day month
-        let strippedDate = NSCalendar.currentCalendar().dateFromComponents(components)
+        //let strippedDate = NSCalendar.currentCalendar().dateFromComponents(components)
         //println("strippd date \(strippedDate)")
     }
 }

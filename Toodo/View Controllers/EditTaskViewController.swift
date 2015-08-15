@@ -32,6 +32,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     var date = ""
     var numDateLabel = ""
     
+    
+    
     var editedTask: Task? {
         didSet {
             displayTask(editedTask)
@@ -62,14 +64,17 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     func displayDate(task: Task?) {
         if let task = task, dateLabel = dateLabel {
             realm.write() {
-
+                
                 //self.dateLabel.text = self.editedTask?.modificationDate
-                self.dateLabel.text = self.editedTask?.modificationDate
-
+                if (self.editedTask?.modificationDate == "") {
+                    self.dateLabel.text = "Set Date"
+                } else {
+                    self.dateLabel.text = self.editedTask?.modificationDate
+                }
                 println("HFLEJFKLSJFSE \(self.calendarDateLabel.text)")
                 //task.modificationDate =
-                    //self.dateLabel
-
+                //self.dateLabel
+                
             }
         }
     }
@@ -132,12 +137,13 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 
             case "saveFromCalendar":
                 println("save form calendar")
-//                dateLabel.text = self.editedTask!.modificationDate
+                //                dateLabel.text = self.editedTask!.modificationDate
                 realm.write() {
                     self.editedTask?.modificationDate = self.date
                 }
                 println(self.editedTask?.modificationDate)
                 //println(dateLabel.text!)
+                
                 
                 // Sets calendar date to be numDate
                 calendarDateLabel.text = numDateLabel
