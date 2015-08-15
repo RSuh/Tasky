@@ -49,6 +49,7 @@ class CategoryViewController: UIViewController {
     var deleteIcon = FAKIonIcons.iosTrashIconWithSize(30)
     let editIcon = FAKIonIcons.androidCreateIconWithSize(30)
     let completeIcon = FAKIonIcons.androidDoneIconWithSize(30)
+    let backToListIcon = FAKIonIcons.naviconIconWithSize(30)
     
     // Colors
     let greenColor = UIColor(red: 48.0/255, green: 220.0/255, blue: 107.0/255, alpha: 80)
@@ -72,6 +73,7 @@ class CategoryViewController: UIViewController {
         deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
         editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
         completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        backToListIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
     }
     
     @IBAction func backToCategoryFromAddingList(segue: UIStoryboardSegue) {
@@ -87,16 +89,20 @@ class CategoryViewController: UIViewController {
                 realm.write() {
                     // Adds a newList
                     self.realm.add(saveSourceFromAdd.addNewCategory!)
-                    println(saveSourceFromAdd.R)
-                    println(saveSourceFromAdd.G)
-                    println(saveSourceFromAdd.B)
                 }
                 
-                
                 // Sets the rgb value from other VC to self.VC
-                saveSourceFromAdd.R = self.editR
-                saveSourceFromAdd.G = self.editG
-                saveSourceFromAdd.B = self.editB
+//                saveSourceFromAdd.R = self.editR
+//                saveSourceFromAdd.G = self.editG
+//                saveSourceFromAdd.B = self.editB
+                
+                self.editR = saveSourceFromAdd.R
+                self.editG = saveSourceFromAdd.G
+                self.editB = saveSourceFromAdd.B
+                
+                println(self.editR)
+                println(self.editG)
+                println(self.editB)
                 
             default:
                 println("failed")
@@ -301,9 +307,9 @@ class CategoryViewController: UIViewController {
                     
                     tableView.removeCell(cell, duration: 0.3, completion: {
                         self.categories = self.realm.objects(Category).sorted(self.categorySortDescriptors)
-//                        self.categories = self.realm.objects(Category).sorted("categoryTitle", ascending: true).sorted("taskCount", ascending: false)
+                        //                        self.categories = self.realm.objects(Category).sorted("categoryTitle", ascending: true).sorted("taskCount", ascending: false)
                     })
-
+                    
                 }
                 
             }
@@ -316,9 +322,75 @@ class CategoryViewController: UIViewController {
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             
             let indexPath = tableView.indexPathForCell(cell)
+            
+            let selectedCategory = self.categories[indexPath!.row]
             //cell.backgroundColor = UIColor.lightGrayColor()
             //cell.tintColor = UIColor.lightGrayColor()
             tableView.replaceCell(cell, duration: 0.3, bounce: 0.2, completion: nil)
+            
+            let size = CGSizeMake(30, 30)
+            
+            if let cell = cell as? CategoryTableViewCell {
+                
+                if selectedCategory.complete == true {
+                    
+                    
+                    cell.categoryTitle.attributedText = NSAttributedString(string: cell.categoryTitle.text!, attributes: nil)
+                    
+                    //cell.backgroundColor = UIColor(red:0.11, green:0.78, blue:0.35, alpha:1.0)
+                    
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0, didTriggerBlock: self.replaceCell)
+                    
+                    cell.chevronRight.hidden = false
+                    
+                    println("turning nothing to completed")
+                    self.realm.write() {
+                        selectedCategory.complete = false
+//                        selectedCategory.R = self.editR
+//                        selectedCategory.G = self.editG
+//                        selectedCategory.B = self.editB
+                    }
+                    println(selectedCategory.R)
+                    println(selectedCategory.G)
+                    println(selectedCategory.B)
+                    
+                    
+                } else if (selectedCategory.complete == false){
+                    
+                    // Does the strikethrough of the text
+                    let attributes = [NSStrikethroughStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+                    cell.categoryTitle.attributedText = NSAttributedString(string: cell.categoryTitle.text!, attributes: attributes)
+                    
+                    //cell.backgroundColor = UIColor(red: CGFloat(selectedCategory.R), green: CGFloat(selectedCategory.G), blue: CGFloat(selectedCategory.B), alpha: 1.0)
+                    
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0, didTriggerBlock: self.replaceCell)
+                    
+                    cell.chevronRight.hidden = true
+                    
+                    println("turning from completed to nothing")
+                    
+                    self.realm.write() {
+                        selectedCategory.complete = true
+                        
+//                        selectedCategory.R = 0.11
+//                        selectedCategory.G = 0.78
+//                        selectedCategory.B = 0.35
+                        
+                    }
+                    
+                    //cell.backgroundColor = UIColor(red: CGFloat(selectedCategory.R), green: CGFloat(selectedCategory.G), blue: CGFloat(selectedCategory.B), alpha: 1.0)
+                    println(selectedCategory.R)
+                    println(selectedCategory.G)
+                    println(selectedCategory.B)
+                    
+                    println("Should be default colors")
+                }
+                
+                
+                
+            }
+            
+            
         }
         
         // The remove block function
@@ -333,12 +405,12 @@ class CategoryViewController: UIViewController {
             // Pass the object we just created to delete
             self.realm.write() {
                 self.realm.delete(category)
-            
-            // The animation to delete (manditory/ needed)
-            tableView.removeCell(cell, duration: 0.3, completion: nil)
-            
-            // To prevent the duplication
-//            tableView.reloadData()
+                
+                // The animation to delete (manditory/ needed)
+                tableView.removeCell(cell, duration: 0.3, completion: nil)
+                
+                // To prevent the duplication
+                //            tableView.reloadData()
             }
             
             
@@ -351,7 +423,7 @@ class CategoryViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //println(self.category.taskCount)
-
+        
         // Sorts the realm objects by taskCount
         categories = realm.objects(Category).sorted(categorySortDescriptors)
         
@@ -383,7 +455,7 @@ extension CategoryViewController: UITableViewDataSource {
         
         // Initialize cell
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
-        
+        let completedCategory = self.categories[indexPath.row]
         //        let categoryForCount = self.categories[indexPath.row]
         //
         //        println("HELLOOOO")
@@ -401,9 +473,20 @@ extension CategoryViewController: UITableViewDataSource {
         
         let size = CGSizeMake(30, 30)
         
-        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
+        //if completedCategory.complete == true {
+            
+            //cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
+        //cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
+        cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
+
+            
+        //} else {
+
+//            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: fullSwipeCell)
+//            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
+
+            
         
-        cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
         
         // Sorts by number of tasks, able to sort by count.
         //categories = realm.objects(Category).sorted("taskCount", ascending: false)

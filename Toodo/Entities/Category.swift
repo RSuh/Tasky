@@ -15,6 +15,7 @@ class Category: Object {
     dynamic var categoryTitle = ""
     dynamic var badge = 0
     dynamic var taskCount = 0
+    dynamic var complete = false
     dynamic var tasksWithinCategory = List<Task>()
     dynamic var R = 1.0
     dynamic var G = 1.0

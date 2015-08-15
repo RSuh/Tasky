@@ -83,6 +83,7 @@
                                         <connections>
                                             <outlet property="categoryCellColor" destination="cUh-bU-YPt" id="Cr7-ZI-jhq"/>
                                             <outlet property="categoryTitle" destination="tFW-jS-0pH" id="Pdr-Pm-vBG"/>
+                                            <outlet property="chevronRight" destination="olN-gR-mXF" id="RvF-Qp-22O"/>
                                             <outlet property="taskCount" destination="7el-nh-9Nq" id="7dh-H3-iLy"/>
                                         </connections>
                                     </tableViewCell>
@@ -985,8 +986,8 @@ Add one!</string>
                                         <nil key="highlightedColor"/>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="xb4-zz-yhG"/>
                                                 <exclude reference="Ii4-fd-X0i"/>
+                                                <exclude reference="xb4-zz-yhG"/>
                                             </mask>
                                         </variation>
                                     </label>

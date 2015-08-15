@@ -611,7 +611,7 @@ extension TaskViewController: UITableViewDataSource {
         // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
         // The Actions for the cells
         if (editing == false) {
-            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
+            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
 //            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             
@@ -626,9 +626,7 @@ extension TaskViewController: UITableViewDataSource {
             println("The cell is complete")
             //cell.badgeImage.image = UIImage(named: arrayConstants.completedBadge[0])
             println(arrayConstants.completedBadge[0])
-            self.realm.write() {
-//                completedCell.badge = 12
-            }
+
             
             cell.badgeImage.image = UIImage(named: "badgeComplete")
             println("THE BADGE SHOULD BE COMPLETE")

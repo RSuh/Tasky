@@ -22,7 +22,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     var firstLeftAction: SBGestureTableViewCellAction? {
         didSet {
             if (firstLeftAction?.fraction == 0) {
-                firstLeftAction?.fraction = 0.4
+                firstLeftAction?.fraction = 0.3
             }
         }
     }
@@ -191,7 +191,8 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     }
 
     func slideCell(panGestureRecognizer: UIPanGestureRecognizer) {
-        if !hasAnyLeftAction() || !hasAnyRightAction() {
+        // This makes it so that cell can only be swipable one way
+        if !hasAnyLeftAction() && !hasAnyRightAction() {
             return
         }
         var horizontalTranslation = panGestureRecognizer.translationInView(self).x
