@@ -498,6 +498,10 @@ class TaskViewController: UIViewController {
                     cell.dateLabel.textColor = UIColor.blackColor()
                     cell.chevronRight.image = UIImage(named: "chevronRight")
                     cell.chevronRight.hidden = false
+                    
+                    // Undos the strikethrough
+                    cell.taskLabel.attributedText = NSAttributedString(string: cell.taskLabel.text!, attributes: nil)
+                    
 //                    // Sets background as white
                     cell.backgroundColor = UIColor.whiteColor()
                     cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0, didTriggerBlock: self.replaceCell)
@@ -514,6 +518,10 @@ class TaskViewController: UIViewController {
                     cell.dateLabel.textColor = UIColor.whiteColor()
 //                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
                     cell.chevronRight.hidden = true
+                    
+                    // Does the strikethrough of the text
+                    let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
+                    cell.taskLabel.attributedText = NSAttributedString(string: cell.taskLabel.text!, attributes: attributes)
 //
                     cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
 //                    
@@ -625,7 +633,7 @@ extension TaskViewController: UITableViewDataSource {
             cell.badgeImage.image = UIImage(named: "badgeComplete")
             println("THE BADGE SHOULD BE COMPLETE")
             cell.taskLabel.textColor = UIColor.whiteColor()
-            cell.dateLabel.textColor = UIColor.whiteColor()
+            cell.dateLabel.textColor = UIColor.whiteColor()            
             cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
             cell.chevronRight.image = UIImage(named: "chevronRightWhite")
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)

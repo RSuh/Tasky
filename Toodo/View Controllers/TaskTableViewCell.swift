@@ -40,8 +40,13 @@ class TaskTableViewCell: SBGestureTableViewCell {
                 
                 if (task.complete == true) {
                     badgeImage.image = UIImage(named: "badgeComplete")
+                    // Does the strikethrough of the text
+                    let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
+                    taskLabel.attributedText = NSAttributedString(string: taskLabel.text!, attributes: attributes)
                 } else {
                     badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[task.badge])
+                    // UnDoes the strikethrough of the text
+                    taskLabel.attributedText = NSAttributedString(string: taskLabel.text!, attributes: nil)
                 }
             }
         }
