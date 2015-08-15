@@ -48,7 +48,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFW-jS-0pH">
-                                                    <rect key="frame" x="15" y="12" width="549" height="31.5"/>
+                                                    <rect key="frame" x="15" y="10" width="549" height="31.5"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                                                 <constraint firstAttribute="centerY" secondItem="olN-gR-mXF" secondAttribute="centerY" id="gkk-P4-fCk"/>
                                                 <constraint firstItem="tFW-jS-0pH" firstAttribute="leading" secondItem="3Pb-yS-VhR" secondAttribute="leading" constant="15" id="pAY-pk-en4"/>
                                                 <constraint firstItem="7el-nh-9Nq" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tFW-jS-0pH" secondAttribute="bottom" constant="3" id="wLH-0a-5no"/>
-                                                <constraint firstItem="tFW-jS-0pH" firstAttribute="top" secondItem="3Pb-yS-VhR" secondAttribute="top" constant="12" id="xqM-V6-Z18"/>
+                                                <constraint firstItem="tFW-jS-0pH" firstAttribute="top" secondItem="3Pb-yS-VhR" secondAttribute="top" constant="10" id="xqM-V6-Z18"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">

@@ -26,6 +26,10 @@ class CalendarViewController: UIViewController {
     
     @IBAction func datePickerAction(sender: AnyObject) {
         
+        // Enables the save
+        let rightNavigation = self.navigationItem.rightBarButtonItem
+        rightNavigation?.enabled = true
+        
         var dateFormatter = NSDateFormatter()
         
         //dateFormatter.dateFormat = "MMM dd 'at' h:mm a"
@@ -65,6 +69,9 @@ class CalendarViewController: UIViewController {
         // Initializes the navigation buttons
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
+        
+        // Disables the save button if the user doesnt input anything
+        rightNavigation?.enabled = false
         
         if (addButtonColor == "") {
             rightNavigation?.tintColor = UIColor.whiteColor()
@@ -138,8 +145,13 @@ class CalendarViewController: UIViewController {
                 targetVC.numDateLabel = self.numberDate
                 
                 // Sets the datestring as the long date
-                
+                if (dateString == "") {
+                    targetVC.dateLabel = dateTime
+                } else if (dateTime == "") {
+                    targetVC.dateLabel = dateString
+                } else {
                     targetVC.dateLabel = dateString + " at " + dateTime
+                }
                 
                 println(dateString + " " + dateTime)
                 
@@ -158,8 +170,15 @@ class CalendarViewController: UIViewController {
 //                    targetVC.date = dateString
 //                }
 //                
-
-                targetVC.date = dateString + " " + dateTime
+                
+                if (dateString == "") {
+                    targetVC.date = dateTime
+                } else if (dateTime == "") {
+                    targetVC.date = dateString
+                } else {
+                    targetVC.date = dateString + " at " + dateTime
+                }
+                
                 println(dateString + " " + dateTime)
                 
                 
@@ -190,6 +209,10 @@ extension CalendarViewController: FSCalendarDelegate {
     // What happens when the user selects the date
     func calendar(calendar: FSCalendar!, didSelectDate date: NSDate!) {
         
+        // Enables the save
+        let rightNavigation = self.navigationItem.rightBarButtonItem
+        rightNavigation?.enabled = true
+        
         // Gets rid of todays circle
         calendar.appearance.todayColor = UIColor.clearColor()
         calendar.appearance.titleTodayColor = calendar.appearance.titleDefaultColor;
@@ -200,7 +223,7 @@ extension CalendarViewController: FSCalendarDelegate {
         // if date is tomorrow, then display, due tomorrow, else display the date.
         
         // Sets the dateFormat for both the dates
-        dateFormatter.dateFormat = "EEEE, MMM d"
+        dateFormatter.dateFormat = "EEE, MMM d"
         numDateFormat.dateFormat = "dd"
         
         // This is the actual date

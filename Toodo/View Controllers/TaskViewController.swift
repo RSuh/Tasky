@@ -508,8 +508,9 @@ class TaskViewController: UIViewController {
                     cell.badgeImage.image = UIImage(named: "badgeComplete")
                     cell.taskLabel.textColor = UIColor.whiteColor()
                     cell.dateLabel.textColor = UIColor.whiteColor()
-                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
-//                    
+//                    cell.chevronRight.image = UIImage(named: "chevronRightWhite")
+                    cell.chevronRight.hidden = true
+//
                     cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
 //                    
                     cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0, didTriggerBlock: self.replaceCell)
