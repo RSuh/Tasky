@@ -18,6 +18,8 @@
 		4536C38C1B50761600A35889 /* AddNewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */; };
 		4536C38E1B5078E200A35889 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4536C38D1B5078E200A35889 /* EditTaskViewController.swift */; };
 		454B50501B7A704500AE0D64 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454B504F1B7A704500AE0D64 /* SettingsTableViewController.swift */; };
+		45607BAA1B7EC574007497BC /* avenir-light-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45607BA91B7EC574007497BC /* avenir-light-webfont.ttf */; };
+		45607BAC1B7EC5B3007497BC /* Avenir-Roman-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 45607BAB1B7EC5B3007497BC /* Avenir-Roman-webfont.ttf */; };
 		456C99F21B66B1B8002E1074 /* ChangeBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */; };
 		456C99F41B66D19F002E1074 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */; };
 		456C99F61B698494002E1074 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456C99F51B698494002E1074 /* CalendarViewController.swift */; };
@@ -64,6 +66,8 @@
 		4536C38B1B50761600A35889 /* AddNewCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewCategoryViewController.swift; sourceTree = "<group>"; };
 		4536C38D1B5078E200A35889 /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		454B504F1B7A704500AE0D64 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		45607BA91B7EC574007497BC /* avenir-light-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "avenir-light-webfont.ttf"; sourceTree = "<group>"; };
+		45607BAB1B7EC5B3007497BC /* Avenir-Roman-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Roman-webfont.ttf"; sourceTree = "<group>"; };
 		456C99F11B66B1B8002E1074 /* ChangeBadgeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeBadgeViewController.swift; sourceTree = "<group>"; };
 		456C99F31B66D19F002E1074 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		456C99F51B698494002E1074 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				45F95E9B1B7421B500C81D2F /* ionicons.ttf */,
+				45607BA91B7EC574007497BC /* avenir-light-webfont.ttf */,
+				45607BAB1B7EC5B3007497BC /* Avenir-Roman-webfont.ttf */,
 				4536C3531B505ACD00A35889 /* Toodo */,
 				4536C3691B505ACD00A35889 /* ToodoTests */,
 				4536C3521B505ACD00A35889 /* Products */,
@@ -283,6 +289,8 @@
 			files = (
 				4536C35C1B505ACD00A35889 /* Main.storyboard in Resources */,
 				4536C3611B505ACD00A35889 /* LaunchScreen.xib in Resources */,
+				45607BAA1B7EC574007497BC /* avenir-light-webfont.ttf in Resources */,
+				45607BAC1B7EC5B3007497BC /* Avenir-Roman-webfont.ttf in Resources */,
 				4536C35E1B505ACD00A35889 /* Images.xcassets in Resources */,
 				45F95E9C1B7421B500C81D2F /* ionicons.ttf in Resources */,
 			);

@@ -347,7 +347,7 @@ class TaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         println(category?.taskCount)
         
         println("ordering date is \(orderingDate)")
@@ -356,6 +356,10 @@ class TaskViewController: UIViewController {
         fadedIconImage.hidden = true
         noTaskLabel.hidden = true
         
+        
+        // Changes the edit button attributes
+        let attributes = [NSFontAttributeName:UIFont(name: "Avenir-Book", size: 18)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
+        self.editButtonItem().setTitleTextAttributes(attributes, forState: .Normal)
         // Sets the right bar button item to be a edit button item.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
@@ -363,7 +367,7 @@ class TaskViewController: UIViewController {
         let navigation = self.navigationController?.navigationBar
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
-        
+
         // Segues to add task if category tasks is 0
         //        if (category?.tasksWithinCategory.count == 0) {
         //            performSegueWithIdentifier("addTask", sender: self)
@@ -549,13 +553,20 @@ class TaskViewController: UIViewController {
     
     // Customizes the title Bar
     override func viewDidAppear(animated: Bool) {
-        // Selects the nav bar
-        let navigation = self.navigationController?.navigationBar
         
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
+        
+        var navigation = self.navigationController?.navigationBar
+        var leftNavigation = self.navigationItem.leftBarButtonItem
+        let font = UIFont(name: "Avenir-Medium", size: 20)
+        navigation?.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        println("font changed")
         
         // Sorts tasks based on their modification Date
         tasks = category?.tasksWithinCategory.sorted("orderingDate", ascending: true)

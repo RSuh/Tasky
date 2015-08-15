@@ -219,6 +219,16 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        for fontFamilyName in UIFont.familyNames() {
+            println("-- \(fontFamilyName) --")
+            
+            for fontName in UIFont.fontNamesForFamilyName(fontFamilyName as! String) {
+                println(fontName)
+            }
+            
+            println(" ")
+        }
+        
         // self.categoryTableView.reloadData()
         println("tableview reloadeD")
         
@@ -350,8 +360,10 @@ class CategoryViewController: UIViewController {
         navigation?.barTintColor = UIColor(red:0.23, green:0.26, blue:0.33, alpha:1.0)
         
         // Changes the title of the navbar
-        //let font: UIFont = UIFont(name: "fontName", size: 17)!
-        navigation?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        let font = UIFont(name: "Avenir-Medium", size: 20)
+        navigation?.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
     }
     
     override func viewDidAppear(animated: Bool) {
