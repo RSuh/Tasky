@@ -310,6 +310,8 @@ class TaskViewController: UIViewController {
             
             taskHomeTableView.isEnabled = false
             
+            
+            
             flagForAddOrDelete = false
             println("Flag is \(flagForAddOrDelete)")
             println("Editing is \(editing)")
@@ -490,7 +492,7 @@ class TaskViewController: UIViewController {
                     cell.chevronRight.image = UIImage(named: "chevronRight")
 //                    // Sets background as white
                     cell.backgroundColor = UIColor.whiteColor()
-                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0, didTriggerBlock: self.replaceCell)
                     self.realm.write() {
                         selectedCell.complete = false
                     }
@@ -506,7 +508,7 @@ class TaskViewController: UIViewController {
 //                    
                     cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
 //                    
-                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0.3, didTriggerBlock: self.replaceCell)
+                    cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0, didTriggerBlock: self.replaceCell)
 //                    
                     self.realm.write() {
                         selectedCell.complete = true
@@ -585,8 +587,9 @@ extension TaskViewController: UITableViewDataSource {
         // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
         // The Actions for the cells
         if (editing == false) {
-            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
+            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
+//            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             
             println("The old gesture")
             // A bool to see if the editing is enabled
@@ -609,7 +612,7 @@ extension TaskViewController: UITableViewDataSource {
             cell.dateLabel.textColor = UIColor.whiteColor()
             cell.backgroundColor = UIColor(red: 44.3/255, green: 197.3/255, blue: 93.9/255, alpha: 1.0)
             cell.chevronRight.image = UIImage(named: "chevronRightWhite")
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0.3, didTriggerBlock: replaceCell)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
         }
         else {
             println("cell is not complete")
@@ -619,7 +622,7 @@ extension TaskViewController: UITableViewDataSource {
             cell.taskLabel.textColor = UIColor.blackColor()
             cell.dateLabel.textColor = UIColor.blackColor()
             cell.chevronRight.image = UIImage(named: "chevronRight")
-            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0.3, didTriggerBlock: replaceCell)
+            cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
         }
         
         // Configure cell

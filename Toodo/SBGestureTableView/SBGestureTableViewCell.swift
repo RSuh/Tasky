@@ -22,7 +22,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     var firstLeftAction: SBGestureTableViewCellAction? {
         didSet {
             if (firstLeftAction?.fraction == 0) {
-                firstLeftAction?.fraction = 0.3
+                firstLeftAction?.fraction = 0.4
             }
         }
     }
@@ -36,7 +36,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     var firstRightAction: SBGestureTableViewCellAction? {
         didSet {
             if (firstRightAction?.fraction == 0) {
-                firstRightAction?.fraction = 0.3
+                firstRightAction?.fraction = 0.5
             }
         }
     }
