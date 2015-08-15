@@ -30,7 +30,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     var secondLeftAction: SBGestureTableViewCellAction? {
         didSet {
             if (secondLeftAction?.fraction == 0) {
-                secondLeftAction?.fraction = 0.7
+                secondLeftAction?.fraction = 0.65
             }
         }
     }
