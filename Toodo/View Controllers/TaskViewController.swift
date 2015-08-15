@@ -361,13 +361,16 @@ class TaskViewController: UIViewController {
         let attributes = [NSFontAttributeName:UIFont(name: "Avenir-Book", size: 18)!, NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.editButtonItem().setTitleTextAttributes(attributes, forState: .Normal)
         // Sets the right bar button item to be a edit button item.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        //self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         // Navigation color controls
         let navigation = self.navigationController?.navigationBar
         let leftNavigation = self.navigationItem.leftBarButtonItem
         let rightNavigation = self.navigationItem.rightBarButtonItem
 
+        // Hide the edit button
+        
+        
         // Segues to add task if category tasks is 0
         //        if (category?.tasksWithinCategory.count == 0) {
         //            performSegueWithIdentifier("addTask", sender: self)
@@ -494,6 +497,7 @@ class TaskViewController: UIViewController {
                     cell.taskLabel.textColor = UIColor.blackColor()
                     cell.dateLabel.textColor = UIColor.blackColor()
                     cell.chevronRight.image = UIImage(named: "chevronRight")
+                    cell.chevronRight.hidden = false
 //                    // Sets background as white
                     cell.backgroundColor = UIColor.whiteColor()
                     cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0, didTriggerBlock: self.replaceCell)

@@ -498,9 +498,6 @@ Add one!</string>
                                 <segue destination="3r2-Wh-pwN" kind="unwind" identifier="backToCategoryFromTask" unwindAction="backToCategoryFromTasks:" id="oHQ-AG-FWi"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="7c6-VG-LOx">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addBackgroundButton" destination="BiD-Oi-fzP" id="BVT-oW-INU"/>
