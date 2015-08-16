@@ -43,7 +43,7 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 items" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7el-nh-9Nq">
                                                     <rect key="frame" x="15" y="45" width="549" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -390,7 +390,7 @@ Add one!</string>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Whenever" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05F-ua-e6u">
                                                     <rect key="frame" x="67" y="39" width="497" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -532,7 +532,7 @@ Add one!</string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="133" id="xRH-Bz-pCb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -754,7 +754,7 @@ Add one!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zMS-sq-blL" customClass="FSCalendar">
-                                <rect key="frame" x="5" y="64" width="590" height="358"/>
+                                <rect key="frame" x="5" y="64" width="590" height="390"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="358" id="EXd-hj-pNl"/>
@@ -762,6 +762,7 @@ Add one!</string>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="EXd-hj-pNl"/>
                                         <exclude reference="LZC-Sn-iyK"/>
                                     </mask>
                                 </variation>
@@ -771,7 +772,7 @@ Add one!</string>
                                 </connections>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" image="editTitleLine" translatesAutoresizingMaskIntoConstraints="NO" id="pD4-SC-6pF">
-                                <rect key="frame" x="0.0" y="423" width="600" height="1"/>
+                                <rect key="frame" x="0.0" y="455" width="600" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="62i-R8-3yV"/>
                                 </constraints>
@@ -780,7 +781,7 @@ Add one!</string>
                                 <rect key="frame" x="0.0" y="479" width="600" height="96"/>
                                 <subviews>
                                     <datePicker clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="740" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jx2-79-CHB">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="162"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="jx2-79-CHB" secondAttribute="height" multiplier="150:23" id="3Iz-F5-edd"/>
                                             <constraint firstAttribute="width" secondItem="jx2-79-CHB" secondAttribute="height" multiplier="150:23" id="sQk-do-35U"/>
@@ -845,6 +846,7 @@ Add one!</string>
                             <constraint firstAttribute="trailing" secondItem="Fiy-bb-XWM" secondAttribute="trailing" id="htK-RZ-g53"/>
                             <constraint firstItem="tXS-Ju-qaf" firstAttribute="top" secondItem="Fiy-bb-XWM" secondAttribute="bottom" id="hxy-iL-lnU"/>
                             <constraint firstItem="tXS-Ju-qaf" firstAttribute="top" secondItem="Fiy-bb-XWM" secondAttribute="bottom" id="iAY-8r-NQ9"/>
+                            <constraint firstItem="Fiy-bb-XWM" firstAttribute="top" secondItem="zMS-sq-blL" secondAttribute="bottom" constant="25" id="rVd-hD-mPi"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -1443,7 +1445,7 @@ Add one!</string>
         <image name="twitter" width="36" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Y25-bj-DbE"/>
         <segue reference="wOY-4A-KIR"/>
-        <segue reference="qTm-Eb-v7g"/>
     </inferredMetricsTieBreakers>
 </document>

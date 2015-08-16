@@ -57,8 +57,14 @@ class CalendarViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        println(addButtonColor)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // On load, the dateLabel is nothing
         //dateLabel.text = ""

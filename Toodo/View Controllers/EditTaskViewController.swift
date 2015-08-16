@@ -189,6 +189,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
         if (segue.identifier == "tapOnBadge") {
             let targetVC = segue.destinationViewController as! ChangeBadgeViewController
             targetVC.addButtonColor = self.addButtonColor
+        } else if (segue.identifier == "goToCalendarFromEdit") {
+            let targetVC = segue.destinationViewController as! CalendarViewController
+            targetVC.addButtonColor = self.addButtonColor
         }
     }
     
