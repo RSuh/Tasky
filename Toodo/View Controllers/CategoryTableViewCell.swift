@@ -45,13 +45,13 @@ class CategoryTableViewCell: SBGestureTableViewCell {
                 if (category.complete == true) {
                     //categoryCellColor.backgroundColor = UIColor(red:0.11, green:0.78, blue:0.35, alpha:1.0)
                     //println(categoryCellColor.backgroundColor)
-                    println("category should be green")
+                    //println("category should be green")
                     chevronRight.hidden = true
                     let attributes = [NSStrikethroughStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue]
                     categoryTitle.attributedText = NSAttributedString(string: categoryTitle.text!, attributes: attributes)
                     
                 } else {
-                    println("category should be regular")
+                    //println("category should be regular")
                     // Sets the cell color image to a UIImage named the category.imageName
                     //categoryCellColor.backgroundColor = UIColor(red: CGFloat(category.R), green: CGFloat(category.G), blue: CGFloat(category.B), alpha: 1.0)
                     //println(categoryCellColor.backgroundColor)

@@ -198,6 +198,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     // Hides keyboard when you press done the view controller ends
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         taskTextField.resignFirstResponder()
+        // call segue
         return true
     }
     

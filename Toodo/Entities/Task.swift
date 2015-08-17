@@ -14,6 +14,7 @@ import UIKit
 class Task: Object {
     dynamic var taskTitle: String = ""
     dynamic var modificationDate = ""
+    // Ordering date will also serve as a notification date
     dynamic var orderingDate: NSDate = NSDate()
     //dynamic var notificationDate: NSDate = NSDate()
     dynamic var taskNote: String = ""

@@ -33,7 +33,7 @@ class CategoryViewController: UIViewController {
     var category: Category?
     
     var addButtonColor = ""
-    var taskCount = 0
+    //var taskCount = 0
     
     // A array for deleting
     var selectedRow: NSMutableArray = []
@@ -177,6 +177,8 @@ class CategoryViewController: UIViewController {
             // Set the editedCategory as selectedCategory
             let selectedIndexPath = categoryTableView.indexPathForSelectedRow()!
             let selectedCategory = categories[selectedIndexPath.row]
+            
+            println(selectedCategory.taskCount)
             
             titleVC.category = selectedCategory
             //titleVC.category?.taskCount =
@@ -458,6 +460,9 @@ extension CategoryViewController: UITableViewDataSource {
         // Initialize cell
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         let completedCategory = self.categories[indexPath.row]
+        
+        println(completedCategory.taskCount)
+        
         //        let categoryForCount = self.categories[indexPath.row]
         //
         //        println("HELLOOOO")
@@ -479,7 +484,7 @@ extension CategoryViewController: UITableViewDataSource {
         
         //cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
         //cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
-        cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
+        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
         
         
         //} else {

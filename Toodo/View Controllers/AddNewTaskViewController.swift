@@ -253,6 +253,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     //Called when 'return' key pressed. return NO to ignore.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        // Call segue here
         return true
     }
     

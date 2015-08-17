@@ -271,6 +271,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
     //Called when 'return' key pressed. return NO to ignore.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         categoryTitle.resignFirstResponder()
+        // Call the segue here
         return true
     }
     

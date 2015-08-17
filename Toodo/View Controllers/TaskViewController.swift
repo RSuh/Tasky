@@ -268,6 +268,12 @@ class TaskViewController: UIViewController {
             let targetVC = segue.destinationViewController as! CategoryViewController
             
             targetVC.category = self.category
+            
+            // Successfully and accurately gets the task count for the category for ordering
+            self.realm.write() {
+                targetVC.category!.taskCount = self.category!.tasksWithinCategory.count
+            }
+            println("THIS IS NUMBER OF TASKS TRANSFERRED \(targetVC.category?.taskCount)")
             //println("HIHIHIHIHIHI \(category)")
             // Updates the task count when going back to the categoryVC after deleting or completing a task
             //targetVC.taskCount = self.category!.tasksWithinCategory.count
@@ -568,14 +574,15 @@ class TaskViewController: UIViewController {
                         // Subtracts 1 count from the taskCount when removecellBlock is called
                         self.category!.tasksWithinCategory.count - 1
                         
-                        println(self.category!.tasksWithinCategory.count)
+                        print("THIS IS THE TASK COUNT NOW \(self.category!.tasksWithinCategory.count)")
+                        //                        println(self.category!.tasksWithinCategory.count)
                     }
                     // The animation to delete (manditory/ needed)
                     tableView.removeCell(cell, duration: 0.3, completion: nil)
                     
                     // Closes the alertView
                     deleteTaskAlertView.close()
-  
+                    
                 }
                 
                 // The cancel button
@@ -598,12 +605,14 @@ class TaskViewController: UIViewController {
                     // Subtracts 1 count from the taskCount when removecellBlock is called
                     self.category!.tasksWithinCategory.count - 1
                     
-                    println(self.category!.tasksWithinCategory.count)
+                    print("THIS IS THE TASK COUNT NOW \(self.category!.tasksWithinCategory.count)")
+                    
+                    //                    println(self.category!.tasksWithinCategory.count)
                 }
                 // The animation to delete (manditory/ needed)
                 tableView.removeCell(cell, duration: 0.3, completion: nil)
                 
-
+                
                 
             }
             
@@ -657,7 +666,7 @@ extension TaskViewController: UITableViewDataSource {
         // If editing is on, dont let the user swipe to delete or complete tasks. Vice Versa.
         // The Actions for the cells
         if (editing == false) {
-            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
+            cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
             //            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             
