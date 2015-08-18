@@ -25,6 +25,9 @@ class CalendarViewController: UIViewController {
     var dateTime = ""
     var datePickerDate: NSDate?
     var calendarDate: NSDate?
+    var calendarComponents: NSDateComponents?
+    var timeComponents: NSDateComponents?
+    
     
     @IBAction func datePickerAction(sender: AnyObject) {
         
@@ -39,8 +42,9 @@ class CalendarViewController: UIViewController {
         
         dateFormatter.timeStyle = .ShortStyle
         
-        //var dateFromDatePicker = dateFormatter.stringFromDate(datePicker.date)
-        //self.dateTime = dateFromDatePicker
+        // This shows the label on the previous VC
+        var dateFromDatePicker = dateFormatter.stringFromDate(datePicker.date)
+        self.dateTime = dateFromDatePicker
         
         // Datepicker.date is a NSDATE
 //        println(datePicker.timeZone)
@@ -55,15 +59,18 @@ class CalendarViewController: UIViewController {
         
         // This gets the components from the NSDate
         let timeComponents = NSCalendar.currentCalendar().components(requiredTimeComponents, fromDate: datePicker.date)
-//        
+        self.timeComponents = timeComponents
         //println("This is time \(timeComponents)")
 
         let strippedTime = NSCalendar.currentCalendar().dateFromComponents(timeComponents)
         
+        // This is the string of the correct time for notification
+        //self.dateTime = dateFormatter.stringFromDate(strippedTime!)
+        
         // Sets the datePickerdate to be the strippedtime date.
         self.datePickerDate = strippedTime
         
-        println("This is strippedTime \(strippedTime)")
+        //println("This is dateTime \(dateTime)")
 //        orderingDate = dateFormatter.dateFromString(dateString + dateTime)
 //        println(self.dateTime)
         //        println("ORDERING DATE \(orderingDate)")
@@ -168,7 +175,7 @@ class CalendarViewController: UIViewController {
                 
                 // Sets the datestring as the long date
                 if (dateString == "") {
-                    targetVC.dateLabel = dateTime
+                    targetVC.dateLabel = "Today at " + dateTime
                 } else if (dateTime == "") {
                     targetVC.dateLabel = dateString
                 } else {
@@ -176,6 +183,16 @@ class CalendarViewController: UIViewController {
                 }
                 
                 println(dateString + " " + dateTime)
+                
+                var fullNotificationDate: NSDateComponents = NSDateComponents()
+                println(fullNotificationDate)
+                fullNotificationDate.day = calendarComponents!.day
+                fullNotificationDate.month = calendarComponents!.month
+                fullNotificationDate.year = calendarComponents!.year
+                fullNotificationDate.hour = timeComponents!.hour
+                fullNotificationDate.minute = timeComponents!.minute
+                
+                println(fullNotificationDate)
                 
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController
@@ -276,11 +293,15 @@ extension CalendarViewController: FSCalendarDelegate {
         // gives componenets from requiredDate componenets from the NSDate
         // Ordering date is the NSDate variable that we can move around
         let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: date)
-        
+        self.calendarComponents = components
         //println(components)
         
         // Set the strippedCalendarDate to be the NSDate
         let strippedCalendarDate = NSCalendar.currentCalendar().dateFromComponents(components)
-        println("stripped calendarDate \(strippedCalendarDate)")
+        
+        self.calendarDate = strippedCalendarDate
+        
+        //self.calendarDate = strippedCalendarDate
+        println("strippedCalendarDate \(strippedCalendarDate)")
     }
 }
