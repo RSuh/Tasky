@@ -88,12 +88,12 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
             cell.colorPickerCell.image = UIImage(named: arrayConstants.colorImagesSelected[0])
             println(colorIndex)
             
-//            if (colorIndex == 0) {
-//                themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
-//                R = 1.00
-//                G = 1.00
-//                B = 1.00
-//                println("\(R)\(G)\(B)")
+            //            if (colorIndex == 0) {
+            //                themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+            //                R = 1.00
+            //                G = 1.00
+            //                B = 1.00
+            //                println("\(R)\(G)\(B)")
             
             if (colorIndex == 0) {
                 themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
@@ -141,14 +141,14 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
             (collectionView.cellForItemAtIndexPath(ip) as! ColorCollectionViewCell).colorPickerCell.image = UIImage(named: arrayConstants.colorImagesUnselected[0])
         }
         
-//        if (colorIndex == 0) {
-//            themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
-//            R = 1.00
-//            G = 1.00
-//            B = 1.00
-//            println("\(R)\(G)\(B)")
+        //        if (colorIndex == 0) {
+        //            themeColor = UIColor(red:1.00, green:1.00, blue:1.00, alpha:1.00)
+        //            R = 1.00
+        //            G = 1.00
+        //            B = 1.00
+        //            println("\(R)\(G)\(B)")
         
-         if (colorIndex == 0) {
+        if (colorIndex == 0) {
             themeColor = UIColor(red:0.81, green:0.59, blue:0.93, alpha:1.0)
             R = 0.81
             G = 0.59
@@ -270,10 +270,40 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
     
     //Called when 'return' key pressed. return NO to ignore.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
         categoryTitle.resignFirstResponder()
-        // Call the segue here
+        
+        if (categoryTitle.text.isEmpty) {
+            
+            // Show a popup alert!
+            let emptyTextFieldAlertView = SCLAlertView()
+            
+            // The ok button
+            emptyTextFieldAlertView.addButton("Ok") {
+                
+                // Closes the alertView
+                emptyTextFieldAlertView.close()
+                
+                self.categoryTitle.becomeFirstResponder()
+            }
+            
+            // This is what the type of popup the alert will show
+            emptyTextFieldAlertView.showError("No Text", subTitle: "Please Enter Text In The Field")
+        } else {
+            
+            performSegueWithIdentifier("saveToCategoryFromAdd", sender: self)
+            
+            // Creates a new category
+            let realm = Realm()
+            addNewCategory = Category()
+            //println(addNewCategory!.tasksWithinCategory)
+            //addNewCategory?.tasksWithinCategory =
+            println("category object is created")
+            saveCategory()
+        }
         return true
     }
+    
     
     // Hides keyboard whenever you tap outside the keyboard
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {

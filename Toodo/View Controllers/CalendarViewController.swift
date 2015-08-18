@@ -23,6 +23,8 @@ class CalendarViewController: UIViewController {
     var numberDate = ""
     var dateString = ""
     var dateTime = ""
+    var datePickerDate: NSDate?
+    var calendarDate: NSDate?
     
     @IBAction func datePickerAction(sender: AnyObject) {
         
@@ -37,19 +39,33 @@ class CalendarViewController: UIViewController {
         
         dateFormatter.timeStyle = .ShortStyle
         
-        var dateFromDatePicker = dateFormatter.stringFromDate(datePicker.date)
-        self.dateTime = dateFromDatePicker
+        //var dateFromDatePicker = dateFormatter.stringFromDate(datePicker.date)
+        //self.dateTime = dateFromDatePicker
+        
+        // Datepicker.date is a NSDATE
+//        println(datePicker.timeZone)
+        
+        
+        
         //        /self.dateTime = dateFormatter.
         //println("This is the time from datepicker \(dateFromDatePicker)")
         
+        // This gets the components of the NSDate
         let requiredTimeComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
         
+        // This gets the components from the NSDate
         let timeComponents = NSCalendar.currentCalendar().components(requiredTimeComponents, fromDate: datePicker.date)
+//        
+        //println("This is time \(timeComponents)")
+
+        let strippedTime = NSCalendar.currentCalendar().dateFromComponents(timeComponents)
         
-        //        println("This is time \(timeComponents)")
+        // Sets the datePickerdate to be the strippedtime date.
+        self.datePickerDate = strippedTime
         
-        orderingDate = dateFormatter.dateFromString(dateString + dateTime)
-        println(self.dateTime)
+        println("This is strippedTime \(strippedTime)")
+//        orderingDate = dateFormatter.dateFromString(dateString + dateTime)
+//        println(self.dateTime)
         //        println("ORDERING DATE \(orderingDate)")
         
         
@@ -251,22 +267,20 @@ extension CalendarViewController: FSCalendarDelegate {
         // Set the notification date to be the NSDate that we selected
         //        println(date)
         
-        //        self.orderingDate = date
+        //self.orderingDate = date
         //        println(self.orderingDate)
         
         // Stripping the date from the NSDate, this gets the first portion of the NSDate.
-        //let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
-        
+        let requiredDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
         
         // gives componenets from requiredDate componenets from the NSDate
-        //let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: orderingDate!)
-        
-        
+        // Ordering date is the NSDate variable that we can move around
+        let components = NSCalendar.currentCalendar().components(requiredDateComponents, fromDate: date)
         
         //println(components)
         
-        // Giving me a day month
-        //let strippedDate = NSCalendar.currentCalendar().dateFromComponents(components)
-        //println("strippd date \(strippedDate)")
+        // Set the strippedCalendarDate to be the NSDate
+        let strippedCalendarDate = NSCalendar.currentCalendar().dateFromComponents(components)
+        println("stripped calendarDate \(strippedCalendarDate)")
     }
 }
