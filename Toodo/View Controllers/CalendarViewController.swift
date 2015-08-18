@@ -186,13 +186,16 @@ class CalendarViewController: UIViewController {
                 
                 var fullNotificationDate: NSDateComponents = NSDateComponents()
                 println(fullNotificationDate)
+                fullNotificationDate.timeZone = NSTimeZone.localTimeZone()
                 fullNotificationDate.day = calendarComponents!.day
                 fullNotificationDate.month = calendarComponents!.month
                 fullNotificationDate.year = calendarComponents!.year
                 fullNotificationDate.hour = timeComponents!.hour
                 fullNotificationDate.minute = timeComponents!.minute
                 
-                println(fullNotificationDate)
+                self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(fullNotificationDate)
+                println("ORDERING DATE \(self.orderingDate)")
+//                println(fullNotificationDate)
                 
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController
