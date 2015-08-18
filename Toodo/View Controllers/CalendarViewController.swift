@@ -186,16 +186,32 @@ class CalendarViewController: UIViewController {
                 
                 var fullNotificationDate: NSDateComponents = NSDateComponents()
                 println(fullNotificationDate)
-                fullNotificationDate.timeZone = NSTimeZone.localTimeZone()
+                fullNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
                 fullNotificationDate.day = calendarComponents!.day
                 fullNotificationDate.month = calendarComponents!.month
                 fullNotificationDate.year = calendarComponents!.year
                 fullNotificationDate.hour = timeComponents!.hour
                 fullNotificationDate.minute = timeComponents!.minute
                 
+                // This is the date that the push notification should go off
                 self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(fullNotificationDate)
+                
                 println("ORDERING DATE \(self.orderingDate)")
 //                println(fullNotificationDate)
+                
+                // This shows the notification if app is in background or lock screen is present
+                // Schedule the notification
+                var localNotification: UILocalNotification = UILocalNotification()
+                localNotification.fireDate = self.orderingDate
+                localNotification.alertBody = "HIHIHIH"
+                localNotification.alertAction = "Show me the item"
+                localNotification.timeZone = NSTimeZone.localTimeZone()
+                println("TIME ZONE \(localNotification.timeZone)")
+                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+                //self.dismissViewControllerAnimated(true, completion: nil)
+                println("NOTIFICATION SET")
                 
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController
