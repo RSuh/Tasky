@@ -231,7 +231,7 @@ class CategoryViewController: UIViewController {
             println("-- \(fontFamilyName) --")
             
             for fontName in UIFont.fontNamesForFamilyName(fontFamilyName as! String) {
-                println(fontName)
+                //println(fontName)
             }
             
             println(" ")

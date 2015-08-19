@@ -273,7 +273,7 @@ class TaskViewController: UIViewController {
             self.realm.write() {
                 targetVC.category!.taskCount = self.category!.tasksWithinCategory.count
             }
-            println("THIS IS NUMBER OF TASKS TRANSFERRED \(targetVC.category?.taskCount)")
+            //println("THIS IS NUMBER OF TASKS TRANSFERRED \(targetVC.category?.taskCount)")
             //println("HIHIHIHIHIHI \(category)")
             // Updates the task count when going back to the categoryVC after deleting or completing a task
             //targetVC.taskCount = self.category!.tasksWithinCategory.count
@@ -354,7 +354,7 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        println(category?.taskCount)
+        //println(category?.taskCount)
         
         println("ordering date is \(orderingDate)")
         
@@ -382,7 +382,7 @@ class TaskViewController: UIViewController {
         //            performSegueWithIdentifier("addTask", sender: self)
         //        }
         
-        println("The color is \(addButtonColor)")
+        //println("The color is \(addButtonColor)")
         
         if (addButtonColor == "addPurple") {
             // Sets the button color!
@@ -541,7 +541,7 @@ class TaskViewController: UIViewController {
                 //
             }
             
-            println(selectedCell)
+            //println(selectedCell)
         }
         
         
@@ -657,7 +657,7 @@ extension TaskViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
         let completedCell = tasks[indexPath.row]
-        println(completedCell.modificationDate)
+        //println(completedCell.modificationDate)
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
         //        self.realm.write() {
@@ -674,13 +674,13 @@ extension TaskViewController: UITableViewDataSource {
             // A bool to see if the editing is enabled
         }
         
-        println(completedCell)
+        //println(completedCell)
         
         // If the task has been completed
         if (completedCell.complete == true) {
-            println("The cell is complete")
+            //println("The cell is complete")
             //cell.badgeImage.image = UIImage(named: arrayConstants.completedBadge[0])
-            println(arrayConstants.completedBadge[0])
+            //println(arrayConstants.completedBadge[0])
             
             
             cell.badgeImage.image = UIImage(named: "badgeComplete")

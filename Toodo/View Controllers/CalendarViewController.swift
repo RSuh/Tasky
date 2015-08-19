@@ -206,12 +206,12 @@ class CalendarViewController: UIViewController {
                 localNotification.alertBody = "HIHIHIH"
                 localNotification.alertAction = "Show me the item"
                 localNotification.timeZone = NSTimeZone.localTimeZone()
-                println("TIME ZONE \(localNotification.timeZone)")
+                localNotification.soundName = UILocalNotificationDefaultSoundName
+                localNotification.alertLaunchImage = "badgeHome"
+
                 localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
                 UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
                 NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
-                //self.dismissViewControllerAnimated(true, completion: nil)
-                println("NOTIFICATION SET")
                 
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController

@@ -23,10 +23,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // For notifications
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil))
         // types are UIUserNotificationType members
-
         
-        // Override point for customization after application launch.
+        application.applicationIconBadgeNumber = 0
+        
+        println("DID FINISH LAUNCHING")
+        
         return true
+    }
+    
+    // What happens when the user clicks on the notification
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        
+        println("NOTIFICATION PRESSED")
+        
+        // Resets the badge number to 0 when the user enters the app
+        application.applicationIconBadgeNumber = 0
+        
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -45,10 +58,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        // Sets the badge number to 0 when the user goes into the app.
+        application.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        println("QUITTING")
     }
 
 
