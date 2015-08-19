@@ -36,6 +36,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var orderingDate: NSDate?
     var category: Category?
     
+    
+    
     var selectedRow: Int = 0
     
     var dateLabel: String = ""
@@ -162,9 +164,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 println("Save from add calendar")
                 keyboardPopUp = false
                 // Makes the Set Date text to be the date
-//                if (self.dateLabel == "") {
-//                    date.text = "Set Date"
-//                } else {
+                //                if (self.dateLabel == "") {
+                //                    date.text = "Set Date"
+                //                } else {
                 date.text = self.dateLabel
                 println(self.dateLabel)
                 
@@ -204,7 +206,17 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 newTask = Task()
                 saveNewTask()
                 
-                
+                var localNotification: UILocalNotification = UILocalNotification()
+                localNotification.fireDate = self.orderingDate
+                localNotification.alertBody = "\(newTask!.taskTitle)"
+                localNotification.alertAction = "Show me the item"
+                localNotification.timeZone = NSTimeZone.localTimeZone()
+                localNotification.soundName = UILocalNotificationDefaultSoundName
+                localNotification.alertLaunchImage = "badgeHome"
+                println("local notification \(localNotification)")
+                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
                 
                 
                 return true

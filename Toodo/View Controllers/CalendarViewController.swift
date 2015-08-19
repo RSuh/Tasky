@@ -196,22 +196,26 @@ class CalendarViewController: UIViewController {
                 // This is the date that the push notification should go off
                 self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(fullNotificationDate)
                 
-                println("ORDERING DATE \(self.orderingDate)")
+                // Sets the orderingDate in AddnewtaskVC to be self.orderingdate
+                targetVC.orderingDate = self.orderingDate
+                
 //                println(fullNotificationDate)
                 
                 // This shows the notification if app is in background or lock screen is present
                 // Schedule the notification
-                var localNotification: UILocalNotification = UILocalNotification()
-                localNotification.fireDate = self.orderingDate
-                localNotification.alertBody = "HIHIHIH"
-                localNotification.alertAction = "Show me the item"
-                localNotification.timeZone = NSTimeZone.localTimeZone()
-                localNotification.soundName = UILocalNotificationDefaultSoundName
-                localNotification.alertLaunchImage = "badgeHome"
-
-                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+//                var localNotification: UILocalNotification = UILocalNotification()
+//                localNotification.fireDate = self.orderingDate
+//                localNotification.alertBody = "HI"
+//                localNotification.alertAction = "Show me the item"
+//                localNotification.timeZone = NSTimeZone.localTimeZone()
+//                localNotification.soundName = UILocalNotificationDefaultSoundName
+//                localNotification.alertLaunchImage = "badgeHome"
+//                println("local notification \(localNotification)")
+//                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+////                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+////                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+//                
+//                targetVC.localNotification = localNotification
                 
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController

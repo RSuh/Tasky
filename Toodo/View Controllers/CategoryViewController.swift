@@ -228,13 +228,13 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
         
         for fontFamilyName in UIFont.familyNames() {
-            println("-- \(fontFamilyName) --")
+            //println("-- \(fontFamilyName) --")
             
             for fontName in UIFont.fontNamesForFamilyName(fontFamilyName as! String) {
                 //println(fontName)
             }
             
-            println(" ")
+            //println(" ")
         }
         
         // self.categoryTableView.reloadData()
