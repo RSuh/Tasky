@@ -138,6 +138,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
             case "saveFromCalendar":
                 println("save form calendar")
                 //                dateLabel.text = self.editedTask!.modificationDate
+                
+                // Sets the string to be the new date
                 realm.write() {
                     self.editedTask?.modificationDate = self.date
                 }
@@ -178,6 +180,18 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 
             } else {
                 saveTask()
+                
+                var localNotification: UILocalNotification = UILocalNotification()
+                localNotification.fireDate = self.orderingDate
+                localNotification.alertBody = "\(editedTask!.taskTitle)"
+                localNotification.alertAction = "Show me the item"
+                localNotification.timeZone = NSTimeZone.localTimeZone()
+                localNotification.soundName = UILocalNotificationDefaultSoundName
+                localNotification.alertLaunchImage = "badgeHome"
+                println("local notification \(localNotification)")
+                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
                 
                 return true
             }
