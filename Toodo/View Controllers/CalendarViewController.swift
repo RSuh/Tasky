@@ -243,6 +243,23 @@ class CalendarViewController: UIViewController {
                 
                 println(dateString + " " + dateTime)
                 
+                // Sets the date for the notification to be run when a user saves from edit.
+                var editNotificationDate: NSDateComponents = NSDateComponents()
+//                println(editNotificationDate)
+                editNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
+                editNotificationDate.day = calendarComponents!.day
+                editNotificationDate.month = calendarComponents!.month
+                editNotificationDate.year = calendarComponents!.year
+                editNotificationDate.hour = timeComponents!.hour
+                editNotificationDate.minute = timeComponents!.minute
+                
+                // This is the date that the push notification should go off
+                self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(editNotificationDate)
+                
+                // Sets the orderingDate in AddnewtaskVC to be self.orderingdate
+                targetVC.orderingDate = self.orderingDate
+
+                
                 
             }
             

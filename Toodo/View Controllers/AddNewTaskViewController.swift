@@ -218,7 +218,6 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
                 NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
                 
-                
                 return true
             }
         }

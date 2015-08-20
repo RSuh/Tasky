@@ -26,7 +26,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     let realm = Realm()
     
     var badge = 0
-    var showSelectedDate: NSDate?
+    var orderingDate: NSDate?
     var addButtonColor: String = ""
     var editButtonImage: String = ""
     var date = ""
