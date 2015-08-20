@@ -199,8 +199,6 @@ class CalendarViewController: UIViewController {
                 fullNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
                 
                 // If no time is set, set it to be 9:00 am on the day of
-//                println(timeComponents?.hour)
-//                println(timeComponents?.minute)
                 if ((timeComponents?.hour == nil) && (timeComponents?.minute == nil)) {
                     
                     // Sets the hour and minute to be 9:00 AM
@@ -208,7 +206,6 @@ class CalendarViewController: UIViewController {
                     fullNotificationDate.minute = 0
                     println(fullNotificationDate.hour)
                     println(fullNotificationDate.minute)
-                    
                     
                 } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
                     fullNotificationDate.day = calendarComponents!.day
@@ -256,6 +253,10 @@ class CalendarViewController: UIViewController {
                 // Set the date of EditTaskViewController to be the dateString the user selected
                 //targetVC.date = self.dateString
                 
+                // Gets the day components for todays Date
+                var todayDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
+                let todayComponents = NSCalendar.currentCalendar().components(todayDateComponents, fromDate: todayDate)
+                
                 targetVC.numDateLabel = self.numberDate
                 //
                 //                if (dateString == "" && dateTime != "") {
@@ -280,12 +281,26 @@ class CalendarViewController: UIViewController {
                 var editNotificationDate: NSDateComponents = NSDateComponents()
                 //                println(editNotificationDate)
                 editNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
-                editNotificationDate.day = calendarComponents!.day
-                editNotificationDate.month = calendarComponents!.month
-                editNotificationDate.year = calendarComponents!.year
+                
+                // If no time is set, set it to be 9:00 am on the day of
+                if ((timeComponents?.hour == nil) && (timeComponents?.minute == nil)) {
+                    
+                    // Sets the hour and minute to be 9:00 AM
+                    editNotificationDate.hour = 9
+                    editNotificationDate.minute = 0
+                 
+                } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
+                    editNotificationDate.day = calendarComponents!.day
+                    editNotificationDate.month = calendarComponents!.month
+                    editNotificationDate.year = calendarComponents!.year
+                } else {
+                
+                editNotificationDate.day = todayComponents.day
+                editNotificationDate.month = todayComponents.month
+                editNotificationDate.year = todayComponents.year
                 editNotificationDate.hour = timeComponents!.hour
                 editNotificationDate.minute = timeComponents!.minute
-                
+                }
                 // This is the date that the push notification should go off
                 self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(editNotificationDate)
                 
