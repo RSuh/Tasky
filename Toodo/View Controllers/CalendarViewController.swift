@@ -172,6 +172,9 @@ class CalendarViewController: UIViewController {
                 // Gets the day components for todays Date
                 var todayDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
                 let todayComponents = NSCalendar.currentCalendar().components(todayDateComponents, fromDate: todayDate)
+                
+//                var todayTimeComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
+//                let todayTimeComponents = NSCalendar.currentCalendar().component(todayTimeComponents, fromDate: todayDate)
 
                 // Sets the dateLabel of AddNewTaskViewController to be the date the user selected
                 //targetVC.dateLabel = self.dateString
@@ -184,7 +187,7 @@ class CalendarViewController: UIViewController {
                 if (dateString == "") {
                     targetVC.dateLabel = "Today at " + dateTime
                 } else if (dateTime == "") {
-                    targetVC.dateLabel = dateString
+                    targetVC.dateLabel = dateString + " at 9:00 a.m"
                 } else {
                     targetVC.dateLabel = dateString + " at " + dateTime
                 }
@@ -194,7 +197,20 @@ class CalendarViewController: UIViewController {
                 var fullNotificationDate: NSDateComponents = NSDateComponents()
                 println(fullNotificationDate)
                 fullNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
-                if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
+                
+                // If no time is set, set it to be 9:00 am on the day of
+//                println(timeComponents?.hour)
+//                println(timeComponents?.minute)
+                if ((timeComponents?.hour == nil) && (timeComponents?.minute == nil)) {
+                    
+                    // Sets the hour and minute to be 9:00 AM
+                    fullNotificationDate.hour = 9
+                    fullNotificationDate.minute = 0
+                    println(fullNotificationDate.hour)
+                    println(fullNotificationDate.minute)
+                    
+                    
+                } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
                     fullNotificationDate.day = calendarComponents!.day
                     fullNotificationDate.month = calendarComponents!.month
                     fullNotificationDate.year = calendarComponents!.year
@@ -203,9 +219,10 @@ class CalendarViewController: UIViewController {
                     fullNotificationDate.day = todayComponents.day
                     fullNotificationDate.month = todayComponents.month
                     fullNotificationDate.year = todayComponents.year
+                    // Time is still set the same
                     fullNotificationDate.hour = timeComponents!.hour
                     fullNotificationDate.minute = timeComponents!.minute
-                    println(todayComponents)
+                    println(timeComponents)
                 }
                 
                 
