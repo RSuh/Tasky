@@ -28,6 +28,9 @@ class CalendarViewController: UIViewController {
     var calendarComponents: NSDateComponents?
     var timeComponents: NSDateComponents?
     
+    // Gets todays date
+    var todayDate = NSDate()
+    var todayComponents: NSDateComponents?
     
     @IBAction func datePickerAction(sender: AnyObject) {
         
@@ -47,7 +50,7 @@ class CalendarViewController: UIViewController {
         self.dateTime = dateFromDatePicker
         
         // Datepicker.date is a NSDATE
-//        println(datePicker.timeZone)
+        //        println(datePicker.timeZone)
         
         
         
@@ -61,7 +64,7 @@ class CalendarViewController: UIViewController {
         let timeComponents = NSCalendar.currentCalendar().components(requiredTimeComponents, fromDate: datePicker.date)
         self.timeComponents = timeComponents
         //println("This is time \(timeComponents)")
-
+        
         let strippedTime = NSCalendar.currentCalendar().dateFromComponents(timeComponents)
         
         // This is the string of the correct time for notification
@@ -71,8 +74,8 @@ class CalendarViewController: UIViewController {
         self.datePickerDate = strippedTime
         
         //println("This is dateTime \(dateTime)")
-//        orderingDate = dateFormatter.dateFromString(dateString + dateTime)
-//        println(self.dateTime)
+        //        orderingDate = dateFormatter.dateFromString(dateString + dateTime)
+        //        println(self.dateTime)
         //        println("ORDERING DATE \(orderingDate)")
         
         
@@ -166,6 +169,10 @@ class CalendarViewController: UIViewController {
             if segue.destinationViewController is AddNewTaskViewController {
                 let targetVC = segue.destinationViewController as! AddNewTaskViewController
                 
+                // Gets the day components for todays Date
+                var todayDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
+                let todayComponents = NSCalendar.currentCalendar().components(todayDateComponents, fromDate: todayDate)
+
                 // Sets the dateLabel of AddNewTaskViewController to be the date the user selected
                 //targetVC.dateLabel = self.dateString
                 
@@ -187,11 +194,20 @@ class CalendarViewController: UIViewController {
                 var fullNotificationDate: NSDateComponents = NSDateComponents()
                 println(fullNotificationDate)
                 fullNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
-                fullNotificationDate.day = calendarComponents!.day
-                fullNotificationDate.month = calendarComponents!.month
-                fullNotificationDate.year = calendarComponents!.year
-                fullNotificationDate.hour = timeComponents!.hour
-                fullNotificationDate.minute = timeComponents!.minute
+                if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
+                    fullNotificationDate.day = calendarComponents!.day
+                    fullNotificationDate.month = calendarComponents!.month
+                    fullNotificationDate.year = calendarComponents!.year
+                } else {
+                    // Since we are adding a new date, set the day, month, year to be todays date if no date if specified
+                    fullNotificationDate.day = todayComponents.day
+                    fullNotificationDate.month = todayComponents.month
+                    fullNotificationDate.year = todayComponents.year
+                    fullNotificationDate.hour = timeComponents!.hour
+                    fullNotificationDate.minute = timeComponents!.minute
+                    println(todayComponents)
+                }
+                
                 
                 // This is the date that the push notification should go off
                 self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(fullNotificationDate)
@@ -199,23 +215,23 @@ class CalendarViewController: UIViewController {
                 // Sets the orderingDate in AddnewtaskVC to be self.orderingdate
                 targetVC.orderingDate = self.orderingDate
                 
-//                println(fullNotificationDate)
+                //                println(fullNotificationDate)
                 
                 // This shows the notification if app is in background or lock screen is present
                 // Schedule the notification
-//                var localNotification: UILocalNotification = UILocalNotification()
-//                localNotification.fireDate = self.orderingDate
-//                localNotification.alertBody = "HI"
-//                localNotification.alertAction = "Show me the item"
-//                localNotification.timeZone = NSTimeZone.localTimeZone()
-//                localNotification.soundName = UILocalNotificationDefaultSoundName
-//                localNotification.alertLaunchImage = "badgeHome"
-//                println("local notification \(localNotification)")
-//                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-////                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-////                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
-//                
-//                targetVC.localNotification = localNotification
+                //                var localNotification: UILocalNotification = UILocalNotification()
+                //                localNotification.fireDate = self.orderingDate
+                //                localNotification.alertBody = "HI"
+                //                localNotification.alertAction = "Show me the item"
+                //                localNotification.timeZone = NSTimeZone.localTimeZone()
+                //                localNotification.soundName = UILocalNotificationDefaultSoundName
+                //                localNotification.alertLaunchImage = "badgeHome"
+                //                println("local notification \(localNotification)")
+                //                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+                ////                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+                ////                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+                //
+                //                targetVC.localNotification = localNotification
                 
             } else if segue.destinationViewController is EditTaskViewController {
                 let targetVC = segue.destinationViewController as! EditTaskViewController
@@ -224,14 +240,14 @@ class CalendarViewController: UIViewController {
                 //targetVC.date = self.dateString
                 
                 targetVC.numDateLabel = self.numberDate
-//                
-//                if (dateString == "" && dateTime != "") {
-//                    targetVC.date = dateString + " at " + dateTime
-//                }
-//                if (dateTime == "") {
-//                    targetVC.date = dateString
-//                }
-//                
+                //
+                //                if (dateString == "" && dateTime != "") {
+                //                    targetVC.date = dateString + " at " + dateTime
+                //                }
+                //                if (dateTime == "") {
+                //                    targetVC.date = dateString
+                //                }
+                //
                 
                 if (dateString == "") {
                     targetVC.date = dateTime
@@ -245,7 +261,7 @@ class CalendarViewController: UIViewController {
                 
                 // Sets the date for the notification to be run when a user saves from edit.
                 var editNotificationDate: NSDateComponents = NSDateComponents()
-//                println(editNotificationDate)
+                //                println(editNotificationDate)
                 editNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
                 editNotificationDate.day = calendarComponents!.day
                 editNotificationDate.month = calendarComponents!.month
@@ -260,7 +276,7 @@ class CalendarViewController: UIViewController {
                 targetVC.orderingDate = self.orderingDate
                 
                 
-
+                
                 
                 
             }
@@ -338,6 +354,9 @@ extension CalendarViewController: FSCalendarDelegate {
         self.calendarComponents = components
         //println(components)
         
+        //        println(calendarComponents?.day)
+        //        println(calendarComponents?.month)
+        //        
         // Set the strippedCalendarDate to be the NSDate
         let strippedCalendarDate = NSCalendar.currentCalendar().dateFromComponents(components)
         
