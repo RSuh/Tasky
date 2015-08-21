@@ -213,6 +213,8 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 localNotification.timeZone = NSTimeZone.localTimeZone()
                 localNotification.soundName = UILocalNotificationDefaultSoundName
                 localNotification.alertLaunchImage = "badgeHome"
+                // [NSObject : AnyObject]?
+                localNotification.userInfo = ["objectID" : newTask!.taskTitle]
                 println("local notification \(localNotification)")
                 localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
                 UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
