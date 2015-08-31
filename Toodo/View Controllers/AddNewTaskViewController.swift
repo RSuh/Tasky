@@ -19,7 +19,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var calendarDateLabel: UILabel!
     
     // Initialize Realm
-    let realm = Realm()
+    //let realm = Realm()
     
     var newTask: Task? {
         didSet {
@@ -35,6 +35,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var addButtonColor = ""
     var orderingDate: NSDate?
     var category: Category?
+    var creationDate: NSDate?
     
     
     
@@ -49,6 +50,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     // Displays the contents of the new task
     func displayNewTask(task: Task?) {
         if let task = task, taskTitle = taskTitle {
+            
+            let realm = Realm()
+            
             realm.write() {
                 task.taskTitle = self.newTask!.taskTitle
             }
@@ -58,6 +62,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     // Displays the badge of the new task
     func displayNewBadge(task: Task?) {
         if let task = task, badgeImage = badgeImage {
+            
+            let realm = Realm()
+            
             realm.write() {
                 task.badge = self.newTask!.badge
             }
@@ -67,6 +74,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     // Displays the due date of the task
     func displayDate(task: Task?) {
         if let task = task {
+            
+            let realm = Realm()
+            
             realm.write() {
                 self.date.text = self.newTask?.modificationDate
                 println(task.modificationDate)
@@ -77,6 +87,9 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     // Saves the new task
     func saveNewTask() {
         if let newTask = newTask {
+            
+            let realm = Realm()
+            
             realm.write() {
                 if ((newTask.taskTitle != self.taskTitle.text) ||
                     (newTask.badge != self.badge) ||
@@ -88,6 +101,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         self.category!.taskCount = self.category!.tasksWithinCategory.count
                         //self.category!.tasksWithinCategory.count = self.category!.numberOfTasksWithinCategory
                         newTask.modificationDate = self.dateLabel
+                        
+                        // Sets the creation Date
+                        self.creationDate = NSDate()
+                        
+                        // Sets the tasks property creation date to be self
+                        newTask.creationDate = self.creationDate!
                         
                         // Sets the ordering date
                         if (self.orderingDate != nil) {
@@ -179,6 +198,10 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    static func scheduleNotification() {
+        
+    }
+    
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == "saveFromAdd" {
             taskTitle.resignFirstResponder()
@@ -205,7 +228,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             } else {
                 newTask = Task()
                 saveNewTask()
-                
+                println("task was saved \(newTask?.creationDate)!")
                 var localNotification: UILocalNotification = UILocalNotification()
                 localNotification.fireDate = self.orderingDate
                 localNotification.alertBody = "\(newTask!.taskTitle)"
@@ -214,11 +237,12 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 localNotification.soundName = UILocalNotificationDefaultSoundName
                 localNotification.alertLaunchImage = "badgeHome"
                 // [NSObject : AnyObject]?
-                localNotification.userInfo = ["objectID" : newTask!.taskTitle]
-                println("local notification \(localNotification)")
+                localNotification.userInfo = ["objectID" : newTask!.creationDate]
+                println(localNotification.userInfo)
+                //println("local notification \(localNotification)")
                 localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
                 UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+                //NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
                 
                 return true
             }

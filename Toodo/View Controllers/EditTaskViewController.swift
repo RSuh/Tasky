@@ -23,7 +23,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     @IBOutlet weak var calendarDateLabel: UILabel!
     
     // Initialize realm
-    let realm = Realm()
+    //let realm = Realm()
     
     var badge = 0
     var orderingDate: NSDate?
@@ -45,6 +45,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     // Displays the badge
     func displayBadge(task: Task?) {
         if let task = task, editedTask = editedTask {
+            
+            let realm = Realm()
+            
             realm.write() {
                 task.badge = self.editedTask!.badge
             }
@@ -54,6 +57,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     // Displays the task
     func displayTask(task: Task?) {
         if let task = task, taskTextField = taskTextField {
+            
+            let realm = Realm()
+            
             realm.write() {
                 self.taskTextField.text = self.editedTask!.taskTitle as String
             }
@@ -63,6 +69,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     // Displays the date
     func displayDate(task: Task?) {
         if let task = task, dateLabel = dateLabel {
+            
+            let realm = Realm()
+            
             realm.write() {
                 
                 //self.dateLabel.text = self.editedTask?.modificationDate
@@ -82,17 +91,30 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     // Saves the task
     func saveTask() {
         if let editedTask = editedTask, taskTextField = taskTextField {
-            println(editedTask.badge)
+            
+            let realm = Realm()
+            
+            println("This is edited task modification date \(editedTask.modificationDate)")
+            
+
             realm.write() {
                 if ((editedTask.taskTitle != self.taskTextField.text) ||
                     (editedTask.badge != self.badge) ||
                     (editedTask.modificationDate != self.dateLabel.text)){
-                        editedTask.modificationDate = self.dateLabel.text!
                         
-                        println("THIS IS DATELABEL \(self.dateLabel)")
+                        
+                        // If the modification date is nothing, then keep it that way
+                        if (editedTask.modificationDate != "") {
+                            editedTask.modificationDate = self.dateLabel.text!
+                        }
+                        //println("THIS IS DATELABEL \(self.dateLabel)")
                         editedTask.taskTitle = self.taskTextField.text
                         // Saves the badge as the editedTask.badge passed from TaskVC
                         editedTask.badge = self.editedTask!.badge
+                        
+//                        if (self.orderingDate != nil) {
+//                            newTask.orderingDate = self.orderingDate!
+//                        }
                 } else {
                     println("nothing has changed")
                 }
@@ -109,6 +131,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     @IBAction func backToEditFromChangeBadge(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            
+            let realm = Realm()
+            
             switch identifier {
             case "exitFromChangeBadge":
                 println("exit from change badge")
@@ -131,6 +156,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     @IBAction func backFromCalendar(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            
+            let realm = Realm()
+            
             switch identifier {
             case "exitFromCalendar":
                 println("exit from calendar")
@@ -158,6 +186,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if (identifier == "saveFromEdit") {
+            
             if (taskTextField.text.isEmpty) {
                 
                 println("EMPTY")
@@ -179,6 +208,9 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 return false
                 
             } else {
+                
+                //println("edited task modification \(editedTask?.modificationDate)")
+                
                 saveTask()
                 
                 var localNotification: UILocalNotification = UILocalNotification()

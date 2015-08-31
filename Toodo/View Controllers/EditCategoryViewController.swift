@@ -13,7 +13,7 @@ import Foundation
 class EditCategoryViewController: UIViewController, UITextFieldDelegate {
     
     // Initialize realm
-    let realm = Realm()
+    //let realm = Realm()
     
     @IBOutlet var categoryTitle: UITextField!
     
@@ -35,6 +35,9 @@ class EditCategoryViewController: UIViewController, UITextFieldDelegate {
     // A function to update the text of the editedCategory by using realm.write()
     func displayCategory(category: Category?) {
         if let editedCategory = editedCategory, categoryTitle = categoryTitle {
+            
+            let realm = Realm()
+            
             realm.write() {
                 categoryTitle.text = self.editedCategory!.categoryTitle
             }
@@ -44,6 +47,9 @@ class EditCategoryViewController: UIViewController, UITextFieldDelegate {
     // A function to update the badge of the editedCategory by using realm.write()
     func displayBadge(category: Category?) {
         if let category = category, editedCategory = editedCategory {
+            
+            let realm = Realm()
+            
             realm.write() {
                 category.badge = self.editedCategory!.badge
             }
@@ -53,6 +59,9 @@ class EditCategoryViewController: UIViewController, UITextFieldDelegate {
     // Saves the category
     func saveCategory() {
         if let editedCategory = editedCategory {
+            
+            let realm = Realm()
+            
             realm.write() {
                 if ((self.editedCategory!.categoryTitle != self.categoryTitle.text) || (self.editedCategory!.badge != self.badge)) {
                     self.editedCategory!.categoryTitle = self.categoryTitle.text

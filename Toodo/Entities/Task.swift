@@ -22,6 +22,8 @@ class Task: Object {
     dynamic var completeBadge = 0
     dynamic var category: Category?
     dynamic var complete: Bool = false
+    dynamic var creationDate: NSDate = NSDate()
+    //dynamic var email = ""
 }
 
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B46F45C75FE4028D19441BC6"
+               BlueprintIdentifier = "30C1AE5F728A513A75FB1965"
                BuildableName = "Pods_Tasky.framework"
                BlueprintName = "Pods-Tasky"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -12,8 +12,6 @@ import RealmSwift
 
 class CalendarViewController: UIViewController {
     
-    let realm = Realm()
-    
     //@IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var datePicker: UIDatePicker!

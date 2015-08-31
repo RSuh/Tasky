@@ -20,8 +20,9 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var displayNoCategories: UILabel!
     
     // Initialize Realm
-    let realm = Realm()
-    
+    // This let realm = Realm()
+    //let realm = Realm()
+    //println("REALM INITIATED")
     // Reloads the categories everytime the page loads.
     var categories: Results<Category>! {
         didSet {
@@ -70,15 +71,19 @@ class CategoryViewController: UIViewController {
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
         // Custom white color
-        deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-        editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-        completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-        backToListIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+//        deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+//        editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+//        completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+//        backToListIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
     }
     
     @IBAction func backToCategoryFromAddingList(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            
+            let realm = Realm()
+            
             switch identifier {
+            
             case "exitToCategoryFromAdd":
                 println("exit to category from add")
                 
@@ -88,7 +93,7 @@ class CategoryViewController: UIViewController {
                 let saveSourceFromAdd = segue.sourceViewController as! AddNewCategoryViewController
                 realm.write() {
                     // Adds a newList
-                    self.realm.add(saveSourceFromAdd.addNewCategory!)
+                    realm.add(saveSourceFromAdd.addNewCategory!)
                 }
                 
                 // Sets the rgb value from other VC to self.VC
@@ -127,6 +132,7 @@ class CategoryViewController: UIViewController {
     
     @IBAction func backToCategoryFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            let realm = Realm()
             switch identifier {
             case "exitToCategoryFromEdit":
                 println("exit to category from edit")
@@ -149,6 +155,7 @@ class CategoryViewController: UIViewController {
     
     @IBAction func backToCategoryFromTasks(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            let realm = Realm()
             switch identifier {
             case "backToCategoryFromTask":
                 println("Back to Category from tasks")
@@ -227,6 +234,8 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let realm = Realm()
+        
         for fontFamilyName in UIFont.familyNames() {
             //println("-- \(fontFamilyName) --")
             
@@ -260,6 +269,8 @@ class CategoryViewController: UIViewController {
         // The fullSwipeCell function
         fullSwipeCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             
+            let realm = Realm()
+            
             // Sets the indexpath
             var indexPath = tableView.indexPathForCell(cell)
             
@@ -280,8 +291,8 @@ class CategoryViewController: UIViewController {
                 popUpAlertView.addButton("Delete") {
                     println("Delete has been tapped")
                     // Deletes the category
-                    self.realm.write() {
-                        self.realm.delete(category)
+                    realm.write() {
+                        realm.delete(category)
                     }
                     
                     // Closes the alertView
@@ -307,11 +318,11 @@ class CategoryViewController: UIViewController {
                 
             } else {
                 
-                self.realm.write() {
-                    self.realm.delete(category)
+                realm.write() {
+                    realm.delete(category)
                     
                     tableView.removeCell(cell, duration: 0.3, completion: {
-                        self.categories = self.realm.objects(Category).sorted(self.categorySortDescriptors)
+                        self.categories = realm.objects(Category).sorted(self.categorySortDescriptors)
                         //                        self.categories = self.realm.objects(Category).sorted("categoryTitle", ascending: true).sorted("taskCount", ascending: false)
                     })
                     
@@ -324,6 +335,8 @@ class CategoryViewController: UIViewController {
         
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            
+            let realm = Realm()
             
             let indexPath = tableView.indexPathForCell(cell)
             
@@ -338,6 +351,7 @@ class CategoryViewController: UIViewController {
                 
                 if selectedCategory.complete == true {
                     
+                
                     
                     cell.categoryTitle.attributedText = NSAttributedString(string: cell.categoryTitle.text!, attributes: nil)
                     
@@ -348,7 +362,7 @@ class CategoryViewController: UIViewController {
                     cell.chevronRight.hidden = false
                     
                     println("turning nothing to completed")
-                    self.realm.write() {
+                    realm.write() {
                         selectedCategory.complete = false
                         //                        selectedCategory.R = self.editR
                         //                        selectedCategory.G = self.editG
@@ -373,7 +387,7 @@ class CategoryViewController: UIViewController {
                     
                     println("turning from completed to nothing")
                     
-                    self.realm.write() {
+                    realm.write() {
                         selectedCategory.complete = true
                         
                         //                        selectedCategory.R = 0.11
@@ -400,6 +414,9 @@ class CategoryViewController: UIViewController {
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             println("remove run")
+            
+            let realm = Realm()
+            
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
             
@@ -407,8 +424,8 @@ class CategoryViewController: UIViewController {
             let category = self.categories[indexPath!.row] as Category
             
             // Pass the object we just created to delete
-            self.realm.write() {
-                self.realm.delete(category)
+            realm.write() {
+                realm.delete(category)
                 
                 // The animation to delete (manditory/ needed)
                 tableView.removeCell(cell, duration: 0.3, completion: nil)
@@ -427,6 +444,8 @@ class CategoryViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         //println(self.category.taskCount)
+        
+        let realm = Realm()
         
         // Sorts the realm objects by taskCount
         categories = realm.objects(Category).sorted(categorySortDescriptors)
@@ -484,7 +503,7 @@ extension CategoryViewController: UITableViewDataSource {
         
         //cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
         //cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
-        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
+ //       cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
         
         
         //} else {

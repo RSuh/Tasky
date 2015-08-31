@@ -12,7 +12,7 @@ import RealmSwift
 class CategoryTableViewCell: SBGestureTableViewCell {
     
     // Initialize realm
-    let realm = Realm()
+//    let realm = Realm()
     
     var complete: Bool?
     
@@ -31,8 +31,11 @@ class CategoryTableViewCell: SBGestureTableViewCell {
     }
     
     var category: Category? {
+        
         didSet {
             if let category = category, categoryTitle = categoryTitle, taskCount = taskCount, categoryCellColor = categoryCellColor {
+                
+                //let realm = Realm()
                 // Sets the text of how many tasks are in a category
                 taskCount.text = "\(category.tasksWithinCategory.count) Items"
                 

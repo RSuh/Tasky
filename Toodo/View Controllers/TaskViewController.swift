@@ -26,7 +26,7 @@ class TaskViewController: UIViewController {
     var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
     
     // Initialize Realm
-    let realm = Realm()
+//    let realm = Realm()
     
     // Variable category of type Category for separating the tasks
     var category : Category?
@@ -88,6 +88,9 @@ class TaskViewController: UIViewController {
     // When a cell is pressed, then the user can save, or exit without saving.
     @IBAction func backToTaskFromEdit(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            
+            let realm = Realm()
+            
             switch identifier {
                 // If the Save button is pressed from Edit
             case "saveFromEdit":
@@ -114,6 +117,9 @@ class TaskViewController: UIViewController {
     }
     
     @IBAction func addOrDeleteButton(sender: AnyObject) {
+        
+        let realm = Realm()
+        
         if (flagForAddOrDelete == false) {
             
             // If the number of selected rows to delete is 3 or greater
@@ -124,13 +130,13 @@ class TaskViewController: UIViewController {
                 // The ok button
                 deleteThreeOrMoreTasksAlertView.addButton("Ok") {
                     println(self.selectedRows.count)
-                    self.realm.write() {
+                    realm.write() {
                         // Goes through each row and deletes all the selected ones
                         for (var index = 0; index <= self.selectedRows.count - 1; index++) {
                             // TODO: Get rows to animate and delete 1 by 1.
                             
                             // Deletes the rows which are selected
-                            self.realm.delete(self.selectedRows[index])
+                            realm.delete(self.selectedRows[index])
                         }
                         
                         // Deletes all the items from the array SelectedRows
@@ -165,12 +171,12 @@ class TaskViewController: UIViewController {
             } else {
                 
                 // If the number of tasks is less than 3, then just delete them with no warning
-                self.realm.write() {
+                realm.write() {
                     // Goes through each row and deletes all the selected ones
                     for (var index = 0; index <= self.selectedRows.count - 1; index++) {
                         // TODO: Get rows to animate and delete 1 by 1.
                         
-                        self.realm.delete(self.selectedRows[index])
+                        realm.delete(self.selectedRows[index])
                     }
                     
                     // Deletes all the items from the selectedRows array
@@ -197,6 +203,9 @@ class TaskViewController: UIViewController {
     
     @IBAction func backToTaskFromAdd(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
+            
+            let realm = Realm()
+            
             switch identifier {
                 // If the Save button is pressed from New
             case "saveFromAdd":
@@ -209,7 +218,7 @@ class TaskViewController: UIViewController {
                 
                 realm.write() {
                     // Creates a newTask
-                    self.realm.add(newSource.newTask!)
+                    realm.add(newSource.newTask!)
                 }
                 
                 
@@ -230,6 +239,9 @@ class TaskViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let realm = Realm()
+        
         if (segue.identifier == "editTask") {
             let targetVC = segue.destinationViewController as! EditTaskViewController
             
@@ -270,7 +282,7 @@ class TaskViewController: UIViewController {
             targetVC.category = self.category
             
             // Successfully and accurately gets the task count for the category for ordering
-            self.realm.write() {
+            realm.write() {
                 targetVC.category!.taskCount = self.category!.tasksWithinCategory.count
             }
             //println("THIS IS NUMBER OF TASKS TRANSFERRED \(targetVC.category?.taskCount)")
@@ -483,6 +495,8 @@ class TaskViewController: UIViewController {
         // The replace cell function
         replaceCell = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
             
+            let realm = Realm()
+            
             let indexPath = tableView.indexPathForCell(cell)
             
             let selectedCell = self.tasks[indexPath!.row]
@@ -511,7 +525,7 @@ class TaskViewController: UIViewController {
                     //                    // Sets background as white
                     cell.backgroundColor = UIColor.whiteColor()
                     cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.completeIcon.imageWithSize(size), color: self.greenColor, fraction: 0, didTriggerBlock: self.replaceCell)
-                    self.realm.write() {
+                    realm.write() {
                         selectedCell.complete = false
                     }
                     //                    println("its false now")
@@ -533,7 +547,7 @@ class TaskViewController: UIViewController {
                     //
                     cell.firstLeftAction = SBGestureTableViewCellAction(icon: self.backToListIcon.imageWithSize(size), color: self.yellowColor, fraction: 0, didTriggerBlock: self.replaceCell)
                     //
-                    self.realm.write() {
+                    realm.write() {
                         selectedCell.complete = true
                     }
                     //                    println("it's true now")
@@ -547,6 +561,8 @@ class TaskViewController: UIViewController {
         
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
+            
+            let realm = Realm()
             
             // indexPath = int, sets up indexPath
             let indexPath = tableView.indexPathForCell(cell)
@@ -568,8 +584,8 @@ class TaskViewController: UIViewController {
                     println("Ok has been tapped")
                     
                     // Pass the object we just created to delete
-                    self.realm.write() {
-                        self.realm.delete(tasks)
+                    realm.write() {
+                        realm.delete(tasks)
                         
                         // Subtracts 1 count from the taskCount when removecellBlock is called
                         self.category!.tasksWithinCategory.count - 1
@@ -599,8 +615,8 @@ class TaskViewController: UIViewController {
                 deleteTaskAlertView.showWarning("Are you sure?", subTitle: "This will delete task")
             } else {
                 // Pass the object we just created to delete
-                self.realm.write() {
-                    self.realm.delete(tasks)
+                realm.write() {
+                    realm.delete(tasks)
                     
                     // Subtracts 1 count from the taskCount when removecellBlock is called
                     self.category!.tasksWithinCategory.count - 1

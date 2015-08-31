@@ -226,7 +226,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
     
     // Passing category object to Home View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let realm = Realm()
+        //let realm = Realm()
         addNewCategory = Category()
         //println(addNewCategory!.tasksWithinCategory)
         //addNewCategory?.tasksWithinCategory =
@@ -294,7 +294,7 @@ class AddNewCategoryViewController: UIViewController, UITextFieldDelegate, UICol
             performSegueWithIdentifier("saveToCategoryFromAdd", sender: self)
             
             // Creates a new category
-            let realm = Realm()
+            //let realm = Realm()
             addNewCategory = Category()
             //println(addNewCategory!.tasksWithinCategory)
             //addNewCategory?.tasksWithinCategory =
