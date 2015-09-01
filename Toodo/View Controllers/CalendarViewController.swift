@@ -82,7 +82,7 @@ class CalendarViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        println(addButtonColor)
+        //println(addButtonColor)
     }
     
     override func viewDidLoad() {
@@ -190,10 +190,10 @@ class CalendarViewController: UIViewController {
                     targetVC.dateLabel = dateString + " at " + dateTime
                 }
                 
-                println(dateString + " " + dateTime)
+                //println(dateString + " " + dateTime)
                 
                 var fullNotificationDate: NSDateComponents = NSDateComponents()
-                println(fullNotificationDate)
+                println("full notification date \(fullNotificationDate)")
                 fullNotificationDate.timeZone = NSTimeZone.defaultTimeZone()
                 
                 // If no time is set, set it to be 9:00 am on the day of
@@ -202,8 +202,8 @@ class CalendarViewController: UIViewController {
                     // Sets the hour and minute to be 9:00 AM
                     fullNotificationDate.hour = 9
                     fullNotificationDate.minute = 0
-                    println(fullNotificationDate.hour)
-                    println(fullNotificationDate.minute)
+                    println("fullnotificationdate hour \(fullNotificationDate.hour)")
+                    println("fullnotification minute \(fullNotificationDate.minute)")
                     
                 } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
                     fullNotificationDate.day = calendarComponents!.day
@@ -217,7 +217,7 @@ class CalendarViewController: UIViewController {
                     // Time is still set the same
                     fullNotificationDate.hour = timeComponents!.hour
                     fullNotificationDate.minute = timeComponents!.minute
-                    println(timeComponents)
+                    println("time components \(timeComponents)")
                 }
                 
                 
@@ -361,7 +361,7 @@ extension CalendarViewController: FSCalendarDelegate {
         
         // Sets the dateString to be the date you selected
         self.dateString = dateString
-        println(dateString)
+        println("datestring \(dateString)")
         //        println("This is dateString \(dateString)")
         
         // Set the notification date to be the NSDate that we selected

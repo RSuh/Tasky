@@ -26,7 +26,7 @@ class TaskViewController: UIViewController {
     var navbarColor: UIColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
     
     // Initialize Realm
-//    let realm = Realm()
+    //    let realm = Realm()
     
     // Variable category of type Category for separating the tasks
     var category : Category?
@@ -129,7 +129,7 @@ class TaskViewController: UIViewController {
                 
                 // The ok button
                 deleteThreeOrMoreTasksAlertView.addButton("Ok") {
-                    println(self.selectedRows.count)
+                    //println(self.selectedRows.count)
                     realm.write() {
                         // Goes through each row and deletes all the selected ones
                         for (var index = 0; index <= self.selectedRows.count - 1; index++) {
@@ -238,6 +238,58 @@ class TaskViewController: UIViewController {
         }
     }
     
+    func removeNotification(objectID: String) {
+        
+//        println("objectID is \(objectID)")
+        
+//        var notifyCancel = UILocalNotification()
+//        var notifyArray = UIApplication.sharedApplication().scheduledLocalNotifications
+        
+//        println("array of notifications \(notifyArray)")
+        
+//        for notifyCancel in notifyArray as! [UILocalNotification] {
+//            
+//            let info: [String : String] = notifyCancel.userInfo as! [String : String]
+//            println("info[objectID] is \(info)")
+//            if info[] == objectID {
+//                
+//                UIApplication.sharedApplication().cancelLocalNotification(notifyCancel)
+//                println("REMOVED NOTIFICATION SUCCESSFULLY")
+//            } else {
+//                println("NO NOTIFICATON FOUND")
+//                //println("hi")
+//                
+//            }
+//            
+//            
+//            
+//        }
+        
+        var app: UIApplication = UIApplication.sharedApplication()
+        
+        println("scheduled notifications \(app.scheduledLocalNotifications)")
+        
+        for oneEvent in app.scheduledLocalNotifications {
+            var notification = oneEvent as! UILocalNotification
+            let userInfoCurrent = notification.userInfo! as! [String : String]
+            // ObjectID here is the key of the key-value pair
+            let uid = userInfoCurrent["objectID"]! as String
+            if uid == objectID {
+                println("UID IS \(uid)")
+                println("OBJECTID IS \(objectID)")
+                //Cancelling local notification
+                app.cancelLocalNotification(notification)
+                println("REMOVED NOTIFICATION SUCCESSFULLY")
+            
+            } else {
+                println("NO NOTIFICATION FOUND")
+            }
+        }
+        
+        
+        
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let realm = Realm()
@@ -251,12 +303,12 @@ class TaskViewController: UIViewController {
             // Sets the selectedTask
             let selectedTask = tasks[selectedIndexPath.row]
             
-            println(selectedTask)
+            //println(selectedTask)
             //targetVC.editedTask = selectedTask
-            println("TARGET VC \(selectedTask)")
-            println("HELLO \(targetVC.editedTask)")
+            //println("TARGET VC \(selectedTask)")
+            //println("HELLO \(targetVC.editedTask)")
             targetVC.editedTask = selectedTask
-            println("JFKDLSJFDKSLFJDKSLF \(targetVC.editedTask)")
+            //println("JFKDLSJFDKSLFJDKSLF \(targetVC.editedTask)")
             
             
             // New changes made to the task Object
@@ -583,12 +635,18 @@ class TaskViewController: UIViewController {
                 deleteTaskAlertView.addButton("Ok") {
                     println("Ok has been tapped")
                     
+                    // Takes out the local notification if ok is pressed. Takes the creationdate of the selected Cell and removes the notification from there
+                    self.removeNotification(selectedCell.creationDateString)
+                    println("selectedCell.creationDateString is \(selectedCell.creationDateString)")
+                    
                     // Pass the object we just created to delete
                     realm.write() {
                         realm.delete(tasks)
                         
                         // Subtracts 1 count from the taskCount when removecellBlock is called
                         self.category!.tasksWithinCategory.count - 1
+                        
+                        self.category!.taskCount - 1
                         
                         print("THIS IS THE TASK COUNT NOW \(self.category!.tasksWithinCategory.count)")
                         //                        println(self.category!.tasksWithinCategory.count)
@@ -598,6 +656,8 @@ class TaskViewController: UIViewController {
                     
                     // Closes the alertView
                     deleteTaskAlertView.close()
+                    
+                    
                     
                 }
                 
@@ -614,6 +674,10 @@ class TaskViewController: UIViewController {
                 
                 deleteTaskAlertView.showWarning("Are you sure?", subTitle: "This will delete task")
             } else {
+                
+                // Takes the creationdate of the selected Cell and removes the notification from there
+                self.removeNotification(selectedCell.creationDateString)
+                
                 // Pass the object we just created to delete
                 realm.write() {
                     realm.delete(tasks)
@@ -673,6 +737,8 @@ extension TaskViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
         let completedCell = tasks[indexPath.row]
+        
+        println("completed CEll is \(completedCell)")
         //println(completedCell.modificationDate)
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
@@ -764,12 +830,12 @@ extension TaskViewController: UITableViewDelegate {
             if let index = find(selectedRows, selectedTask) {
                 // Removing at index "index" the selectedTask form selectedRows
                 selectedRows.removeAtIndex(index)
-                println(selectedRows.count)
+                //println(selectedRows.count)
                 //println("\(selectedTask) at index \(index)")
             } else {
                 // Appending selectedTask to the array of selectedRows
                 selectedRows.append(selectedTask)
-                println(selectedRows.count)
+                //println(selectedRows.count)
                 //println("\(selectedTask) at index \(indexPath.row)")
             }
         } else {
@@ -811,7 +877,7 @@ extension TaskViewController: UITableViewDelegate {
             //println("this is indexpath.row \(indexPath.row)")
             // Removing from selectedRows the selectedRow at index
             selectedRows.removeAtIndex(index)
-            println(selectedRows.count)
+            //println(selectedRows.count)
         }
     }
     

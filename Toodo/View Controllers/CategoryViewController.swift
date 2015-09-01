@@ -71,10 +71,10 @@ class CategoryViewController: UIViewController {
     // Sets up the icons on initialization, add all customization here
     func setupIcons() {
         // Custom white color
-//        deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-//        editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-//        completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
-//        backToListIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        deleteIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        editIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        completeIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
+        backToListIcon.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor())
     }
     
     @IBAction func backToCategoryFromAddingList(segue: UIStoryboardSegue) {
@@ -105,9 +105,9 @@ class CategoryViewController: UIViewController {
                 self.editG = saveSourceFromAdd.G
                 self.editB = saveSourceFromAdd.B
                 
-                println(self.editR)
-                println(self.editG)
-                println(self.editB)
+                //println(self.editR)
+                //println(self.editG)
+                //println(self.editB)
                 
             default:
                 println("failed")
@@ -185,7 +185,7 @@ class CategoryViewController: UIViewController {
             let selectedIndexPath = categoryTableView.indexPathForSelectedRow()!
             let selectedCategory = categories[selectedIndexPath.row]
             
-            println(selectedCategory.taskCount)
+            //println(selectedCategory.taskCount)
             
             titleVC.category = selectedCategory
             //titleVC.category?.taskCount =
@@ -277,7 +277,7 @@ class CategoryViewController: UIViewController {
             // Create a category to delete, before the animation is run
             let category = self.categories[indexPath!.row] as Category
             
-            println(category.tasksWithinCategory.count)
+            //println(category.tasksWithinCategory.count)
             
             //            // If the taskCount is 3 or larger
             if (category.tasksWithinCategory.count >= 1) {
@@ -368,9 +368,9 @@ class CategoryViewController: UIViewController {
                         //                        selectedCategory.G = self.editG
                         //                        selectedCategory.B = self.editB
                     }
-                    println(selectedCategory.R)
-                    println(selectedCategory.G)
-                    println(selectedCategory.B)
+//                    println(selectedCategory.R)
+//                    println(selectedCategory.G)
+//                    println(selectedCategory.B)
                     
                     
                 } else if (selectedCategory.complete == false){
@@ -397,11 +397,11 @@ class CategoryViewController: UIViewController {
                     }
                     
                     //cell.backgroundColor = UIColor(red: CGFloat(selectedCategory.R), green: CGFloat(selectedCategory.G), blue: CGFloat(selectedCategory.B), alpha: 1.0)
-                    println(selectedCategory.R)
-                    println(selectedCategory.G)
-                    println(selectedCategory.B)
+//                    println(selectedCategory.R)
+//                    println(selectedCategory.G)
+//                    println(selectedCategory.B)
                     
-                    println("Should be default colors")
+                    //println("Should be default colors")
                 }
                 
                 
@@ -413,7 +413,7 @@ class CategoryViewController: UIViewController {
         
         // The remove block function
         removeCellBlock = {(tableView: SBGestureTableView, cell: SBGestureTableViewCell) -> Void in
-            println("remove run")
+//            println("remove run")
             
             let realm = Realm()
             
@@ -480,7 +480,10 @@ extension CategoryViewController: UITableViewDataSource {
         let cell = categoryTableView.dequeueReusableCellWithIdentifier("categoryCell", forIndexPath: indexPath) as! CategoryTableViewCell
         let completedCategory = self.categories[indexPath.row]
         
-        println(completedCategory.taskCount)
+        //println("task count \(completedCategory.taskCount)")
+        
+        //println("completed category \(completedCategory)")
+        
         
         //        let categoryForCount = self.categories[indexPath.row]
         //
@@ -502,8 +505,8 @@ extension CategoryViewController: UITableViewDataSource {
         //if completedCategory.complete == true {
         
         //cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
-        //cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
- //       cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: fullSwipeCell)
+        //cell.firstLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
+        cell.firstRightAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0, didTriggerBlock: removeCellBlock)
         
         
         //} else {

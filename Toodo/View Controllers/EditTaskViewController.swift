@@ -298,7 +298,7 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
             editImage.image = UIImage(named: "editDark")
         }
         
-        println(editButtonImage)
+        //println(editButtonImage)
         
     }
     

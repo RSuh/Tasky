@@ -31,28 +31,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set the realm SCHEMA here
         // Notice setSchemaVersion is set to 1, this is always set manually. It must be
         // higher than the previous version (oldSchemaVersion) or an RLMException is thrown
-//        setSchemaVersion(1, Realm.defaultPath, { migration, oldSchemaVersion in
-//            // We haven’t migrated anything yet, so oldSchemaVersion == 0
-//            
-//            
-//            
-//            if oldSchemaVersion < 1 {
-//                migration.enumerate(Task.className()) { oldObject, newObject in
-//                    // Nothing to do!
-//                    println("old schema version < 1")
-//                    //newObject!["creationDate"] = NSDate()
-//                    newObject!["creationDate"] = NSDate()
-//                    //oldObject!["email"] = ""
-//                    
-//                }
-//                // Realm will automatically detect new properties and removed properties
-//                // And will update the schema on disk automatically
-//                //                if oldSchemaVersion < 2 {
-//                //                    println(oldSchemaVersion)
-//                //                }
-//            }
-//            
-//        })
+        //        setSchemaVersion(1, Realm.defaultPath, { migration, oldSchemaVersion in
+        //            // We haven’t migrated anything yet, so oldSchemaVersion == 0
+        //
+        //
+        //
+        //            if oldSchemaVersion < 1 {
+        //                migration.enumerate(Task.className()) { oldObject, newObject in
+        //                    // Nothing to do!
+        //                    println("old schema version < 1")
+        //                    //newObject!["creationDate"] = NSDate()
+        //                    newObject!["creationDate"] = NSDate()
+        //                    //oldObject!["email"] = ""
+        //
+        //                }
+        //                // Realm will automatically detect new properties and removed properties
+        //                // And will update the schema on disk automatically
+        //                //                if oldSchemaVersion < 2 {
+        //                //                    println(oldSchemaVersion)
+        //                //                }
+        //            }
+        //
+        //        })
         //
         //println(schemaVersionAtPath(Realm.defaultPath, encryptionKey: nil, error: nil)! )
         //
@@ -65,21 +65,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
             migrationBlock: { migration, oldSchemaVersion in
-                // We haven’t migrated anything yet, so oldSchemaVersion == 0
-                if (oldSchemaVersion < 1) {
-                    
-                    migration.enumerate(Task.className()) { oldObject, newObject in
+                
+                migration.enumerate(Task.className()) { oldObject, newObject in
+                    // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                    if (oldSchemaVersion < 1) {
+                        
+                        
                         newObject!["creationDate"] = NSDate()
+                        newObject!["creationDateString"] = ""
                         //newObject!["email"] = ""
                     }
                     // Nothing to do!
                     // Realm will automatically detect new properties and removed properties
                     // And will update the schema on disk automatically
+                    
+                    if (oldSchemaVersion < 2) {
+                        newObject!["creationDateString"] = ""
+                    }
                 }
         })
-//
-//        // Tell Realm to use this new configuration object for the default Realm
-//        Realm.Configuration.defaultConfiguration = config
+        //
+        //        // Tell Realm to use this new configuration object for the default Realm
+        //        Realm.Configuration.defaultConfiguration = config
         
         let realm = Realm()
         // now that we have called `setSchemaVersion(_:_:_:)`, opening an outdated
@@ -93,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // What happens when the user clicks on the notification
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
-        println("NOTIFICATION PRESSED")
+        println("Notification set!")
         
         // Resets the badge number to 0 when the user enters the app
         //application.applicationIconBadgeNumber = 0

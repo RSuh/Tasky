@@ -23,6 +23,7 @@ class Task: Object {
     dynamic var category: Category?
     dynamic var complete: Bool = false
     dynamic var creationDate: NSDate = NSDate()
+    dynamic var creationDateString = ""
     //dynamic var email = ""
 }
 

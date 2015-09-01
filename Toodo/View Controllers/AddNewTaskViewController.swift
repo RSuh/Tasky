@@ -36,6 +36,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
     var orderingDate: NSDate?
     var category: Category?
     var creationDate: NSDate?
+    var creationDateString = ""
     
     
     
@@ -79,7 +80,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             
             realm.write() {
                 self.date.text = self.newTask?.modificationDate
-                println(task.modificationDate)
+                //println(task.modificationDate)
             }
         }
     }
@@ -105,8 +106,15 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                         // Sets the creation Date
                         self.creationDate = NSDate()
                         
-                        // Sets the tasks property creation date to be self
-                        newTask.creationDate = self.creationDate!
+                        var dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+                        
+                        self.creationDateString = dateFormatter.stringFromDate(self.creationDate!)
+                        
+                        // Sets the tasks property creationDateString
+                        newTask.creationDateString = self.creationDateString
+                        
+                        println("CREATIONDATESTRING IS \(self.creationDateString)")
                         
                         // Sets the ordering date
                         if (self.orderingDate != nil) {
@@ -198,8 +206,20 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    static func scheduleNotification() {
-        
+    func scheduleNotification() {
+        var localNotification: UILocalNotification = UILocalNotification()
+        localNotification.fireDate = self.orderingDate
+        localNotification.alertBody = "\(newTask!.taskTitle) is due!"
+        localNotification.alertAction = "Show me the task"
+        localNotification.timeZone = NSTimeZone.localTimeZone()
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.alertLaunchImage = "badgeHome"
+        localNotification.userInfo = ["objectID" : newTask!.creationDateString]
+        println("userinfo dict is \(localNotification.userInfo)")
+        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        //println("NOTIFICATION SCHEDULED FOR \(self.orderingDate)")
+        println("schedulenotification called")
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
@@ -228,21 +248,31 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
             } else {
                 newTask = Task()
                 saveNewTask()
-                println("task was saved \(newTask?.creationDate)!")
-                var localNotification: UILocalNotification = UILocalNotification()
-                localNotification.fireDate = self.orderingDate
-                localNotification.alertBody = "\(newTask!.taskTitle)"
-                localNotification.alertAction = "Show me the item"
-                localNotification.timeZone = NSTimeZone.localTimeZone()
-                localNotification.soundName = UILocalNotificationDefaultSoundName
-                localNotification.alertLaunchImage = "badgeHome"
-                // [NSObject : AnyObject]?
-                localNotification.userInfo = ["objectID" : newTask!.creationDate]
-                println(localNotification.userInfo)
-                //println("local notification \(localNotification)")
-                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-                //NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+                
+                // Schedules the notification
+                scheduleNotification()
+                
+                println("THE SCHEDULED NOTIFICATIONS \(UIApplication.sharedApplication().scheduledLocalNotifications)")
+                
+                
+                
+                println("Creation Date \(newTask!.creationDateString)")
+                
+                
+//                var localNotification: UILocalNotification = UILocalNotification()
+//                localNotification.fireDate = self.orderingDate
+//                localNotification.alertBody = "\(newTask!.taskTitle)"
+//                localNotification.alertAction = "Show me the item"
+//                localNotification.timeZone = NSTimeZone.localTimeZone()
+//                localNotification.soundName = UILocalNotificationDefaultSoundName
+//                localNotification.alertLaunchImage = "badgeHome"
+//                // [NSObject : AnyObject]?
+//                localNotification.userInfo = ["objectID" : newTask!.creationDate]
+//                println(localNotification.userInfo)
+//                //println("local notification \(localNotification)")
+//                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+//                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+//                //NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
                 
                 return true
             }
