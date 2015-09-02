@@ -13,6 +13,10 @@
 {
     NSAssert([[NSFileManager defaultManager] fileExistsAtPath:[url path]], @"Font file doesn't exist");
     CGDataProviderRef fontDataProvider = CGDataProviderCreateWithURL((__bridge CFURLRef)url);
+    
+    // Fixes the hanging issue when there is no data connection
+    [UIFont familyNames];
+    
     CGFontRef newFont = CGFontCreateWithDataProvider(fontDataProvider);
     CGDataProviderRelease(fontDataProvider);
     CFErrorRef error;
