@@ -233,11 +233,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/FontAwesomeKit/FontAwesomeKit/FAKIcon.m"
-            timestampString = "462169275.936784"
+            timestampString = "462927873.960312"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "+registerIconFontWithURL:"
             landmarkType = "5">
          </BreakpointContent>
