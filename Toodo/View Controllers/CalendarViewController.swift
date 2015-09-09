@@ -268,7 +268,7 @@ class CalendarViewController: UIViewController {
                 if (dateString == "") {
                     targetVC.date = dateTime
                 } else if (dateTime == "") {
-                    targetVC.date = dateString
+                    targetVC.date = dateString + " at 9:00 a.m"
                 } else {
                     targetVC.date = dateString + " at " + dateTime
                 }

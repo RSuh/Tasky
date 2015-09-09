@@ -210,7 +210,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
         var localNotification: UILocalNotification = UILocalNotification()
         localNotification.fireDate = self.orderingDate
         localNotification.alertBody = "\(newTask!.taskTitle) is due!"
-        localNotification.alertAction = "Show me the task"
+        localNotification.alertAction = "see the task"
         localNotification.timeZone = NSTimeZone.localTimeZone()
         localNotification.soundName = UILocalNotificationDefaultSoundName
         localNotification.alertLaunchImage = "badgeHome"

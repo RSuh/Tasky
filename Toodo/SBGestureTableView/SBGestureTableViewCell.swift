@@ -22,7 +22,7 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     var firstLeftAction: SBGestureTableViewCellAction? {
         didSet {
             if (firstLeftAction?.fraction == 0) {
-                firstLeftAction?.fraction = 0.3
+                firstLeftAction?.fraction = 0.35
             }
         }
     }
@@ -37,14 +37,14 @@ class SBGestureTableViewCell: UITableViewCell, UIGestureRecognizerDelegate {
     var firstRightAction: SBGestureTableViewCellAction? {
         didSet {
             if (firstRightAction?.fraction == 0) {
-                firstRightAction?.fraction = 0.5
+                firstRightAction?.fraction = 0.35
             }
         }
     }
     var secondRightAction: SBGestureTableViewCellAction? {
         didSet {
             if (secondRightAction?.fraction == 0) {
-                secondRightAction?.fraction = 0.8
+                secondRightAction?.fraction = 0.65
             }
         }
     }
