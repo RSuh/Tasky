@@ -275,8 +275,6 @@ class TaskViewController: UIViewController {
             // ObjectID here is the key of the key-value pair
             let uid = userInfoCurrent["objectID"]! as String
             if uid == objectID {
-                println("UID IS \(uid)")
-                println("OBJECTID IS \(objectID)")
                 //Cancelling local notification
                 app.cancelLocalNotification(notification)
                 println("REMOVED NOTIFICATION SUCCESSFULLY")
@@ -731,14 +729,14 @@ class TaskViewController: UIViewController {
 extension TaskViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("loaded")
+        //println("loaded")
         
         // Initialize Cell
         let cell = tableView.dequeueReusableCellWithIdentifier("taskCell", forIndexPath: indexPath) as! TaskTableViewCell
         
         let completedCell = tasks[indexPath.row]
         
-        println("completed CEll is \(completedCell)")
+        //println("completed CEll is \(completedCell)")
         //println(completedCell.modificationDate)
         // Sets size for the image when we swipe
         let size = CGSizeMake(30, 30)
@@ -752,7 +750,7 @@ extension TaskViewController: UITableViewDataSource {
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: completeIcon.imageWithSize(size), color: greenColor, fraction: 0, didTriggerBlock: replaceCell)
             //            cell.secondLeftAction = SBGestureTableViewCellAction(icon: deleteIcon.imageWithSize(size), color: redColor, fraction: 0.3, didTriggerBlock: removeCellBlock)
             
-            println("The old gesture")
+            //println("The old gesture")
             // A bool to see if the editing is enabled
         }
         
@@ -774,7 +772,7 @@ extension TaskViewController: UITableViewDataSource {
             cell.firstLeftAction = SBGestureTableViewCellAction(icon: backToListIcon.imageWithSize(size), color: yellowColor, fraction: 0, didTriggerBlock: replaceCell)
         }
         else {
-            println("cell is not complete")
+            //println("cell is not complete")
             // Sets the default cell properties
             cell.badgeImage.image = UIImage(named: arrayConstants.cellImagesUnselected[completedCell.badge])
             cell.backgroundColor = UIColor.whiteColor()

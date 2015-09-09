@@ -254,9 +254,7 @@ class AddNewTaskViewController: UIViewController, UICollectionViewDelegate, UICo
                 
                 println("THE SCHEDULED NOTIFICATIONS \(UIApplication.sharedApplication().scheduledLocalNotifications)")
                 
-                
-                
-                println("Creation Date \(newTask!.creationDateString)")
+                //println("Creation Date \(newTask!.creationDateString)")
                 
                 
 //                var localNotification: UILocalNotification = UILocalNotification()

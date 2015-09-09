@@ -81,6 +81,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     if (oldSchemaVersion < 2) {
                         newObject!["creationDateString"] = ""
+                    } else {
+                        println("SCHEMA FAILED")
                     }
                 }
         })
@@ -101,6 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
         println("Notification set!")
+        
+        println("notification set is \(notification)")
         
         // Resets the badge number to 0 when the user enters the app
         //application.applicationIconBadgeNumber = 0

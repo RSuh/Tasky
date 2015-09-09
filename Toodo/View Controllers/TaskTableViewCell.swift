@@ -35,6 +35,8 @@ class TaskTableViewCell: SBGestureTableViewCell {
         didSet {
             if let task = task, taskLabel = taskLabel, dateLabel = dateLabel {
                 
+                println("the task object's creationdatestring is \(task.creationDateString)")
+                
                 dateLabel.text! = task.modificationDate
                 taskLabel.text = task.taskTitle as String
                 

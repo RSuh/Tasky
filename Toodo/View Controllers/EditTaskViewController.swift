@@ -31,6 +31,8 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
     var editButtonImage: String = ""
     var date = ""
     var numDateLabel = ""
+    var creationDate: NSDate?
+    var creationDateString = ""
     
     
     
@@ -115,12 +117,42 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
 //                        if (self.orderingDate != nil) {
 //                            newTask.orderingDate = self.orderingDate!
 //                        }
+                        
+                        self.creationDate = NSDate()
+                        
+                        var dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss zzz"
+                        
+                        self.creationDateString = dateFormatter.stringFromDate(self.creationDate!)
+                        
+                        editedTask.creationDateString = self.creationDateString
+                        
+                        println("CREATIONDATESTRING OF EDITED TASK IS \(self.creationDateString)")
+                        
+                        
                 } else {
                     println("nothing has changed")
                 }
             }
         }
     }
+    
+    func scheduleNotification() {
+        var localNotification: UILocalNotification = UILocalNotification()
+        localNotification.fireDate = self.orderingDate
+        localNotification.alertBody = "\(editedTask!.taskTitle) is due!"
+        localNotification.alertAction = "Show me the task"
+        localNotification.timeZone = NSTimeZone.localTimeZone()
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        localNotification.alertLaunchImage = "badgeHome"
+        localNotification.userInfo = ["objectID" : editedTask!.creationDateString]
+        println("userinfo dict is \(localNotification.userInfo)")
+        localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        //println("NOTIFICATION SCHEDULED FOR \(self.orderingDate)")
+        println("schedulenotification called")
+    }
+
     
     @IBAction func selectDateAction(sender: AnyObject) {
         
@@ -213,17 +245,10 @@ class EditTaskViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 
                 saveTask()
                 
-                var localNotification: UILocalNotification = UILocalNotification()
-                localNotification.fireDate = self.orderingDate
-                localNotification.alertBody = "\(editedTask!.taskTitle)"
-                localNotification.alertAction = "Show me the item"
-                localNotification.timeZone = NSTimeZone.localTimeZone()
-                localNotification.soundName = UILocalNotificationDefaultSoundName
-                localNotification.alertLaunchImage = "badgeHome"
-                println("local notification \(localNotification)")
-                localNotification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-                NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+                // Schedules the notification
+                scheduleNotification()
+                
+                 println("THE SCHEDULED NOTIFICATIONS \(UIApplication.sharedApplication().scheduledLocalNotifications)")
                 
                 return true
             }
