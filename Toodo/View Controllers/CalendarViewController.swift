@@ -171,9 +171,9 @@ class CalendarViewController: UIViewController {
                 var todayDateComponents: NSCalendarUnit = .CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay
                 let todayComponents = NSCalendar.currentCalendar().components(todayDateComponents, fromDate: todayDate)
                 
-//                var todayTimeComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
-//                let todayTimeComponents = NSCalendar.currentCalendar().component(todayTimeComponents, fromDate: todayDate)
-
+                //                var todayTimeComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
+                //                let todayTimeComponents = NSCalendar.currentCalendar().component(todayTimeComponents, fromDate: todayDate)
+                
                 // Sets the dateLabel of AddNewTaskViewController to be the date the user selected
                 //targetVC.dateLabel = self.dateString
                 
@@ -202,21 +202,33 @@ class CalendarViewController: UIViewController {
                     // Sets the hour and minute to be 9:00 AM
                     fullNotificationDate.hour = 9
                     fullNotificationDate.minute = 0
-                    println("fullnotificationdate hour \(fullNotificationDate.hour)")
-                    println("fullnotification minute \(fullNotificationDate.minute)")
-                    
-                } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
                     fullNotificationDate.day = calendarComponents!.day
                     fullNotificationDate.month = calendarComponents!.month
                     fullNotificationDate.year = calendarComponents!.year
+                    
+                    //                    println("fullnotificationdate hour \(fullNotificationDate.hour)")
+                    //                    println("fullnotification minute \(fullNotificationDate.minute)")
+                    println("time components \(timeComponents)")
+                    
+                // If the date and time is changed
+                } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
+                    
+                    fullNotificationDate.hour = timeComponents!.hour
+                    fullNotificationDate.minute = timeComponents!.minute
+                    fullNotificationDate.day = calendarComponents!.day
+                    fullNotificationDate.month = calendarComponents!.month
+                    fullNotificationDate.year = calendarComponents!.year
+                    
                 } else {
+                    
+                    // Time is still set the same
+                    fullNotificationDate.hour = timeComponents!.hour
+                    fullNotificationDate.minute = timeComponents!.minute
                     // Since we are adding a new date, set the day, month, year to be todays date if no date if specified
                     fullNotificationDate.day = todayComponents.day
                     fullNotificationDate.month = todayComponents.month
                     fullNotificationDate.year = todayComponents.year
-                    // Time is still set the same
-                    fullNotificationDate.hour = timeComponents!.hour
-                    fullNotificationDate.minute = timeComponents!.minute
+                    
                     println("time components \(timeComponents)")
                 }
                 
@@ -224,8 +236,12 @@ class CalendarViewController: UIViewController {
                 // This is the date that the push notification should go off
                 self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(fullNotificationDate)
                 
+                println("full notification date is \(fullNotificationDate)")
+                
                 // Sets the orderingDate in AddnewtaskVC to be self.orderingdate
                 targetVC.orderingDate = self.orderingDate
+                
+                //println("targetVC is \(targetVC.orderingDate)")
                 
                 //                println(fullNotificationDate)
                 
@@ -286,24 +302,26 @@ class CalendarViewController: UIViewController {
                     // Sets the hour and minute to be 9:00 AM
                     editNotificationDate.hour = 9
                     editNotificationDate.minute = 0
-                 
+                    
                 } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
                     editNotificationDate.day = calendarComponents!.day
                     editNotificationDate.month = calendarComponents!.month
                     editNotificationDate.year = calendarComponents!.year
                 } else {
-                
-                editNotificationDate.day = todayComponents.day
-                editNotificationDate.month = todayComponents.month
-                editNotificationDate.year = todayComponents.year
-                editNotificationDate.hour = timeComponents!.hour
-                editNotificationDate.minute = timeComponents!.minute
+                    
+                    editNotificationDate.day = todayComponents.day
+                    editNotificationDate.month = todayComponents.month
+                    editNotificationDate.year = todayComponents.year
+                    editNotificationDate.hour = timeComponents!.hour
+                    editNotificationDate.minute = timeComponents!.minute
                 }
                 // This is the date that the push notification should go off
                 self.orderingDate = NSCalendar.currentCalendar().dateFromComponents(editNotificationDate)
                 
                 // Sets the orderingDate in AddnewtaskVC to be self.orderingdate
                 targetVC.orderingDate = self.orderingDate
+                
+                println("targetVC is \(targetVC.orderingDate)")
                 
             }
             
@@ -381,7 +399,7 @@ extension CalendarViewController: FSCalendarDelegate {
         
         //        println(calendarComponents?.day)
         //        println(calendarComponents?.month)
-        //        
+        //
         // Set the strippedCalendarDate to be the NSDate
         let strippedCalendarDate = NSCalendar.currentCalendar().dateFromComponents(components)
         
