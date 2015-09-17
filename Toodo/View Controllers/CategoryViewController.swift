@@ -246,8 +246,11 @@ class CategoryViewController: UIViewController {
             //println(" ")
         }
         
-        // self.categoryTableView.reloadData()
-        println("tableview reloadeD")
+        //self.categoryTableView.reloadData()
+        //See what type of tasks are in the categories
+        //println("taskswithincategory \(category)")
+//        println("categories are \(categories)")
+//        println("category is \(category)")
         
         fadedIconImage.hidden = true
         displayNoCategories.hidden = true
@@ -427,12 +430,20 @@ class CategoryViewController: UIViewController {
             realm.write() {
                 realm.delete(category)
                 
+                //println("taskswithincategory for category deleted \(category.tasksWithinCategory)")
+                
+                //realm.delete(category.tasksWithinCategory)
+                
+                
+                
                 // The animation to delete (manditory/ needed)
                 tableView.removeCell(cell, duration: 0.3, completion: nil)
                 
                 // To prevent the duplication
                 //            tableView.reloadData()
             }
+            
+            //println("taskswithincategory for category deleted \(category.tasksWithinCategory)")
             
             
         }
@@ -458,6 +469,8 @@ class CategoryViewController: UIViewController {
         let font = UIFont(name: "Avenir-Medium", size: 20)
         navigation?.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: UIColor.whiteColor()]
         //UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: font, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        
         
     }
     
@@ -501,6 +514,8 @@ extension CategoryViewController: UITableViewDataSource {
         //        }
         
         let size = CGSizeMake(30, 30)
+        
+        println("completedCategory is \(completedCategory.tasksWithinCategory)")
         
         //if completedCategory.complete == true {
         

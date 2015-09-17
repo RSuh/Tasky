@@ -302,8 +302,14 @@ class CalendarViewController: UIViewController {
                     // Sets the hour and minute to be 9:00 AM
                     editNotificationDate.hour = 9
                     editNotificationDate.minute = 0
+                    editNotificationDate.day = calendarComponents!.day
+                    editNotificationDate.month = calendarComponents!.month
+                    editNotificationDate.year = calendarComponents!.year
                     
                 } else if ((calendarComponents?.day != nil) && (calendarComponents?.month != nil) && (calendarComponents?.year != nil)) {
+                    
+                    editNotificationDate.hour = timeComponents!.hour
+                    editNotificationDate.minute = timeComponents!.minute
                     editNotificationDate.day = calendarComponents!.day
                     editNotificationDate.month = calendarComponents!.month
                     editNotificationDate.year = calendarComponents!.year

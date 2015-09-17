@@ -110,7 +110,7 @@
                                 <rect key="frame" x="287" y="559" width="25" height="26"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y58-yh-AsY">
-                                <rect key="frame" x="216" y="325.5" width="168.5" height="47"/>
+                                <rect key="frame" x="216" y="374" width="168.5" height="47"/>
                                 <string key="text">No categories yet! 
 Add one!</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -118,7 +118,7 @@ Add one!</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.79999999999999982" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fadedIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="Boq-6c-nea">
-                                <rect key="frame" x="254" y="214" width="91" height="91"/>
+                                <rect key="frame" x="254" y="262.5" width="91" height="91"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="84i-sv-6pa"/>
                                     <constraint firstAttribute="height" constant="91" id="cWl-wI-Ffu"/>
@@ -131,11 +131,13 @@ Add one!</string>
                             <constraint firstAttribute="centerX" secondItem="Boq-6c-nea" secondAttribute="centerX" id="5rG-Md-uSQ"/>
                             <constraint firstItem="9Hn-Ha-5aZ" firstAttribute="top" secondItem="MrQ-rA-5Q5" secondAttribute="bottom" id="6vz-G2-1mg"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="P7N-vr-83j" secondAttribute="bottom" id="78N-Jh-YLA"/>
+                            <constraint firstItem="Boq-6c-nea" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" constant="150" id="8PO-xf-DM9"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="y58-yh-AsY" secondAttribute="bottom" constant="160" id="9Lw-6A-oPP"/>
                             <constraint firstItem="AKg-m3-XXg" firstAttribute="centerX" secondItem="MrQ-rA-5Q5" secondAttribute="centerX" id="GXu-Pt-GFe"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leading" id="HtX-ta-JUr"/>
                             <constraint firstItem="y58-yh-AsY" firstAttribute="top" secondItem="Boq-6c-nea" secondAttribute="bottom" constant="20.5" id="IDv-87-vWK"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="trailing" secondItem="LWI-JR-bJd" secondAttribute="trailing" id="KGw-ey-DbI"/>
+                            <constraint firstItem="P7N-vr-83j" firstAttribute="centerY" secondItem="Boq-6c-nea" secondAttribute="centerY" constant="-4" id="N08-UD-wzE"/>
                             <constraint firstItem="P7N-vr-83j" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leading" id="QAi-YM-NbH"/>
                             <constraint firstItem="AKg-m3-XXg" firstAttribute="centerY" secondItem="MrQ-rA-5Q5" secondAttribute="centerY" id="Qoo-l7-eMP"/>
                             <constraint firstAttribute="centerX" secondItem="y58-yh-AsY" secondAttribute="centerX" id="RmR-Dw-kMp"/>
@@ -145,19 +147,25 @@ Add one!</string>
                             <constraint firstAttribute="trailing" secondItem="MrQ-rA-5Q5" secondAttribute="trailing" id="bC1-gv-ywH"/>
                             <constraint firstItem="P7N-vr-83j" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" id="bKa-aP-FXc"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="bottom" secondItem="LWI-JR-bJd" secondAttribute="bottom" id="dwu-aE-tkI"/>
-                            <constraint firstItem="y58-yh-AsY" firstAttribute="top" secondItem="Boq-6c-nea" secondAttribute="bottom" constant="20.5" id="hXB-93-t8r"/>
+                            <constraint firstItem="Boq-6c-nea" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" constant="150" id="gLl-cy-tu9"/>
+                            <constraint firstItem="y58-yh-AsY" firstAttribute="top" secondItem="Boq-6c-nea" secondAttribute="bottom" constant="20" id="hXB-93-t8r"/>
                             <constraint firstItem="Boq-6c-nea" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leadingMargin" constant="238" id="ink-63-qSV"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="top" secondItem="y58-yh-AsY" secondAttribute="bottom" constant="160" id="l46-sY-uOC"/>
                             <constraint firstItem="Boq-6c-nea" firstAttribute="top" secondItem="ssE-92-hBh" secondAttribute="bottom" constant="150" id="m4O-sS-F62"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Boq-6c-nea" secondAttribute="trailing" constant="239" id="o9Y-yf-6oR"/>
                             <constraint firstItem="MrQ-rA-5Q5" firstAttribute="leading" secondItem="LWI-JR-bJd" secondAttribute="leading" id="oSb-zD-7PK"/>
+                            <constraint firstAttribute="centerY" secondItem="Boq-6c-nea" secondAttribute="centerY" id="u1S-77-bvk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="y58-yh-AsY" secondAttribute="trailing" constant="170" id="u2Y-TF-ecw"/>
                             <constraint firstItem="y58-yh-AsY" firstAttribute="leading" secondItem="WMz-C3-G1r" secondAttribute="leadingMargin" constant="170" id="x30-8D-i9R"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="8PO-xf-DM9"/>
+                                <exclude reference="gLl-cy-tu9"/>
                                 <exclude reference="ink-63-qSV"/>
+                                <exclude reference="m4O-sS-F62"/>
                                 <exclude reference="o9Y-yf-6oR"/>
+                                <exclude reference="u1S-77-bvk"/>
                                 <exclude reference="IDv-87-vWK"/>
                                 <exclude reference="YPw-iJ-j5j"/>
                                 <exclude reference="u2Y-TF-ecw"/>
@@ -188,7 +196,7 @@ Add one!</string>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kvd-Ca-cfx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Share" id="EjL-Jx-8dG">
                                 <cells>
@@ -200,7 +208,7 @@ Add one!</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate Now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f2-pS-cAu">
                                                     <rect key="frame" x="66" y="14" width="76" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rate" translatesAutoresizingMaskIntoConstraints="NO" id="j31-9b-gMF">
@@ -229,7 +237,7 @@ Add one!</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share on Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsO-Kk-feh">
                                                     <rect key="frame" x="66" y="14" width="150" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook" translatesAutoresizingMaskIntoConstraints="NO" id="fBj-GP-mUx">
@@ -261,7 +269,7 @@ Add one!</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet about Tasky" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jxn-at-6k0">
                                                     <rect key="frame" x="66" y="14" width="142" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -294,7 +302,7 @@ Add one!</string>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share by E-Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liy-ax-4yk">
                                                     <rect key="frame" x="66" y="14" width="122" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -452,7 +460,7 @@ Add one!</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hm-kW-fQ9">
-                                <rect key="frame" x="241.5" y="326" width="117" height="47"/>
+                                <rect key="frame" x="241" y="365.5" width="117" height="47"/>
                                 <string key="text">No tasks yet!
 Add one!</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
@@ -460,7 +468,7 @@ Add one!</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fadedIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="fYk-vs-SsL">
-                                <rect key="frame" x="254" y="215" width="91" height="91"/>
+                                <rect key="frame" x="254" y="254" width="91" height="91"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="91" id="I4M-3J-Ew0"/>
                                     <constraint firstAttribute="width" constant="91" id="vqe-rS-z2o"/>
@@ -473,22 +481,36 @@ Add one!</string>
                             <constraint firstItem="MDr-AE-52X" firstAttribute="top" secondItem="xLT-qu-nrB" secondAttribute="bottom" id="4dw-2V-Yo0"/>
                             <constraint firstItem="BiD-Oi-fzP" firstAttribute="top" secondItem="MDr-AE-52X" secondAttribute="bottom" id="84o-d0-sUl"/>
                             <constraint firstItem="d6P-nP-Q1z" firstAttribute="top" secondItem="BiD-Oi-fzP" secondAttribute="bottom" id="8qF-2c-rLQ"/>
+                            <constraint firstItem="fYk-vs-SsL" firstAttribute="centerY" secondItem="MDr-AE-52X" secondAttribute="centerY" constant="-4.5" id="9M4-ci-AZU"/>
+                            <constraint firstItem="fYk-vs-SsL" firstAttribute="top" secondItem="xLT-qu-nrB" secondAttribute="bottom" constant="150" id="BC2-oC-v7g"/>
                             <constraint firstAttribute="trailing" secondItem="MDr-AE-52X" secondAttribute="trailing" id="EAz-j8-ezk"/>
                             <constraint firstItem="BiD-Oi-fzP" firstAttribute="top" secondItem="3hm-kW-fQ9" secondAttribute="bottom" constant="171" id="F5R-XL-JiN"/>
+                            <constraint firstItem="fYk-vs-SsL" firstAttribute="centerY" secondItem="MDr-AE-52X" secondAttribute="centerY" constant="-4" id="Ldj-YC-e6h"/>
                             <constraint firstAttribute="centerX" secondItem="fYk-vs-SsL" secondAttribute="centerX" id="Sy3-A6-8E5"/>
                             <constraint firstAttribute="centerX" secondItem="3hm-kW-fQ9" secondAttribute="centerX" id="Wk7-Ez-Ada"/>
+                            <constraint firstAttribute="centerY" secondItem="fYk-vs-SsL" secondAttribute="centerY" id="bRQ-mR-RbB"/>
                             <constraint firstItem="MDr-AE-52X" firstAttribute="leading" secondItem="BUC-SJ-1jl" secondAttribute="leading" id="f5k-b8-QGk"/>
+                            <constraint firstAttribute="centerY" secondItem="fYk-vs-SsL" secondAttribute="centerY" id="itk-rm-mwY"/>
                             <constraint firstItem="BiD-Oi-fzP" firstAttribute="leading" secondItem="BUC-SJ-1jl" secondAttribute="leading" id="kGE-Mi-CCj"/>
                             <constraint firstItem="3hm-kW-fQ9" firstAttribute="leading" secondItem="BUC-SJ-1jl" secondAttribute="leading" constant="216" id="mt1-bR-uJf"/>
                             <constraint firstAttribute="trailing" secondItem="BiD-Oi-fzP" secondAttribute="trailing" id="nwj-2m-5ca"/>
                             <constraint firstItem="whC-cE-PUS" firstAttribute="centerX" secondItem="BiD-Oi-fzP" secondAttribute="centerX" constant="0.5" id="qJY-ni-5nY"/>
+                            <constraint firstItem="3hm-kW-fQ9" firstAttribute="top" secondItem="fYk-vs-SsL" secondAttribute="bottom" constant="20" id="qdQ-72-7RM"/>
+                            <constraint firstItem="fYk-vs-SsL" firstAttribute="top" secondItem="xLT-qu-nrB" secondAttribute="bottom" constant="150" id="ssQ-RN-hfd"/>
                             <constraint firstAttribute="trailing" secondItem="3hm-kW-fQ9" secondAttribute="trailing" constant="216" id="v5J-Qb-Qnz"/>
                             <constraint firstItem="whC-cE-PUS" firstAttribute="centerY" secondItem="BiD-Oi-fzP" secondAttribute="centerY" id="zpq-X6-E1c"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="9M4-ci-AZU"/>
+                                <exclude reference="BC2-oC-v7g"/>
+                                <exclude reference="bRQ-mR-RbB"/>
+                                <exclude reference="itk-rm-mwY"/>
+                                <exclude reference="ssQ-RN-hfd"/>
+                                <exclude reference="4Sd-J7-CeQ"/>
                                 <exclude reference="mt1-bR-uJf"/>
                                 <exclude reference="v5J-Qb-Qnz"/>
+                                <exclude reference="F5R-XL-JiN"/>
                             </mask>
                         </variation>
                     </view>
@@ -562,7 +584,7 @@ Add one!</string>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="YEU-9k-mDf">
                                         <rect key="frame" x="574" y="33" width="10" height="15"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Set Reminder" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSV-1E-eIv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Set Notification" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSV-1E-eIv">
                                         <rect key="frame" x="89" y="26" width="465" height="27.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="77" id="WSh-2v-Gz5"/>
@@ -581,7 +603,7 @@ Add one!</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqG-ps-vbH">
                                         <rect key="frame" x="32" y="26" width="27" height="33"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -741,7 +763,7 @@ Add one!</string>
             </objects>
             <point key="canvasLocation" x="2295" y="-306"/>
         </scene>
-        <!--Set Date-->
+        <!--Set Notification-->
         <scene sceneID="y3i-8c-9l9">
             <objects>
                 <viewController id="Img-gE-gqF" customClass="CalendarViewController" customModule="Tasky" customModuleProvider="target" sceneMemberID="viewController">
@@ -865,7 +887,7 @@ Add one!</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Set Date" id="LN2-Jf-VFA">
+                    <navigationItem key="navigationItem" title="Set Notification" id="LN2-Jf-VFA">
                         <barButtonItem key="leftBarButtonItem" image="backArrow" id="KOL-gd-o0n">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -977,7 +999,7 @@ Add one!</string>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="chevronRight" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-YJ-Ary">
                                         <rect key="frame" x="574" y="33" width="10" height="15"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Set Reminder" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKI-h4-aGU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Set Notification" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKI-h4-aGU">
                                         <rect key="frame" x="90" y="26" width="464" height="27.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="458" id="Ii4-fd-X0i"/>
@@ -996,7 +1018,7 @@ Add one!</string>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZR-S0-t46">
                                         <rect key="frame" x="32" y="27" width="27" height="33"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1445,7 +1467,7 @@ Add one!</string>
         <image name="twitter" width="36" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ISx-wd-NPO"/>
         <segue reference="Y25-bj-DbE"/>
-        <segue reference="wOY-4A-KIR"/>
     </inferredMetricsTieBreakers>
 </document>
